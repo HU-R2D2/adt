@@ -22,7 +22,6 @@ namespace r2d2 {
          double z;
       private:
          coordinate(double x, double y, double z);
-         virtual ~coordinate();
       public:
          //! @brief Copies the fields from the right hand side into this,
          //! and returns a reference to this.
@@ -32,6 +31,8 @@ namespace r2d2 {
          //! @return Reference to the left hand side of the operator.
          coordinate & operator= (const coordinate & rhs);
          
+         //! @brief The arbitrary origin to be used.
+         static const coordinate origin;
       };
    }
 }
