@@ -5,6 +5,7 @@
 
 #ifndef COORDINATE_HPP
 #define COORDINATE_HPP
+#include <iostream>
 
 namespace r2d2 {
    namespace adt {
@@ -30,6 +31,8 @@ namespace r2d2 {
          //! @param rhs Object from which to copy the values.
          //! @return Reference to the left hand side of the operator.
          coordinate & operator= (const coordinate & rhs);
+         
+         friend std::ostream & operator<<(std::ostream & lhs, const coordinate & rhs);
          
          //! @brief The arbitrary origin to be used.
          static const coordinate origin;
