@@ -18,10 +18,10 @@ class Duration{
 		Duration(double seconds);
 	public:
 		const Duration 1_second();
-		double minute = 60;
-		double hour = 60 * minute;
+		const double minute = 60;
+		const double hour = 60 * minute;
 		/// assignment operator for a duration
-		Duration & operator= (const duration &);
+		Duration & operator= (const duration & rhs);
 		/// adds a duration to a duration and returns a duration
 		Duration operator+ ( const duration & rhs ) const;
 		/// substracts a duration from a duration and returns a duration
@@ -37,11 +37,11 @@ class Duration{
 		/// compares to durations to eachother and return a boolean (true if 1st greater than 2nd)
 		bool operator> (const duration & rhs) const;
 		/// compares two durations to each other and returns a boolean (true if 1st smaller than 2nd)
-		bool operator< (const Duration & rhs) const;
+		bool operator< (const duration & rhs) const;
 		/// appends a duration to an ostream and return an ostream
-		ostream& operator<< (ostream & os, const Duration &rhs) const;
+		ostream& operator<< (ostream & os, const duration &rhs) const;
 		/// Writes a duration to an istream and returns an istream
-		istream & operator>> (istream & is, Duration & rhs);
+		istream & operator>> (istream & is, duration & rhs);
 	private:
 		double seconds;
 };
