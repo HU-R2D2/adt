@@ -10,7 +10,7 @@
 
 class Length{
 	private:
-		Length(double l=0);
+		Length(double length=0);
 		
 	public:
 		/// assignment operator for a Length
@@ -37,7 +37,7 @@ class Length{
 		istream& operator>>( istream& is, Length& rhs)
 		
 	private:
-		double l;
+		double length;
 }
 
 #endif

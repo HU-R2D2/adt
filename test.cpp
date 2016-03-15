@@ -2,89 +2,74 @@
 #include "Length.hpp"
 
 // constructors:
+
 TEST(Constructor, Default) {
 	Length a;
-	ASSERT_EQ(a.l , 0) << "length";
+	ASSERT_EQ(a.length, 0) << "length";
 }
 
 TEST(Constructor, double) {
 	Length a{2};
-	ASSERT_EQ(a.l,1) << "length";
+	ASSERT_EQ(a.length,1) << "length";
 }
+
 //==============================================================================================
 // operatoren:
+
 TEST( Assign, Length ){   				//operator=
 	Length a;
-	a = Distance{1,2,3};
+	a = Length{1};
 	
-	ASSERT_EQ(a.x,1) << "empty x";
-	ASSERT_EQ(a.y,2) << "empty y";
-	ASSERT_EQ(a.z,3) << "empty z";
+	ASSERT_EQ(a.length,1) << "empty length";
 	
-	a = Distance{4,5,6};
-	ASSERT_EQ(a.x,4) << "new x";
-	ASSERT_EQ(a.y,5) << "new y";
-	ASSERT_EQ(a.z,6) << "new z";  
+	a = Length{4};
+	ASSERT_EQ(a.length,4) << "new length"; 
 }
 
 
-TEST(Add, Distance) { 						//operator+
+TEST(Add, Length) { 						//operator+
 	// leeg + leeg
-	Distance a;
-	Distance b;
+	Length a;
+	Length b;
 	a = a + b;
-	ASSERT_EQ(a.x,0) << "empty+empty x";
-	ASSERT_EQ(a.y,0) << "empty+empty y";
-	ASSERT_EQ(a.z,0) << "empty+empty z";
+	ASSERT_EQ(a.length,0) << "empty+empty length";
 	
 	// leeg + vol
-	Distance c{1,2,3};
+	Length c{1};
 	b = b + c;
-	ASSERT_EQ(b.x,1) << "empty+full x";
-	ASSERT_EQ(b.y,2) << "empty+full y";
-	ASSERT_EQ(b.z,3) << "empty+full z";
+	ASSERT_EQ(b.length,1) << "empty+full length";
 	
 	// vol + vol
-	Distance d{1,2,3};
-	Distance e{4,5,6};
+	Length d{1};
+	Length e{4};
 	d = d + e;
- 	ASSERT_EQ(d.x,5) << "full+full x";
-	ASSERT_EQ(d.y,7) << "full+full y";
-	ASSERT_EQ(d.z,9) << "full+full z";
+ 	ASSERT_EQ(d.length,5) << "full+full length";
 }
 
 
-TEST(Subtract, Distance) { 					//operator-
+TEST(Subtract, Length) { 					//operator-
 	// leeg - leeg
-	Distance a;
-	Distance b;
+	Length a;
+	Length b;
 	a = a - b;
-	ASSERT_EQ(a.x,0) << "empty-empty x";
-	ASSERT_EQ(a.y,0) << "empty-empty y";
-	ASSERT_EQ(a.z,0) << "empty-empty z";
+	ASSERT_EQ(a.length,0) << "empty-empty length";
 	
 	// leeg - vol
-	Distance c{1,2,3};
+	Distance c{1};
 	b = b - c;
-	ASSERT_EQ(b.x,-1) << "empty-full x";
-	ASSERT_EQ(b.y,-2) << "empty-full y";
-	ASSERT_EQ(b.z,-3) << "empty-full z";
+	ASSERT_EQ(b.length,-1) << "empty-full length";
 	
 	// vol - leeg
-	Distance d{1,2,3};
-	Distance e;
+	Length d{1};
+	Length e;
 	d = d - e;
-	ASSERT_EQ(d.x,1) << "full-empty x";
-	ASSERT_EQ(d.y,2) << "full-empty y";
-	ASSERT_EQ(d.z,3) << "full-empty z";
+	ASSERT_EQ(d.length,1) << "full-empty length";
 	
 	// vol - vol
-	Distance f{4,5,6};
-	Distance g{1,2,3};
+	Length f{4};
+	Length g{1};
 	f = f - g;
- 	ASSERT_EQ(f.x,3) << "full-full x";
-	ASSERT_EQ(f.y,3) << "full-full y";
-	ASSERT_EQ(f.z,3) << "full-full z";
+ 	ASSERT_EQ(f.length,3) << "full-full length";
 }
 
 
@@ -93,174 +78,116 @@ TEST(Multiply, double) { 					//operator*
 	double getal2 = 2.5;
 	
 	// leeg * 0
-	Distance a;
+	Length a;
 	a = a * 0;
-	ASSERT_EQ(a.x,0) << "empty*0 x";
-	ASSERT_EQ(a.y,0) << "empty*0 y";
-	ASSERT_EQ(a.z,0) << "empty*0 z";
+	ASSERT_EQ(a.length,0) << "empty*0 length";
 	
 	// leeg * getal1
 	a = a * getal1
-	ASSERT_EQ(a.x,0) << "empty x";
-	ASSERT_EQ(a.y,0) << "empty y";
-	ASSERT_EQ(a.z,0) << "empty z";
+	ASSERT_EQ(a.length,0) << "empty length";
 	
 	// vol * 0
-	Distance b{1,2,3}
+	Length b{1}
 	b = b * 0;
-	ASSERT_EQ(b.x,0) << "full*0 x";
-	ASSERT_EQ(b.y,0) << "full*0 y";
-	ASSERT_EQ(b.z,0) << "full*0 z";
+	ASSERT_EQ(b.length,0) << "full*0 length";
 	
 	// vol * getal1
-	Distance c{1,2,3}
+	Length c{1}
 	c = c * getal1;
-	ASSERT_EQ(c.x,2) << "full*getal1 x";
-	ASSERT_EQ(c.y,4) << "full*getal1 y";
-	ASSERT_EQ(c.z,6) << "full*getal1 z";
+	ASSERT_EQ(c.length,2) << "full*getal1 length";
 	
 	// vol * getal2
-	Distance d{1,2,3}
+	Length d{1}
 	d = d * getal2;
-	ASSERT_EQ(d.x,2.5) << "full*getal2 x";
-	ASSERT_EQ(d.y,5) << "full*getal2 y";
-	ASSERT_EQ(d.z,7.5) << "full*getal2 z";
+	ASSERT_EQ(d.length,2.5) << "full*getal2 length";
 }
 
 
-TEST(Distract, double) { 					//operator/
+TEST(Length, double) { 					//operator/
     double getal1 = 2;
 	double getal2 = 2.5;
 	
 	// leeg / 0
-	Distance a;
+	Length a;
 	a = a / 0;			// dit mag niet, dus niks doen!
-	ASSERT_EQ(a.x,0) << "empty/0 x";
-	ASSERT_EQ(a.y,0) << "empty/0 y";
-	ASSERT_EQ(a.z,0) << "empty/0 z";
+	ASSERT_EQ(a.length,0) << "empty/0 length";
 	
 	// leeg / getal1
 	a = a / getal1
-	ASSERT_EQ(a.x,0) << "empty x";
-	ASSERT_EQ(a.y,0) << "empty y";
-	ASSERT_EQ(a.z,0) << "empty z";
+	ASSERT_EQ(a.length,0) << "empty length";
 	
 	// vol / 0
 	Distance b{1,2,3}
 	b = b / 0;			// dit mag niet, dus niks doen!
-	ASSERT_EQ(b.x,0) << "full/0 x";
-	ASSERT_EQ(b.y,0) << "full/0 y";
-	ASSERT_EQ(b.z,0) << "full/0 z";
+	ASSERT_EQ(b.length,0) << "full/0 length";
 	
 	// vol / getal1
 	Distance c{1,2,3}
 	c = c / getal1;
-	ASSERT_EQ(c.x,0.5) << "full/getal1 x";
-	ASSERT_EQ(c.y,1) << "full/getal1 y";
-	ASSERT_EQ(c.z,1.5) << "full/getal1 z";
+	ASSERT_EQ(c.length,0.5) << "full/getal1 length";
 	
 	// vol / getal2
 	Distance d{1,2,3}
 	d = d / getal2;
-	ASSERT_EQ(d.x,0.4) << "full/getal2 x";
-	ASSERT_EQ(d.y,0.8) << "full/getal2 y";
-	ASSERT_EQ(d.z,1.2) << "full/getal2 z";
+	ASSERT_EQ(d.length,0.4) << "full/getal2 length";
 }
 
 
-TEST(AddAssign, Distance) {					//operator+=
+TEST(AddAssign, Length) {					//operator+=
 	//leeg + leeg
-	Distance a;
-	Distance b;
+	Length a;
+	Length b;
 	a += b;
-	ASSERT_EQ(a.x,0) << "empty+empty x";
-	ASSERT_EQ(a.y,0) << "empty+empty y";
-	ASSERT_EQ(a.z,0) << "empty+empty z";
+	ASSERT_EQ(a.length,0) << "empty+empty length";
 	
 	
 	// leeg + vol
-	Distance c{1,2,3};
+	Length c{1};
 	b += c;
-	ASSERT_EQ(b.x,1) << "empty+full x";
-	ASSERT_EQ(b.y,2) << "empty+full y";
-	ASSERT_EQ(b.z,3) << "empty+full z";
+	ASSERT_EQ(b.length,1) << "empty+full length";
 	
 	// vol + vol
-	Distance d{1,2,3};
-	Distance e{4,5,6};
+	Length d{1};
+	Length e{4};
 	d += e;
- 	ASSERT_EQ(d.x,5) << "full+full x";
-	ASSERT_EQ(d.y,7) << "full+full y";
-	ASSERT_EQ(d.z,9) << "full+full z"; 
+ 	ASSERT_EQ(d.length,5) << "full+full length";
 }
 
 
-TEST(SubtractAssign, Distance) { 			//operator-=
+TEST(SubtractAssign, Length) { 			//operator-=
 	// leeg - leeg
-	Distance a;
-	Distance b;
+	Length a;
+	Length b;
 	a -= b;
-	ASSERT_EQ(a.x,0) << "empty-empty x";
-	ASSERT_EQ(a.y,0) << "empty-empty y";
-	ASSERT_EQ(a.z,0) << "empty-empty z";
+	ASSERT_EQ(a.length,0) << "empty-empty length";
 	
 	// leeg - vol
-	Distance c{1,2,3};
+	Length c{1};
 	b -= c;
-	ASSERT_EQ(b.x,-1) << "empty-full x";
-	ASSERT_EQ(b.y,-2) << "empty-full y";
-	ASSERT_EQ(b.z,-3) << "empty-full z";
+	ASSERT_EQ(b.length,-1) << "empty-full length";
 	
 	// vol - leeg
-	Distance d{1,2,3};
-	Distance e;
+	Length d{1};
+	Length e;
 	d -= e;
-	ASSERT_EQ(d.x,1) << "full-empty x";
-	ASSERT_EQ(d.y,2) << "full-empty y";
-	ASSERT_EQ(d.z,3) << "full-empty z";
+	ASSERT_EQ(d.length,1) << "full-empty length";
 	
 	// vol - vol
-	Distance f{4,5,6};
-	Distance g{1,2,3};
+	Length f{4};
+	Length g{1};
 	f -= g;
- 	ASSERT_EQ(f.x,3) << "full-full x";
-	ASSERT_EQ(f.y,3) << "full-full y";
-	ASSERT_EQ(f.z,3) << "full-full z";
+ 	ASSERT_EQ(f.length,3) << "full-full length";
 }
+				
 		
-
-TEST(Equal, char) {
-    string20 a{};
-    string20 b{};
-    ASSERT_EQ(a,b) << "empty";
-
-    string20 c{'a'};
-    string20 d{'a'};
-    ASSERT_EQ(c,d) << "1char";
-}
+bool Length::operator> (const Length& rhs) const;
 		
+bool Length::operator< (const Length& rhs) const;
 		
-bool Distance::operator> (const Distance& rhs) const;
+ostream& Length::operator<< (ostream& os, const Length& rhs) const;
 		
-bool Distance::operator< (const Distance& rhs) const;
-		
-ostream& Distance::operator<< (ostream& os, const Distance& rhs) const;
-		
-istream& Distance::operator>>( istream& is, Distance& rhs)
+istream& Length::operator>>( istream& is, Length& rhs)
 
-//===============================================================================================
-
-
-//===============================================================================================
-TEST(Equal, char) {
-    string20 a{};
-    string20 b{};
-    ASSERT_EQ(a,b) << "empty";
-
-    string20 c{'a'};
-    string20 d{'a'};
-    ASSERT_EQ(c,d) << "1char";
-}
 
 //===============================================================================================
 int main( int argc, char **argv ){	      
