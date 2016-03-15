@@ -97,6 +97,13 @@ public:
     */
     friend Speed operator* ( double n, const Speed & rhs );
 
+    //! Divide a speed by a speed and return the resulting speed
+    /*!
+      \param n a double.
+      \param rhs a Speed.
+      \return the calculated speed.
+    */
+    Double operator/ ( const Speed & rhs);
 	/// appends a speeds to an ostream and returns an ostream
 	ostream& operator<< (ostream & os, const Speed &rhs) const;
 	/// depend a speed from an istream and return the istream
