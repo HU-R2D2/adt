@@ -18,7 +18,7 @@ class Duration{
 		Duration(double seconds);
 	public:
 		const Duration 1_second();
-		double minute = 60 * 1;
+		double minute = 60;
 		double hour = 60 * minute;
 		/// assignment operator for a duration
 		Duration & operator= (const duration &);
