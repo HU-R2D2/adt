@@ -9,7 +9,9 @@
 class Speed{
 private:
 	/// constructor of a speed
-	Speed();c
+	Speed();
+	Duration duration;
+	Distance distance;
 public:
 	//! Assign a speed to this speed. 
     /*!
@@ -17,8 +19,6 @@ public:
       \return the assigned speed.
     */
 	Speed & operator= (const Speed &);
-
-
 	//! Checks if a speed is smaller than another speed and returns the boolean
 	/*!
       \param rhs a speed
