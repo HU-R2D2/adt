@@ -50,7 +50,16 @@ Distance Distance::operator* (double number) const{
 	return temp;
 }
 		
-Distance Distance::operator/ (double rhs) const;		// bij delen door nul: gewoon niks doen!
+Distance Distance::operator/ (double number) const{
+	Distance temp{*this};
+	if(number == 0){
+		return temp
+	}
+	temp.x = temp.x / number;
+	temp.y = temp.y / number;
+	temp.z = temp.z / number;
+	return temp;
+}
 		
 Distance& Distance::operator+= (const Distance& rhs){
 	x += rhs.x;
@@ -66,10 +75,27 @@ Distance& Distance::operator-= (const Distance& rhs){
 	return *this;
 }
 		
-bool Distance::operator> (const Distance& rhs) const;
+bool Distance::operator> (const Distance& rhs) const{
+	// hier met de echte lengte van dat ding!:
+	
+	
+	
+	// direction is:  (uitgaande van 2 coordinaten)
+	// wortel van ((x1 - x2)^2 + (y1 - y2)^2 + (z1 - z2)^2 )
+	
+}
 		
-bool Distance::operator< (const Distance& rhs) const;
+bool Distance::operator< (const Distance& rhs) const{
+	// hier met de echte lengte!
+}
 		
-ostream& Distance::operator<< (ostream& os, const Distance& rhs) const;
+ostream& Distance::operator<< (ostream& lhs, const Distance& rhs) const{
+	lhs << rhs.length;
+	return lhs;
+}
+
 		
-istream& Distance::operator>>( istream& is, Distance& rhs)
+istream& Distance::operator>>( istream& input, Distance& rhs){
+	// hier moet nog wat komen
+}
+
