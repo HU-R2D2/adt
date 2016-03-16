@@ -1,8 +1,9 @@
 #ifndef _BOX_HPP
 #define _BOX_HPP
 
-#include "Coordinate.hpp"
+class Coordinate; // Fake mock-class until naming off Coordinate class is fixed
 #include "Distance.hpp"
+#include <iostream>
 
 /**
 	ToDo implementation of a box
@@ -19,12 +20,15 @@
 class Box {
 
 private:
+	/***
+	* CONSTRUCTORS
+	*/
 
 	/// Constructs a box with 2 coordinates, bottom left and top right of the 3D ractangle
-	Box(Coordinate bottomLeft, Coordinate topRight);
+	Box (Coordinate bottomLeft, Coordinate topRight);
 
 	/// Constructs a box with one coordinate and a distance, bottom left coordinate and the distance of the axises.
-	Box(Coordinate origin, Distance dist);
+	Box (Coordinate origin, Distance dist);
 
 public:
 	/***
@@ -32,13 +36,13 @@ public:
 	*/
 
 	/// Checkts whether box contains coordinate, returns boolean
-	Boolean contains (Coordinate coord);
+	bool contains (Coordinate coord);
 
 	/// Check whether box contains another box, returns boolean
-	Boolean contains (Box box);
+	bool contains (Box box);
 
 	/// Check whether box intersects with another box, returns boolean
-	Boolean intersects (Box box);
+	bool intersects (Box box);
 
 	/// Set the bottom left coordinate
 	void setBottomLeft (Coordinate coord);	
@@ -71,41 +75,27 @@ public:
 	/// assignment operator for a box
 	Box & operator= ( const Box & );
 
-	/// adds a distance to the box
-	Box operator+ ( const distance & rhs ) const;
 
-	/// adds a distance to the box and assigns the result
-	Box operator += ( const Distance & rhs );
-	
-	/// substracts a distance from the box
- 	Box operator- ( const Distance & rhs ) const;
-
-	/// substracts a distance from the box and assigns the result
-	Box operator-= ( const Distance & rhs );
-
-	/// multiplies a box with a double
-	Box operator* ( const double & rhs) const;
-
-	/// multiplies a box with an integer
-	Box operator* ( const int & rhs) const;
-
-	/// divides a box with a double
-	Box operator/ (const int & rhs) const;
-
-	/// divides a box with an integer
-	Box operator/ ( const double & rhs) const;
+	/***
+	* FRIEND OPERATORS
+	*/
 
 	/// appends a box to an ostream and returns the ostream
-	ostream & operator<< (ostream & os, const Box & rhs) const;
+	friend std::ostream & operator<< (std::ostream & os, const Box & rhs);
 
 	/// writes a box to an instream and returns the istream
-	istream & operator>> (istream & is, Box & rhs);
+	friend std::istream & operator>> (std::istream & is, Box & rhs);
 
 private:
-	Coordinate bottomLeft, topRight;
+	/***
+	* ATTRIBUTES
+	*/
+	
+	Coordinate bottomLeft;
+	Coordinate topRight;
 
 
 };
 
-#endif;	// _BOX_HPP
+#endif	// _BOX_HPP
 
