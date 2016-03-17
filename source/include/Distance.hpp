@@ -8,6 +8,8 @@
 #ifndef  _DISTANCE_HPP
 #define _DISTANCE_HPP
 
+#include <iostream>
+
 class Distance{
 	private:
 		Distance(double x=0, double y=0, double z=0);
@@ -32,12 +34,13 @@ class Distance{
 		/// compares two Distances to eachother and returns a boolean (true if 1st is smaller than 2nd)
 		bool operator< (const Distance& rhs) const;
 		/// appends a Distance to an ostream and returns an ostream
-		ostream& operator<< (ostream& os, const Distance& rhs) const;
+		friend std::ostream& operator<< (std::ostream& os, const Distance& rhs);
+
 		/// adds an istream to a Distance
-		istream& operator>>( istream& is, Distance& rhs)
+		friend std::istream& operator>>( std::istream& is, Distance& rhs);
 		
 	private:
-		double x,y,z,Length
-}
+		double x,y,z,Length;
+};
 
 #endif

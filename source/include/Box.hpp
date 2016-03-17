@@ -91,8 +91,8 @@ private:
 	* ATTRIBUTES
 	*/
 	
-	Coordinate bottomLeft;
-	Coordinate topRight;
+	//Coordinate bottomLeft;
+	//Coordinate topRight;
 
 
 };

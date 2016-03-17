@@ -1,5 +1,5 @@
 
-#include "Distance.hpp"
+#include "../include/Distance.hpp"
 
 /**********************************************************************************************//**
  * @fn	Distance::Distance(double x, double y, double z)
@@ -11,6 +11,7 @@
  * @param	z			The Z coordinate of the distance
  **************************************************************************************************/
 
+/*
 Distance::Distance(double x=0, double y=0, double z=0) :
 	x = x,
 	y = y,
@@ -99,3 +100,4 @@ istream& Distance::operator>>( istream& input, Distance& rhs){
 	// hier moet nog wat komen
 }
 
+*/

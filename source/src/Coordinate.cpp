@@ -1,6 +1,6 @@
-#include "coordinate.hpp"
+#include "../include/Coordinate.hpp"
 #include <string>
-
+/*
 namespace r2d2 {
    namespace adt {
       const coordinate coordinate::origin(0, 0, 0);
@@ -92,4 +92,5 @@ namespace r2d2 {
       }
    }
 }
+*/
 
