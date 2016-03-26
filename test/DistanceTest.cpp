@@ -1,14 +1,16 @@
 #include "gtest/gtest.h"
 #include "../source/include/Distance.hpp"
-/*
-// constructors:
-TEST(Constructor, Default) {
-	Distance a;
-	ASSERT_EQ(a.x , 0) << "x";
-	ASSERT_EQ(a.y , 0) << "y";
-	ASSERT_EQ(a.z , 0) << "z";
-}
 
+
+// constructors
+
+TEST(Distance, DefaultConstructor) {
+	Distance a;
+	ASSERT_DOUBLE_EQ(a.x , 0.0) << "x";
+	ASSERT_DOUBLE_EQ(a.y , 0.0) << "y";
+	ASSERT_DOUBLE_EQ(a.z , 0.0) << "z";
+}
+/*
 TEST(Constructor, double) {
 	Distance a{1,2,3};
 	ASSERT_EQ(a.x,1) << "x";

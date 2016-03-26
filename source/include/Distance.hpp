@@ -8,11 +8,16 @@
 #ifndef  _DISTANCE_HPP
 #define _DISTANCE_HPP
 
+#include "gtest/gtest.h"
+
 #include <iostream>
 
 class Distance{
-	private:
-		Distance(double x=0, double y=0, double z=0);
+	
+	//friend class Distance_DefaultConstructor_Test;
+
+	public:
+		Distance(double x = 0.0, double y = 0.0, double z = 0.0);
 		
 	public:
 		/// assignment operator for a Distance
@@ -40,6 +45,7 @@ class Distance{
 		friend std::istream& operator>>( std::istream& is, Distance& rhs);
 		
 	private:
+		FRIEND_TEST(Distance, DefaultConstructor);
 		double x,y,z,Length;
 };
 

@@ -11,14 +11,14 @@
  * @param	z			The Z coordinate of the distance
  **************************************************************************************************/
 
-/*
-Distance::Distance(double x=0, double y=0, double z=0) :
-	x = x,
-	y = y,
-	z = z
+
+Distance::Distance(double x, double y, double z) :
+	x ( x ),
+	y ( y ),
+	z ( z )
 {}
 
-
+/*
 Distance& Distance::operator= (const Distance& rhs){
 	x = rhs.x;
 	y = rhs.y;
