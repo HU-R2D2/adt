@@ -8,11 +8,11 @@
 #ifndef  _DISTANCE_HPP
 #define _DISTANCE_HPP
 
-#include "gtest/gtest.h"
+#include "gtest/gtest.h" // needed for friend_test
 
 #include <iostream>
 
-class Distance{
+class Distance {
 	
 	//friend class Distance_DefaultConstructor_Test;
 
@@ -45,8 +45,10 @@ class Distance{
 		friend std::istream& operator>>( std::istream& is, Distance& rhs);
 		
 	private:
-		FRIEND_TEST(Distance, DefaultConstructor);
 		double x,y,z,Length;
+
+		// Friend classes (So tests can access private parts.)
+		FRIEND_TEST(Distance, DefaultConstructor);
 };
 
 #endif
