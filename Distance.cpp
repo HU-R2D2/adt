@@ -74,6 +74,8 @@ Distance& Distance::operator-= (const Distance& rhs){
 	z -= rhs.z;
 	return *this;
 }
+
+//=============================================================================================
 		
 bool Distance::operator> (const Distance& rhs) const{
 	// hier met de echte lengte van dat ding!:
@@ -89,13 +91,29 @@ bool Distance::operator< (const Distance& rhs) const{
 	// hier met de echte lengte!
 }
 		
-ostream& Distance::operator<< (ostream& lhs, const Distance& rhs) const{
-	lhs << rhs.length;
+std::ostream& Distance::operator<< (std::ostream& lhs, const Distance& rhs) const{
+	lhs << "(" << rhs.x << "," << rhs.y << "," << rhs.z << ")";
 	return lhs;
 }
-
 		
-istream& Distance::operator>>( istream& input, Distance& rhs){
-	// hier moet nog wat komen
+Distance& Distance::operator>>(std::istream& lhs, Distance& rhs){		// WAT WIL JE HIER TERUGKRIJGEN?? een Distance lijkt me?
+	std::string prefix;
+	lhs >> std::ws >> prefix;
+	double x,y,z;
+	
+	if (prefix == "Distance") {
+		char temp
+		input >> temp
+		if (temp!='(') {
+			std::cerr << "No opening brace encountered";
+		}
+		input >> x >> temp >> y >> temp >> z >> temp;
+		rhs.x = x;
+		rhs.y = y;
+		rhs.z = z;
+	}
+	else {
+		std::cerr << "No distance!"
+	}
+	return rhs
 }
-

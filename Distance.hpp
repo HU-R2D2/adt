@@ -32,9 +32,9 @@ class Distance{
 		/// compares two Distances to eachother and returns a boolean (true if 1st is smaller than 2nd)
 		bool operator< (const Distance& rhs) const;
 		/// appends a Distance to an ostream and returns an ostream
-		ostream& operator<< (ostream& os, const Distance& rhs) const;
+		std::ostream& operator<< (std::ostream& os, const Distance& rhs) const;
 		/// adds an istream to a Distance
-		istream& operator>>( istream& is, Distance& rhs)
+		Distance& operator>>(std::istream& is, Distance& rhs)		// WAT WIL JE HIER TERUGKRIJGEN?? een Distance lijkt me?
 		
 	private:
 		double x,y,z,Length
