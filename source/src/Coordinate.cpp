@@ -1,6 +1,6 @@
 #include "../include/Coordinate.hpp"
 #include <string>
-
+/*
       const Coordinate Coordinate::origin(0, 0, 0);
       Coordinate::coordinate(double x, double y, double z)
       :  x{x},
@@ -83,3 +83,4 @@
          
          return lhs;
       }
+*/

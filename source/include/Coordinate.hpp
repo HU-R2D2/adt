@@ -64,6 +64,10 @@ public:
    //! @return Distance from this coordinate to the other.
    Distance operator -(const Coordinate & rhs) const;
 
+   //! @brief The arbitrary origin to be used.
+   static const Coordinate origin;
+};
+
    //! @brief Writes the specified coordinate to the std::ostream, returning that stream.
    //!
    //! The output is given in the format "coordinate(xm, ym, zm)", 
@@ -72,7 +76,7 @@ public:
    //! @param rhs Reference to the object to write to the outputstream.
    //! @return Reference to the stream passed in by lhs.
    //! @see operator>>(std::istream, const r2d2::adt::coordinate &)
-   friend std::ostream & operator <<(std::ostream & lhs, const Coordinate & rhs);
+   std::ostream & operator <<(std::ostream & lhs, const Coordinate & rhs);
 
    //! @brief Reads a coordinate from the given input stream, returning said stream.
    //!
@@ -83,10 +87,6 @@ public:
    //! @param rhs Reference to an uninitialized coordinate to overwrite.
    //! @return Reference to the stream passed in by lhs.
    //! @see operator<<(std::ostream &, r2d2::adt::coordinate &)
-   friend std::istream & operator >>(std::istream & lhs, Coordinate & rhs);
-
-   //! @brief The arbitrary origin to be used.
-   static const Coordinate origin;
-};
+   std::istream & operator >>(std::istream & lhs, Coordinate & rhs);
 
 #endif // COORDINATE_HPP
