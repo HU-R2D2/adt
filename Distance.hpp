@@ -18,7 +18,7 @@ class Distance{
 		/// adds a Distance to a Distance and returns a Distance
 		Distance operator+ (const Distance& rhs) const;
 		/// substracts a Distance from a Distance and returns a Distance
-		Distance operator- ( const Distance& rhs ) const;
+		Distance operator- (const Distance& rhs) const;
 		/// multiplies a Distance by a number and returns a Distance
 		Distance operator* (double number) const;
 		/// divides a Distance by a number and returns a Distance

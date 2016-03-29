@@ -133,7 +133,7 @@ TEST(Distance, MultiplyDouble) { 					//operator*
 }
 
 
-TEST(Distance, DistractDouble) { 					//operator/
+TEST(Distance, DivideDouble) { 					//operator/
     double getal1 = 2;
 	double getal2 = 2.5;
 	

@@ -2,7 +2,7 @@
 #include "Distance.hpp"
 
 /**********************************************************************************************//**
- * @fn	Distance::Distance(double x, double y, double z)
+ * @fn		Distance::Distance(double x, double y, double z)
  *
  * @brief	Constructor of a Distance
  *
@@ -17,7 +17,14 @@ Distance::Distance(double x=0, double y=0, double z=0) :
 	z = z
 {}
 
-
+/**********************************************************************************************//**
+ * @fn		Distance& Distance::operator= (const Distance& rhs)
+ *
+ * @brief	Assignment operator of a Distance
+ *
+ * @param	rhs			The right hand sight Distance, this one is being assigned to another Distance
+ * @return	Distance&	Reference to the Distance on which the assignment operator was called
+ **************************************************************************************************/
 Distance& Distance::operator= (const Distance& rhs){
 	x = rhs.x;
 	y = rhs.y;
@@ -25,7 +32,14 @@ Distance& Distance::operator= (const Distance& rhs){
 	return *this;
 }
 
-
+/**********************************************************************************************//**
+ * @fn		Distance Distance::operator+ (const Distance& rhs) const
+ *
+ * @brief	Add operator of a Distance
+ *
+ * @param	rhs			The right hand sight Distance, this one is being added to another Distance
+ * @return	Distance	The Distance on which the add operator was called
+ **************************************************************************************************/
 Distance Distance::operator+ (const Distance& rhs) const{
 	Distance temp{*this};
 	temp.x += rhs.x;
@@ -34,7 +48,15 @@ Distance Distance::operator+ (const Distance& rhs) const{
 	return temp;
 }
 
-Distance Distance::operator- ( const Distance& rhs ) const{
+/**********************************************************************************************//**
+ * @fn		Distance Distance::operator- (const Distance& rhs) const
+ *
+ * @brief	Substract operator of a Distance
+ *
+ * @param	rhs			The right hand sight Distance, this one is being substracted from another Distance
+ * @return	Distance	The Distance on which the substract operator was called
+ **************************************************************************************************/
+Distance Distance::operator- (const Distance& rhs) const{
 	Distance temp{*this};
 	temp.x -= rhs.x;
 	temp.y -= rhs.y;
@@ -42,6 +64,14 @@ Distance Distance::operator- ( const Distance& rhs ) const{
 	return temp;
 }
 
+/**********************************************************************************************//**
+ * @fn		Distance Distance::operator* (double number) const
+ *
+ * @brief	Multiply operator of a Distance
+ *
+ * @param	number		The number by which the Distance is being multiplied
+ * @return	Distance	The Distance on which the multiply operator was called
+ **************************************************************************************************/
 Distance Distance::operator* (double number) const{
 	Distance temp{*this};
 	temp.x = temp.x * number;
@@ -49,7 +79,15 @@ Distance Distance::operator* (double number) const{
 	temp.z = temp.z * number;
 	return temp;
 }
-		
+
+/**********************************************************************************************//**
+ * @fn		Distance Distance::operator/ (double number) const
+ *
+ * @brief	Division operator of a Distance
+ *
+ * @param	number		The number by which the Distance is being divided
+ * @return	Distance	The Distance on which the division operator was called
+ **************************************************************************************************/		
 Distance Distance::operator/ (double number) const{
 	Distance temp{*this};
 	if(number == 0){
@@ -60,14 +98,30 @@ Distance Distance::operator/ (double number) const{
 	temp.z = temp.z / number;
 	return temp;
 }
-		
+	
+/**********************************************************************************************//**
+ * @fn		Distance& Distance::operator+= (const Distance& rhs)
+ *
+ * @brief	AddAssign operator of a Distance
+ *
+ * @param	rhs			The right hand sight Distance, this one is being added to another Distance
+ * @return	Distance&	Reference to the Distance on which the addAssignment operator was called
+ **************************************************************************************************/	
 Distance& Distance::operator+= (const Distance& rhs){
 	x += rhs.x;
 	y += rhs.y;
 	z += rhs.z;
 	return *this;
 }
-		
+
+/**********************************************************************************************//**
+ * @fn		Distance& Distance::operator-= (const Distance& rhs)
+ *
+ * @brief	SubstractAssign operator of a Distance
+ *
+ * @param	rhs			The right hand sight Distance, this one is being substracted from another Distance
+ * @return	Distance&	Reference to the Distance on which the substractAssignment operator was called
+ **************************************************************************************************/		
 Distance& Distance::operator-= (const Distance& rhs){
 	x -= rhs.x;
 	y -= rhs.y;
@@ -90,12 +144,31 @@ bool Distance::operator> (const Distance& rhs) const{
 bool Distance::operator< (const Distance& rhs) const{
 	// hier met de echte lengte!
 }
-		
+//=============================================================================================
+
+/**********************************************************************************************//**
+ * @fn		std::ostream& Distance::operator<< (std::ostream& lhs, const Distance& rhs) const
+ *
+ * @brief	Output operator of a Distance
+ *
+ * @param	lhs			The left hand sight ostream, to this ostream the Distance will be added
+ * @param	rhs			The right hand sight Distance, this one will be added to the lhs ostream
+ * @return	ostream&	Reference to the tweaked lhs ostream
+ **************************************************************************************************/		
 std::ostream& Distance::operator<< (std::ostream& lhs, const Distance& rhs) const{
 	lhs << "(" << rhs.x << "," << rhs.y << "," << rhs.z << ")";
 	return lhs;
 }
 		
+/**********************************************************************************************//**
+ * @fn		Distance& Distance::operator>>(std::istream& lhs, Distance& rhs)
+ *
+ * @brief	Input operator of a Distance
+ *
+ * @param	lhs			The left hand sight istream, from this istream the Distance will be adapted
+ * @param	rhs			The right hand sight Distance, this one will be adapted by the lhs istream
+ * @return	Distance&	Reference to rhs Distance which is adapted by information from the lhs
+ **************************************************************************************************/
 Distance& Distance::operator>>(std::istream& lhs, Distance& rhs){		// WAT WIL JE HIER TERUGKRIJGEN?? een Distance lijkt me?
 	std::string prefix;
 	lhs >> std::ws >> prefix;
