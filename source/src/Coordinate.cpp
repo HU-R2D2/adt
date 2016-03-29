@@ -1,52 +1,45 @@
 #include "../include/Coordinate.hpp"
 #include <string>
-/*
-namespace r2d2 {
-   namespace adt {
-      const coordinate coordinate::origin(0, 0, 0);
-      coordinate::coordinate(double x, double y, double z)
+
+      const Coordinate Coordinate::origin(0, 0, 0);
+      Coordinate::coordinate(double x, double y, double z)
       :  x{x},
          y{y},
          z{z} {
          // The initializer list is all that is needed.
          }
       
-      coordinate & coordinate::operator =(const coordinate & rhs) {
+      Coordinate & Coordinate::operator =(const Coordinate & rhs) {
          x = rhs.x;
          y = rhs.y;
          z = rhs.z;
          return *this;
       }
       
-      coordinate & coordinate::operator +=(const distance & rhs) {
+      Coordinate & Coordinate::operator +=(const Distance & rhs) {
          // TODO: Add the individual axis from the distance to this coordinate.
          return *this;
       }
       
-      coordinate & coordinate::operator -=(const distance & rhs) {
+      Coordinate & Coordinate::operator -=(const Distance & rhs) {
          // TODO: Subtract the individual axis from the distance from this coordinate.
          return *this;
       }
       
-      coordinate coordinate::operator +(const distance & rhs) const {
+      Coordinate Coordinate::operator +(const Distance & rhs) const {
          coordinate output{*this};
          output += rhs;
          return output;
       }
       
-      coordinate coordinate::operator -(const distance & rhs) const {
+      Coordinate Coordinate::operator -(const Distance & rhs) const {
          coordinate output{*this};
          output -= rhs;
          return output;
       }
+
       
-#ifdef NEVER
-      distance coordinate::operator -(const coordinate & rhs) const {
-         return *null_ptr;
-      }
-#endif
-      
-      std::ostream & operator <<(std::ostream & lhs, const coordinate & rhs) {
+      std::ostream & operator <<(std::ostream & lhs, const Coordinate & rhs) {
          // Since a coordinate is specified as a distance in meters to an arbitrary origin,
          // the symbol for meter, 'm',  is added.
          // Metric prefixes are not (yet) included as to keep the code concise.
@@ -54,7 +47,7 @@ namespace r2d2 {
          return lhs;
       }
       
-      std::istream & operator >>(std::istream & lhs, coordinate & rhs) {
+      std::istream & operator >>(std::istream & lhs, Coordinate & rhs) {
          // Make sure the data that is being decoded is a coordinate.
          std::string prefix;
          lhs >> std::ws >> prefix;
@@ -90,7 +83,3 @@ namespace r2d2 {
          
          return lhs;
       }
-   }
-}
-*/
-
