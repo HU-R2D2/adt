@@ -99,7 +99,6 @@ public:
 
     //! Divide a speed by a speed and return the resulting speed
     /*!
-      \param n a double.
       \param rhs a Speed.
       \return the calculated speed.
     */
