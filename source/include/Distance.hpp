@@ -14,8 +14,8 @@
 // Forward declaration. Used to declare as friend.
 class Coordinate;
 
-class Distance{
-		friend Coordinate;
+class Distance {
+		friend class Coordinate;
 	public:		// moet eigenlijk friend ofzo worden....
 		Distance(double x = 0.0, double y = 0.0, double z = 0.0);
 		

@@ -1,3 +1,5 @@
+#include "../source/include/speed.hpp"
+#include "gtest/gtest.h"
 
 //Constructors
 Speed one = 1 * Length::Meter / Duration::Second;
@@ -36,7 +38,7 @@ TEST(SpeedTestBigger,Speed){
 }
 
 //onedd
-TEST(SpeedTestAdd, Speed}){
+TEST(SpeedTestAdd, Speed){
 	Speed a = 3 * Length::Meter / Duration::Second;
 	Speed b = 6 * Length::Meter / Duration::Second;
 	Speed c = 0 * Length::Meter / Duration::Second;
@@ -64,7 +66,7 @@ TEST(SpeedTestAddAssign, Speed){
 }
 
 //Subtract
-TEST(SpeedTestSubtract, Speed}){
+TEST(SpeedTestSubtract, Speed){
 	Speed a = 3 * Length::Meter / Duration::Second;
 	Speed b = 6 * Length::Meter / Duration::Second;
 	Speed c = 0 * Length::Meter / Duration::Second;
@@ -155,6 +157,4 @@ TEST(SpeedTestMultiplyAssign, double){
 
 
 //Divide by Speed
-
-
 

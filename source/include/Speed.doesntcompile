@@ -6,7 +6,13 @@
 #ifndef  _SPEED_HPP
 #define _SPEED_HPP
 
-class Speed{
+#include "Distance.hpp"
+#include <iostream>
+//#include "Duration.hpp"
+class Duration;
+class Acceleration;
+
+class Speed {
 private:
 	/// constructor of a speed
 	Speed();
@@ -110,5 +116,4 @@ public:
 
   FRIEND_TEST(SpeedTestAssign,Speed);
 };
-#endif;
-#endif;
+#endif
