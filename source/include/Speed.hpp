@@ -107,6 +107,8 @@ public:
 	ostream& operator<< (ostream & os, const Speed &rhs) const;
 	/// depend a speed from an istream and return the istream
 	istream & operator>>( istream & is, Speed & rhs)
+
+  FRIEND_TEST(SpeedTestAssign,Speed);
 };
 #endif;
 #endif;
