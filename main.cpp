@@ -2,8 +2,10 @@
 #include "gtest/gtest.h"
 #include "string20.hpp"
 #include "Moment.hpp"
+#include "Duration.hpp" // temp dummy object
 #include <ctime> // For time test
-
+#include <stdint.h>
+#
 int len( const char * s ){
    return ( *s == '\0' ) ? 0 : 1 + len( s + 1 );
 }
@@ -57,6 +59,9 @@ TEST( Constructors, Default ) {
    double d = 10000;
    Moment m2(d);
    EXPECT_EQ( m2.seconds, d ) << "Given time value";
+   d = -10000;
+   Moment m3(d);
+   EXPECT_NE( m2.seconds, d ) << "Not negative";
 }
 TEST( Assignment_Operator, Moment )  {
    Moment m1;
@@ -67,6 +72,47 @@ TEST( Assignment_Operator, Moment )  {
    EXPECT_EQ( m1.seconds, m2.seconds) << "Object Assignment";
    EXPECT_EQ( m1.seconds, 1000) << "Object Assignment";
    EXPECT_NE( &m1, &m2) << "Object Assignment";
+   m3.seconds = 666;
+   m1 = m2 = m3;
+   EXPECT_EQ(m1.seconds, m2.seconds) << "Object Chaining";
+   EXPECT_EQ(m2.seconds, m3.seconds) << "Object Chaining";
+}
+
+TEST( ADD_AND_SUBTRACT, Moment)  {
+   Moment m1(5000);
+   Moment m2(10000);
+   Moment m3(5000);
+   Duration d1(20);
+   intptr_t ptrValue = (intptr_t)&m3;
+   //Moment* test = &m3;
+   m3 = m3 = m1 - d1 - d1;
+   intptr_t ptrValue2 = (intptr_t)&m3;
+   ASSERT_EQ(4960, m3.seconds) << "Duration subtracted from Moment";
+   ASSERT_EQ(ptrValue, ptrValue2) << "Object remains the same";
+   Duration d2(m2 - m1);
+   ASSERT_EQ(5000, m1.seconds) << "Moment subtracted from Moment";
+   /*Duration d1(20);
+   
+   EXPECT_EQ( m3.seconds, m1.seconds - d1.seconds) << "Substracting and assigning substraction";
+   //d1(bigger than moment);
+   m3 = m1 - d1;
+   EXPECT_EQ( m3.seconds, m1.seconds - d1.seconds) << "Substracting duration bigger than given moment";
+   m3();
+   uintptr_t objPtrValue = &m3;
+   m3 = m1 - d1;*/
+/*   uintptr_t objPtrValue = &m3;
+   EXPECT_EQ(objPtrValue, &m3) << "Object remains the same object";*/
+
+}
+TEST( ADD_AND_SUBTRACT_SAME_OBJECT, Moment)  {
+   Moment m1(1000);
+   Duration d1(500);
+   intptr_t ptrValue = &m1;
+   m1 += d1;
+   intptr_t ptrValue2 = &m1;
+   ASSERT_EQ(1500, m1.duration) << "+= returns correct value";
+   ASSERT_EQ(ptrValue, ptrValue2) << "+= returned same object";
+
 }
 int main( int argc, char **argv ){	      
 
@@ -84,4 +130,3 @@ int main( int argc, char **argv ){
       bmptk::wait( 1 * bmptk::s );
    }
 }
-

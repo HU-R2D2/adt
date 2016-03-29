@@ -1,7 +1,8 @@
 #include <ctime>
-
+#include "Duration.hpp"
 #ifndef _MOMENT_HPP
 #define _MOMENT_HPP
+#define MAX_DOUBLE_VALUE 0xffffffff
 /**
 	ToDo implementation of a moment
 	Review
@@ -27,9 +28,21 @@ public:
 	*/
 	Moment(double seconds); // must be private
 //public:
-	//Moment& operator= (moment &) = delete;
 	/// assignment operator for a moment
 	Moment& operator= (const Moment&);
+
+	// adds a duration to a moment and results in a moment
+	Moment operator+ ( const Duration & rhs ) const;
+
+	// Subtracts a duration to a moment and results in a moment
+	Moment operator- ( const Duration & rhs ) const;
+
+	// Subtracts a moment from a moment and results in a duration
+	Duration operator- (const Moment & rhs) const;
+
+	// adds a duration to a moment and returns this moment
+	Moment& operator+= (const Duration & rhs);
+
 	/*Moment & operator= (const moment &);
 	/// adds a duration to a moment and results in a moment
 	Moment operator+ ( const duration & rhs ) const;
