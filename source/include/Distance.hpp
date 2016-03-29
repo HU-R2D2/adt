@@ -11,7 +11,11 @@
 #include "gtest/gtest.h" // needed for friend_test
 #include <iostream>
 
+// Forward declaration. Used to declare as friend.
+class Coordinate;
+
 class Distance{
+		friend Coordinate;
 	public:		// moet eigenlijk friend ofzo worden....
 		Distance(double x = 0.0, double y = 0.0, double z = 0.0);
 		
