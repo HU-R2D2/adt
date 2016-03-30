@@ -52,17 +52,21 @@ TEST( Assign, string ){
 
 */
 TEST( Constructors, Default ) {
+   /* These tests could fail on SLOW PERFORMANCE computers, please take note! */
    Moment m1;
    time_t t = time(0);   // get time now
    //double dt = t;
    EXPECT_EQ( m1.seconds, t ) << "Default constructor, system time";
 
    double d = 10000;
+   time_t t2 = time(0);
    Moment m2(d);
-   EXPECT_EQ( m2.seconds, d ) << "Given time value";
+   
+   EXPECT_EQ( m2.seconds, d + t2 ) << "Given time value";
    d = -10000;
    Moment m3(d);
-   EXPECT_NE( m2.seconds, d ) << "Not negative";
+   time_t t3 = time(0);
+   EXPECT_NE( m2.seconds, t3 + d) << "Not negative";
 }
 TEST( Assignment_Operator, Moment )  {
    Moment m1;
@@ -85,13 +89,16 @@ TEST( ADD_AND_SUBTRACT, Moment)  {
    Moment m3(5000);
    Duration d1(20);
    intptr_t ptrValue = (intptr_t)&m3;
+   double test = m1.seconds;
    //Moment* test = &m3;
    m3 = m3 = m1 - d1 - d1;
    intptr_t ptrValue2 = (intptr_t)&m3;
-   ASSERT_EQ(4960, m3.seconds) << "Duration subtracted from Moment failed";
+   cout << "M3 is " << m1 << ", test is" << (test - 40) << endl;
+   ASSERT_EQ(test - 40/*4960*/, m3.seconds) << "Duration subtracted from Moment failed";
    ASSERT_EQ(ptrValue, ptrValue2) << "Object does not remain the same";
    Duration d2(m2 - m1);
-   ASSERT_EQ(5000, m1.seconds) << "Moment subtracted from Moment failed";
+   cout << "Duration is" << d2.seconds << endl;
+   ASSERT_EQ(5000, d2.seconds) << "Moment subtracted from Moment failed";
    /*Duration d1(20);
    
    EXPECT_EQ( m3.seconds, m1.seconds - d1.seconds) << "Substracting and assigning substraction";
@@ -109,14 +116,15 @@ TEST( ADD_AND_SUBTRACT_SAME_OBJECT, Moment)  {
    Moment m1(1000);
    Duration d1(500);
    intptr_t ptrValue = (intptr_t)&m1;
+   double testTime = m1.seconds;
    m1 += d1;
    intptr_t ptrValue2 = (intptr_t)&m1;
-   ASSERT_EQ(1500, m1.seconds) << "+= returns incorrect value";
+   ASSERT_EQ(d1.seconds + testTime, m1.seconds) << "+= returns incorrect value";
    ASSERT_EQ(ptrValue, ptrValue2) << "+= returned not the same object";
-
+   testTime = m1.seconds;
    m1 -= d1;
    ptrValue = (intptr_t)&m1;
-   ASSERT_EQ(1000, m1.seconds) << "-= returns incorrect value";
+   ASSERT_EQ(testTime - d1.seconds, m1.seconds) << "-= returns incorrect value";
    ASSERT_EQ(ptrValue, ptrValue2) << "-= returned not the same object";
 }
 TEST( STREAM_OPERATORS, Streams) {
@@ -134,11 +142,11 @@ TEST( STREAM_OPERATORS, Streams) {
 
    stringstream ss2;
    ss2 << m1 << " " << m2;
-   cout << m1 << ", " << m2 << endl;
-   cout << "stringstream here is" << ss2.str() << ", " << ss2.str() << endl;
+   //cout << m1 << ", " << m2 << endl;
+   //cout << "stringstream here is" << ss2.str() << ", " << ss2.str() << endl;
    double firstDouble, secondDouble;
    ss2 >> firstDouble >> secondDouble;
-   cout << "Double values after input" << firstDouble << "," << secondDouble << endl;
+   //cout << "Double values after input" << firstDouble << "," << secondDouble << endl;
 
    ASSERT_EQ(m1.seconds, firstDouble) << "First outputstream for Moment is incorrect";
    ASSERT_EQ(m2.seconds, secondDouble) << "First outputstream for Moment is incorrect";

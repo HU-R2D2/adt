@@ -6,32 +6,35 @@ Moment::Moment( )	{
 }
 
 Moment::Moment(double seconds) : seconds{seconds}	{
-	assert(seconds > 0);
 	time_t t = time(0);
-	seconds += t;
-	//if(seconds < 0)
-	//	seconds = 0;
+	this->seconds += t;
 }
 
 Moment& Moment::operator= (const Moment& m)	{
 	if(&m == this)
     	return *this;
-    seconds = m.seconds;
+    this->seconds = m.seconds;
     return *this;
 }
 Moment Moment::operator+ ( const Duration & rhs ) const	{
 	// Return new Moment that is the result of adding a given Duration
 	// Old Moment is not modified
-	return Moment(this->seconds + rhs.seconds);
+	Moment rMoment(0);
+	rMoment.seconds = this->seconds + rhs.seconds;
+	return rMoment;
 }
 Moment Moment::operator- ( const Duration & rhs ) const	{
 	// Return new Moment that is the result of subtracting a given Duration
 	// Old Moment not modified
 	// If Subtraction results in a time smaller than 0, return 0
 	double savedResult;
-	if( (savedResult = (this->seconds - rhs.seconds) ) < 0)
-		return Moment(0);
-	return Moment(savedResult);
+	Moment rMoment(0);
+	if( (savedResult = (this->seconds - rhs.seconds) ) < 0)	{
+		rMoment.seconds = 0;
+		return rMoment;
+	}
+	rMoment.seconds = savedResult;
+	return rMoment;
 }
 Duration Moment::operator- (const Moment & rhs) const	{
 	// Return new Duration that is the result of subtracting a given Moment
@@ -54,7 +57,6 @@ Moment& Moment::operator+= (const Duration & rhs)	{
 Moment& Moment::operator-= (const Duration & rhs)	{
 	//Needs to return same Moment, but with smaller time in seconds
 	//Does not change Duration
-	
 	assert(rhs.seconds > 0);
 	this->seconds -= rhs.seconds;
 	return *this;
