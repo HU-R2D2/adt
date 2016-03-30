@@ -89,6 +89,9 @@ public:
    //! @param lhs Stream from which to read data
    //! @param rhs Reference to an uninitialized coordinate to overwrite.
    //! @return Reference to the stream passed in by lhs.
+   //! @throw std::runtime_error Indicates a Coordinate could not be read from the given input stream,
+   //! due to a it being in an incorrect format.
+   //! The values in the supplied coordinate are not modified when an exception is thrown.
    //! @see operator<<(std::ostream &, r2d2::adt::coordinate &)
    friend std::istream &operator>>(std::istream &lhs, Coordinate &rhs);
 

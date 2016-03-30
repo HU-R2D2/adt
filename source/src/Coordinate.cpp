@@ -61,30 +61,36 @@ std::istream & operator >>(std::istream & lhs, Coordinate & rhs) {
    std::string prefix;
    lhs >> std::ws >> prefix;
    if (prefix != "coordinate") {
-      // TODO: throw an exception. Also don't forget to update documentation.
-      std::cerr << "Expecting prefix \"coordinate\", got \"" << prefix << "\"." << std::endl;
-      return lhs;
+      throw std::runtime_error{"Expecting prefix \"coordinate\", got something else."};
    }
    char temp;
    lhs >> std::ws >> temp;
    if (temp != '(') {
-      // TODO: throw an exception. Also don't forget to update documentation.
-      std::cerr << "No opening brace encountered" << std::endl;
-      return lhs;
+      throw std::runtime_error{"No opening brace encountered"};
    }
 
    // To guarantee the coordinate remains unchanged when an error occurs,
    // a temporary storage is needed for the values.
-   // TODO: Determine whether the separators are the correct ones.
    // If not, throw an exception or something along those lines.
    double x, y, z;
-   lhs >> std::ws >> x >> std::ws >> temp >> temp;
-   lhs >> std::ws >> y >> std::ws >> temp >> temp;
-   lhs >> std::ws >> z >> std::ws >> temp >> temp;
+   auto ReadComponent = [](std::istream & lhs, char expectedUnit, char expectedSeperator) {
+      double value;
+      char unit, separator;
+      lhs >> value >> unit >> separator;
+      if(unit != expectedUnit) {
+         throw std::runtime_error{"Wrong or missing unit indicator."};
+      }
+      if(separator != expectedSeperator){
+         throw std::runtime_error{"Wrong or missing seperator."};
+      }
+      return value;
+   };
+   x = ReadComponent(lhs, 'm', ',');
+   y = ReadComponent(lhs, 'm', ',');
+   z = ReadComponent(lhs, 'm', ')');
 
    if (!lhs) {
-      std::cerr << "Coordinate wasn't read in its entirety when end of stream was reached. " << std::endl;
-      // TODO: throw an exception.
+      throw std::runtime_error{"Coordinate wasn't read in its entirety when end of stream was reached. "};
    }
 
    rhs.x = x;
