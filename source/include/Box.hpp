@@ -19,13 +19,6 @@
 
 class Box {
 	friend class Distance;
-
-	FRIEND_TEST (Box, Coordinates);
-	FRIEND_TEST (Box, getBottomLeft);
-    FRIEND_TEST (Box, getTopRight);
-    FRIEND_TEST (Box, CoordinateDistance);
-    FRIEND_TEST (Box, Assign);
-
 public:
 	//! @brief Constructs a box with 2 coordinates, bottom left and top right of the 3D ractangle
     //!

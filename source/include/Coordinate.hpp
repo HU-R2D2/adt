@@ -22,15 +22,6 @@ class Coordinate {
     friend class Distance;
     friend class Box;
 
-    FRIEND_TEST (Box, Coordinates);
-    FRIEND_TEST (Box, getBottomLeft);
-    FRIEND_TEST (Box, getTopRight);
-    FRIEND_TEST (Box, CoordinateDistance);
-    FRIEND_TEST (Box, getUnionBox); 
-    FRIEND_TEST(Coordinate, Construtor);
-    FRIEND_TEST (Box, getIntersectionBox);
-    FRIEND_TEST (Box, Assign);
-
 private:
     double x;
     double y;
