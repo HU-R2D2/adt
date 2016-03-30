@@ -7,17 +7,27 @@
 #define COORDINATE_HPP
 #include <iostream>
 
+#include "Distance.hpp"
+
 
 // Forward declaration.
-class Distance;
-class Length; // TODO: Replace with an import, as it should become a component of this.
+//class Distance;
+//class Length; // TODO: Replace with an import, as it should become a component of this.
       
 //! @class coordinate
 //! @brief A location in space, specified as an offset to an arbitrary origin.
 //!
 //! The offset to the origin is given in meters.
 class Coordinate {
-    friend Distance;
+    friend class Distance;
+    friend class Box;
+
+    FRIEND_TEST (Box, Coordinates);
+    FRIEND_TEST (Box, getBottomLeft);
+    FRIEND_TEST (Box, getTopRight);
+    FRIEND_TEST (Box, CoordinateDistance);
+    FRIEND_TEST(Coordinate, Construtor);
+
 private:
     double x;
     double y;
