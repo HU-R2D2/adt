@@ -69,27 +69,27 @@ Coordinate Box::getTopRight()
 
 Box Box::getUnionBox(Box box)
 {
-	Coordinate newBottomLeft;
-	Coordinate newTopRight;
+	Coordinate newBottomLeft(0,0,0);
+	Coordinate newTopRight(0,0,0);
 
-	if(bottomLeft.x < box.bottomLeft.x) 
+	(bottomLeft.x < box.bottomLeft.x) ?
 		newBottomLeft.x = bottomLeft.x : newBottomLeft.x = box.bottomLeft.x;
 	
 	
-	if(bottomLeft.y < box.bottomLeft.y) 
+	(bottomLeft.y < box.bottomLeft.y) ?
 		newBottomLeft.y = bottomLeft.y : newBottomLeft.y = box.bottomLeft.y;
 
-	if(bottomLeft.z < box.bottomLeft.z) 
+	(bottomLeft.z < box.bottomLeft.z) ? 
 		newBottomLeft.z = bottomLeft.z : newBottomLeft.z = box.bottomLeft.z;
 	
-	if(topRight.x > box.topRight.x) 
-		newtopRight.x = topRight.x : newtopRight.x = box.topRight.x;
+	(topRight.x > box.topRight.x) ?
+		newTopRight.x = topRight.x : newTopRight.x = box.topRight.x;
 
-	if(topRight.y > box.topRight.y) 
-		newtopRight.y = topRight.y : newtopRight.y = box.topRight.y;
+	(topRight.y > box.topRight.y) ?
+		newTopRight.y = topRight.y : newTopRight.y = box.topRight.y;
 
-	if(topRight.z > box.topRight.z) 
-		newtopRight.z = topRight.z : newtopRight.z = box.topRight.z;
+	(topRight.z > box.topRight.z) ?
+		newTopRight.z = topRight.z : newTopRight.z = box.topRight.z;
 
 	return Box(newBottomLeft, newTopRight);
 }
