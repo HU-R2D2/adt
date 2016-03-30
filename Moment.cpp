@@ -27,6 +27,7 @@ Moment Moment::operator- ( const Duration & rhs ) const	{
 	// Return new Moment that is the result of subtracting a given Duration
 	// Old Moment not modified
 	// If Subtraction results in a time smaller than 0, return 0
+	assert(rhs.seconds > 0);
 	double savedResult;
 	Moment rMoment(0);
 	if( (savedResult = (this->seconds - rhs.seconds) ) < 0)	{
@@ -40,6 +41,7 @@ Duration Moment::operator- (const Moment & rhs) const	{
 	// Return new Duration that is the result of subtracting a given Moment
 	// Old Moment not modified
 	// If Subtracting results in a time smaller than 0, return Duration of 0
+	assert(rhs.seconds > 0);
 	double savedResult;
 	if( (savedResult = (this->seconds - rhs.seconds) ) < 0)
 		return Duration(0);

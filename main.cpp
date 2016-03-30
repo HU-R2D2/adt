@@ -93,11 +93,11 @@ TEST( ADD_AND_SUBTRACT, Moment)  {
    //Moment* test = &m3;
    m3 = m3 = m1 - d1 - d1;
    intptr_t ptrValue2 = (intptr_t)&m3;
-   cout << "M3 is " << m1 << ", test is" << (test - 40) << endl;
+   //cout << "M3 is " << m1 << ", test is" << (test - 40) << endl;
    ASSERT_EQ(test - 40/*4960*/, m3.seconds) << "Duration subtracted from Moment failed";
    ASSERT_EQ(ptrValue, ptrValue2) << "Object does not remain the same";
    Duration d2(m2 - m1);
-   cout << "Duration is" << d2.seconds << endl;
+   //cout << "Duration is" << d2.seconds << endl;
    ASSERT_EQ(5000, d2.seconds) << "Moment subtracted from Moment failed";
    /*Duration d1(20);
    

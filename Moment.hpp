@@ -4,18 +4,19 @@
 #include <iostream>
 #ifndef _MOMENT_HPP
 #define _MOMENT_HPP
+using namespace std;
 /**
 	ToDo implementation of a moment
 	Testing
 	Review
-	
+	Add a timestamp struct
+	Add Enums
 *	@author 		Ferdi Stoeltie
 *	@date			30-03-2016
 *	@version		0.2
 *	@brief			This class provides a timestamp of a moment in time. Due to its use in R2D2 (as of yet), a Moment object can only be created by the Clock.
 
 */
-using namespace std;
 class Moment{
 friend class Clock;
 public:
@@ -45,6 +46,7 @@ public:
 		@brief Adds a given Duration to the current Moment and returns a new Moment
 		@param [in] refDuration uses this Duration to add (positive values only!)
 		@return new Moment that is the result of adding a given Duration from current Moment
+
 	*/
 	Moment operator+ ( const Duration& refDuration ) const;
 
@@ -53,49 +55,52 @@ public:
 		@brief Subtracts a given Duration to the current Moment and returns a new Moment
 		@param [in] refDuration uses this Duration to subtract (positive values only!)
 		@return new Moment that is the result of subtracting a given Duration from current Moment
+		@warning Only accepts Durations with positive values
 	*/
 	Moment operator- ( const Duration& refDuration ) const;
 
 	// Subtracts a moment from a moment and results in a duration
 	/**
 		@brief Subtracts a given Moment from the current Moment a duration
-		param [in] a given Moment
+		@param [in] a given Moment
 		@return new Duration that is the result of subtracting a given Moment from current Moment
+		@warning Only accepts Durations with positive values
 	*/
 	Duration operator- (const Moment& refMoment) const;
 
 	// adds a duration to a moment and returns this moment
 	/**
-		
+		@brief Adds a Duration to the current moment and returns the current moment with added result
+		@param [in] Duration const reference
+		@return Same Moment with added duration
 	*/
 	Moment& operator+= (const Duration& refDuration);
 
 	/// substracts a duration from a moment and returns this moment
+	/**
+		@brief Subtracts a Duration to the current moment and returns the current moment with added result
+		@param [in] Duration const reference
+		@return Same Moment with subtracted duration
+		@warning Only accepts Durations with positive values
+	*/
 	Moment & operator-= (const Duration& refDuration);
 
+	/**
+		@brief Reads Moment into given ostream
+		@param [in] lhs The ostream to which should be written
+		@param [in] The Moment that contains the data
+		@return Same ostream for chaining
+	*/
 	friend ostream& operator<< (ostream& lhs, const Moment& refDuration);
-	friend istream& operator>> (istream& lhs, Moment& refDuration);
-	// appends a moment to an ostream and return an ostream
-	//ostream& operator<< (ostream & lhs, const Moment &rhs) const;
 
-	// writes a moment to an istream and return istream
-	//istream& operator>> (istream & lhs, Moment & rhs);
-	/*Moment & operator= (const moment &);
-	/// adds a duration to a moment and results in a moment
-	Moment operator+ ( const duration & rhs ) const;
-	/// substracts a duration from a moment and results in a moment
-	Moment operator- ( const duration & rhs ) const;
-	/// sunstracts a moment from a moment and results in a duration
-	duration operator- (const moment & rhs) const;
-	/// adds a duration to a moment and returns this moment
-	Moment & operator+= (const duration & rhs);
-	/// substracts a duration from a moment and returns this moment
-	Moment & operator-= (const duration & rhs);
-	/// appends a moment to an ostream and return an ostream
-	ostream& operator<< (ostream & os, const moment &rhs) const;
-	/// writes a moment to an istream and return istream
-	istream & operator>> (istream & is, moment & rhs);
-private:*/
+	/**
+		@brief Reads from stream data into Moment
+		@param [in] lhs The istream from which should be read
+		@param [in] The Moment that will contain the data
+		@return Same istream for chaining
+	*/
+	friend istream& operator>> (istream& lhs, Moment& refDuration);
+//private:
 	double seconds;
 };
 #endif 
