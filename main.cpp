@@ -7,46 +7,7 @@
 #include <stdint.h>
 #include <iostream>
 using namespace std;
-int len( const char * s ){
-   return ( *s == '\0' ) ? 0 : 1 + len( s + 1 );
-}
-
-bool equal( const string20 & lhs, const char *rhs ){
-   EXPECT_EQ( lhs.length(), len( rhs ) ) << "length";
-   if( lhs.length() != len( rhs )) return false;
-   for( int i = 0; i < lhs.length(); ++i ){
-      EXPECT_EQ( lhs[ i ], rhs[ i ] ) << "content @ " << i ;
-      if( lhs[ i ] != rhs[ i ] ) return false;
-   }
-   return true;
-}
-/*TEST( Constructors, Default ){
-   string20 e;
-   ASSERT_EQ( e.length(), 0 ) << "length";   
-}
-
-TEST( Constructors, Char ){      
-   string20 c{ 'x' };
-   ASSERT_EQ( c.length(), 1 ) << "length";   
-   ASSERT_EQ( c[ 0 ], 'x' ) << "[0]";   
-}
-
-TEST( Assign, string ){      
-   string20 s{};
-   s = "";  
-   ASSERT_TRUE( equal( s, "" )) << "empty";   
-   s = "x";  
-   ASSERT_TRUE( equal( s, "x" )) << "1char";   
-   
-   s = "01234567890123456789";
-   ASSERT_TRUE( equal( s, "01234567890123456789" )) << "20char";  
-
-   s = "012345678901234567890";
-   ASSERT_TRUE( equal( s, "01234567890123456789" )) << "21char";  
-   
-   ASSERT_TRUE( equal( s = "abc", "abc" )) << "retval";     
-   ASSERT_TRUE( equal( ( s = "abc" ) = "fgh", "fgh" )) << "retval assign";     
-}*/
+using namespace adt;
 /**
    Moment Tests
 
@@ -55,7 +16,6 @@ TEST( Constructors, Default ) {
    /* These tests could fail on SLOW PERFORMANCE computers, please take note! */
    Moment m1;
    time_t t = time(0);   // get time now
-   //double dt = t;
    EXPECT_EQ( m1.seconds, t ) << "Default constructor, system time";
 
    double d = 10000;
@@ -90,27 +50,14 @@ TEST( ADD_AND_SUBTRACT, Moment)  {
    Duration d1(20);
    intptr_t ptrValue = (intptr_t)&m3;
    double test = m1.seconds;
-   //Moment* test = &m3;
+
    m3 = m3 = m1 - d1 - d1;
    intptr_t ptrValue2 = (intptr_t)&m3;
-   //cout << "M3 is " << m1 << ", test is" << (test - 40) << endl;
+
    ASSERT_EQ(test - 40/*4960*/, m3.seconds) << "Duration subtracted from Moment failed";
    ASSERT_EQ(ptrValue, ptrValue2) << "Object does not remain the same";
    Duration d2(m2 - m1);
-   //cout << "Duration is" << d2.seconds << endl;
    ASSERT_EQ(5000, d2.seconds) << "Moment subtracted from Moment failed";
-   /*Duration d1(20);
-   
-   EXPECT_EQ( m3.seconds, m1.seconds - d1.seconds) << "Substracting and assigning substraction";
-   //d1(bigger than moment);
-   m3 = m1 - d1;
-   EXPECT_EQ( m3.seconds, m1.seconds - d1.seconds) << "Substracting duration bigger than given moment";
-   m3();
-   uintptr_t objPtrValue = &m3;
-   m3 = m1 - d1;*/
-/*   uintptr_t objPtrValue = &m3;
-   EXPECT_EQ(objPtrValue, &m3) << "Object remains the same object";*/
-
 }
 TEST( ADD_AND_SUBTRACT_SAME_OBJECT, Moment)  {
    Moment m1(1000);
@@ -135,35 +82,25 @@ TEST( STREAM_OPERATORS, Streams) {
 
    ss.str("500 1000");
    ss >> m1 >> m2;
-   cout << m1 << ", " << m2 << endl;
 
    ASSERT_EQ(m1.seconds, 500) << "First inputstream for Moment is incorrect";
    ASSERT_EQ(m2.seconds, 1000) << "Second inputstream for Moment is incorrect";
 
    stringstream ss2;
    ss2 << m1 << " " << m2;
-   //cout << m1 << ", " << m2 << endl;
-   //cout << "stringstream here is" << ss2.str() << ", " << ss2.str() << endl;
+
    double firstDouble, secondDouble;
    ss2 >> firstDouble >> secondDouble;
-   //cout << "Double values after input" << firstDouble << "," << secondDouble << endl;
 
    ASSERT_EQ(m1.seconds, firstDouble) << "First outputstream for Moment is incorrect";
    ASSERT_EQ(m2.seconds, secondDouble) << "First outputstream for Moment is incorrect";
 }
 int main( int argc, char **argv ){	      
 
-   string20bug = 0;  
-
    std::cout << "testing Moment" << "\n";
 
    testing::InitGoogleTest( &argc, argv );
    int result = RUN_ALL_TESTS();
    (void) result;
-   /*
-      Moment Tests
-    */
-   for(;;){
-      bmptk::wait( 1 * bmptk::s );
-   }
+   while(true);
 }

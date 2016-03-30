@@ -4,13 +4,16 @@
 #include <iostream>
 #ifndef _MOMENT_HPP
 #define _MOMENT_HPP
+
+namespace adt	{
 using namespace std;
-/**
-	ToDo implementation of a moment
+/*
+	[ToDo implementation of a moment
 	Testing
 	Review
-	Add a timestamp struct
-	Add Enums
+	Add a timestamp struct and Enums]
+*/
+/**
 *	@author 		Ferdi Stoeltie
 *	@date			30-03-2016
 *	@version		0.2
@@ -104,3 +107,6 @@ public:
 	double seconds;
 };
 #endif 
+//ostream& operator<< (ostream& lhs, const Moment& refDuration);
+//istream& operator>> (istream& lhs, Moment& refDuration);
+}

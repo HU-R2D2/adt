@@ -1,4 +1,6 @@
 #include "Moment.hpp"
+namespace adt	{
+
 
 Moment::Moment( )	{
 	time_t t = time(0);
@@ -72,4 +74,5 @@ ostream& operator<< (ostream & lhs, const Moment &rhs)	{
 istream& operator>> (istream & lhs, Moment & rhs)	{
 	lhs >> rhs.seconds;
 	return lhs;
+}
 }
