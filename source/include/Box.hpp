@@ -63,7 +63,7 @@ public:
     //! @return topright coordinate
 	Coordinate getTopRight();
 
-	//! @brief Returns box that contains both boxes
+	//! @brief Returns the smallest possible box that contains both boxes
     //!
     //! @param box the box to create an union box with
     //! @return Box the union box
