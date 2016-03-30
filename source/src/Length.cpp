@@ -1,4 +1,4 @@
-#include "Length.hpp"
+#include "../include/Length.hpp"
 
 /**********************************************************************************************//**
  * @fn	Length::Length(double l)
@@ -8,8 +8,11 @@
  * @param	l	The coordinate of the distance
  **************************************************************************************************/
  
-Length::Length(double l = 0):
-	l = l;
+const Length Length::METER(1);
+const Length Length::CENTIMETER(1/100);
+
+Length::Length(double l):
+	l{l}
 {}
 
 /**********************************************************************************************//**
@@ -33,10 +36,11 @@ Length& Length::operator= (const Length& rhs){
  * @param	number the number to add to the length
  **************************************************************************************************/
 
-Length Length::operator+ (double number) const{
+Length Length::operator+ (const Length& rhs) const{
+
   Length temp {*this};
-  temp.l = temp.l + number;
-  return temp
+  temp.l = temp.l + rhs.l;
+  return temp;
 }
 
 /**********************************************************************************************//**
@@ -47,9 +51,9 @@ Length Length::operator+ (double number) const{
  * @param	number the number to subtrackt from the length
  **************************************************************************************************/
 
-Length Length::operator- (double number) const{
+Length Length::operator- (const Length& rhs) const{
   Length temp {*this};
-  temp.l = temp.l - number;
+  temp.l = temp.l - rhs.l;
   return temp;	
 }
 
@@ -90,10 +94,9 @@ Length Length::operator/ (double number) const{
  * @param	number the number to add to the length
  **************************************************************************************************/
 
-Length& Length::operator+= (double number){
-  Length temp {*this};
-  temp.l += number;
-  return temp;
+Length& Length::operator+= (const Length & rhs){
+  l += rhs.l;
+  return *this;
 }
 
 /**********************************************************************************************//**
@@ -104,10 +107,9 @@ Length& Length::operator+= (double number){
  * @param	number the number to subtrackt from the length
  **************************************************************************************************/
 
-Length& Length::operator-= (double number){
-	Length temp {*this};
-  temp.l -= number;
-  return temp;
+Length& Length::operator-= (const Length & rhs){
+  l -= rhs.l;
+  return *this;
 }
 
 /**********************************************************************************************//**
@@ -119,13 +121,25 @@ Length& Length::operator-= (double number){
  **************************************************************************************************/
 
 bool Length::operator> (const Length& rhs) const{
-	Length temp {*this}
-  if(temp.l > rhs.l){
+  if(l > rhs.l){
     return true;
    }else{
     return false;
    }
 }
+
+Length operator* (double n, const Length & rhs){
+  Length temp {rhs};
+  temp.l = temp.l * n;
+  return temp;
+}
+
+Length operator/ (double n, const Length & rhs){
+  Length temp {rhs};
+  temp.l = temp.l / n;
+  return temp;
+}
+
 
 /**********************************************************************************************//**
  * @fn	Length::Length(const Length& rhs)
@@ -136,18 +150,18 @@ bool Length::operator> (const Length& rhs) const{
  **************************************************************************************************/
 
 bool Length::operator< (const Length& rhs) const{
-  Length temp {*this}
-  if(temp.l < rhs.l){
+  if(l < rhs.l){
     return true;
    }else{
     return false;
    }	
 }
 
-ostream& Length::operator<< (ostream& os, const Length& rhs) const{
-	   lhs << rhs.l
+std::ostream& operator<< (std::ostream& os, const Length& rhs){
+	   os << rhs.l;
+     return os;
 }
 
-istream& Length::operator>>( istream& is, Length& rhs){  //?
+std::istream& operator>>( std::istream& is, Length& rhs){  //?
 	
 }		

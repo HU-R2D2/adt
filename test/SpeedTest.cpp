@@ -1,49 +1,49 @@
-#include "..\\source\\include\\Speed.hpp"
+#include "../source/include/Speed.hpp"
 #include "gtest/gtest.h"
 //Constructors
 
 
 //Assign
 TEST(SpeedTestAssign,Speed){
-	Speed one = 1 * Length::Meter / Duration::Second;
-	Speed a = 5 * Length::Meter / Duration::Second;
+	Speed one = 1 * Length::METER / Duration::SECOND;
+	Speed a = 5 * Length::METER / Duration::SECOND;
 	ASSERT_DOUBLE_EQ(a/one, 5) << "speed created";
-	Speed b = 7 * Length::Meter / Duration::Second;
+	Speed b = 7 * Length::METER / Duration::SECOND;
 	a = b;
 	ASSERT_DOUBLE_EQ(a/one, 7) << "assigned other speed to a speed";
 }
 
 TEST(SpeedTestDivide, Speed){
-	Speed a = 4 * Length::Meter / Duration::Second;
-	Speed b = 8 * Length::Meter / Duration::Second;
-	Speed c = -16 * Length::Meter / Duration::Second;
+	Speed a = 4 * Length::METER / Duration::SECOND;
+	Speed b = 8 * Length::METER / Duration::SECOND;
+	Speed c = -16 * Length::METER / Duration::SECOND;
 	ASSERT_DOUBLE_EQ(b/a, 2) << "Divide positive by positive"
 	ASSERT_DOUBLE_EQ(c/b, -2) << "Divide negative by positive"
 }
 
 //Smaller
 TEST(SpeedTestSmaller,Speed){
-	Speed a = 8 * Length::Meter / Duration::Second;
-	Speed b = 6 * Length::Meter / Duration::Second;
+	Speed a = 8 * Length::METER / Duration::SECOND;
+	Speed b = 6 * Length::METER / Duration::SECOND;
 	EXPECT_EQ(a < b, false) << "a not smaller than b";
 	EXPECT_EQ(b < a, true) <<  "b is smaller than a";
 }
 
 //Bigger
 TEST(SpeedTestBigger,Speed){
-	Speed a = 6 * Length::Meter / Duration::Second;
-	Speed b = 8 * Length::Meter / Duration::Second;
+	Speed a = 6 * Length::METER / Duration::SECOND;
+	Speed b = 8 * Length::METER / Duration::SECOND;
 	EXPECT_EQ(a > b, false) << "a not greater than b";
 	EXPECT_EQ(b > a, true) <<  "b is greater than a";
 }
 
 //onedd
 TEST(SpeedTestAdd, Speed){
-	Speed one = 1 * Length::Meter / Duration::Second;
-	Speed a = 3 * Length::Meter / Duration::Second;
-	Speed b = 6 * Length::Meter / Duration::Second;
-	Speed c = 0 * Length::Meter / Duration::Second;
-	Speed d = -10 * Length::Meter / Duration::Second;
+	Speed one = 1 * Length::METER / Duration::SECOND;
+	Speed a = 3 * Length::METER / Duration::SECOND;
+	Speed b = 6 * Length::METER / Duration::SECOND;
+	Speed c = 0 * Length::METER / Duration::SECOND;
+	Speed d = -10 * Length::METER / Duration::SECOND;
 	a = a + c;
 	EXPECT_DOUBLE_EQ(a/one, 3) << "added zero to a speed";
 	a = a + b;
@@ -59,9 +59,9 @@ TEST(SpeedTestAdd, Speed){
 
 //AddAssign
 TEST(SpeedTestAddAssign, Speed){
-	Speed one = 1 * Length::Meter / Duration::Second;
-	Speed a = 6 * Length::Meter / Duration::Second;
-	Speed b = 5 * Length::Meter / Duration::Second;
+	Speed one = 1 * Length::METER / Duration::SECOND;
+	Speed a = 6 * Length::METER / Duration::SECOND;
+	Speed b = 5 * Length::METER / Duration::SECOND;
 	a += b;
 	EXPECT_DOUBLE_EQ(a/one, 11) << "AddAssign speed"; 
 	// no more other test because itern it uses add and assign operator so if you test them properly it isn't nessecarly here.
@@ -69,11 +69,11 @@ TEST(SpeedTestAddAssign, Speed){
 
 //Subtract
 TEST(SpeedTestSubtract, Speed){
-	Speed one = 1 * Length::Meter / Duration::Second;
-	Speed a = 3 * Length::Meter / Duration::Second;
-	Speed b = 6 * Length::Meter / Duration::Second;
-	Speed c = 0 * Length::Meter / Duration::Second;
-	Speed d = -10* Length::Meter / Duration::Second;
+	Speed one = 1 * Length::METER / Duration::SECOND;
+	Speed a = 3 * Length::METER / Duration::SECOND;
+	Speed b = 6 * Length::METER / Duration::SECOND;
+	Speed c = 0 * Length::METER / Duration::SECOND;
+	Speed d = -10* Length::METER / Duration::SECOND;
 	a = a - c;
 	EXPECT_DOUBLE_EQ(a/one, 3) << "substracted zero form a speed";
 	a = a - b;
@@ -87,9 +87,9 @@ TEST(SpeedTestSubtract, Speed){
 
 //SubtractAssign
 TEST(SpeedTestSubtractAssign, Speed){
-	Speed one = 1 * Length::Meter / Duration::Second;
-	Speed a = 6 * Length::Meter / Duration::Second;
-	Speed b = 5 * Length::Meter / Duration::Second;
+	Speed one = 1 * Length::METER / Duration::SECOND;
+	Speed a = 6 * Length::METER / Duration::SECOND;
+	Speed b = 5 * Length::METER / Duration::SECOND;
 	a -= b;
 	EXPECT_DOUBLE_EQ(a/one, 1) << "SubtractAssign speed"; 
 	// no more other test because itern it uses subtract and assign operators so if you test them properly it isn't nessecarly here.
@@ -97,8 +97,8 @@ TEST(SpeedTestSubtractAssign, Speed){
 
 //multiply by Duration
 TEST(SpeedTestMultiply, Duration){
-	Speed a = 6 * Length::Meter / Duration::Second;
-	Duration dur = 7 * Second;
+	Speed a = 6 * Length::METER / Duration::SECOND;
+	Duration dur = 7 * SECOND;
 	Length l = a * dur;
 	EXPECT_DOUBLE_EQ(l/l, 42) << "Multiply speed by duration";
 }
@@ -107,10 +107,10 @@ TEST(SpeedTestMultiply, Duration){
 //divide by Duration
 
 TEST(SpeedTestDivide, Duration){
-	Speed a = 14 * Length::Meter / Duration::Second;
-	Duration dur = 7 * Second;
+	Speed a = 14 * Length::METER / Duration::SECOND;
+	Duration dur = 7 * SECOND;
 	Acceleration le = a / dur;
-	Acceleration oneUnit = 1 * Length::Meter / Duration::Second / Duration::Second;
+	Acceleration oneUnit = 1 * Length::METER / Duration::SECOND / Duration::SECOND;
 	EXPECT_DOUBLE_EQ(le/oneUnit, 2) << "Multiply speed by duration";
 }
 
@@ -118,12 +118,12 @@ TEST(SpeedTestDivide, Duration){
 //Multiply by double
 
 TEST(SpeedTestMultiply, double){
-	Speed one = 1 * Length::Meter / Duration::Second;
-	Speed a = 8 * Length::Meter/ Duration::Second;
+	Speed one = 1 * Length::METER / Duration::SECOND;
+	Speed a = 8 * Length::METER/ Duration::SECOND;
 	double pos = 2;
 	a = a * pos;
 	EXPECT_DOUBLE_EQ(a/one,16) << "Multiply positive by positive";
-	a = -8 * Length::Meter/ Duration::Second;
+	a = -8 * Length::METER/ Duration::SECOND;
 	a = a * pos;
 	EXPECT_DOUBLE_EQ(a/one,-16) << "Multiply negative by positive";
 	double neg = -2;
@@ -134,10 +134,10 @@ TEST(SpeedTestMultiply, double){
 	double z = 0;
 	a = a * z;
 	EXPECT_DOUBLE_EQ(a/one, 0) << "Multiply by zero";
-	a = 8 * Length::Meter/ Duration::Second;
+	a = 8 * Length::METER/ Duration::SECOND;
 	a = pos * a;
 	EXPECT_DOUBLE_EQ(a/one,16) << "Multiply positive by positive rhs";
-	a = -8 * Length::Meter/ Duration::Second;
+	a = -8 * Length::METER/ Duration::SECOND;
 	a = pos * a;
 	EXPECT_DOUBLE_EQ(a/one,-16) << "Multiply negative by positive rhs";
 	double neg = -2;
@@ -153,8 +153,8 @@ TEST(SpeedTestMultiply, double){
 
 //MultiplyAssign by double
 TEST(SpeedTestMultiplyAssign, double){
-	Speed one = 1 * Length::Meter / Duration::Second;
-	Speed a = 6 * Length::Meter / Duration::Second;
+	Speed one = 1 * Length::METER / Duration::SECOND;
+	Speed a = 6 * Length::METER / Duration::SECOND;
 	double d = 7;
 	a = a * d;
 	EXPECT_DOUBLE_EQ(a/one, 42) << "MultiplyAssign speed"; 

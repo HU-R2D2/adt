@@ -6,9 +6,10 @@
 #ifndef  _SPEED_HPP
 #define _SPEED_HPP
 
-#include "Distance.hpp"
+#include "Length.hpp"
 #include <iostream>
-//#include "Duration.hpp"
+#include "Duration.hpp"
+#include "Length.hpp"
 class Duration;
 class Acceleration;
 
@@ -78,7 +79,7 @@ public:
       \param rhs a Duration.
       \return the calculated distance.
     */
-	Distance operator*(const Duration & rhs) const;
+	Length operator*(const Duration & rhs) const;
 
 	//! Divide a speed by a duration and return the resulting acceleration.
     /*!
@@ -107,6 +108,11 @@ public:
       \param rhs a Speed.
       \return the calculated speed.
     */
+
+    friend Speed operator/ ( Length & l, const Duration & d){
+    	
+    }
+    
     friend Speed operator* ( double n, const Speed & rhs );
 
     //! Divide a speed by a speed and return the resulting double
@@ -119,7 +125,5 @@ public:
 	friend std::ostream& operator<<(std::ostream & os, const Speed &rhs);
 	/// depend a speed from an istream and return the istream
 	friend std::istream& operator>>(std::istream & is, Speed & rhs);
-
-  FRIEND_TEST(SpeedTestAssign,Speed);
 };
 #endif

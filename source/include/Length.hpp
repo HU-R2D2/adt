@@ -5,6 +5,8 @@
   *@brief		Length is a .....
 */
 
+#include <iostream> 
+
 #ifndef  _LENGTH_HPP
 #define _LENGTH_HPP
 
@@ -23,6 +25,10 @@ class Length{
 		Length operator* (double number) const;
 		/// divides a Length by a number and returns a Length
 		Length operator/ (double number) const;
+		/// multiply a Length by a double and returns a Length
+		friend Length operator* ( double n, const Length & rhs );
+
+		friend Length operator/ ( double n, const Length & rhs );
 		/// adds a Length to a Length and returns this Length
 		Length& operator+= (const Length& rhs);
 		/// substracts a Length from a Length and returns this Length
@@ -32,12 +38,14 @@ class Length{
 		/// compares two Lengths to eachother and returns a boolean (true if 1st is smaller than 2nd)
 		bool operator< (const Length& rhs) const;
 		/// appends a Length to an ostream and returns an ostream
-		ostream& operator<< (ostream& os, const Length& rhs) const;
+		friend std::ostream& operator<< (std:: ostream& os, const Length& rhs);
 		/// adds an istream to a Length
-		istream& operator>>( istream& is, Length& rhs)
+		friend std::istream& operator>>(std::istream& is, Length& rhs);
 		
+		static const Length METER;
+		static const Length CENTIMETER;
 	private:
 		double l;
-}
+};
 
 #endif
