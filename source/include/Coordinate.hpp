@@ -81,32 +81,31 @@ public:
    //! @see operator>>(std::istream, const r2d2::adt::coordinate &)
    friend std::ostream &operator<<(std::ostream &lhs, const Coordinate &rhs);
 
+   //! @brief Reads a coordinate from the given input stream, returning said stream.
+   //!
+   //! The input should be given in the format "coordinate(z m, y m, z m)",
+   //! ignoring the quotes. The values 'x', 'y' and 'z' should be replaced with floating point values.
+   //! Any excess whitespace is ignored. As of now, only meter is supported; other metric prefixes fail.
+   //! @param lhs Stream from which to read data
+   //! @param rhs Reference to an uninitialized coordinate to overwrite.
+   //! @return Reference to the stream passed in by lhs.
+   //! @see operator<<(std::ostream &, r2d2::adt::coordinate &)
+   friend std::istream &operator>>(std::istream &lhs, Coordinate &rhs);
 
-    //! @brief Reads a coordinate from the given input stream, returning said stream.
-    //!
-    //! The input should be given in the format "coordinate(z m, y m, z m)",
-    //! ignoring the quotes. The values 'x', 'y' and 'z' should be replaced with floating point values.
-    //! Any excess whitespace is ignored. As of now, only meter is supported; other metric prefixes fail.
-    //! @param lhs Stream from which to read data
-    //! @param rhs Reference to an uninitialized coordinate to overwrite.
-    //! @return Reference to the stream passed in by lhs.
-    //! @see operator<<(std::ostream &, r2d2::adt::coordinate &)
-    friend std::istream &operator>>(std::istream &lhs, Coordinate &rhs);
+   //! @brief Gets a reference to this coordinate's X-offset to that of the origin.
+   //!
+   //! @return Reference to the difference between this coordinate's X-position and that of the origin.
+   const double & getX() const;
 
-    //! @brief returns the X coordinate of the Coordinate
-    //
-    //! @return double the X coordinate of the Coordinate
-    const double &  getX() const;
+   //! @brief Gets a reference to this coordinate's Y-offset to that of the origin.
+   //!
+   //! @return Reference to the difference between this coordinate's Y-position and that of the origin.
+   const double & getY() const;
 
-    //! @brief returns the Y coordinate of the Coordinate
-    //
-    //! @return double the Y coordinate of the Coordinate
-    const double &  getY() const;
-
-    //! @brief returns the Z coordinate of the Coordinate
-    //
-    //! @return double the Z coordinate of the Coordinate
-    const double &  getZ() const;
+   //! @brief Gets a reference to this coordinate's Z-offset to that of the origin.
+   //!
+   //! @return Reference to the difference between this coordinate's Z-position and that of the origin.
+   const double & getZ() const;
 
 };
 #endif // COORDINATE_HPP
