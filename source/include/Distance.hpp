@@ -27,7 +27,7 @@ class Distance {
 		double getY();
 		/// gets the z value of the Distance and returns it
 		double getZ();
-		
+		/// gets the Length of the Distance and returns it
 		double getLength() const;
 		
 		/// sets the x value of the Distance to the given value
@@ -51,9 +51,9 @@ class Distance {
 		Distance& operator+= (const Distance& rhs);
 		/// substracts a Distance from a Distance and returns this Distance
 		Distance& operator-= (const Distance& rhs);
-		/// compares two Distances to eachother and returns a boolean (true if 1st is greater than 2nd)
+		/// compares two Distances to each other and returns a boolean (true if 1st is greater than 2nd)
 		bool operator> (const Distance& rhs) const;
-		/// compares two Distances to eachother and returns a boolean (true if 1st is smaller than 2nd)
+		/// compares two Distances to each other and returns a boolean (true if 1st is smaller than 2nd)
 		bool operator< (const Distance& rhs) const;
 		
 	private:
