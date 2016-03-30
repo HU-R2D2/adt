@@ -51,4 +51,3 @@ Duration& Duration::operator=(const Duration& rhs){
 	seconds = rhs.seconds;
 	return *this;
 }
-
