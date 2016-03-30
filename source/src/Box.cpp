@@ -1,22 +1,16 @@
 #include "../include/Box.hpp"
 
-
-Box::Box(Coordinate bottomLeft, Coordinate topRight)
-:
+Box::Box(Coordinate bottomLeft, Coordinate topRight):
 	bottomLeft(bottomLeft),
 	topRight(topRight)
-{
+{}
 
-}
-
-Box::Box(Coordinate origin, Distance dist)
-:
+Box::Box(Coordinate origin, Distance dist):
 	bottomLeft(origin),
-	topRight(origin) // construct with origin element so it gets assigned.
+	topRight(origin) // construct with origin element so the reference gets assigned
 {
-	// calculate topRight coordinate with distance attribute
+	// add distance to the topRight attribute
 	topRight = Coordinate(topRight.x + dist.getX(),topRight.y + dist.getY(),topRight.z + dist.getZ());
-	
 }
 
 bool Box::contains(Coordinate coord)
@@ -26,13 +20,30 @@ bool Box::contains(Coordinate coord)
 		coord.y > bottomLeft.y &&
 		coord.z > bottomLeft.z)
 	{
+
 		if (coord.x < topRight.x &&
 		coord.y < topRight.y &&
 		coord.z < topRight.z)
 		{
 			return true;
 		}
+
 	}
+
+	if (coord.x < bottomLeft.x &&
+		coord.y < bottomLeft.y &&
+		coord.z < bottomLeft.z
+		)
+	{
+		if(coord.x > topRight.x &&
+			coord.y > topRight.y &&
+			coord.z > topRight.z)
+		{
+			return true;	
+		}
+	}
+
+
 			
 	return false;
 }
@@ -69,8 +80,8 @@ Coordinate Box::getTopRight()
 
 Box Box::getUnionBox(Box box)
 {
-	Coordinate newBottomLeft(0,0,0);
-	Coordinate newTopRight(0,0,0);
+	Coordinate newBottomLeft (0, 0, 0);
+	Coordinate newTopRight (0, 0, 0);
 
 	(bottomLeft.x < box.bottomLeft.x) ?
 		newBottomLeft.x = bottomLeft.x : newBottomLeft.x = box.bottomLeft.x;
@@ -104,19 +115,21 @@ Box Box::getIntersectionBox(Box box)
 			// intersectionBox bottomLeft
 			return Box(box.getBottomLeft(), topRight);
 		}
+		else
+		{
+			return Box(bottomLeft, box.getTopRight());
+		}
 	}
 	else
 	{
 		// no intersection box
-		///return false;
-		return Box(Coordinate(0.0,0.0,0.0),Coordinate(0.0,0.0,0.0));
+		return Box(Coordinate(0.0,0.0,0.0), Coordinate(0.0,0.0,0.0));
 	}
 		
 }
 
 Distance Box::getAxisSize()
 {
-	// get axis size (calculate the distance of one edge)
 	Distance dist;
 
 	dist.setX(topRight.x - bottomLeft.x);
@@ -126,12 +139,12 @@ Distance Box::getAxisSize()
 	return dist;
 }
 
-void Box::operator=(const Box & rhs)
-{
-	// Question: copy attributes of rhs to current instance or return new box with rhs properties??
-	
+Box Box::operator=(const Box & rhs)
+{	
 	bottomLeft = rhs.bottomLeft;
 	topRight = rhs.topRight;
+
+	return Box(bottomLeft, topRight);
 }
 
 std::ostream & operator <<(std::ostream & lhs, const Box & rhs) {

@@ -26,7 +26,10 @@ class Coordinate {
     FRIEND_TEST (Box, getBottomLeft);
     FRIEND_TEST (Box, getTopRight);
     FRIEND_TEST (Box, CoordinateDistance);
+    FRIEND_TEST (Box, getUnionBox); 
     FRIEND_TEST(Coordinate, Construtor);
+    FRIEND_TEST (Box, getIntersectionBox);
+    FRIEND_TEST (Box, Assign);
 
 private:
     double x;
