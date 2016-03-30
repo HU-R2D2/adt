@@ -12,6 +12,7 @@
 #include <string>
 #include <sstream>
 
+
 TEST(Coordinate, Construtor) {
    Coordinate base (0.0,0.0,0.0);
    ASSERT_DOUBLE_EQ(base.getX(), 0.0);
@@ -23,7 +24,6 @@ TEST(Coordinate, Construtor) {
    ASSERT_DOUBLE_EQ(coord50.getY(), 50.0);
    ASSERT_DOUBLE_EQ(coord50.getZ(), 50.0);
 }
-
 
 TEST(Coordinate, Assignment) {
    auto value = Coordinate::origin;
