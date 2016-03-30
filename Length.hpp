@@ -10,7 +10,7 @@
 
 class Length{
 	private:
-		Length(double l=0);
+		Length(double l = 0);
 		
 	public:
 		/// assignment operator for a Length

@@ -1,4 +1,3 @@
-
 #include "Length.hpp"
 
 /**********************************************************************************************//**
@@ -6,99 +5,149 @@
  *
  * @brief	Constructor of a Length
  *
- * @param	l			The X coordinate of the distance
+ * @param	l	The coordinate of the distance
  **************************************************************************************************/
-Length(double l=0);
-
-
-Length& operator= (const Length& rhs);
-Length operator+ (const Length& rhs) const;
-Length operator- (const Length& rhs) const;
-Length operator* (double number) const;
-Length operator/ (double number) const;
-Length& operator+= (const Length& rhs);
-Length& operator-= (const Length& rhs);
-bool operator> (const Length& rhs) const;
-bool operator< (const Length& rhs) const;
-ostream& operator<< (ostream& os, const Length& rhs) const;
-istream& operator>>( istream& is, Length& rhs)
-
-
-///=================================================================
-
-#include "Distance.hpp"
-
-/**********************************************************************************************//**
- * @fn	Distance::Distance(double x, double y, double z)
- *
- * @brief	Constructor of a Distance
- *
- * @param	x			The X coordinate of the distance
- * @param	y			The Y coordinate of the distance
- * @param	z			The Z coordinate of the distance
- **************************************************************************************************/
-
-Distance::Distance(double x=0, double y=0, double z=0) :
-	x = x,
-	y = y,
-	z = z
+ 
+Length::Length(double l = 0):
+	l = l;
 {}
 
+/**********************************************************************************************//**
+ * @fn	Length::Length(const Length& rhs)
+ *
+ * @brief	assain operator of a Length
+ *
+ * @param	rhs the right hand side that is being assaind to the length
+ **************************************************************************************************/
 
-Distance& Distance::operator= (const Distance& rhs){
-	x = rhs.x;
-	y = rhs.y;
-	z = rhs.z;
+Length& Length::operator= (const Length& rhs){
+	l = rhs.l;
 	return *this;
 }
 
+/**********************************************************************************************//**
+ * @fn	Length::Length(const Length& rhs)
+ *
+ * @brief	Add operator of a Length
+ *
+ * @param	number the number to add to the length
+ **************************************************************************************************/
 
-Distance Distance::operator+ (const Distance& rhs) const{
-	Distance temp{*this};
-	temp.x += rhs.x;
-	temp.y += rhs.y;
-	temp.z += rhs.z;
-	return temp;
-}
-
-Distance Distance::operator- ( const Distance& rhs ) const{
-	Distance temp{*this};
-	temp.x -= rhs.x;
-	temp.y -= rhs.y;
-	temp.z -= rhs.z;
-	return temp;
+Length Length::operator+ (double number) const{
+  Length temp {*this};
+  temp.l = temp.l + number;
+  return temp
 }
 
-Distance Distance::operator* (double number) const{
-	Distance temp{*this};
-	temp.x = temp.x * number;
-	temp.y = temp.y * number;
-	temp.z = temp.z * number;
-	return temp;
-}
-		
-Distance Distance::operator/ (double rhs) const;		// bij delen door nul: gewoon niks doen!
-		
-Distance& Distance::operator+= (const Distance& rhs){
-	x += rhs.x;
-	y += rhs.y;
-	z += rhs.z;
-	return *this;
-}
-		
-Distance& Distance::operator-= (const Distance& rhs){
-	x -= rhs.x;
-	y -= rhs.y;
-	z -= rhs.z;
-	return *this;
-}
-		
-bool Distance::operator> (const Distance& rhs) const;
-		
-bool Distance::operator< (const Distance& rhs) const;
-		
-ostream& Distance::operator<< (ostream& os, const Distance& rhs) const;
-		
-istream& Distance::operator>>( istream& is, Distance& rhs)
+/**********************************************************************************************//**
+ * @fn	Length::Length(const Length& rhs)
+ *
+ * @brief	subtrackt operator of a Length
+ *
+ * @param	number the number to subtrackt from the length
+ **************************************************************************************************/
 
-		
+Length Length::operator- (double number) const{
+  Length temp {*this};
+  temp.l = temp.l - number;
+  return temp;	
+}
+
+/**********************************************************************************************//**
+ * @fn	Length::Length(const Length& rhs)
+ *
+ * @brief	multyply operator of a Length
+ *
+ * @param	number the number to multyply the length by
+ **************************************************************************************************/
+
+Length Length::operator* (double number) const{
+  Length temp {*this};
+  temp.l = number * temp.l;
+  return temp;	
+}
+
+/**********************************************************************************************//**
+ * @fn	Length::Length(const Length& rhs)
+ *
+ * @brief	devision operator of a Length
+ *
+ * @param	number the number to devide the length by
+ **************************************************************************************************/
+
+
+Length Length::operator/ (double number) const{
+	Length temp {*this};
+  temp.l = temp.l / number;
+  return temp; 
+}
+
+/**********************************************************************************************//**
+ * @fn	Length::Length(const Length& rhs)
+ *
+ * @brief	Add operator of a Length
+ *
+ * @param	number the number to add to the length
+ **************************************************************************************************/
+
+Length& Length::operator+= (double number){
+  Length temp {*this};
+  temp.l += number;
+  return temp;
+}
+
+/**********************************************************************************************//**
+ * @fn	Length::Length(const Length& rhs)
+ *
+ * @brief	subtrackt operator of a Length
+ *
+ * @param	number the number to subtrackt from the length
+ **************************************************************************************************/
+
+Length& Length::operator-= (double number){
+	Length temp {*this};
+  temp.l -= number;
+  return temp;
+}
+
+/**********************************************************************************************//**
+ * @fn	Length::Length(const Length& rhs)
+ *
+ * @brief	greater then operator of a Length
+ *
+ * @param	rhs the right hand side to compare 
+ **************************************************************************************************/
+
+bool Length::operator> (const Length& rhs) const{
+	Length temp {*this}
+  if(temp.l > rhs.l){
+    return true;
+   }else{
+    return false;
+   }
+}
+
+/**********************************************************************************************//**
+ * @fn	Length::Length(const Length& rhs)
+ *
+ * @brief	smaller then operator of a Length
+ *
+ * @param	rhs the right hand side to compare 
+ **************************************************************************************************/
+
+bool Length::operator< (const Length& rhs) const{
+  Length temp {*this}
+  if(temp.l < rhs.l){
+    return true;
+   }else{
+    return false;
+   }	
+}
+
+ostream& Length::operator<< (ostream& os, const Length& rhs) const{
+	   lhs << rhs.l
+}
+
+istream& Length::operator>>( istream& is, Length& rhs){  //?
+	
+}		

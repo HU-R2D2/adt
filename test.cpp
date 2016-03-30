@@ -15,76 +15,54 @@ TEST(Constructor, double) {
 // operatoren:
 TEST( Assign, Length ){   				//operator=
 	Length a;
-	a = Distance{1,2,3};
+	a = Length{1};
 	
-	ASSERT_EQ(a.x,1) << "empty x";
-	ASSERT_EQ(a.y,2) << "empty y";
-	ASSERT_EQ(a.z,3) << "empty z";
-	
-	a = Distance{4,5,6};
-	ASSERT_EQ(a.x,4) << "new x";
-	ASSERT_EQ(a.y,5) << "new y";
-	ASSERT_EQ(a.z,6) << "new z";  
+	ASSERT_EQ(a.l,1) << "empty l";
 }
 
 
-TEST(Add, Distance) { 						//operator+
+TEST(Add, Length) { 						//operator+
 	// leeg + leeg
-	Distance a;
-	Distance b;
+	Length a;
+	double b = 0;
 	a = a + b;
-	ASSERT_EQ(a.x,0) << "empty+empty x";
-	ASSERT_EQ(a.y,0) << "empty+empty y";
-	ASSERT_EQ(a.z,0) << "empty+empty z";
+	ASSERT_EQ(a.l,0) << "int empty + empty Length";
 	
 	// leeg + vol
-	Distance c{1,2,3};
+	Length c{1};
 	b = b + c;
-	ASSERT_EQ(b.x,1) << "empty+full x";
-	ASSERT_EQ(b.y,2) << "empty+full y";
-	ASSERT_EQ(b.z,3) << "empty+full z";
+	ASSERT_EQ(b.l,1) << "int empty + full Length";
+	
+	Length c{1};
+	c = c + b;
+	ASSERT_EQ(b.l,1) << "length empty + full int";
 	
 	// vol + vol
-	Distance d{1,2,3};
-	Distance e{4,5,6};
+	length d{1};
+	double e = 4;
 	d = d + e;
- 	ASSERT_EQ(d.x,5) << "full+full x";
-	ASSERT_EQ(d.y,7) << "full+full y";
-	ASSERT_EQ(d.z,9) << "full+full z";
+ 	ASSERT_EQ(d.l,5) << "length full + full double";
 }
 
 
-TEST(Subtract, Distance) { 					//operator-
+TEST(Subtract, Length) { 					//operator-
 	// leeg - leeg
-	Distance a;
-	Distance b;
+	Length a;
+	double b = 0;
 	a = a - b;
-	ASSERT_EQ(a.x,0) << "empty-empty x";
-	ASSERT_EQ(a.y,0) << "empty-empty y";
-	ASSERT_EQ(a.z,0) << "empty-empty z";
+	ASSERT_EQ(a.l,0) << "length empty-empty double";
 	
 	// leeg - vol
-	Distance c{1,2,3};
-	b = b - c;
-	ASSERT_EQ(b.x,-1) << "empty-full x";
-	ASSERT_EQ(b.y,-2) << "empty-full y";
-	ASSERT_EQ(b.z,-3) << "empty-full z";
-	
-	// vol - leeg
-	Distance d{1,2,3};
-	Distance e;
-	d = d - e;
-	ASSERT_EQ(d.x,1) << "full-empty x";
-	ASSERT_EQ(d.y,2) << "full-empty y";
-	ASSERT_EQ(d.z,3) << "full-empty z";
+	Length c{1};
+	c = c - b;
+	ASSERT_EQ(c.l,1) << "double empty-full Length";
+
 	
 	// vol - vol
-	Distance f{4,5,6};
-	Distance g{1,2,3};
+	Length f{4};
+	double g = 1;
 	f = f - g;
- 	ASSERT_EQ(f.x,3) << "full-full x";
-	ASSERT_EQ(f.y,3) << "full-full y";
-	ASSERT_EQ(f.z,3) << "full-full z";
+ 	ASSERT_EQ(f.l,3) << "Lnegth full-full double";
 }
 
 
@@ -93,139 +71,105 @@ TEST(Multiply, double) { 					//operator*
 	double getal2 = 2.5;
 	
 	// leeg * 0
-	Distance a;
+	Length a;
 	a = a * 0;
-	ASSERT_EQ(a.x,0) << "empty*0 x";
-	ASSERT_EQ(a.y,0) << "empty*0 y";
-	ASSERT_EQ(a.z,0) << "empty*0 z";
+	ASSERT_EQ(a.l,0) << "empty*0 Length";
 	
 	// leeg * getal1
 	a = a * getal1
-	ASSERT_EQ(a.x,0) << "empty x";
-	ASSERT_EQ(a.y,0) << "empty y";
-	ASSERT_EQ(a.z,0) << "empty z";
-	
+	ASSERT_EQ(a.x,0) << "empty Length";
+		
 	// vol * 0
-	Distance b{1,2,3}
+	Length b{1}
 	b = b * 0;
-	ASSERT_EQ(b.x,0) << "full*0 x";
-	ASSERT_EQ(b.y,0) << "full*0 y";
-	ASSERT_EQ(b.z,0) << "full*0 z";
-	
+	ASSERT_EQ(b.l,0) << "full*0 Length";
+		
 	// vol * getal1
-	Distance c{1,2,3}
+	Length c{1}
 	c = c * getal1;
-	ASSERT_EQ(c.x,2) << "full*getal1 x";
-	ASSERT_EQ(c.y,4) << "full*getal1 y";
-	ASSERT_EQ(c.z,6) << "full*getal1 z";
+	ASSERT_EQ(c.l,2) << "full*getal1 Length";
 	
 	// vol * getal2
-	Distance d{1,2,3}
+	Length d{1}
 	d = d * getal2;
-	ASSERT_EQ(d.x,2.5) << "full*getal2 x";
-	ASSERT_EQ(d.y,5) << "full*getal2 y";
-	ASSERT_EQ(d.z,7.5) << "full*getal2 z";
+	ASSERT_EQ(d.l,2.5) << "full * getal2 Length";
+
 }
 
 
-TEST(Distract, double) { 					//operator/
+TEST(suptract, double) { 					//operator/
     double getal1 = 2;
 	double getal2 = 2.5;
 	
 	// leeg / 0
-	Distance a;
+	Length a;
 	a = a / 0;			// dit mag niet, dus niks doen!
-	ASSERT_EQ(a.x,0) << "empty/0 x";
-	ASSERT_EQ(a.y,0) << "empty/0 y";
-	ASSERT_EQ(a.z,0) << "empty/0 z";
+	ASSERT_EQ(a.l,0) << "empty / 0 Length";
 	
 	// leeg / getal1
 	a = a / getal1
-	ASSERT_EQ(a.x,0) << "empty x";
-	ASSERT_EQ(a.y,0) << "empty y";
-	ASSERT_EQ(a.z,0) << "empty z";
+	ASSERT_EQ(a.l,0) << "empty x";
 	
 	// vol / 0
-	Distance b{1,2,3}
+	Length b{1,2,3}
 	b = b / 0;			// dit mag niet, dus niks doen!
-	ASSERT_EQ(b.x,0) << "full/0 x";
-	ASSERT_EQ(b.y,0) << "full/0 y";
-	ASSERT_EQ(b.z,0) << "full/0 z";
+	ASSERT_EQ(b.l,0) << "full / 0 Length";
 	
 	// vol / getal1
-	Distance c{1,2,3}
+	Length c{1}
 	c = c / getal1;
-	ASSERT_EQ(c.x,0.5) << "full/getal1 x";
-	ASSERT_EQ(c.y,1) << "full/getal1 y";
-	ASSERT_EQ(c.z,1.5) << "full/getal1 z";
+	ASSERT_EQ(c.l,0.5) << "full / getal1 Length";
 	
 	// vol / getal2
-	Distance d{1,2,3}
+	Distance d{1}
 	d = d / getal2;
-	ASSERT_EQ(d.x,0.4) << "full/getal2 x";
-	ASSERT_EQ(d.y,0.8) << "full/getal2 y";
-	ASSERT_EQ(d.z,1.2) << "full/getal2 z";
+	ASSERT_EQ(d.l,0.4) << "full / getal2 Length ";
+	
 }
 
 
-TEST(AddAssign, Distance) {					//operator+=
-	//leeg + leeg
-	Distance a;
-	Distance b;
+TEST(AddAssign, Length) {					//operator+=
+	// leeg + leeg
+	Length a;
+	double b = 0;
 	a += b;
-	ASSERT_EQ(a.x,0) << "empty+empty x";
-	ASSERT_EQ(a.y,0) << "empty+empty y";
-	ASSERT_EQ(a.z,0) << "empty+empty z";
-	
+	ASSERT_EQ(a.l,0) << "int empty + empty Length";
 	
 	// leeg + vol
-	Distance c{1,2,3};
+	Length c{1};
 	b += c;
-	ASSERT_EQ(b.x,1) << "empty+full x";
-	ASSERT_EQ(b.y,2) << "empty+full y";
-	ASSERT_EQ(b.z,3) << "empty+full z";
+	ASSERT_EQ(b.l,1) << "int empty + full Length";
+	
+	Length c{1};
+	c += b;
+	ASSERT_EQ(b.l,1) << "length empty + full int";
 	
 	// vol + vol
-	Distance d{1,2,3};
-	Distance e{4,5,6};
+	length d{1};
+	double e = 4;
 	d += e;
- 	ASSERT_EQ(d.x,5) << "full+full x";
-	ASSERT_EQ(d.y,7) << "full+full y";
-	ASSERT_EQ(d.z,9) << "full+full z"; 
+ 	ASSERT_EQ(d.l,5) << "length full + full double"; 
 }
 
 
-TEST(SubtractAssign, Distance) { 			//operator-=
+TEST(SubtractAssign, Length) { 			//operator-=
 	// leeg - leeg
-	Distance a;
-	Distance b;
+	Length a;
+	double b = 0;
 	a -= b;
-	ASSERT_EQ(a.x,0) << "empty-empty x";
-	ASSERT_EQ(a.y,0) << "empty-empty y";
-	ASSERT_EQ(a.z,0) << "empty-empty z";
+	ASSERT_EQ(a.l,0) << "length empty-empty double";
 	
 	// leeg - vol
-	Distance c{1,2,3};
-	b -= c;
-	ASSERT_EQ(b.x,-1) << "empty-full x";
-	ASSERT_EQ(b.y,-2) << "empty-full y";
-	ASSERT_EQ(b.z,-3) << "empty-full z";
-	
-	// vol - leeg
-	Distance d{1,2,3};
-	Distance e;
-	d -= e;
-	ASSERT_EQ(d.x,1) << "full-empty x";
-	ASSERT_EQ(d.y,2) << "full-empty y";
-	ASSERT_EQ(d.z,3) << "full-empty z";
+	Length c{1};
+	c -= b;
+	ASSERT_EQ(c.l,1) << "length empty-full double";
+
 	
 	// vol - vol
-	Distance f{4,5,6};
-	Distance g{1,2,3};
+	Length f{4};
+	double g = 1;
 	f -= g;
- 	ASSERT_EQ(f.x,3) << "full-full x";
-	ASSERT_EQ(f.y,3) << "full-full y";
-	ASSERT_EQ(f.z,3) << "full-full z";
+ 	ASSERT_EQ(f.l,3) << "length full-full double";
 }
 		
 
