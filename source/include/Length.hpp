@@ -1,5 +1,5 @@
 /**
-  *@author		Remco Nijkamp
+  *@author		Remco Nijkamp & Koen de Groot
   *@date 		15-03-16
   *@version 	0.1
   *@brief		Length is a .....
