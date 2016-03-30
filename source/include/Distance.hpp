@@ -2,17 +2,18 @@
   *@author		Remco Nijkamp
   *@date 		14-03-16
   *@version 	0.1
-  *@brief		Distance is a .....
+  *@brief		Distance is a 3-vector with an x, y and z value.
+				A Distance can be described as the difference between two Coordinates.
 */
 
 #ifndef  _DISTANCE_HPP
 #define _DISTANCE_HPP
 
-#include "gtest/gtest.h" // needed for friend_test
+#include "gtest/gtest.h"
 #include <iostream>
+#include <math.h> 
 
-// Forward declaration. Used to declare as friend.
-class Coordinate;
+class Coordinate;	// Forward declaration. Used to declare as friend.
 
 class Distance{
 		friend Coordinate;
@@ -20,17 +21,21 @@ class Distance{
 		Distance(double x = 0.0, double y = 0.0, double z = 0.0);
 		
 	public:
-	
-	
-	
+		/// gets the x value of the Distance and returns it
 		double getX();
+		/// gets the y value of the Distance and returns it
 		double getY();
+		/// gets the z value of the Distance and returns it
 		double getZ();
+		
+		double getLength() const;
+		
+		/// sets the x value of the Distance to the given value
 		void setX(double x);
+		/// sets the y value of the Distance to the given value
 		void setY(double y);
+		/// sets the z value of the Distance to the given value
 		void setZ(double z);
-	
-	
 	
 		/// assignment operator for a Distance
 		Distance& operator= (const Distance& rhs);
@@ -52,15 +57,13 @@ class Distance{
 		bool operator< (const Distance& rhs) const;
 		
 	private:
-		double x,y,z,Length;
-		
-		// Friend classes (So tests can access private parts.)
-		FRIEND_TEST(Distance, DefaultConstructor);
+		double x,y,z;
+		FRIEND_TEST(Distance, DefaultConstructor);	// Friend classes (So tests can access private parts.)
 };
 
 /// appends a Distance to an ostream and returns an ostream
 std::ostream& operator<< (std::ostream& lhs, Distance& rhs);
 /// adds an istream to a Distance
-Distance& operator>>(std::istream& input, Distance& rhs);		// WAT WIL JE HIER TERUGKRIJGEN?? een Distance lijkt me?
+Distance& operator>>(std::istream& input, Distance& rhs);
 
 #endif

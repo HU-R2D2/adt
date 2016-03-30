@@ -9,36 +9,88 @@
  * @param	y			The Y coordinate of the distance
  * @param	z			The Z coordinate of the distance
  **************************************************************************************************/
-
 Distance::Distance(double x, double y, double z) :
 	x(x),
 	y(y),
 	z(z)
 {}
 
-
-
-
-
+/**********************************************************************************************//**
+ * @fn		double Distance::getX()
+ *
+ * @brief	Gets the x value of the Distance
+ *
+ * @return	double		The x coordinate of the distance
+ **************************************************************************************************/
 double Distance::getX() {
 	return x;
 }
+
+/**********************************************************************************************//**
+ * @fn		double Distance::getY()
+ *
+ * @brief	Gets the y value of the Distance
+ *
+ * @return	double		The y coordinate of the distance
+ **************************************************************************************************/
 double Distance::getY() {
 	return y;
 }
+
+/**********************************************************************************************//**
+ * @fn		double Distance::getZ()
+ *
+ * @brief	Gets the z value of the Distance
+ *
+ * @return	double		The z coordinate of the distance
+ **************************************************************************************************/
 double Distance::getZ() {
 	return z;
 }
+
+/**********************************************************************************************//**
+ * @fn		double Distance::getLength()
+ *
+ * @brief	Gets the calculated Length of the Distance
+ *
+ * @return	double		The Length of the distance
+ **************************************************************************************************/
+double Distance::getLength() const {
+	return sqrt((x*x) + (y*y) + (z*z));
+}
+
+/**********************************************************************************************//**
+ * @fn		void Distance::setX(double x)
+ *
+ * @brief	Sets the x value of the Distance
+ *
+ * @param	x			The x coordinate of the distance
+ **************************************************************************************************/
 void Distance::setX(double x) {
 	x = x;
 }
+
+/**********************************************************************************************//**
+ * @fn		void Distance::setY(double y)
+ *
+ * @brief	Sets the y value of the Distance
+ *
+ * @param	y			The y coordinate of the distance
+ **************************************************************************************************/
 void Distance::setY(double y) {
 	y = y;
 }
+
+/**********************************************************************************************//**
+ * @fn		void Distance::setZ(double z)
+ *
+ * @brief	Sets the z value of the Distance
+ *
+ * @param	z			The z coordinate of the distance
+ **************************************************************************************************/
 void Distance::setZ(double z) {
 	z = z;
 }
-
 
 /**********************************************************************************************//**
  * @fn		Distance& Distance::operator= (const Distance& rhs)
@@ -145,27 +197,36 @@ Distance& Distance::operator+= (const Distance& rhs){
  * @param	rhs			The right hand sight Distance, this one is being substracted from another Distance
  * @return	Distance&	Reference to the Distance on which the substractAssignment operator was called
  **************************************************************************************************/		
-Distance& Distance::operator-= (const Distance& rhs){
+Distance& Distance::operator-= (const Distance& rhs) {
 	x -= rhs.x;
 	y -= rhs.y;
 	z -= rhs.z;
 	return *this;
 }
 
-//=============================================================================================
-		
-bool Distance::operator> (const Distance& rhs) const{
-	// hier met de echte lengte van dat ding!:
-	
-	// direction is:  (uitgaande van 2 coordinaten)
-	// wortel van ((x1 - x2)^2 + (y1 - y2)^2 + (z1 - z2)^2 )
-	
+/**********************************************************************************************//**
+ * @fn		bool Distance::operator> (const Distance& rhs) const
+ *
+ * @brief	GreaterThan operator of a Distance
+ *
+ * @param	rhs			The right hand sight Distance, this one will be compared to another Distance
+ * @return	bool		True if length is greater, False if not
+ **************************************************************************************************/		
+bool Distance::operator> (const Distance& rhs) const {
+	return getLength() > rhs.getLength();
 }
-		
-bool Distance::operator< (const Distance& rhs) const{
-	// hier met de echte lengte!
+	
+/**********************************************************************************************//**
+ * @fn		bool Distance::operator< (const Distance& rhs) const
+ *
+ * @brief	LessThan operator of a Distance
+ *
+ * @param	rhs			The right hand sight Distance, this one will be compared to another Distance
+ * @return	bool		True if length is smaller, False if not
+ **************************************************************************************************/	
+bool Distance::operator< (const Distance& rhs) const {
+	return getLength() < rhs.getLength();
 }
-//=============================================================================================
 
 /**********************************************************************************************//**
  * @fn		std::ostream& Distance::operator<< (std::ostream& lhs, const Distance& rhs) const
