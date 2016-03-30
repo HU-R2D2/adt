@@ -59,6 +59,10 @@ Length& Length::operator-= (const Length & rhs) {		// let op geen negatieve leng
 	return *this;
 }
 
+double Length::operator/ (const Length & rhs) const{
+  return l / rhs.l;
+}
+
 bool Length::operator> (const Length& rhs) const{
   if(l > rhs.l){
     return true;
