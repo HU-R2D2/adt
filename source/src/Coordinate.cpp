@@ -89,3 +89,18 @@ std::istream & operator >>(std::istream & lhs, Coordinate & rhs) {
 
    return lhs;
 }
+
+double Coordinate::getX()
+{
+   return x;
+}
+
+double Coordinate::getY()
+{
+   return y;
+}
+
+double Coordinate::getZ()
+{
+   return z;
+}

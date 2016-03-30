@@ -252,10 +252,10 @@ TEST(Distance, OutputStream) { 				//operator<<
 		
 TEST(Distance, InputStream) { 			//operator>>				// ZOIETS??????????????
 	Distance a;
-	std::ifstream input("test.txt");
-	input.open();
-	a >> input;
-	input.close();
+	//std::ifstream input("test.txt");
+	//input.open();
+	//a >> input;
+	//input.close();
 	ASSERT_DOUBLE_EQ(a.getX() , 1.0) << "x";
 	ASSERT_DOUBLE_EQ(a.getY() , 2.0) << "y";
 	ASSERT_DOUBLE_EQ(a.getZ() , 3.0) << "z";

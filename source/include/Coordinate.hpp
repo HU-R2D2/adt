@@ -101,5 +101,20 @@ public:
     //! @return Reference to the stream passed in by lhs.
     //! @see operator<<(std::ostream &, r2d2::adt::coordinate &)
     friend std::istream &operator>>(std::istream &lhs, Coordinate &rhs);
+
+    //! @brief returns the X coordinate of the Coordinate
+    //
+    //! @return double the X coordinate of the Coordinate
+    double getX();
+
+    //! @brief returns the Y coordinate of the Coordinate
+    //
+    //! @return double the Y coordinate of the Coordinate
+    double getY();
+
+    //! @brief returns the Z coordinate of the Coordinate
+    //
+    //! @return double the Z coordinate of the Coordinate
+    double getZ();
 };
 #endif // COORDINATE_HPP
