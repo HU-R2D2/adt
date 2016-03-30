@@ -124,6 +124,9 @@ public:
 	friend std::istream& operator>>(std::istream & is, Speed & rhs);
 };
 
-Speed operator/ ( const Length & l, const Duration & d);
+Speed operator/ ( const Length & l, const Duration & d){
+	Speed s{l.l / d.seconds};
+	return s; 
+}
 #endif
 
