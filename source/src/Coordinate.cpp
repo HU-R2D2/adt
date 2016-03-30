@@ -8,7 +8,7 @@ Coordinate::Coordinate(double x, double y, double z)
    y{y},
    z{z} {
    // The initializer list is all that is needed.
-   }
+}
 
 Coordinate & Coordinate::operator =(const Coordinate & rhs) {
    x = rhs.x;
@@ -18,12 +18,16 @@ Coordinate & Coordinate::operator =(const Coordinate & rhs) {
 }
 
 Coordinate & Coordinate::operator +=(const Distance & rhs) {
-   // TODO: Add the individual axis from the distance to this coordinate.
+   this->x += rhs.x;
+   this->y += rhs.y;
+   this->z += rhs.z;
    return *this;
 }
 
 Coordinate & Coordinate::operator -=(const Distance & rhs) {
-   // TODO: Subtract the individual axis from the distance from this coordinate.
+   this->x -= rhs.x;
+   this->y -= rhs.y;
+   this->z -= rhs.z;
    return *this;
 }
 
@@ -40,13 +44,14 @@ Coordinate Coordinate::operator -(const Distance & rhs) const {
 }
 
 Distance Coordinate::operator-(const Coordinate &rhs) const {
-   return Distance{};
+   return Distance{this->x - rhs.x, this->y - rhs.y, this->z - rhs.z};
 }
 
 std::ostream & operator <<(std::ostream & lhs, const Coordinate & rhs) {
    // Since a coordinate is specified as a distance in meters to an arbitrary origin,
    // the symbol for meter, 'm',  is added.
    // Metric prefixes are not (yet) included as to keep the code concise.
+   // TODO: remove the 'm', as this is the task of the underlying "distance"(?) type.
    lhs << "coordinate (" << rhs.x << "m, " << rhs.y << "m, " << rhs.z << "m)";
    return lhs;
 }
