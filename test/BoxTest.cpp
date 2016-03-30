@@ -266,19 +266,19 @@ TEST (Box, getUnionBox)
 
 	// test if method returns the right result when using negative boxes
 
-	Box negativeBox(Coordinate(-25,-25,-25), Coordinate(-75,-75,-75));
+	Box negativeBox(Coordinate(-75,-75,-75), Coordinate(-25,-25,-25));
 
-	Box negativeBox2(Coordinate(-75,-75,-75), Coordinate(-125,-125,-125));
+	Box negativeBox2(Coordinate(-125,-125,-125), Coordinate(-75,-75,-75));
 
 	unionBox = negativeBox.getUnionBox(negativeBox2);
 
-	//ASSERT_DOUBLE_EQ(unionBox.getBottomLeft().x, -25);
-	//ASSERT_DOUBLE_EQ(unionBox.getBottomLeft().y, -25);
-	//ASSERT_DOUBLE_EQ(unionBox.getBottomLeft().z, -25);
+	ASSERT_DOUBLE_EQ(unionBox.getBottomLeft().x, -125);
+	ASSERT_DOUBLE_EQ(unionBox.getBottomLeft().y, -125);
+	ASSERT_DOUBLE_EQ(unionBox.getBottomLeft().z, -125);
 
-	//ASSERT_DOUBLE_EQ(unionBox.getTopRight().x, -125);
-	//ASSERT_DOUBLE_EQ(unionBox.getTopRight().y, -125);
-	//ASSERT_DOUBLE_EQ(unionBox.getTopRight().z, -125);
+	ASSERT_DOUBLE_EQ(unionBox.getTopRight().x, -25);
+	ASSERT_DOUBLE_EQ(unionBox.getTopRight().y, -25);
+	ASSERT_DOUBLE_EQ(unionBox.getTopRight().z, -25);
 
 
 
@@ -318,31 +318,31 @@ TEST (Box, getIntersectionBox)
 
 
 	// test 2 negative boxes that are intersecting
-	Box negativeBox(Coordinate(-25,-25,-25), Coordinate(-75,-75,-75));
+	Box negativeBox(Coordinate(-75,-75,-75), Coordinate(-25,-25,-25));
 
-	Box negativeBoxIntersecting(Coordinate(-50,-50,-50), Coordinate(-125,-125,-125));
+	Box negativeBoxIntersecting(Coordinate(-125,-125,-125), Coordinate(-50,-50,-50));
 
-	collidedBox = negativeBox.getUnionBox(negativeBoxIntersecting);
+	collidedBox = negativeBox.getIntersectionBox(negativeBoxIntersecting);
 
-	//ASSERT_DOUBLE_EQ(collidedBox.getBottomLeft().x, -50);
-	//ASSERT_DOUBLE_EQ(collidedBox.getBottomLeft().y, -50);
-	//ASSERT_DOUBLE_EQ(collidedBox.getBottomLeft().z, -50);
+	ASSERT_DOUBLE_EQ(collidedBox.getBottomLeft().x, -75);
+	ASSERT_DOUBLE_EQ(collidedBox.getBottomLeft().y, -75);
+	ASSERT_DOUBLE_EQ(collidedBox.getBottomLeft().z, -75);
 
-	//ASSERT_DOUBLE_EQ(collidedBox.getTopRight().x, -75);
-	//ASSERT_DOUBLE_EQ(collidedBox.getTopRight().y, -75);
-	//ASSERT_DOUBLE_EQ(collidedBox.getTopRight().z, -75);
+	ASSERT_DOUBLE_EQ(collidedBox.getTopRight().x, -50);
+	ASSERT_DOUBLE_EQ(collidedBox.getTopRight().y, -50);
+	ASSERT_DOUBLE_EQ(collidedBox.getTopRight().z, -50);
 
 	// test 2 negative boxes that aren't intersecting
 	Box negativeBoxNotIntersecting(Coordinate(-80,-80,-80), Coordinate(-125,-125,-125));
 
-	notCollidedBox = negativeBox.getUnionBox(negativeBoxNotIntersecting);
+	notCollidedBox = negativeBox.getIntersectionBox(negativeBoxNotIntersecting);
 
-	//ASSERT_DOUBLE_EQ(notCollidedBox.getBottomLeft().x, 0);
-	//ASSERT_DOUBLE_EQ(notCollidedBox.getBottomLeft().y, 0);
-	//ASSERT_DOUBLE_EQ(notCollidedBox.getBottomLeft().z, 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.getBottomLeft().x, 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.getBottomLeft().y, 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.getBottomLeft().z, 0);
 
-	//ASSERT_DOUBLE_EQ(notCollidedBox.getTopRight().x, 0);
-	//ASSERT_DOUBLE_EQ(notCollidedBox.getTopRight().y, 0);
-	//ASSERT_DOUBLE_EQ(notCollidedBox.getTopRight().z, 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.getTopRight().x, 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.getTopRight().y, 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.getTopRight().z, 0);
 
 }
