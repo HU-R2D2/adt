@@ -3,7 +3,7 @@
 #include <iostream>
 
 // constructors:
-TEST(Length, DefaultConstructor) {
+TEST(Constructor, Default) {
 	Length a;
 	ASSERT_DOUBLE_EQ(a.getLength() , 0) << "length";
 }
@@ -197,4 +197,5 @@ TEST(Length, SubtractAssignLength) { 			//operator-=
 	Length f(3);
 	e -= f;
 	ASSERT_DOUBLE_EQ(e.getLength() , 2) << "full-full";
-}
+}	
+

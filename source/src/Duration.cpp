@@ -19,13 +19,11 @@ Duration Duration::operator- (const Duration& rhs) const {
 }
 
 Duration Duration::operator* (const double& rhs) const{
-	double result = seconds * rhs;
-	return result;
+	return Duration{seconds * rhs.seconds};
 }
 
 Duration Duration::operator/ (const double& rhs) const{
-	double result = seconds;
-	return result;
+	return Duration{seconds / rhs.seconds};
 }
 bool Duration::operator< (const Duration& rhs) const{
 	return seconds < rhs.seconds;
@@ -39,6 +37,10 @@ std::ostream& operator<<(std::ostream& lhs, const Duration& rhs){
 	return lhs;
 }
 
+Duration operator* ( double n, const Duration & rhs){
+	return Duration{n * rhs.seconds};
+}
+
 std::istream& operator>>(std::istream& lhs, Duration& rhs){
 	std::cout<< "enter duration in seconds: " << std::endl;
 	lhs>>rhs.seconds;
@@ -49,4 +51,3 @@ Duration& Duration::operator=(const Duration& rhs){
 	seconds = rhs.seconds;
 	return *this;
 }
-
