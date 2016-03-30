@@ -12,18 +12,18 @@
 #include <string>
 #include <sstream>
 
+
 TEST(Coordinate, Construtor) {
    Coordinate base (0.0,0.0,0.0);
-   ASSERT_DOUBLE_EQ(base.x, 0.0);
-   ASSERT_DOUBLE_EQ(base.y, 0.0);
-   ASSERT_DOUBLE_EQ(base.z, 0.0);
+   ASSERT_DOUBLE_EQ(base.getX(), 0.0);
+   ASSERT_DOUBLE_EQ(base.getY(), 0.0);
+   ASSERT_DOUBLE_EQ(base.getZ(), 0.0);
 
    Coordinate coord50 (50.0,50.0,50.0);
-   ASSERT_DOUBLE_EQ(coord50.x, 50.0);
-   ASSERT_DOUBLE_EQ(coord50.y, 50.0);
-   ASSERT_DOUBLE_EQ(coord50.z, 50.0);
+   ASSERT_DOUBLE_EQ(coord50.getX(), 50.0);
+   ASSERT_DOUBLE_EQ(coord50.getY(), 50.0);
+   ASSERT_DOUBLE_EQ(coord50.getZ(), 50.0);
 }
-
 
 TEST(Coordinate, Assignment) {
    auto value = Coordinate::origin;

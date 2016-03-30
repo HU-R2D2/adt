@@ -20,14 +20,14 @@ TEST (Box, Coordinates)
 	Box box (bl, tr);
 
 	// get bottomLeft
-	ASSERT_DOUBLE_EQ(bl.x, box.bottomLeft.x);
-	ASSERT_DOUBLE_EQ(bl.y, box.bottomLeft.y);
-	ASSERT_DOUBLE_EQ(bl.z, box.bottomLeft.z);
+	ASSERT_DOUBLE_EQ(bl.getX(), box.getBottomLeft().getX());
+	ASSERT_DOUBLE_EQ(bl.getY(), box.getBottomLeft().getY());
+	ASSERT_DOUBLE_EQ(bl.getZ(), box.getBottomLeft().getZ());
 
 	// get topRight
-	ASSERT_DOUBLE_EQ(tr.x, box.topRight.x);
-	ASSERT_DOUBLE_EQ(tr.y, box.topRight.y);
-	ASSERT_DOUBLE_EQ(tr.z, box.topRight.z);
+	ASSERT_DOUBLE_EQ(tr.getX(), box.getTopRight().getX());
+	ASSERT_DOUBLE_EQ(tr.getY(), box.getTopRight().getY());
+	ASSERT_DOUBLE_EQ(tr.getZ(), box.getTopRight().getZ());
 
 }
 
@@ -39,9 +39,9 @@ TEST (Box, CoordinateDistance)
 
 	
 	Box rectangleBox (origin, evenDistance);
-	ASSERT_DOUBLE_EQ(rectangleBox.topRight.x, 50);
-	ASSERT_DOUBLE_EQ(rectangleBox.topRight.y, 50);
-	ASSERT_DOUBLE_EQ(rectangleBox.topRight.z, 50);
+	ASSERT_DOUBLE_EQ(rectangleBox.getTopRight().getX(), 50);
+	ASSERT_DOUBLE_EQ(rectangleBox.getTopRight().getY(), 50);
+	ASSERT_DOUBLE_EQ(rectangleBox.getTopRight().getZ(), 50);
 
 
 	Distance unevenDistance (25.0,0.0,50.0);
@@ -54,20 +54,31 @@ TEST (Box, CoordinateDistance)
 * OPERATORS 
 */
 
-TEST (Box, Equal) 
+TEST (Box, Assign) 
 {
-	Box boxOne (Coordinate(), Coordinate());
 
-	Box boxTwo (Coordinate(), Coordinate());
+	Box boxOne (Coordinate(0,0,0), Coordinate(25,25,25));
+	Box boxTwo (Coordinate(50,50,50), Coordinate(100,100,100));
+
+	// assign boxTwo to boxOne
+	boxOne = boxTwo;
+
+	ASSERT_DOUBLE_EQ(boxOne.getBottomLeft().getX(), 50);
+	ASSERT_DOUBLE_EQ(boxOne.getBottomLeft().getY(), 50);
+	ASSERT_DOUBLE_EQ(boxOne.getBottomLeft().getZ(), 50);
+
+	ASSERT_DOUBLE_EQ(boxOne.getTopRight().getX(), 100);
+	ASSERT_DOUBLE_EQ(boxOne.getTopRight().getY(), 100);
+	ASSERT_DOUBLE_EQ(boxOne.getTopRight().getZ(), 100);
+
+
+
 
 
 }
 
 TEST (Box, Ostream) 
 {
-	// moet nog invulling krijgen (hoe print je een box?)
-
-	// box( coord: x,y,z  coord: x,y,z )
 	Coordinate bl(0.0, 0.0, 0.0);
 	Coordinate tr(50.0, 50.0, 50.0);
 
@@ -100,6 +111,18 @@ TEST (Box, ContainsCoordinate)
 	// test coordinate thats outside box
 	Coordinate outside (75.0,75.0,75.0);
 	ASSERT_EQ(box.contains(outside), false);
+
+	Box negativeBox(Coordinate(-25,-25,-25),Coordinate(-75,-75,-75));
+	// test coordinate thats inside negative box
+	Coordinate insideNegative(-50,-50,-50);
+	ASSERT_EQ(negativeBox.contains(insideNegative),true);
+
+	// test coordinate thats outside negative box
+	Coordinate outsideNegative(-150,-150,-150);
+	ASSERT_EQ(negativeBox.contains(outsideNegative),false);
+	ASSERT_EQ(negativeBox.contains(outside),false);
+
+
 }
 
 
@@ -120,7 +143,19 @@ TEST (Box, ContainsBox)
 	ASSERT_EQ(box.contains(collidesWithBigBox), false);
 
 	
+	Box negativeBox(Coordinate(-50,-50,-50), Coordinate(-100,-100,-100));
+	
+	// test negative box that is inside the box 
+	Box negativeBoxInside(Coordinate(-60,-60,-60), Coordinate(-70,-70,-70));
+	ASSERT_EQ(negativeBox.contains(negativeBoxInside), true);
 
+	// test negative box that intersects but isnt fully inside the box
+	Box negativeBoxIntersects(Coordinate(-75,-75,-75), Coordinate(-125,-125,-125));
+	ASSERT_EQ(negativeBox.contains(negativeBoxIntersects), false);
+
+	// test negative box that doesnt intersect at all
+	Box negativeBoxOutside(Coordinate(-175,-175,-175), Coordinate(-125,-125,-125));
+	ASSERT_EQ(negativeBox.contains(negativeBoxOutside), false);
 
 	
 }
@@ -140,6 +175,24 @@ TEST (Box, IntersectsBox)
 	// test box that doesn't intersect at all
 	Box outsideBox(Coordinate(200,200,200), Coordinate(500,500,500));
 	ASSERT_EQ(box.intersects(outsideBox), false);
+
+	
+	Box negativeBox(Coordinate(-50,-50,-50), Coordinate(-100,-100,-100));
+	
+	// test negative box that is inside
+	Box negativeBoxInside(Coordinate(-60,-60,-60), Coordinate(-70,-70,-70));
+	ASSERT_EQ(negativeBox.intersects(negativeBoxInside), true);
+
+	// test negative box that intersects
+	Box negativeBoxIntersects(Coordinate(-75,-75,-75), Coordinate(-125,-125,-125));
+	ASSERT_EQ(negativeBox.intersects(negativeBoxIntersects), true);
+
+	// test negative box that doesn't intersect
+	Box negativeBoxOutside(Coordinate(-175,-175,-175), Coordinate(-125,-125,-125));
+	ASSERT_EQ(negativeBox.intersects(negativeBoxOutside), false);
+
+
+
 }
 
 
@@ -148,17 +201,22 @@ TEST (Box, getBottomLeft)
 	// test if it returns the right bottom left coordinate
 	Coordinate bl(0.0, 0.0, 0.0);
 	Coordinate tr(50.0, 50.0, 50.0);
-	Coordinate bl2(25,25,25);
+	Coordinate bl2(25,26,27);
 
 	Box box (bl, tr);
-	ASSERT_DOUBLE_EQ(box.getBottomLeft().x, 0);
-	ASSERT_DOUBLE_EQ(box.getBottomLeft().y, 0);
-	ASSERT_DOUBLE_EQ(box.getBottomLeft().z, 0);
+	ASSERT_DOUBLE_EQ(box.getBottomLeft().getX(), 0);
+	ASSERT_DOUBLE_EQ(box.getBottomLeft().getY(), 0);
+	ASSERT_DOUBLE_EQ(box.getBottomLeft().getZ(), 0);
 
 	Box box2(bl2, tr);
-	ASSERT_DOUBLE_EQ(box2.getBottomLeft().x, 25);
-	ASSERT_DOUBLE_EQ(box2.getBottomLeft().y, 25);
-	ASSERT_DOUBLE_EQ(box2.getBottomLeft().z, 25);
+	ASSERT_DOUBLE_EQ(box2.getBottomLeft().getX(), 25);
+	ASSERT_DOUBLE_EQ(box2.getBottomLeft().getY(), 26);
+	ASSERT_DOUBLE_EQ(box2.getBottomLeft().getZ(), 27);
+
+	Box negative(Coordinate(-10,-10,-10), Coordinate(-50,-50,-50));
+	ASSERT_DOUBLE_EQ(negative.getBottomLeft().getX(), -10);
+	ASSERT_DOUBLE_EQ(negative.getBottomLeft().getY(), -10);
+	ASSERT_DOUBLE_EQ(negative.getBottomLeft().getZ(), -10);
 }
 
 
@@ -171,27 +229,120 @@ TEST (Box, getTopRight)
 	Coordinate tr2(25,25,25);
 
 	Box box (bl, tr);
-	ASSERT_DOUBLE_EQ(box.getTopRight().x, 50);
-	ASSERT_DOUBLE_EQ(box.getTopRight().y, 50);
-	ASSERT_DOUBLE_EQ(box.getTopRight().z, 50);
+	ASSERT_DOUBLE_EQ(box.getTopRight().getX(), 50);
+	ASSERT_DOUBLE_EQ(box.getTopRight().getY(), 50);
+	ASSERT_DOUBLE_EQ(box.getTopRight().getZ(), 50);
 
 	Box box2(bl, tr2);
-	ASSERT_DOUBLE_EQ(box2.getTopRight().x, 25);
-	ASSERT_DOUBLE_EQ(box2.getTopRight().y, 25);
-	ASSERT_DOUBLE_EQ(box2.getTopRight().z, 25);
+	ASSERT_DOUBLE_EQ(box2.getTopRight().getX(), 25);
+	ASSERT_DOUBLE_EQ(box2.getTopRight().getY(), 25);
+	ASSERT_DOUBLE_EQ(box2.getTopRight().getZ(), 25);
+
+	Box negative(Coordinate(-10,-10,-10), Coordinate(-50,-50,-50));
+	ASSERT_DOUBLE_EQ(negative.getTopRight().getX(), -50);
+	ASSERT_DOUBLE_EQ(negative.getTopRight().getY(), -50);
+	ASSERT_DOUBLE_EQ(negative.getTopRight().getZ(), -50);
+
 }
 
 TEST (Box, getUnionBox) 
 {
 	// test if method returns right result
 
+	Box box (Coordinate(0,0,0), Coordinate(100,100,100));
+
+	Box biggerBox(Coordinate(25,25,25), Coordinate(120,120,120));
+	Box unionBox(Coordinate(0,0,0), Coordinate(0,0,0));
+	unionBox = box.getUnionBox(biggerBox);
+
+	ASSERT_DOUBLE_EQ(unionBox.getBottomLeft().getX(), 0);
+	ASSERT_DOUBLE_EQ(unionBox.getBottomLeft().getY(), 0);
+	ASSERT_DOUBLE_EQ(unionBox.getBottomLeft().getZ(), 0);
+
+	ASSERT_DOUBLE_EQ(unionBox.getTopRight().getX(), 120);
+	ASSERT_DOUBLE_EQ(unionBox.getTopRight().getY(), 120);
+	ASSERT_DOUBLE_EQ(unionBox.getTopRight().getZ(), 120);
+
+
+	// test if method returns the right result when using negative boxes
+
+	Box negativeBox(Coordinate(-75,-75,-75), Coordinate(-25,-25,-25));
+
+	Box negativeBox2(Coordinate(-125,-125,-125), Coordinate(-75,-75,-75));
+
+	unionBox = negativeBox.getUnionBox(negativeBox2);
+
+	ASSERT_DOUBLE_EQ(unionBox.getBottomLeft().getX(), -125);
+	ASSERT_DOUBLE_EQ(unionBox.getBottomLeft().getY(), -125);
+	ASSERT_DOUBLE_EQ(unionBox.getBottomLeft().getZ(), -125);
+
+	ASSERT_DOUBLE_EQ(unionBox.getTopRight().getX(), -25);
+	ASSERT_DOUBLE_EQ(unionBox.getTopRight().getY(), -25);
+	ASSERT_DOUBLE_EQ(unionBox.getTopRight().getZ(), -25);
+
+
+
+
 }
 
 TEST (Box, getIntersectionBox) 
 {
 	// test if 2 boxes that are intersecting returns the right box
+	Box box (Coordinate(0,0,0), Coordinate(100,100,100));
+
+	Box collidingBox (Coordinate(75,75,75), Coordinate(125,125,125));
+
+	Box collidedBox(Coordinate(0,0,0), Coordinate(0,0,0));
+	collidedBox = box.getIntersectionBox(collidingBox);
+
+	ASSERT_DOUBLE_EQ(collidedBox.getBottomLeft().getX(), 75);
+	ASSERT_DOUBLE_EQ(collidedBox.getBottomLeft().getY(), 75);
+	ASSERT_DOUBLE_EQ(collidedBox.getBottomLeft().getZ(), 75);
+
+	ASSERT_DOUBLE_EQ(collidedBox.getTopRight().getX(), 100);
+	ASSERT_DOUBLE_EQ(collidedBox.getTopRight().getY(), 100);
+	ASSERT_DOUBLE_EQ(collidedBox.getTopRight().getZ(), 100);
+
 
 	// test 2 boxes that aren't intersecting
+	Box notCollidingBox (Coordinate(125,125,125), Coordinate(150,150,150));
 
+	Box notCollidedBox(Coordinate(0,0,0), Coordinate(0,0,0));
+	ASSERT_DOUBLE_EQ(notCollidedBox.getBottomLeft().getX(), 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.getBottomLeft().getY(), 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.getBottomLeft().getZ(), 0);
+
+	ASSERT_DOUBLE_EQ(notCollidedBox.getTopRight().getX(), 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.getTopRight().getY(), 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.getTopRight().getZ(), 0);
+
+
+	// test 2 negative boxes that are intersecting
+	Box negativeBox(Coordinate(-75,-75,-75), Coordinate(-25,-25,-25));
+
+	Box negativeBoxIntersecting(Coordinate(-125,-125,-125), Coordinate(-50,-50,-50));
+
+	collidedBox = negativeBox.getIntersectionBox(negativeBoxIntersecting);
+
+	ASSERT_DOUBLE_EQ(collidedBox.getBottomLeft().getX(), -75);
+	ASSERT_DOUBLE_EQ(collidedBox.getBottomLeft().getY(), -75);
+	ASSERT_DOUBLE_EQ(collidedBox.getBottomLeft().getZ(), -75);
+
+	ASSERT_DOUBLE_EQ(collidedBox.getTopRight().getX(), -50);
+	ASSERT_DOUBLE_EQ(collidedBox.getTopRight().getY(), -50);
+	ASSERT_DOUBLE_EQ(collidedBox.getTopRight().getZ(), -50);
+
+	// test 2 negative boxes that aren't intersecting
+	Box negativeBoxNotIntersecting(Coordinate(-80,-80,-80), Coordinate(-125,-125,-125));
+
+	notCollidedBox = negativeBox.getIntersectionBox(negativeBoxNotIntersecting);
+
+	ASSERT_DOUBLE_EQ(notCollidedBox.getBottomLeft().getX(), 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.getBottomLeft().getY(), 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.getBottomLeft().getZ(), 0);
+
+	ASSERT_DOUBLE_EQ(notCollidedBox.getTopRight().getX(), 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.getTopRight().getY(), 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.getTopRight().getZ(), 0);
 
 }
