@@ -241,7 +241,7 @@ TEST(Distance, LessThan) { 					//operator<
 	ASSERT_FALSE(b < a) << "greater than";
 }
 
-/*TEST(Distance, OutputStream) { 				//operator<<
+TEST(Distance, OutputStream) { 				//operator<<
 	Distance a(1,2,3);
 	std::stringstream stream{};
 	stream << a << std::endl;
@@ -249,7 +249,7 @@ TEST(Distance, LessThan) { 					//operator<
 	std::getline(stream, output);
 	EXPECT_EQ("(1,2,3)", output);
 }
-		
+/*		
 TEST(Distance, InputStream) { 			//operator>>				// ZOIETS??????????????
 	Distance a;
 	//std::ifstream input("test.txt");
