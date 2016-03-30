@@ -25,98 +25,109 @@ private:
 	Speed(double val);
 	double value;
 public:
-	//! Assign a speed to this speed. 
+	//! Assigns a speed to this speed. 
     /*!
       \param rhs a speed
       \return the assigned speed.
     */
 	Speed & operator= (const Speed & rhs);
-	//! Checks if a speed is smaller than another speed and returns the boolean
+
+	//! Checks if a speed is smaller than another speed
 	/*!
       \param rhs a speed
       \return the boolean that indicates if the speed is smaller than the speed
     */
 	bool operator< (const Speed & rhs) const;
 
-	//! Checks if a speed is greater  than another speed and returns the boolean
+	//! Checks if a speed is greater  than another speed
 	/*!
       \param rhs a speed
       \return the boolean that indicates if the speed greater than the speed
     */
     bool operator> (const Speed & rhs) const;
 
-	//! Adds a speed to a speed and return the resulting speed.
+	//! Adds a speed to a speed.
     /*!
       \param rhs a speed
       \return the calculated speed.
     */
 	Speed operator+ ( const Speed & rhs ) const;
 	
-	//! Adds a speed to a speed and return the resulting speed.
+	//! Adds a speed to a speed and assign it to this speed.
     /*!
       \param rhs a speed
-      \return the calculated speed.
+      \return reference to updated speed.
     */
 	Speed & operator+= ( const Speed & rhs);
 
-	//! Substracts a speed by a speed and return the resulting speed.
+	//! Substracts a speed by a speed.
     /*!
-      \param rhs a speed
+      \param rhs a speed.
       \return the calculated speed.
     */
 	Speed operator- ( const Speed & rhs ) const;
 
-	//! Substracts a speed by a speed and return the resulting speed.
+	//! Substracts a speed by a speed and assign it to this speed.
     /*!
-      \param rhs a speed
-      \return the calculated speed.
+      \param rhs a speed.
+      \return refence to updated speed.
     */
 	Speed & operator-= ( const Speed & rhs );
 
-	//! Multiplies a speed by a duration and return the resulating distance.
+	//! Multiplies a speed by a duration.
     /*!
       \param rhs a Duration.
-      \return the calculated distance.
+      \return the calculated length in meters.
     */
 	Length operator*(const Duration & rhs) const;
 
-	//! Multiplie a speed by a double and return the resulting speed
+	//! Multiplies a speed by a duration.
+    /*!
+      \param lhs a Duration.
+      \param rhs a Speed.
+      \return the calculated length in meters.
+    */
+	friend Length operator*(const Duration & lhs, const Speed & rhs);
+	//! Multiplie a speed by a double
     /*!
       \param rhs a double.
       \return the calculated speed.
     */
-
-    friend Length operator*(const Duration & lhs, const Speed & rhs);
 	Speed operator* ( const double & rhs ) const;
 
-	//! Multiplie a speed by a double and return the resulting speed
+	//! Multiplies this speed by a double.
     /*!
       \param rhs a double.
-      \return the calculated speed.
+      \return the reference to updated speed.
     */
 	Speed & operator*= ( const double & rhs );
 
-   	//! Multiplie a speed by a double and return the resulting speed
+   	//! Multiplies a speed by a double
     /*!
       \param n a double.
       \param rhs a Speed.
       \return the calculated speed.
     */
-
     friend Speed operator* ( double n, const Speed & rhs );
 
+    //! Divides a speed by a double.
+    /*!
+      \param rhs a double.
+      \return the calculated speed.
+    */
     Speed operator/ ( const double & rhs ) const;
 
+	//! Divides this speed by a double.
+	/*!
+	  \param rhs a double.
+	  \return reference to updated speed.
+	*/
 	Speed & operator/= ( const double & rhs );
 
-    friend Speed operator/ ( double n, const Speed & rhs );
-
-
-
-    //! Divide a speed by a speed and return the resulting double
+    //! Divide a speed by a speed
     /*!
       \param rhs a Speed.
-      \return the calculated speed.
+      \return calculated result in double with no unit.
     */
     double operator/ ( const Speed & rhs);
 	/// appends a speeds to an ostream and returns an ostream

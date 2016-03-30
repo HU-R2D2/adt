@@ -19,11 +19,11 @@ Duration Duration::operator- (const Duration& rhs) const {
 }
 
 Duration Duration::operator* (const double& rhs) const{
-	return Duration{seconds * rhs.seconds};
+	return Duration{seconds * rhs};
 }
 
 Duration Duration::operator/ (const double& rhs) const{
-	return Duration{seconds / rhs.seconds};
+	return Duration{seconds / rhs};
 }
 bool Duration::operator< (const Duration& rhs) const{
 	return seconds < rhs.seconds;

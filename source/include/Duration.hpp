@@ -1,5 +1,5 @@
 	/**
-  *@author Casper Wolf
+  *@author Casper Wolf & Job Verhaar
   *@date 14-03-16
   *@version 0.1
 
@@ -42,17 +42,20 @@ class Duration{
 		bool operator< (const Duration & rhs) const;
 		/// appends a duration to an ostream and return an ostream
 
+		
+		/// Writes a duration to an istream and returns an istream
+		friend std::istream & operator>> (std::istream & is, Duration & rhs);		
+
+		//constant declaration:
+		static const Duration SECOND;
+		static const Duration MILLISECOND;
+		static const Duration MINUTE;
+		//friend declaration:
 		friend Duration operator* ( double n, const Duration & rhs);
 		friend Speed operator/ (const Length & l, const Duration & d);
 		friend Length operator*(const Duration & lhs, const Speed & rhs);
 		friend Speed;
 		friend std::ostream& operator<< (std::ostream & os, const Duration &rhs);
-		/// Writes a duration to an istream and returns an istream
-		friend std::istream & operator>> (std::istream & is, Duration & rhs);		
-
-		static const Duration SECOND;
-		static const Duration MILLISECOND;
-		static const Duration MINUTE;
 	private	:
 		double seconds;
 };
