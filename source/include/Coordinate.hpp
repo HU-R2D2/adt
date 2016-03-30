@@ -96,17 +96,17 @@ public:
     //! @brief returns the X coordinate of the Coordinate
     //
     //! @return double the X coordinate of the Coordinate
-    double getX();
+    const double &  getX() const;
 
     //! @brief returns the Y coordinate of the Coordinate
     //
     //! @return double the Y coordinate of the Coordinate
-    double getY();
+    const double &  getY() const;
 
     //! @brief returns the Z coordinate of the Coordinate
     //
     //! @return double the Z coordinate of the Coordinate
-    double getZ();
+    const double &  getZ() const;
 
 };
 #endif // COORDINATE_HPP

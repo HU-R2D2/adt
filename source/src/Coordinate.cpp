@@ -94,17 +94,17 @@ std::istream & operator >>(std::istream & lhs, Coordinate & rhs) {
    return lhs;
 }
 
-double Coordinate::getX()
+const double & Coordinate::getX() const
 {
    return x;
 }
 
-double Coordinate::getY()
+const double & Coordinate::getY() const
 {
    return y;
 }
 
-double Coordinate::getZ()
+const double & Coordinate::getZ() const
 {
    return z;
 }
