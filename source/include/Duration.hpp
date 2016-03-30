@@ -13,6 +13,8 @@
 
 #ifndef  _DURATION_HPP
 #define _DURATION_HPP
+class Speed;
+class Length;
 
 class Duration{
 	private:
@@ -39,6 +41,8 @@ class Duration{
 		/// compares two durations to each other and returns a boolean (true if 1st smaller than 2nd)
 		bool operator< (const Duration & rhs) const;
 		/// appends a duration to an ostream and return an ostream
+		friend Speed operator/ (const Length & l, const Duration & d);
+
 		friend std::ostream& operator<< (std::ostream & os, const Duration &rhs);
 		/// Writes a duration to an istream and returns an istream
 		friend std::istream & operator>> (std::istream & is, Duration & rhs);		

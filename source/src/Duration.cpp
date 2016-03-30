@@ -1,8 +1,8 @@
 #include "../include/Duration.hpp"
 
-//const Duration Duration::SECOND(1);
-//const Duration Duration::MILLISECOND(1/1000);
-//const Duration Duration::MINUTE(60);
+const Duration Duration::SECOND(1);
+const Duration Duration::MILLISECOND(1/1000);
+const Duration Duration::MINUTE(60);
 
 Duration::Duration(double seconds): seconds{seconds} {
 

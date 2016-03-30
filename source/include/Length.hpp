@@ -6,9 +6,11 @@
 */
 
 #include <iostream> 
+#include "Duration.hpp"
 
 #ifndef  _LENGTH_HPP
 #define _LENGTH_HPP
+class Speed;
 
 class Length{
 	private:
@@ -18,7 +20,7 @@ class Length{
 		/// assignment operator for a Length
 		Length& operator= (const Length& rhs);
 		/// adds a Length to a Length and returns a Length
-		Length operator+ (const Length& rhs) const;
+		Length operator+ (const Length& rhs) const; 
 		/// substracts a Length from a Length and returns a Length
 		Length operator- (const Length& rhs) const;
 		/// multiplies a Length by a number and returns a Length
@@ -29,6 +31,8 @@ class Length{
 		friend Length operator* ( double n, const Length & rhs );
 
 		friend Length operator/ ( double n, const Length & rhs );
+
+		friend Speed operator/ (const Length & l, const Duration & d);
 		/// adds a Length to a Length and returns this Length
 		Length& operator+= (const Length& rhs);
 		/// substracts a Length from a Length and returns this Length

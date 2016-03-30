@@ -6,11 +6,10 @@
 #ifndef  _SPEED_HPP
 #define _SPEED_HPP
 
-#include "Length.hpp"
+//#include "Length.hpp"
 #include <iostream>
 #include "Duration.hpp"
 #include "Length.hpp"
-class Duration;
 class Acceleration;
 
 class Speed {
@@ -109,9 +108,7 @@ public:
       \return the calculated speed.
     */
 
-    friend Speed operator/ ( Length & l, const Duration & d){
-    	
-    }
+    friend Speed operator/ ( const Length & l, const Duration & d);
     
     friend Speed operator* ( double n, const Speed & rhs );
 
@@ -126,4 +123,7 @@ public:
 	/// depend a speed from an istream and return the istream
 	friend std::istream& operator>>(std::istream & is, Speed & rhs);
 };
+
+Speed operator/ ( const Length & l, const Duration & d);
 #endif
+
