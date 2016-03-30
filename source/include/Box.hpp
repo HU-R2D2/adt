@@ -70,6 +70,7 @@ public:
 	Box getUnionBox(Box box);
 
 	//! @brief Returns box that contains the shared space (intersection area) between two boxes
+    //! @note If there is no intersection between the boxes, a empty box will be returned
     //!
     //! @param box the box to create an shared space with
     //! @return Box The box that contains the shared space. When there is no overlapse in the two boxes a box with (0.0,0.0,0.0) is returned.
@@ -77,8 +78,7 @@ public:
 
 	//! @brief Returns the size of the axis
     //!
-    //! @param 
-    //! @return 
+    //! @return Distance of the axis
 	Distance getAxisSize();
 
 
