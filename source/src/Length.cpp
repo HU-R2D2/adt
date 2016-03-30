@@ -157,6 +157,10 @@ bool Length::operator< (const Length& rhs) const{
    }	
 }
 
+double Length::operator/(const Length & rhs) const{
+  return l / rhs.l;
+}
+
 std::ostream& operator<< (std::ostream& os, const Length& rhs){
 	   os << rhs.l;
      return os;

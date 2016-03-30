@@ -31,8 +31,9 @@ class Length{
 		friend Length operator* ( double n, const Length & rhs );
 
 		friend Length operator/ ( double n, const Length & rhs );
-
+		friend Speed;
 		friend Speed operator/ (const Length & l, const Duration & d);
+		friend Length operator*(const Duration & lhs, const Speed & rhs);
 		/// adds a Length to a Length and returns this Length
 		Length& operator+= (const Length& rhs);
 		/// substracts a Length from a Length and returns this Length
@@ -41,6 +42,8 @@ class Length{
 		bool operator> (const Length& rhs) const;
 		/// compares two Lengths to eachother and returns a boolean (true if 1st is smaller than 2nd)
 		bool operator< (const Length& rhs) const;
+
+		double operator/(const Length & rhs) const;
 		/// appends a Length to an ostream and returns an ostream
 		friend std::ostream& operator<< (std:: ostream& os, const Length& rhs);
 		/// adds an istream to a Length

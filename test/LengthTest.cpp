@@ -3,7 +3,7 @@
 
 /*
 // constructors:
-?*TEST(Constructor, Default) {
+TEST(Constructor, Default) {
 	Length a;
 	ASSERT_EQ(a.l , 0) << "length";
 }
@@ -217,6 +217,4 @@ int main( int argc, char **argv ){
    testing::InitGoogleTest( &argc, argv );
    int result = RUN_ALL_TESTS();
    (void) result;
-}
-Not working yet so needs to be reviewed
-*/
+}*/

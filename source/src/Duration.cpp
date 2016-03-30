@@ -39,6 +39,10 @@ std::ostream& operator<<(std::ostream& lhs, const Duration& rhs){
 	return lhs;
 }
 
+Duration operator* ( double n, const Duration & rhs){
+	return Duration{n * rhs.seconds};
+}
+
 std::istream& operator>>(std::istream& lhs, Duration& rhs){
 	std::cout<< "enter duration in seconds: " << std::endl;
 	lhs>>rhs.seconds;

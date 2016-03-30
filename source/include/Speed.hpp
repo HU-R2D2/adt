@@ -22,7 +22,7 @@ private:
 	/*!
 		\param val the value for speed in m\s
 	*/
-	Speed(double val): value{val}{}
+	Speed(double val);
 	double value;
 public:
 	//! Assign a speed to this speed. 
@@ -30,20 +30,20 @@ public:
       \param rhs a speed
       \return the assigned speed.
     */
-	Speed & operator= (const Speed &);
+	Speed & operator= (const Speed & rhs);
 	//! Checks if a speed is smaller than another speed and returns the boolean
 	/*!
       \param rhs a speed
       \return the boolean that indicates if the speed is smaller than the speed
     */
-	bool operator< (const Speed &) const;
+	bool operator< (const Speed & rhs) const;
 
 	//! Checks if a speed is greater  than another speed and returns the boolean
 	/*!
       \param rhs a speed
       \return the boolean that indicates if the speed greater than the speed
     */
-    bool operator> (const Speed &) const;
+    bool operator> (const Speed & rhs) const;
 
 	//! Adds a speed to a speed and return the resulting speed.
     /*!
@@ -80,18 +80,13 @@ public:
     */
 	Length operator*(const Duration & rhs) const;
 
-	//! Divide a speed by a duration and return the resulting acceleration.
-    /*!
-      \param rhs a Duration.
-      \return the calculated distance.
-    */
-	Acceleration operator/(const Duration & rhs) const;
-
 	//! Multiplie a speed by a double and return the resulting speed
     /*!
       \param rhs a double.
       \return the calculated speed.
     */
+
+    friend Length operator*(const Duration & lhs, const Speed & rhs);
 	Speed operator* ( const double & rhs ) const;
 
 	//! Multiplie a speed by a double and return the resulting speed
@@ -108,9 +103,15 @@ public:
       \return the calculated speed.
     */
 
-    friend Speed operator/ ( const Length & l, const Duration & d);
-    
     friend Speed operator* ( double n, const Speed & rhs );
+
+    Speed operator/ ( const double & rhs ) const;
+
+	Speed & operator/= ( const double & rhs );
+
+    friend Speed operator/ ( double n, const Speed & rhs );
+
+
 
     //! Divide a speed by a speed and return the resulting double
     /*!
@@ -122,11 +123,11 @@ public:
 	friend std::ostream& operator<<(std::ostream & os, const Speed &rhs);
 	/// depend a speed from an istream and return the istream
 	friend std::istream& operator>>(std::istream & is, Speed & rhs);
+
+	friend Speed operator/ ( const Length & l, const Duration & d);
+
 };
 
-Speed operator/ ( const Length & l, const Duration & d){
-	Speed s{l.l / d.seconds};
-	return s; 
-}
+Speed operator/ ( const Length & l, const Duration & d);
 #endif
 
