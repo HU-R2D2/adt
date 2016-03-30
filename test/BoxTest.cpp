@@ -143,26 +143,6 @@ TEST (Box, IntersectsBox)
 }
 
 
-TEST (Box, setBottomLeft) 
-{
-	// test if it sets the bottom left coordinate
-	Coordinate bl(0.0, 0.0, 0.0);
-	Coordinate tr(50.0, 50.0, 50.0);
-	Coordinate newBottomLeft(25,25,25);
-
-	Box box (bl, tr);
-	ASSERT_DOUBLE_EQ(box.bottomLeft.x, 0);
-	ASSERT_DOUBLE_EQ(box.bottomLeft.y, 0);
-	ASSERT_DOUBLE_EQ(box.bottomLeft.z, 0);
-
-	box.setBottomLeft(newBottomLeft);
-
-	ASSERT_DOUBLE_EQ(box.bottomLeft.x, 25);
-	ASSERT_DOUBLE_EQ(box.bottomLeft.y, 25);
-	ASSERT_DOUBLE_EQ(box.bottomLeft.z, 25);
-
-}
-
 TEST (Box, getBottomLeft) 
 {
 	// test if it returns the right bottom left coordinate
@@ -182,25 +162,6 @@ TEST (Box, getBottomLeft)
 }
 
 
-
-TEST (Box, setTopRight) 
-{
-	// test if it sets the top right coordinate
-	Coordinate bl(0.0, 0.0, 0.0);
-	Coordinate tr(50.0, 50.0, 50.0);
-	Coordinate newTopRight(25,25,25);
-
-	Box box (bl, tr);
-	ASSERT_DOUBLE_EQ(box.topRight.x, 50);
-	ASSERT_DOUBLE_EQ(box.topRight.y, 50);
-	ASSERT_DOUBLE_EQ(box.topRight.z, 50);
-
-	box.setTopRight(newTopRight);
-
-	ASSERT_DOUBLE_EQ(box.topRight.x, 25);
-	ASSERT_DOUBLE_EQ(box.topRight.y, 25);
-	ASSERT_DOUBLE_EQ(box.topRight.z, 25);
-}
 
 TEST (Box, getTopRight) 
 {
@@ -233,14 +194,4 @@ TEST (Box, getIntersectionBox)
 	// test 2 boxes that aren't intersecting
 
 
-}
-
-TEST (Box, setAxisSize) 
-{
-	// test is axis size sets the right length
-}
-
-TEST (Box, getAxisSize) 
-{
-	// test if axis size returns the right length
 }

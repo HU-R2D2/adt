@@ -21,12 +21,9 @@
 
 class Box {
 	friend class Distance;
-	friend class Coordinate;
 
-	FRIEND_TEST (Box, Coordinates);
-	FRIEND_TEST (Box, setBottomLeft);
+	FRIEND_TEST(Box, Coordinates);
 	FRIEND_TEST (Box, getBottomLeft);
-	FRIEND_TEST (Box, setTopRight);
     FRIEND_TEST (Box, getTopRight);
     FRIEND_TEST (Box, CoordinateDistance);
 
@@ -57,14 +54,8 @@ public:
 	/// Check whether box intersects with another box, returns boolean
 	bool intersects (Box box);
 
-	/// Set the bottom left coordinate
-	void setBottomLeft (Coordinate coord);	
-
 	///  Return the bottom left coordinate
 	Coordinate getBottomLeft();
-
-	/// Set the top right coordinate
-	void setTopRight (Coordinate coord);
 
 	/// Returns the top right coordinate
 	Coordinate getTopRight();
@@ -75,8 +66,7 @@ public:
 	/// Returns box that contains the shared space (intersection area) between two boxes
 	Box getIntersectionBox(Box box);
 
-	/// Set the size of the axis
-	void setAxisSize(Distance dist);
+	
 
 	/// Returns the size of the axis
 	Distance getAxisSize();

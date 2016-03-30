@@ -57,20 +57,9 @@ bool Box::intersects(Box box)
 	return false;
 }
 
-void Box::setBottomLeft(Coordinate coord)
-{
-	bottomLeft = coord;
-}
-
 Coordinate Box::getBottomLeft()
 {
 	return bottomLeft;
-}
-
-void Box::setTopRight(Coordinate coord)
-{
-	// box can only be rectangular
-	topRight = coord;
 }
 
 Coordinate Box::getTopRight()
@@ -80,27 +69,61 @@ Coordinate Box::getTopRight()
 
 Box Box::getUnionBox(Box box)
 {
-	//
-	return Box(Coordinate(0.0,0.0,0.0),Coordinate(0.0,0.0,0.0));
+	Coordinate newBottomLeft;
+	Coordinate newTopRight;
+
+	if(bottomLeft.x < box.bottomLeft.x) 
+		newBottomLeft.x = bottomLeft.x : newBottomLeft.x = box.bottomLeft.x;
+	
+	
+	if(bottomLeft.y < box.bottomLeft.y) 
+		newBottomLeft.y = bottomLeft.y : newBottomLeft.y = box.bottomLeft.y;
+
+	if(bottomLeft.z < box.bottomLeft.z) 
+		newBottomLeft.z = bottomLeft.z : newBottomLeft.z = box.bottomLeft.z;
+	
+	if(topRight.x > box.topRight.x) 
+		newtopRight.x = topRight.x : newtopRight.x = box.topRight.x;
+
+	if(topRight.y > box.topRight.y) 
+		newtopRight.y = topRight.y : newtopRight.y = box.topRight.y;
+
+	if(topRight.z > box.topRight.z) 
+		newtopRight.z = topRight.z : newtopRight.z = box.topRight.z;
+
+	return Box(newBottomLeft, newTopRight);
 }
 
 Box Box::getIntersectionBox(Box box)
 {
-	//
-	//return Box();
-	return Box(Coordinate(0.0,0.0,0.0),Coordinate(0.0,0.0,0.0));
-}
-
-void Box::setAxisSize(Distance dist)
-{
-	// calculate top right coordinate based on bottomLeft + distance (same as constructor)
+	if(this->intersects(box))
+	{
+		// return intersection box
+		if(this->contains(box.bottomLeft))
+		{
+			// intersectionBox bottomLeft
+			return Box(box.getBottomLeft(), topRight);
+		}
+	}
+	else
+	{
+		// no intersection box
+		///return false;
+		return Box(Coordinate(0.0,0.0,0.0),Coordinate(0.0,0.0,0.0));
+	}
+		
 }
 
 Distance Box::getAxisSize()
 {
 	// get axis size (calculate the distance of one edge)
+	Distance dist;
 
-	return Distance();
+	dist.setX(topRight.x - bottomLeft.x);
+	dist.setY(topRight.y - bottomLeft.y);
+	dist.setZ(topRight.z - bottomLeft.z);
+
+	return dist;
 }
 
 void Box::operator=(const Box & rhs)

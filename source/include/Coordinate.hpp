@@ -21,13 +21,11 @@
 class Coordinate {
     friend class Distance;
     friend class Box;
-    
+
     FRIEND_TEST (Box, Coordinates);
-    FRIEND_TEST (Box, setBottomLeft);
     FRIEND_TEST (Box, getBottomLeft);
-    FRIEND_TEST (Box, setTopRight);
     FRIEND_TEST (Box, getTopRight);
-    FRIEND_TEST (Box, CoordinateDistance);FRIEND_TEST(BoxConstructor, Coordinates);
+    FRIEND_TEST (Box, CoordinateDistance);
     FRIEND_TEST(Coordinate, Construtor);
 
 private:
