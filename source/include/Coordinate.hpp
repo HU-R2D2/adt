@@ -36,7 +36,6 @@ private:
 public:
    //! @brief Creates a coordinate specifying a meaningless location.
    Coordinate();
-
     //! @brief Copies the fields from the right hand side into this,
    //! and returns a reference to this.
    //!
@@ -109,17 +108,17 @@ public:
    //! @brief Gets a reference to this coordinate's X-offset to that of the origin.
    //!
    //! @return Reference to the difference between this coordinate's X-position and that of the origin.
-   const Length & getX() const;
+   const Length &get_x() const;
 
    //! @brief Gets a reference to this coordinate's Y-offset to that of the origin.
    //!
    //! @return Reference to the difference between this coordinate's Y-position and that of the origin.
-   const Length & getY() const;
+   const Length &get_y() const;
 
    //! @brief Gets a reference to this coordinate's Z-offset to that of the origin.
    //!
    //! @return Reference to the difference between this coordinate's Z-position and that of the origin.
-   const Length & getZ() const;
+   const Length &get_z() const;
 
 };
 #endif // COORDINATE_HPP
