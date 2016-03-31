@@ -102,6 +102,7 @@ int main( int argc, char **argv ){
 
    std::cout << "testing Moment" << "\n";
    DATETIME mydatetime(time(0));
+   DATETIME(DAY::TUESDAY, MONTH::JANUARY, 23, 2000, 5, 5, 5);
    testing::InitGoogleTest( &argc, argv );
    int result = RUN_ALL_TESTS();
    (void) result;
