@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdlib.h> 
 #include <math.h>
+#include <stdint.h>
 #ifndef _MOMENT_HPP
 #define _MOMENT_HPP
 
@@ -109,14 +110,15 @@ public:
 	double seconds;
 };
 #endif 
-enum DAY{
-	MONDAY = 1,
+enum DAY : int8_t{
+	SUNDAY = 0,
+	MONDAY,
 	TUESDAY,
 	WEDNESDAY,
 	THURSDAY,
 	FRIDAY,
-	SATURDAY,
-	SUNDAY
+	SATURDAY
+	
 };
 enum MONTH{
 	JANUARY = 1,
@@ -131,6 +133,14 @@ enum MONTH{
 	OCTOBER,
 	NOVEMBER,
 	DECEMBER
+};
+struct proto_datetime{
+	DAY day;
+	MONTH month;
+	int mday, year, hour, minute, second;
+	proto_datetime(MONTH month, int year, int mday, DAY day) : day{day}, month{month}, year{year} mday{mday} {
+
+	}
 };
 /*enum MONTH_OFFSET{
 	JANUARY = 6,
@@ -152,7 +162,7 @@ enum CENTURY_PATTERN	{
 	CENTURY_THIRD 	=    0,
 	CENTURY_FOURTH 	=    6
 };
-struct DATETIME{
+struct DATETIME{ // Should be changed into a class
 	
 	DAY day;
 	MONTH month;
@@ -170,15 +180,27 @@ struct DATETIME{
 		mday 	= now->tm_mday;
 		//DAY d 	= (DAY)5;
 
-
-
 		// value of century divided by 100, modulus 4 + 4
-
+		proto_datetime testDateTime()
+		int test0 = (int)(6 + 16 + 4 + 3 + 31) % 7;
+		int test1 = (int)(calculateCenturyPattern(2016) + (2016 - 2000) + (int)((2016 - 2000) / 4) + calculateMonthlyPattern(2016, 4) + 24) % 7; // formula
 		int test = (int)(mday + 2 + (year - 2000) + ( (int)(year - 2000) / 4 ) ) % 7;
-		cout << "test is:\t" << test << "\t and year is: " << year << endl;
+		cout << "test is:\t" << test1 << "\t and year is: " << year << endl;
 		calculateCenturyPattern(year);
 		//(d + m + y + absolute(y / 4) + 0) % 7
+	}
+	DAY calculateDay(proto_datetime& dt)	{
+		//Todo maybe init datetime struct?
 
+		const int year = dt.year;
+		const int digitYear = dt.year - (dt.year - dt.year % 100);
+		const int yearCalculation = calculateCenturyPattern(year) + digitYear + (int)(digitYear / 4);
+		// ToDo Determine best way to split big calculation into smaller more readable pieces
+		dt.day = (DAY)(int)((yearCalculation + calculateMonthlyPattern(year, dt.month) + dt.mday) % 7);
+		return dt.day;
+	}
+	DAY calculateMonthDayPattern(int16_t mday)	{
+		return (DAY)(mday % 7);
 	}
 	int calculateMonthlyPattern(int year, int month)	{
 		//ToDo Still needs divider by 100 and 400 to work correctly (see wikipedia for more information)
@@ -186,11 +208,11 @@ struct DATETIME{
 		// if year is leap year
 		if(int(year / 4) == (float)(year/4))	{
 			// Leap years have 6 and 2 for the first two months
-			FirstTwoMonths[0] = 6;	
+			FirstTwoMonths[0] = 6;
 			FirstTwoMonths[1] = 2;
 		}
 		const int monthlyValues[12] = {FirstTwoMonths[0], FirstTwoMonths[1], 3, 6, 1, 4, 6, 2, 5, 0, 3, 5};
-		return -1;
+		return monthlyValues[month - 1];
 	}
 	int calculateCenturyPattern(int year)	{
 		const int centuryPattern[4] = {4, 2, 0, 6};	// Year pattern (starting 1700)
