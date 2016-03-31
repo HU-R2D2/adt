@@ -40,38 +40,42 @@ TEST(Coordinate, Addition) {
    EXPECT_DOUBLE_EQ(-8, c2.get_z() / Length::METER);
 
    Coordinate c3 = c2 + Distance{4 * Length::METER, 6 * Length::METER, 0 * Length::METER};
-   EXPECT_DOUBLE_EQ(2, c2.get_x()/Length::METER);
-   EXPECT_DOUBLE_EQ(2, c2.get_y()/Length::METER);
-   EXPECT_DOUBLE_EQ(-8, c2.get_z()/Length::METER);
-   Distance d;
+   EXPECT_DOUBLE_EQ(2, c3.get_x()/Length::METER);
+   EXPECT_DOUBLE_EQ(2, c3.get_y()/Length::METER);
+   EXPECT_DOUBLE_EQ(-8, c3.get_z()/Length::METER);
+   Distance d{3 * Length::METER, -7 * Length::METER, 13 * Length::METER};
 
-   const Coordinate * const coordPointer = &c1;
+   const Coordinate * const coordPointer = &c3;
 
-   ASSERT_EQ(coordPointer, &(c1 += d)) << "Wrong reference returned.";
-   EXPECT_DOUBLE_EQ(0, c1.get_x() / Length::METER);
-   EXPECT_DOUBLE_EQ(0, c1.get_y() / Length::METER);
-   EXPECT_DOUBLE_EQ(0, c1.get_z() / Length::METER);
+   ASSERT_EQ(coordPointer, &(c3 += d)) << "Wrong reference returned.";
+   EXPECT_DOUBLE_EQ(5, c3.get_x() / Length::METER);
+   EXPECT_DOUBLE_EQ(-5, c3.get_y() / Length::METER);
+   EXPECT_DOUBLE_EQ(5, c3.get_z() / Length::METER);
 }
 
 TEST(Coordinate, Subtraction) {
-   Coordinate c1 = Coordinate::origin;
-   Coordinate c2 = Coordinate::origin;
-   Distance d = c1 - c2;
-   EXPECT_DOUBLE_EQ(0, d.getX() / Length::METER);
-   EXPECT_DOUBLE_EQ(0, d.getY() / Length::METER);
-   EXPECT_DOUBLE_EQ(0, d.getZ() / Length::METER);
+   Coordinate c1 = Coordinate::origin - Distance{2 * Length::METER, 4 * Length::METER, 8 * Length::METER};
+   EXPECT_DOUBLE_EQ(-2, c1.get_x() / Length::METER);
+   EXPECT_DOUBLE_EQ(-4, c1.get_y() / Length::METER);
+   EXPECT_DOUBLE_EQ(-8, c1.get_z() / Length::METER);
 
-   Coordinate c3 = c1 - d;
-   EXPECT_DOUBLE_EQ(0, c3.get_x() / Length::METER);
-   EXPECT_DOUBLE_EQ(0, c3.get_y() / Length::METER);
-   EXPECT_DOUBLE_EQ(0, c3.get_z() / Length::METER);
+   Coordinate c2 = Coordinate::origin - Distance{-2 * Length::METER, -4 * Length::METER, -8 * Length::METER};
+   EXPECT_DOUBLE_EQ(2, c2.get_x() / Length::METER);
+   EXPECT_DOUBLE_EQ(4, c2.get_y() / Length::METER);
+   EXPECT_DOUBLE_EQ(8, c2.get_z() / Length::METER);
 
-   const Coordinate * const coordPointer = &c1;
+   Coordinate c3 = c2 - Distance{4 * Length::METER, 6 * Length::METER, 0 * Length::METER};
+   EXPECT_DOUBLE_EQ(-2, c3.get_x()/Length::METER);
+   EXPECT_DOUBLE_EQ(-2, c3.get_y()/Length::METER);
+   EXPECT_DOUBLE_EQ(8, c3.get_z()/Length::METER);
+   Distance d{3 * Length::METER, -7 * Length::METER, 13 * Length::METER};
 
-   ASSERT_EQ(coordPointer, &(c1 -= d)) << "Wrong reference returned.";
-   EXPECT_DOUBLE_EQ(0, c1.get_x() / Length::METER);
-   EXPECT_DOUBLE_EQ(0, c1.get_y() / Length::METER);
-   EXPECT_DOUBLE_EQ(0, c1.get_y() / Length::METER);
+   const Coordinate * const coordPointer = &c3;
+
+   ASSERT_EQ(coordPointer, &(c3 -= d)) << "Wrong reference returned.";
+   EXPECT_DOUBLE_EQ(-5, c3.get_x() / Length::METER);
+   EXPECT_DOUBLE_EQ(5, c3.get_y() / Length::METER);
+   EXPECT_DOUBLE_EQ(-5, c3.get_z() / Length::METER);
 }
 
 TEST(Coordinate, WriteTo) {
