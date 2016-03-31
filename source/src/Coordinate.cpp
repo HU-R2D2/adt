@@ -103,14 +103,14 @@ std::istream & operator >>(std::istream & lhs, Coordinate & rhs) {
    return lhs;
 }
 
-const Length & Coordinate::getX() const {
+const Length & Coordinate::get_x() const {
    return x;
 }
 
-const Length & Coordinate::getY() const {
+const Length & Coordinate::get_y() const {
    return y;
 }
 
-const Length & Coordinate::getZ() const {
+const Length & Coordinate::get_z() const {
    return z;
 }

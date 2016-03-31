@@ -36,13 +36,6 @@ private:
 public:
    //! @brief Creates a coordinate specifying a meaningless location.
    Coordinate();
-
-    //! @brief Constructs a coordinate with the given offsets from the origin on the X,Y and Z axis.
-   //!
-   //! @param x Distance between the origin's X, and this coordinate's.
-   //! @param y Distance between the origin's Y, and this coordinate's.
-   //! @param z Distance between the origin's Z, and this coordinate's.
-   Coordinate(Length x, Length y, Length z);
    
     //! @brief Copies the fields from the right hand side into this,
    //! and returns a reference to this.
@@ -116,17 +109,17 @@ public:
    //! @brief Gets a reference to this coordinate's X-offset to that of the origin.
    //!
    //! @return Reference to the difference between this coordinate's X-position and that of the origin.
-   const Length & getX() const;
+   const Length &get_x() const;
 
    //! @brief Gets a reference to this coordinate's Y-offset to that of the origin.
    //!
    //! @return Reference to the difference between this coordinate's Y-position and that of the origin.
-   const Length & getY() const;
+   const Length &get_y() const;
 
    //! @brief Gets a reference to this coordinate's Z-offset to that of the origin.
    //!
    //! @return Reference to the difference between this coordinate's Z-position and that of the origin.
-   const Length & getZ() const;
+   const Length &get_z() const;
 
 };
 #endif // COORDINATE_HPP
