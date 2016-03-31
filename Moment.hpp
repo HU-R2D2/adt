@@ -21,8 +21,8 @@ using namespace std;
 */
 /**
 *	@author 		Ferdi Stoeltie 1665045
-*	@date			30-03-2016
-*	@version		0.3
+*	@date			31-03-2016
+*	@version		0.4
 *	@brief			This class provides a timestamp of a moment in time. Due to its use in R2D2 (as of yet), a Moment object can only be created by the Clock.
 
 */
@@ -112,10 +112,5 @@ public:
 //private:
 	double seconds;
 };
+};
 #endif 
-
-
-
-//ostream& operator<< (ostream& lhs, const Moment& refDuration);
-//istream& operator>> (istream& lhs, Moment& refDuration);
-}
