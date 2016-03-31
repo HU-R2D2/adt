@@ -44,25 +44,25 @@ TEST(Length, SubstractLength) { 				//operator-
 	Length a{};
 	Length b;
 	a = a - b;
-	ASSERT_DOUBLE_EQ(a/Length::METER , 0.0) << "empty+empty";
+	ASSERT_DOUBLE_EQ(a/Length::METER , 0.0) << "empty-empty";
 	
 	// leeg - vol
 	Length c = 2 * Length::METER;
 	b = b - c;
-	ASSERT_DOUBLE_EQ(b/Length::METER , 0.0) << "empty+full";
+	ASSERT_DOUBLE_EQ(b/Length::METER , -2.0) << "empty-full";
 	
 	// vol - leeg
-	c = c - b;
-	ASSERT_DOUBLE_EQ(c/Length::METER , 2.0) << "empty+full";
+	c = c - a;
+	ASSERT_DOUBLE_EQ(c/Length::METER , 2.0) << "full-empty";
 	
 	// vol - vol
 	Length d = 1 * Length::METER;
 	d = d - c;
- 	ASSERT_DOUBLE_EQ(d/Length::METER , 0.0) << "full+full neg";
+ 	ASSERT_DOUBLE_EQ(d/Length::METER , -1.0) << "full-full neg";
 	Length e= 3 * Length::METER;
 	Length f= 2 * Length::METER;
 	e = e - f;
- 	ASSERT_DOUBLE_EQ(e/Length::METER , 1.0) << "full+full";
+ 	ASSERT_DOUBLE_EQ(e/Length::METER , 1.0) << "full-full";
 }
 
 TEST(Length, MultiplyDouble) { 						//operator* 1
@@ -125,7 +125,7 @@ TEST(Length, MultiplyDouble) { 						//operator* 1
 DIT is all bij vorige test gedaan
 }*/
 
-TEST(Length, SubstractDouble) { 					//operator/
+TEST(Length, DivideDouble) { 					//operator/
     double getal1 = 2;
 	double getal2 = 2.5;
 	
@@ -183,16 +183,16 @@ TEST(Length, SubtractAssignLength) { 			//operator-=
 	// leeg - vol
 	Length c = 2  * Length::METER;
 	b -= c;
-	ASSERT_DOUBLE_EQ(b/Length::METER , 0) << "empty-full";
+	ASSERT_DOUBLE_EQ(b/Length::METER , -2) << "empty-full";
 	
 	// vol - leeg
-	c -= b;
+	c -= a;
 	ASSERT_DOUBLE_EQ(c/Length::METER , 2) << "full-empty";
 	
 	// vol - vol
 	Length d = 1 * Length::METER;
 	d -= c;
- 	ASSERT_DOUBLE_EQ(d/Length::METER , 0) << "full-full neg";
+ 	ASSERT_DOUBLE_EQ(d/Length::METER , -1) << "full-full neg";
 	Length e = 5 * Length::METER;
 	Length f = 3 * Length::METER;
 	e -= f;

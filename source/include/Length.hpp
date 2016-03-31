@@ -13,7 +13,7 @@
 #define _LENGTH_HPP
 class Speed;
 class Distance;
-// nog inbouwen dat geen negatieve lengtes mogen bestaan!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 class Length{
 	friend class Distance;	
 	private:
@@ -106,7 +106,7 @@ class Length{
 		 *
 		 * @param	number 		the number to subtract from the length
 		 **************************************************************************************************/
-		Length& operator-= (const Length& rhs);		// let op geen negatieve lengte!!
+		Length& operator-= (const Length& rhs);
 		/**********************************************************************************************//**
 		 * @fn		Length::Length(const Length& rhs)
 		 *
