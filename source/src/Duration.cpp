@@ -33,7 +33,7 @@ bool Duration::operator> (const Duration& rhs) const{
 }
 
 std::ostream& operator<<(std::ostream& lhs, const Duration& rhs){
-	lhs<< "duration: " << rhs.seconds << "s";
+	lhs<< rhs.seconds << "s";
 	return lhs;
 }
 
@@ -42,9 +42,6 @@ Duration operator* ( double n, const Duration & rhs){
 }
 
 std::istream& operator>>(std::istream& lhs, Duration& rhs){
-	std::cout<< "enter duration in seconds: " << std::endl;
-	lhs>>rhs.seconds;
-	return lhs;
 }
 
 Duration& Duration::operator=(const Duration& rhs){

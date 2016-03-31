@@ -104,7 +104,7 @@ bool Distance::operator< (const Distance& rhs) const {
 }
 		
 std::ostream& operator<< (std::ostream& lhs, Distance& rhs) {
-	lhs << "(" << rhs.getX() << "," << rhs.getY() << "," << rhs.getZ() << ")";
+	lhs << "distance (" << rhs.getX() << ", " << rhs.getY() << ", " << rhs.getZ() << ")";
 	return lhs;
 }
 		

@@ -37,13 +37,6 @@ public:
    //! @brief Creates a coordinate specifying a meaningless location.
    Coordinate();
 
-    //! @brief Constructs a coordinate with the given offsets from the origin on the X,Y and Z axis.
-   //!
-   //! @param x Distance between the origin's X, and this coordinate's.
-   //! @param y Distance between the origin's Y, and this coordinate's.
-   //! @param z Distance between the origin's Z, and this coordinate's.
-   Coordinate(Length x, Length y, Length z);
-   
     //! @brief Copies the fields from the right hand side into this,
    //! and returns a reference to this.
    //!

@@ -148,5 +148,5 @@ Box Box::operator=(const Box & rhs)
 }
 
 std::ostream & operator <<(std::ostream & lhs, const Box & rhs) {
-	lhs << "box (" << rhs.bottomLeft << " " << rhs.topRight << ")";
+	lhs << "box (" << rhs.bottomLeft << ", " << rhs.topRight << ")";
 }
