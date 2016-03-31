@@ -29,7 +29,7 @@ TEST(Coordinate, Addition) {
    EXPECT_DOUBLE_EQ(0, c1.getY() / Length::METER);
    EXPECT_DOUBLE_EQ(0, c1.getY() / Length::METER);
 
-   Distance d{0,0,0};
+   Distance d;
    const Coordinate * const coordPointer = &c1;
 
    ASSERT_EQ(coordPointer, &(c1 -= d)) << "Wrong reference returned.";

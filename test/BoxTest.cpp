@@ -345,4 +345,4 @@ TEST (Box, getIntersectionBox)
 	ASSERT_DOUBLE_EQ(notCollidedBox.getTopRight().getY(), 0);
 	ASSERT_DOUBLE_EQ(notCollidedBox.getTopRight().getZ(), 0);
 
-}
+} */

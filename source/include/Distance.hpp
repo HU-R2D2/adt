@@ -19,6 +19,7 @@ class Coordinate;	// Forward declaration. Used to declare as friend.
 class Distance {
 	friend class Coordinate;
 	public:		// moet eigenlijk friend ofzo worden....
+		Distance(){}
 		/**********************************************************************************************//**
 		 * @fn		Distance::Distance(Length x, Length y, Length z)
 		 *

@@ -1,4 +1,3 @@
-/*
 #include "../include/Box.hpp"
 /*
 Box::Box(Coordinate bottomLeft, Coordinate topRight):
