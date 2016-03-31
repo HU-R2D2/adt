@@ -70,11 +70,6 @@ Length operator* (double n, const Length & rhs) {
   return temp;
 }
 
-Length operator/ (double n, const Length & rhs) {
-  Length temp {rhs};
-  temp.l = temp.l / n;
-  return temp;
-}
 //=============================================================================================================
 
 

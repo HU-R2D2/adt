@@ -16,7 +16,7 @@ class Speed {
 
 
 private:
-	
+	Speed();
 	//! Constructor for speed
 	/*!
 		\param val the value for speed in m\s
@@ -25,7 +25,7 @@ private:
 	double value;
 public:
 	//! Default constructor of a speed
-	Speed();
+	
 	//! Assigns a speed to this speed. 
     /*!
       \param rhs a speed

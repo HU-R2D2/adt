@@ -4,7 +4,7 @@ Speed::Speed(double val): value{val}{}
 
 // Operators
 Speed operator/ ( const Length & l, const Duration & d){
-  return Speed{l,l /d,seconds}; 
+  return Speed{l.l /d.seconds}; 
 }
 
 Speed & Speed::operator= (const Speed & rhs){
@@ -77,7 +77,7 @@ double Speed::operator/(const Speed & rhs){
 }
 
 std::ostream& operator<<(std::ostream & os, const Speed &rhs){
-  os << "Speed: " << value << "Meter/seconds" << std::endl;
+  os << "Speed: " << rhs.value << "Meter/seconds" << std::endl;
 }
 
 std::istream& operator>>(std::istream & is, Speed & rhs){}
