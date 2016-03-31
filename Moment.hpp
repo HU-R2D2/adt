@@ -11,15 +11,18 @@
 namespace adt	{
 using namespace std;
 /*
-	[ToDo implementation of a moment
+	[ToDo (not ordered)
+	implementation of a moment
 	Testing
 	Review
+	Add a DateTime 
+	Test on Linux
 	Add a timestamp struct and Enums]
 */
 /**
-*	@author 		Ferdi Stoeltie
+*	@author 		Ferdi Stoeltie 1665045
 *	@date			30-03-2016
-*	@version		0.2
+*	@version		0.3
 *	@brief			This class provides a timestamp of a moment in time. Due to its use in R2D2 (as of yet), a Moment object can only be created by the Clock.
 
 */
@@ -135,15 +138,27 @@ enum MONTH{
 	NOVEMBER,
 	DECEMBER
 };
+struct proto_hourlyTimes{
+	uint8_t hour, minute, second;
+	proto_hourlyTimes(uint8_t hour = 0, uint8_t minute = 0, uint8_t second = 0) : 
+	hour{hour}, minute{minute}, second{second}	{}
+};
 struct proto_datetime{
 
-	int year, mday;
+	uint16_t 	year; 
+	uint8_t 	mday;
 	MONTH month;
 	DAY day;
-	proto_datetime(int year, int mday, MONTH month) : year{year}, mday{mday}, month{month} {
+	proto_hourlyTimes HT;
+	proto_datetime(uint16_t year, uint8_t mday, MONTH month, 
+		uint8_t hour = 0, uint8_t minute = 0, uint8_t second = 0) : 
+	year{year}, mday{mday}, month{month}, HT{hour, minute, second} {}
 
-	}
+	proto_datetime(uint16_t year, uint8_t mday, MONTH month, 
+		proto_hourlyTimes HT) : 
+	year{year}, mday{mday}, month{month}, HT{HT} {}
 };
+//ToDo change to datetime class, add tests and documentation
 struct DATETIME{ // Should be changed into a class
 	
 	DAY day;
@@ -155,6 +170,7 @@ struct DATETIME{ // Should be changed into a class
 
 	}
 	DATETIME(double gtime)	{
+		// ToDo figure out what to do with gtime, could be unnecessary
 		time_t givenTime = (time_t)gtime;
 		struct tm * now = localtime( & givenTime );
 		year 	= (now->tm_year + 1900);
@@ -173,7 +189,7 @@ struct DATETIME{ // Should be changed into a class
 		const int digitYear = dt.year - (dt.year - dt.year % 100);
 		const int yearCalculation = calculateCenturyPattern(year) + digitYear + (int)(digitYear / 4);
 		// ToDo Determine best way to split big calculation into smaller more readable pieces
-		dt.day = (DAY)(int)((yearCalculation + calculateMonthlyPattern(year, dt.month) + dt.mday) % 7);
+		dt.day = (DAY)(uint8_t)((yearCalculation + calculateMonthlyPattern(year, dt.month) + dt.mday) % 7);
 		return dt.day;
 	}
 	DAY calculateMonthDayPattern(int16_t mday)	{
@@ -192,6 +208,8 @@ struct DATETIME{ // Should be changed into a class
 		return monthlyValues[month - 1];
 	}
 	int calculateCenturyPattern(int year)	{
+		// The reason for this century pattern is because every 400 year, the pattern repeats itself (4,2,0,6)
+		// The numbers are necessary for calculating the week day of a current date.
 		const int centuryPattern[4] = {4, 2, 0, 6};	// Year pattern (starting 1700)
 		const int startingCentury = 1700;			// Starting century of pattern
 
@@ -201,7 +219,6 @@ struct DATETIME{ // Should be changed into a class
 		if(number < 0)								// If number is negative, add 4 for the correct array element
 			number += 4;
 		return centuryPattern[number];				// Return century value for day calculation
-		//cout << "difference is: " << difference << " century is " << year << " and value is " << centuryPattern[number] << " number is: " << number << endl;
 	}
 };
 //ostream& operator<< (ostream& lhs, const Moment& refDuration);
