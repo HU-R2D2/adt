@@ -6,19 +6,19 @@ Distance::Distance(Length x, Length y, Length z) :
 	z(z)
 {}
 
-Length Distance::getX() {
+Length Distance::get_x() {
 	return x;
 }
 
-Length Distance::getY() {
+Length Distance::get_y() {
 	return y;
 }
 
-Length Distance::getZ() {
+Length Distance::get_z() {
 	return z;
 }
 
-Length Distance::getLength() const {
+Length Distance::get_length() const {
 	Length a;
 	double tempx = x / Length::METER;
 	double tempy = y / Length::METER;
@@ -27,15 +27,15 @@ Length Distance::getLength() const {
 	return a;
 }
 
-void Distance::setX(Length x) {
+void Distance::set_x(Length x) {
 	x = x;
 }
 
-void Distance::setY(Length y) {
+void Distance::set_y(Length y) {
 	y = y;
 }
 
-void Distance::setZ(Length z) {
+void Distance::set_z(Length z) {
 	z = z;
 }
 
@@ -96,15 +96,15 @@ Distance& Distance::operator-= (const Distance& rhs) {
 }
 		
 bool Distance::operator> (const Distance& rhs) const {
-	return getLength() > rhs.getLength();
+	return get_length() > rhs.get_length();
 }
 		
 bool Distance::operator< (const Distance& rhs) const {
-	return getLength() < rhs.getLength();
+	return get_length() < rhs.get_length();
 }
 		
 std::ostream& operator<< (std::ostream& lhs, Distance& rhs) {
-	lhs << "distance (" << rhs.getX() << ", " << rhs.getY() << ", " << rhs.getZ() << ")";
+	lhs << "distance (" << rhs.get_x() << ", " << rhs.get_y() << ", " << rhs.get_z() << ")";
 	return lhs;
 }
 		
@@ -120,9 +120,9 @@ Distance& operator>>(std::istream& input, Distance& rhs) {		// WAT WIL JE HIER T
 			std::cerr << "No opening brace encountered";
 		}
 		input >> x >> temp >> y >> temp >> z >> temp;
-		rhs.setX(x);
-		rhs.setY(y);
-		rhs.setZ(z);
+		rhs.set_x(x);
+		rhs.set_y(y);
+		rhs.set_z(z);
 	}
 	else {
 		std::cerr << "No distance!";

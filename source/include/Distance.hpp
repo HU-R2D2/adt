@@ -33,62 +33,62 @@ class Distance {
 		
 	public:
 		/**********************************************************************************************//**
-		 * @fn		Length Distance::getX()
+		 * @fn		Length Distance::get_x()
 		 *
 		 * @brief	Gets the x Length value of the Distance and returns it
 		 *
 		 * @return	Length		The x Length of the distance
 		 **************************************************************************************************/
-		Length getX();
+		Length get_x();
 		/**********************************************************************************************//**
-		 * @fn		Length Distance::getY()
+		 * @fn		Length Distance::get_y()
 		 *
 		 * @brief	Gets the y Length value of the Distance and returns it
 		 *
 		 * @return	Length		The y Length of the distance
 		 **************************************************************************************************/
-		Length getY();
+		Length get_y();
 		/**********************************************************************************************//**
-		 * @fn		Length Distance::getZ()
+		 * @fn		Length Distance::get_z()
 		 *
 		 * @brief	Gets the z Length value of the Distance and returns it
 		 *
 		 * @return	Length		The z Length of the distance
 		 **************************************************************************************************/
-		Length getZ();
+		Length get_z();
 		/**********************************************************************************************//**
-		 * @fn		Length Distance::getLength()
+		 * @fn		Length Distance::get_length()
 		 *
 		 * @brief	Gets the calculated Length of the Distance and returns it
 		 *
 		 * @return	Length		The absolute Length of the distance
 		 **************************************************************************************************/
-		Length getLength() const;
+		Length get_length() const;
 		
 		/**********************************************************************************************//**
-		 * @fn		void Distance::setX(Length x)
+		 * @fn		void Distance::set_x(Length x)
 		 *
 		 * @brief	Sets the x Length value of the Distance to the given value
 		 *
 		 * @param	x			The x Lengthof the distance
 		 **************************************************************************************************/
-		void setX(Length x);
+		void set_x(Length x);
 		/**********************************************************************************************//**
-		 * @fn		void Distance::setY(Length y)
+		 * @fn		void Distance::set_y(Length y)
 		 *
 		 * @brief	Sets the y Length value of the Distance to the given value
 		 *
 		 * @param	y			The y Length of the distance
 		 **************************************************************************************************/
-		void setY(Length y);
+		void set_y(Length y);
 		/**********************************************************************************************//**
-		 * @fn		void Distance::setZ(Length z)
+		 * @fn		void Distance::set_z(Length z)
 		 *
 		 * @brief	Sets the z Length value of the Distance to the given value
 		 *
 		 * @param	z			The z Length of the distance
 		 **************************************************************************************************/
-		void setZ(Length z);
+		void set_z(Length z);
 	
 		/**********************************************************************************************//**
 		 * @fn		Distance& Distance::operator= (const Distance& rhs)
@@ -174,7 +174,6 @@ class Distance {
 		
 	private:
 		Length x,y,z;
-		FRIEND_TEST(Distance, DefaultConstructor);	// Friend classes (So tests can access private parts.)
 };
 
 /**********************************************************************************************//**

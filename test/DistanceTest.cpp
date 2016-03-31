@@ -6,16 +6,16 @@
 // constructors:
 TEST(Distance, DefaultConstructor) {
 	Distance a;
-	ASSERT_DOUBLE_EQ(a.getX() / Length::METER , 0.0) << "x";
-	ASSERT_DOUBLE_EQ(a.getY() / Length::METER , 0.0) << "y";
-	ASSERT_DOUBLE_EQ(a.getZ() / Length::METER , 0.0) << "z";
+	ASSERT_DOUBLE_EQ(a.get_x() / Length::METER , 0.0) << "x";
+	ASSERT_DOUBLE_EQ(a.get_y() / Length::METER , 0.0) << "y";
+	ASSERT_DOUBLE_EQ(a.get_z() / Length::METER , 0.0) << "z";
 }
 
 TEST(Distance, ConstructorDouble) {
 	Distance a(1 * Length::METER, 2 * Length::METER, 3 * Length::METER);
-	ASSERT_DOUBLE_EQ(a.getX() / Length::METER , 1.0) << "x";
-	ASSERT_DOUBLE_EQ(a.getY() / Length::METER , 2.0) << "y";
-	ASSERT_DOUBLE_EQ(a.getZ() / Length::METER , 3.0) << "z";
+	ASSERT_DOUBLE_EQ(a.get_x() / Length::METER , 1.0) << "x";
+	ASSERT_DOUBLE_EQ(a.get_y() / Length::METER , 2.0) << "y";
+	ASSERT_DOUBLE_EQ(a.get_z() / Length::METER , 3.0) << "z";
 }
 //==============================================================================================
 // operatoren:
@@ -23,14 +23,14 @@ TEST( Distance, AssignDistance ){   				//operator=
 	Distance a;
 	a = Distance(1 * Length::METER, 2 * Length::METER, 3 * Length::METER);
 	
-	ASSERT_DOUBLE_EQ(a.getX() / Length::METER , 1.0) << "empty x";
-	ASSERT_DOUBLE_EQ(a.getY() / Length::METER , 2.0) << "empty y";
-	ASSERT_DOUBLE_EQ(a.getZ() / Length::METER , 3.0) << "empty z";
+	ASSERT_DOUBLE_EQ(a.get_x() / Length::METER , 1.0) << "empty x";
+	ASSERT_DOUBLE_EQ(a.get_y() / Length::METER , 2.0) << "empty y";
+	ASSERT_DOUBLE_EQ(a.get_z() / Length::METER , 3.0) << "empty z";
 	
 	a = Distance(4 * Length::METER, 5 * Length::METER, 6 * Length::METER);
-	ASSERT_DOUBLE_EQ(a.getX() / Length::METER , 4.0) << "new x";
-	ASSERT_DOUBLE_EQ(a.getY() / Length::METER , 5.0) << "new y";
-	ASSERT_DOUBLE_EQ(a.getZ() / Length::METER , 6.0) << "new z";  
+	ASSERT_DOUBLE_EQ(a.get_x() / Length::METER , 4.0) << "new x";
+	ASSERT_DOUBLE_EQ(a.get_y() / Length::METER , 5.0) << "new y";
+	ASSERT_DOUBLE_EQ(a.get_z() / Length::METER , 6.0) << "new z";  
 }
 
 TEST(Distance, AddDistance) { 						//operator+
@@ -38,24 +38,24 @@ TEST(Distance, AddDistance) { 						//operator+
 	Distance a;
 	Distance b;
 	a = a + b;
-	ASSERT_DOUBLE_EQ(a.getX() / Length::METER , 0.0) << "empty+empty x";
-	ASSERT_DOUBLE_EQ(a.getY() / Length::METER , 0.0) << "empty+empty y";
-	ASSERT_DOUBLE_EQ(a.getZ() / Length::METER , 0.0) << "empty+empty z";
+	ASSERT_DOUBLE_EQ(a.get_x() / Length::METER , 0.0) << "empty+empty x";
+	ASSERT_DOUBLE_EQ(a.get_y() / Length::METER , 0.0) << "empty+empty y";
+	ASSERT_DOUBLE_EQ(a.get_z() / Length::METER , 0.0) << "empty+empty z";
 	
 	// leeg + vol
 	Distance c(1 * Length::METER, 2 * Length::METER, 3 * Length::METER);
 	b = b + c;
-	ASSERT_DOUBLE_EQ(b.getX() / Length::METER , 1.0) << "empty+full x";
-	ASSERT_DOUBLE_EQ(b.getY() / Length::METER , 2.0) << "empty+full y";
-	ASSERT_DOUBLE_EQ(b.getZ() / Length::METER , 3.0) << "empty+full z";
+	ASSERT_DOUBLE_EQ(b.get_x() / Length::METER , 1.0) << "empty+full x";
+	ASSERT_DOUBLE_EQ(b.get_y() / Length::METER , 2.0) << "empty+full y";
+	ASSERT_DOUBLE_EQ(b.get_z() / Length::METER , 3.0) << "empty+full z";
 	
 	// vol + vol
 	Distance d(1 * Length::METER, 2 * Length::METER, 3 * Length::METER);
 	Distance e(4 * Length::METER, 5 * Length::METER, 6 * Length::METER);
 	d = d + e;
- 	ASSERT_DOUBLE_EQ(d.getX() / Length::METER , 5.0) << "full+full x";
-	ASSERT_DOUBLE_EQ(d.getY() / Length::METER , 7.0) << "full+full y";
-	ASSERT_DOUBLE_EQ(d.getZ() / Length::METER , 9.0) << "full+full z";
+ 	ASSERT_DOUBLE_EQ(d.get_x() / Length::METER , 5.0) << "full+full x";
+	ASSERT_DOUBLE_EQ(d.get_y() / Length::METER , 7.0) << "full+full y";
+	ASSERT_DOUBLE_EQ(d.get_z() / Length::METER , 9.0) << "full+full z";
 }
 
 TEST(Distance, SubstractDistance) { 					//operator-
@@ -63,32 +63,32 @@ TEST(Distance, SubstractDistance) { 					//operator-
 	Distance a;
 	Distance b;
 	a = a - b;
-	ASSERT_DOUBLE_EQ(a.getX() / Length::METER , 0.0) << "empty-empty x";
-	ASSERT_DOUBLE_EQ(a.getY() / Length::METER , 0.0) << "empty-empty y";
-	ASSERT_DOUBLE_EQ(a.getZ() / Length::METER , 0.0) << "empty-empty z";
+	ASSERT_DOUBLE_EQ(a.get_x() / Length::METER , 0.0) << "empty-empty x";
+	ASSERT_DOUBLE_EQ(a.get_y() / Length::METER , 0.0) << "empty-empty y";
+	ASSERT_DOUBLE_EQ(a.get_z() / Length::METER , 0.0) << "empty-empty z";
 	
 	// leeg - vol
 	Distance c(1 * Length::METER, 2 * Length::METER, 3 * Length::METER);
 	b = b - c;
-	ASSERT_DOUBLE_EQ(b.getX() / Length::METER , -1.0) << "empty-full x";
-	ASSERT_DOUBLE_EQ(b.getY() / Length::METER , -2.0) << "empty-full y";
-	ASSERT_DOUBLE_EQ(b.getZ() / Length::METER , -3.0) << "empty-full z";
+	ASSERT_DOUBLE_EQ(b.get_x() / Length::METER , -1.0) << "empty-full x";
+	ASSERT_DOUBLE_EQ(b.get_y() / Length::METER , -2.0) << "empty-full y";
+	ASSERT_DOUBLE_EQ(b.get_z() / Length::METER , -3.0) << "empty-full z";
 	
 	// vol - leeg
 	Distance d(1 * Length::METER, 2 * Length::METER, 3 * Length::METER);
 	Distance e;
 	d = d - e;
-	ASSERT_DOUBLE_EQ(d.getX() / Length::METER , 1.0) << "full-empty x";
-	ASSERT_DOUBLE_EQ(d.getY() / Length::METER , 2.0) << "full-empty y";
-	ASSERT_DOUBLE_EQ(d.getZ() / Length::METER , 3.0) << "full-empty z";
+	ASSERT_DOUBLE_EQ(d.get_x() / Length::METER , 1.0) << "full-empty x";
+	ASSERT_DOUBLE_EQ(d.get_y() / Length::METER , 2.0) << "full-empty y";
+	ASSERT_DOUBLE_EQ(d.get_z() / Length::METER , 3.0) << "full-empty z";
 	
 	// vol - vol
 	Distance f(4 * Length::METER, 5 * Length::METER, 6 * Length::METER);
 	Distance g(1 * Length::METER, 2 * Length::METER, 3 * Length::METER);
 	f = f - g;
- 	ASSERT_DOUBLE_EQ(f.getX() / Length::METER , 3.0) << "full-full x";
-	ASSERT_DOUBLE_EQ(f.getY() / Length::METER , 3.0) << "full-full y";
-	ASSERT_DOUBLE_EQ(f.getZ() / Length::METER , 3.0) << "full-full z";
+ 	ASSERT_DOUBLE_EQ(f.get_x() / Length::METER , 3.0) << "full-full x";
+	ASSERT_DOUBLE_EQ(f.get_y() / Length::METER , 3.0) << "full-full y";
+	ASSERT_DOUBLE_EQ(f.get_z() / Length::METER , 3.0) << "full-full z";
 }
 
 TEST(Distance, MultiplyDouble) { 					//operator*
@@ -98,36 +98,36 @@ TEST(Distance, MultiplyDouble) { 					//operator*
 	// leeg * 0
 	Distance a;
 	a = a * 0;
-	ASSERT_DOUBLE_EQ(a.getX() / Length::METER , 0.0) << "empty*0 x";
-	ASSERT_DOUBLE_EQ(a.getY() / Length::METER , 0.0) << "empty*0 y";
-	ASSERT_DOUBLE_EQ(a.getZ() / Length::METER , 0.0) << "empty*0 z";
+	ASSERT_DOUBLE_EQ(a.get_x() / Length::METER , 0.0) << "empty*0 x";
+	ASSERT_DOUBLE_EQ(a.get_y() / Length::METER , 0.0) << "empty*0 y";
+	ASSERT_DOUBLE_EQ(a.get_z() / Length::METER , 0.0) << "empty*0 z";
 	
 	// leeg * getal1
 	a = a * getal1;
-	ASSERT_DOUBLE_EQ(a.getX() / Length::METER , 0.0) << "empty x";
-	ASSERT_DOUBLE_EQ(a.getY() / Length::METER , 0.0) << "empty y";
-	ASSERT_DOUBLE_EQ(a.getZ() / Length::METER , 0.0) << "empty z";
+	ASSERT_DOUBLE_EQ(a.get_x() / Length::METER , 0.0) << "empty x";
+	ASSERT_DOUBLE_EQ(a.get_y() / Length::METER , 0.0) << "empty y";
+	ASSERT_DOUBLE_EQ(a.get_z() / Length::METER , 0.0) << "empty z";
 	
 	// vol * 0
 	Distance b(1 * Length::METER, 2 * Length::METER, 3 * Length::METER);
 	b = b * 0;
-	ASSERT_DOUBLE_EQ(b.getX() / Length::METER , 0.0) << "full*0 x";
-	ASSERT_DOUBLE_EQ(b.getY() / Length::METER , 0.0) << "full*0 y";
-	ASSERT_DOUBLE_EQ(b.getZ() / Length::METER , 0.0) << "full*0 z";
+	ASSERT_DOUBLE_EQ(b.get_x() / Length::METER , 0.0) << "full*0 x";
+	ASSERT_DOUBLE_EQ(b.get_y() / Length::METER , 0.0) << "full*0 y";
+	ASSERT_DOUBLE_EQ(b.get_z() / Length::METER , 0.0) << "full*0 z";
 	
 	// vol * getal1
 	Distance c(1 * Length::METER, 2 * Length::METER, 3 * Length::METER);
 	c = c * getal1;
-	ASSERT_DOUBLE_EQ(c.getX() / Length::METER , 2.0) << "full*getal1 x";
-	ASSERT_DOUBLE_EQ(c.getY() / Length::METER , 4.0) << "full*getal1 y";
-	ASSERT_DOUBLE_EQ(c.getZ() / Length::METER , 6.0) << "full*getal1 z";
+	ASSERT_DOUBLE_EQ(c.get_x() / Length::METER , 2.0) << "full*getal1 x";
+	ASSERT_DOUBLE_EQ(c.get_y() / Length::METER , 4.0) << "full*getal1 y";
+	ASSERT_DOUBLE_EQ(c.get_z() / Length::METER , 6.0) << "full*getal1 z";
 	
 	// vol * getal2
 	Distance d(1 * Length::METER, 2 * Length::METER, 3 * Length::METER);
 	d = d * getal2;
-	ASSERT_DOUBLE_EQ(d.getX() / Length::METER , 2.5) << "full*getal2 x";
-	ASSERT_DOUBLE_EQ(d.getY() / Length::METER , 5.0) << "full*getal2 y";
-	ASSERT_DOUBLE_EQ(d.getZ() / Length::METER , 7.5) << "full*getal2 z";
+	ASSERT_DOUBLE_EQ(d.get_x() / Length::METER , 2.5) << "full*getal2 x";
+	ASSERT_DOUBLE_EQ(d.get_y() / Length::METER , 5.0) << "full*getal2 y";
+	ASSERT_DOUBLE_EQ(d.get_z() / Length::METER , 7.5) << "full*getal2 z";
 }
 
 TEST(Distance, DivideDouble) { 					//operator/
@@ -137,36 +137,36 @@ TEST(Distance, DivideDouble) { 					//operator/
 	// leeg / 0
 	Distance a;
 	a = a / 0;			// dit mag niet, dus niks doen!
-	ASSERT_DOUBLE_EQ(a.getX() / Length::METER , 0.0) << "empty/0 x";
-	ASSERT_DOUBLE_EQ(a.getY() / Length::METER , 0.0) << "empty/0 y";
-	ASSERT_DOUBLE_EQ(a.getZ() / Length::METER , 0.0) << "empty/0 z";
+	ASSERT_DOUBLE_EQ(a.get_x() / Length::METER , 0.0) << "empty/0 x";
+	ASSERT_DOUBLE_EQ(a.get_y() / Length::METER , 0.0) << "empty/0 y";
+	ASSERT_DOUBLE_EQ(a.get_z() / Length::METER , 0.0) << "empty/0 z";
 	
 	// leeg / getal1
 	a = a / getal1;
-	ASSERT_DOUBLE_EQ(a.getX() / Length::METER , 0.0) << "empty x";
-	ASSERT_DOUBLE_EQ(a.getY() / Length::METER , 0.0) << "empty y";
-	ASSERT_DOUBLE_EQ(a.getZ() / Length::METER , 0.0) << "empty z";
+	ASSERT_DOUBLE_EQ(a.get_x() / Length::METER , 0.0) << "empty x";
+	ASSERT_DOUBLE_EQ(a.get_y() / Length::METER , 0.0) << "empty y";
+	ASSERT_DOUBLE_EQ(a.get_z() / Length::METER , 0.0) << "empty z";
 	
 	// vol / 0
 	Distance b(1 * Length::METER, 2 * Length::METER, 3 * Length::METER);
 	b = b / 0;			// dit mag niet, dus niks doen!
-	ASSERT_DOUBLE_EQ(b.getX() / Length::METER , 1.0) << "full/0 x";
-	ASSERT_DOUBLE_EQ(b.getY() / Length::METER , 2.0) << "full/0 y";
-	ASSERT_DOUBLE_EQ(b.getZ() / Length::METER , 3.0) << "full/0 z";
+	ASSERT_DOUBLE_EQ(b.get_x() / Length::METER , 1.0) << "full/0 x";
+	ASSERT_DOUBLE_EQ(b.get_y() / Length::METER , 2.0) << "full/0 y";
+	ASSERT_DOUBLE_EQ(b.get_z() / Length::METER , 3.0) << "full/0 z";
 	
 	// vol / getal1
 	Distance c(1 * Length::METER, 2 * Length::METER, 3 * Length::METER);
 	c = c / getal1;
-	ASSERT_DOUBLE_EQ(c.getX() / Length::METER , 0.5) << "full/getal1 x";
-	ASSERT_DOUBLE_EQ(c.getY() / Length::METER , 1.0) << "full/getal1 y";
-	ASSERT_DOUBLE_EQ(c.getZ() / Length::METER , 1.5) << "full/getal1 z";
+	ASSERT_DOUBLE_EQ(c.get_x() / Length::METER , 0.5) << "full/getal1 x";
+	ASSERT_DOUBLE_EQ(c.get_y() / Length::METER , 1.0) << "full/getal1 y";
+	ASSERT_DOUBLE_EQ(c.get_z() / Length::METER , 1.5) << "full/getal1 z";
 	
 	// vol / getal2
 	Distance d(1 * Length::METER, 2 * Length::METER, 3 * Length::METER);
 	d = d / getal2;
-	ASSERT_DOUBLE_EQ(d.getX() / Length::METER , 0.4) << "full/getal2 x";
-	ASSERT_DOUBLE_EQ(d.getY() / Length::METER , 0.8) << "full/getal2 y";
-	ASSERT_DOUBLE_EQ(d.getZ() / Length::METER , 1.2) << "full/getal2 z";
+	ASSERT_DOUBLE_EQ(d.get_x() / Length::METER , 0.4) << "full/getal2 x";
+	ASSERT_DOUBLE_EQ(d.get_y() / Length::METER , 0.8) << "full/getal2 y";
+	ASSERT_DOUBLE_EQ(d.get_z() / Length::METER , 1.2) << "full/getal2 z";
 }
 
 TEST(Distance, AddAssignDistance) {					//operator+=
@@ -174,24 +174,24 @@ TEST(Distance, AddAssignDistance) {					//operator+=
 	Distance a;
 	Distance b;
 	a += b;
-	ASSERT_DOUBLE_EQ(a.getX() / Length::METER , 0.0) << "empty+empty x";
-	ASSERT_DOUBLE_EQ(a.getY() / Length::METER , 0.0) << "empty+empty y";
-	ASSERT_DOUBLE_EQ(a.getZ() / Length::METER , 0.0) << "empty+empty z";
+	ASSERT_DOUBLE_EQ(a.get_x() / Length::METER , 0.0) << "empty+empty x";
+	ASSERT_DOUBLE_EQ(a.get_y() / Length::METER , 0.0) << "empty+empty y";
+	ASSERT_DOUBLE_EQ(a.get_z() / Length::METER , 0.0) << "empty+empty z";
 	
 	// leeg + vol
 	Distance c(1 * Length::METER, 2 * Length::METER, 3 * Length::METER);
 	b += c;
-	ASSERT_DOUBLE_EQ(b.getX() / Length::METER , 1.0) << "empty+full x";
-	ASSERT_DOUBLE_EQ(b.getY() / Length::METER , 2.0) << "empty+full y";
-	ASSERT_DOUBLE_EQ(b.getZ() / Length::METER , 3.0) << "empty+full z";
+	ASSERT_DOUBLE_EQ(b.get_x() / Length::METER , 1.0) << "empty+full x";
+	ASSERT_DOUBLE_EQ(b.get_y() / Length::METER , 2.0) << "empty+full y";
+	ASSERT_DOUBLE_EQ(b.get_z() / Length::METER , 3.0) << "empty+full z";
 	
 	// vol + vol
 	Distance d(1 * Length::METER, 2 * Length::METER, 3 * Length::METER);
 	Distance e(4 * Length::METER, 5 * Length::METER, 6 * Length::METER);
 	d += e;
- 	ASSERT_DOUBLE_EQ(d.getX() / Length::METER , 5.0) << "full+full x";
-	ASSERT_DOUBLE_EQ(d.getY() / Length::METER , 7.0) << "full+full y";
-	ASSERT_DOUBLE_EQ(d.getZ() / Length::METER , 9.0) << "full+full z"; 
+ 	ASSERT_DOUBLE_EQ(d.get_x() / Length::METER , 5.0) << "full+full x";
+	ASSERT_DOUBLE_EQ(d.get_y() / Length::METER , 7.0) << "full+full y";
+	ASSERT_DOUBLE_EQ(d.get_z() / Length::METER , 9.0) << "full+full z"; 
 }
 
 TEST(Distance, SubstractAssignDistance) { 			//operator-=
@@ -199,32 +199,32 @@ TEST(Distance, SubstractAssignDistance) { 			//operator-=
 	Distance a;
 	Distance b;
 	a -= b;
-	ASSERT_DOUBLE_EQ(a.getX() / Length::METER , 0.0) << "empty-empty x";
-	ASSERT_DOUBLE_EQ(a.getY() / Length::METER , 0.0) << "empty-empty y";
-	ASSERT_DOUBLE_EQ(a.getZ() / Length::METER , 0.0) << "empty-empty z";
+	ASSERT_DOUBLE_EQ(a.get_x() / Length::METER , 0.0) << "empty-empty x";
+	ASSERT_DOUBLE_EQ(a.get_y() / Length::METER , 0.0) << "empty-empty y";
+	ASSERT_DOUBLE_EQ(a.get_z() / Length::METER , 0.0) << "empty-empty z";
 	
 	// leeg - vol
 	Distance c(1 * Length::METER, 2 * Length::METER, 3 * Length::METER);
 	b -= c;
-	ASSERT_DOUBLE_EQ(b.getX() / Length::METER , -1.0) << "empty-full x";
-	ASSERT_DOUBLE_EQ(b.getY() / Length::METER , -2.0) << "empty-full y";
-	ASSERT_DOUBLE_EQ(b.getZ() / Length::METER , -3.0) << "empty-full z";
+	ASSERT_DOUBLE_EQ(b.get_x() / Length::METER , -1.0) << "empty-full x";
+	ASSERT_DOUBLE_EQ(b.get_y() / Length::METER , -2.0) << "empty-full y";
+	ASSERT_DOUBLE_EQ(b.get_z() / Length::METER , -3.0) << "empty-full z";
 	
 	// vol - leeg
 	Distance d(1 * Length::METER, 2 * Length::METER, 3 * Length::METER);
 	Distance e;
 	d -= e;
-	ASSERT_DOUBLE_EQ(d.getX() / Length::METER , 1.0) << "full-empty x";
-	ASSERT_DOUBLE_EQ(d.getY() / Length::METER , 2.0) << "full-empty y";
-	ASSERT_DOUBLE_EQ(d.getZ() / Length::METER , 3.0) << "full-empty z";
+	ASSERT_DOUBLE_EQ(d.get_x() / Length::METER , 1.0) << "full-empty x";
+	ASSERT_DOUBLE_EQ(d.get_y() / Length::METER , 2.0) << "full-empty y";
+	ASSERT_DOUBLE_EQ(d.get_z() / Length::METER , 3.0) << "full-empty z";
 	
 	// vol - vol
 	Distance f(4 * Length::METER, 5 * Length::METER, 6 * Length::METER);
 	Distance g(1 * Length::METER, 2 * Length::METER, 3 * Length::METER);
 	f -= g;
- 	ASSERT_DOUBLE_EQ(f.getX() / Length::METER , 3.0) << "full-full x";
-	ASSERT_DOUBLE_EQ(f.getY() / Length::METER , 3.0) << "full-full y";
-	ASSERT_DOUBLE_EQ(f.getZ() / Length::METER , 3.0) << "full-full z";
+ 	ASSERT_DOUBLE_EQ(f.get_x() / Length::METER , 3.0) << "full-full x";
+	ASSERT_DOUBLE_EQ(f.get_y() / Length::METER , 3.0) << "full-full y";
+	ASSERT_DOUBLE_EQ(f.get_z() / Length::METER , 3.0) << "full-full z";
 }
 
 TEST(Distance, GreaterThan) { 				//operator>
@@ -256,9 +256,9 @@ TEST(Distance, InputStream) { 			//operator>>				// ZOIETS??????????????
 	//input.open();
 	//a >> input;
 	//input.close();
-	ASSERT_DOUBLE_EQ(a.getX() , 1.0) << "x";
-	ASSERT_DOUBLE_EQ(a.getY() , 2.0) << "y";
-	ASSERT_DOUBLE_EQ(a.getZ() , 3.0) << "z";
+	ASSERT_DOUBLE_EQ(a.get_x() , 1.0) << "x";
+	ASSERT_DOUBLE_EQ(a.get_y() , 2.0) << "y";
+	ASSERT_DOUBLE_EQ(a.get_z() , 3.0) << "z";
 }
 NOT WORKING YET
 */
