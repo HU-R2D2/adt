@@ -80,9 +80,7 @@ class Length{
 		/// divides a Length by another Length and returns a Length
 		friend Length operator/ (double n, const Length & rhs);
 
-
 		friend Speed operator/ (const Length & l, const Duration & d);
-		friend Length operator*(const Duration & lhs, const Speed & rhs);
 		/// adds a Length to a Length and returns this Length
 		//=========================================================================================================================================================
 		
@@ -113,14 +111,7 @@ class Length{
 		 * @param	rhs 		the right hand side to compare 
 		 **************************************************************************************************/
 		bool operator> (const Length& rhs) const;
-		/**********************************************************************************************//**
-		 * @fn		Length::Length(const Length& rhs)
-		 *
-		 * @brief	smaller then operator of a Length
-		 *
-		 * @param	rhs 		the right hand side to compare 
-		 **************************************************************************************************/
-		bool operator< (const Length& rhs) const;
+		
 
 		
 		
