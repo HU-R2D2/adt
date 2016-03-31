@@ -13,31 +13,50 @@
 #include <sstream>
 
 
-TEST(Coordinate, Construtor) {
-   // TODO: Edit as the constructor should be private.
-   Coordinate base (0.0, 0.0, 0.0);
-   ASSERT_DOUBLE_EQ(0, base.getX());
-   ASSERT_DOUBLE_EQ(0, base.getY());
-   ASSERT_DOUBLE_EQ(0, base.getZ());
-
-   Coordinate coord50 (50.0,50.0,50.0);
-   ASSERT_DOUBLE_EQ(50, coord50.getX());
-   ASSERT_DOUBLE_EQ(50, coord50.getY());
-   ASSERT_DOUBLE_EQ(50, coord50.getZ());
-}
-
 TEST(Coordinate, Assignment) {
-   auto value = Coordinate::origin;
-   value = Coordinate::origin;
+   Coordinate c1 = Coordinate::origin;
+   Coordinate c2 = Coordinate::origin;
+   c1 = c2;
+   EXPECT_DOUBLE_EQ(0, c1.getX());
+   EXPECT_DOUBLE_EQ(0, c1.getY());
+   EXPECT_DOUBLE_EQ(0, c1.getY());
 }
 
 TEST(Coordinate, Addition) {
-   auto value = Coordinate::origin;
-   value + (Coordinate::origin - Coordinate::origin);
+   Coordinate c1 = Coordinate::origin;
+   Coordinate c2 = c1 + (Coordinate::origin - Coordinate::origin);
+   EXPECT_DOUBLE_EQ(0, c1.getX());
+   EXPECT_DOUBLE_EQ(0, c1.getY());
+   EXPECT_DOUBLE_EQ(0, c1.getY());
+
+   Distance d{0,0,0};
+   const Coordinate * const coordPointer = &c1;
+
+   ASSERT_EQ(coordPointer, &(c1 -= d)) << "Wrong reference returned.";
+   EXPECT_DOUBLE_EQ(0, c1.getX());
+   EXPECT_DOUBLE_EQ(0, c1.getY());
+   EXPECT_DOUBLE_EQ(0, c1.getY());
 }
 
 TEST(Coordinate, Subtraction) {
+   Coordinate c1 = Coordinate::origin;
+   Coordinate c2 = Coordinate::origin;
+   Distance d = c1 - c2;
+   EXPECT_DOUBLE_EQ(0, d.getX());
+   EXPECT_DOUBLE_EQ(0, d.getY());
+   EXPECT_DOUBLE_EQ(0, d.getZ());
 
+   Coordinate c3 = c1 - d;
+   EXPECT_DOUBLE_EQ(0, c3.getX());
+   EXPECT_DOUBLE_EQ(0, c3.getY());
+   EXPECT_DOUBLE_EQ(0, c3.getZ());
+
+   const Coordinate * const coordPointer = &c1;
+
+   ASSERT_EQ(coordPointer, &(c1 -= d)) << "Wrong reference returned.";
+   EXPECT_DOUBLE_EQ(0, c1.getX());
+   EXPECT_DOUBLE_EQ(0, c1.getY());
+   EXPECT_DOUBLE_EQ(0, c1.getY());
 }
 
 TEST(Coordinate, WriteTo) {
@@ -46,6 +65,7 @@ TEST(Coordinate, WriteTo) {
    std::string output;
    std::getline(stream, output);
    EXPECT_EQ("coordinate (0m, 0m, 0m)", output);
+   EXPECT_EQ(&stream, &(stream << Coordinate::origin)) << "Wrong stream is returned.";
 }
 
 TEST(Coordinate, ReadFrom) {
@@ -78,12 +98,12 @@ TEST(Coordinate, ReadFrom) {
          std::stringstream stream{failure};
          stream >> coord;
          FAIL() << "Parsing \"" << failure << "\" to a coordinate should not be possible." << std::endl;
-      } catch (std::runtime_error) {
+      } catch (std::runtime_error & e) {
          // Behaves as expected.
          ASSERT_DOUBLE_EQ(15, coord.getX()) << "X value was modified despite the promise";
          ASSERT_DOUBLE_EQ(7.5, coord.getY()) << "Y value was modified despite the promise";
          ASSERT_DOUBLE_EQ(3.75, coord.getZ()) << "Z value was modified despite the promise";
-         std::cerr << "" << std::endl;
+         //std::cerr << e.what() << std::endl;
       } catch (...) {
          FAIL() << "Wrong exception; was expecting [std::runtime_error]";
       }

@@ -69,9 +69,6 @@ Speed & Speed::operator/= ( const double & rhs ){
   return *this;
 }
 
-Speed operator/ ( double n, const Speed & rhs ){
-  return Speed{rhs.value / n};
-}
 
 
 double Speed:: operator/(const Speed & rhs){
