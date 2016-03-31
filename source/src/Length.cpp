@@ -7,9 +7,6 @@ Length::Length(double l):
 	l{l}
 {}
 
-double Length::getLength() {
-	return l;
-}
 
 Length& Length::operator= (const Length& rhs){
 	l = rhs.l;

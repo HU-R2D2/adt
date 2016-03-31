@@ -40,11 +40,13 @@ Speed & Speed::operator-= ( const Speed & rhs ){
 }
 
 Length Speed::operator*(const Duration & rhs) const{
-  return Length{value * rhs.seconds};
+  Length l = value * rhs.seconds * Length::METER;
+  return l;
 }
 
 Length operator*(const Duration & lhs, const Speed & rhs){
-  return Length{lhs.seconds * rhs.value};
+  Length l = lhs.seconds * rhs.value * Length::METER;
+  return l;
 }
 
 Speed Speed::operator* ( const double & rhs ) const{

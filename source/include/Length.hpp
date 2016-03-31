@@ -7,13 +7,14 @@
 
 #include <iostream> 
 #include "Duration.hpp"
+#include "gtest/gtest.h"
 
 #ifndef  _LENGTH_HPP
 #define _LENGTH_HPP
 class Speed;
 // nog inbouwen dat geen negatieve lengtes mogen bestaan!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 class Length{	
-	public:	
+	private:
 		/**********************************************************************************************//**
 		 * @fn		Length::Length(double l)
 		 *
@@ -21,17 +22,9 @@ class Length{
 		 *
 		 * @param	l			The coordinate of the distance
 		 **************************************************************************************************/
-		Length(double l = 0);
-
-		/**********************************************************************************************//**
-		 * @fn		double Length::getLength()
-		 *
-		 * @brief	Gets the length value of the Length
-		 *
-		 * @return	double		The length
-		 **************************************************************************************************/
-		double getLength();
-		
+		Length(double l);
+	public:	
+		Length(){l = 0;}
 		/**********************************************************************************************//**
 		 * @fn		Length::Length(const Length& rhs)
 		 *
@@ -137,7 +130,9 @@ class Length{
 		/// adds an istream to a Length
 		friend std::istream& operator>>(std::istream& is, Length& rhs);
 		//================================================================================================================
+		//FRIEND_TEST(Constructor, Default);
 		
+		FRIEND_TEST(Length, doubleConstructor);
 		static const Length METER;
 		static const Length CENTIMETER;
 	private:
