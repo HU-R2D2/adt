@@ -1,24 +1,23 @@
 #ifndef _BOX_HPP
 #define _BOX_HPP
 
-#include "Coordinate.hpp" // Fake mock-class until naming off Coordinate class is fixed
+#include "Coordinate.hpp"
 #include "Distance.hpp"
-#include <iostream>
-#include "gtest/gtest.h"
 
-/**
-	ToDo 
-	Review
+#include <iostream>
+
+//!	ToDo:
+//!	Review
 	
-*	@author 		Stephan Vivie
-*	@date			15-03-2016
-*	@version		0.1
-	@brief	A 3D rectangular box in space, which is aligned to the 3 axises.
+//!	@author 		Stephan Vivie
+//! @date			15-03-2016
+//!	@version		0.1
+//!	@brief	        A 3D rectangular box in space, which is aligned to the 3 axises.
 	
-*/
 
 class Box {
 	friend class Distance;
+
 public:
 	//! @brief Constructs a box with 2 coordinates, bottom left and top right of the 3D ractangle
     //!
@@ -99,6 +98,7 @@ private:
 	
 	Coordinate bottomLeft;
 	Coordinate topRight;
+
 };
 
 #endif	// _BOX_HPP
