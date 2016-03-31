@@ -7,7 +7,6 @@ Length::Length(double l):
 	l{l}
 {}
 
-
 Length& Length::operator= (const Length& rhs){
 	l = rhs.l;
 	return *this;
@@ -31,6 +30,24 @@ Length Length::operator* (double number) const {
   return temp;	
 }
 
+Length operator* (double n, const Length & rhs) {
+  Length temp {rhs};
+  temp.l = temp.l * n;
+  return temp;
+}
+	
+		
+		
+		
+//Length operator* (const Duration & lhs, const Speed & rhs);
+
+
+
+
+
+
+
+
 Length Length::operator/ (double number) const {		// mag niet delen door 0!!
 	Length temp {*this};
 	if(number != 0) {
@@ -38,6 +55,25 @@ Length Length::operator/ (double number) const {		// mag niet delen door 0!!
 	}
 	return temp; 
 }
+
+double Length::operator/ (const Length & rhs) const{
+	double temp = l;
+	if(rhs.l != 0) {
+		temp = temp / rhs.l;
+	}
+	return temp; 
+}
+
+
+//friend Speed operator/ (const Length & l, const Duration & d);
+
+
+
+
+
+
+
+
 
 Length& Length::operator+= (const Length & rhs) {
   l += rhs.l;
@@ -50,10 +86,6 @@ Length& Length::operator-= (const Length & rhs) {
 	return *this;
 }
 
-double Length::operator/ (const Length & rhs) const{
-  return l / rhs.l;
-}
-
 bool Length::operator> (const Length& rhs) const {
   if(l > rhs.l){
     return true;
@@ -61,22 +93,6 @@ bool Length::operator> (const Length& rhs) const {
     return false;
    }
 }
-
-
-//=============================================================================================================
-Length operator* (double n, const Length & rhs) {
-  Length temp {rhs};
-  temp.l = temp.l * n;
-  return temp;
-}
-
-Length operator/ (double n, const Length & rhs) {
-  Length temp {rhs};
-  temp.l = temp.l / n;
-  return temp;
-}
-//=============================================================================================================
-
 
 bool Length::operator< (const Length& rhs) const{
   if(l < rhs.l){

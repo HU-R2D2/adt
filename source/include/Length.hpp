@@ -63,6 +63,12 @@ class Length{
 		 * @param	number 		the number to multyply the length by
 		 **************************************************************************************************/
 		Length operator* (double number) const;
+		
+		
+		
+		friend Length operator* (double n, const Length& rhs);
+		friend Length operator* (const Duration & lhs, const Speed & rhs);
+		
 		/**********************************************************************************************//**
 		 * @fn	Length::Length(const Length& rhs)
 		 *
@@ -71,22 +77,10 @@ class Length{
 		 * @param	number the number to devide the length by
 		 **************************************************************************************************/
 		Length operator/ (double number) const;
-		//=========================================================================================================================================================
-		
+
 		
 		double operator/ (const Length & rhs) const;
-		// HELP?!?!?!?!
-		//=========================================================================================================================================================
-		/// multiply a Length by another Length and returns a Length
-		friend Length operator* (double n, const Length& rhs);
-		/// divides a Length by another Length and returns a Length
-		friend Length operator/ (double n, const Length & rhs);
-
-
 		friend Speed operator/ (const Length & l, const Duration & d);
-		friend Length operator*(const Duration & lhs, const Speed & rhs);
-		/// adds a Length to a Length and returns this Length
-		//=========================================================================================================================================================
 		
 		
 		
@@ -132,7 +126,7 @@ class Length{
 		/// adds an istream to a Length
 		friend std::istream& operator>>(std::istream& is, Length& rhs);
 		//================================================================================================================
-		//FRIEND_TEST(Constructor, Default);
+		
 		
 		FRIEND_TEST(Length, doubleConstructor);
 		static const Length METER;
