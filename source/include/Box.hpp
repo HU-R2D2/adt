@@ -19,6 +19,7 @@ class Box {
 	friend class Distance;
 
 public:
+    Box();
 	//! @brief Constructs a box with 2 coordinates, bottom left and top right of the 3D ractangle
     //!
     //! @param bottomLeft

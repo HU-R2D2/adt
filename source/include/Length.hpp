@@ -7,7 +7,7 @@
 
 #ifndef _LENGTH_HPP
 #define _LENGTH_HPP
-
+#include "gtest/gtest.h"
 #include "Duration.hpp"
 
 #include <iostream> 
@@ -131,6 +131,7 @@ class Length {
 		//! @param	
 		friend Speed operator/ (const Length & l, const Duration & d);
 
+		FRIEND_TEST(Length, doubleConstructor);
 		static const Length METER;
 		static const Length CENTIMETER;
 	private:
