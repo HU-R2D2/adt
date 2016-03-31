@@ -16,7 +16,6 @@ class Speed {
 
 
 private:
-	/// constructor of a speed
 	Speed();
 	//! Constructor for speed
 	/*!
@@ -25,6 +24,8 @@ private:
 	Speed(double val);
 	double value;
 public:
+	//! Default constructor of a speed
+	
 	//! Assigns a speed to this speed. 
     /*!
       \param rhs a speed
@@ -32,11 +33,18 @@ public:
     */
 	Speed & operator= (const Speed & rhs);
 
+	//! Adds a speed to a speed.
+    /*!
+      \param rhs a speed
+      \return the calculated speed.
+    */
+	Speed operator+ ( const Speed & rhs ) const;
 	//! Checks if a speed is smaller than another speed
 	/*!
       \param rhs a speed
       \return the boolean that indicates if the speed is smaller than the speed
     */
+    
 	bool operator< (const Speed & rhs) const;
 
 	//! Checks if a speed is greater  than another speed
@@ -46,12 +54,7 @@ public:
     */
     bool operator> (const Speed & rhs) const;
 
-	//! Adds a speed to a speed.
-    /*!
-      \param rhs a speed
-      \return the calculated speed.
-    */
-	Speed operator+ ( const Speed & rhs ) const;
+	
 	
 	//! Adds a speed to a speed and assign it to this speed.
     /*!

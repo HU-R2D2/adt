@@ -80,8 +80,7 @@ class Length{
 
 		
 		double operator/ (const Length & rhs) const;
-		friend Speed operator/ (const Length & l, const Duration & d);
-		
+		friend Speed operator/ (const Length & l, const Duration & d);	
 		
 		
 		
@@ -109,6 +108,7 @@ class Length{
 		 * @param	rhs 		the right hand side to compare 
 		 **************************************************************************************************/
 		bool operator> (const Length& rhs) const;
+
 		/**********************************************************************************************//**
 		 * @fn		Length::Length(const Length& rhs)
 		 *
@@ -117,6 +117,7 @@ class Length{
 		 * @param	rhs 		the right hand side to compare 
 		 **************************************************************************************************/
 		bool operator< (const Length& rhs) const;
+		
 
 		
 		

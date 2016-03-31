@@ -1,5 +1,5 @@
 #include "../include/Box.hpp"
-/*
+
 Box::Box(Coordinate bottomLeft, Coordinate topRight):
 	bottomLeft(bottomLeft),
 	topRight(topRight)
@@ -80,8 +80,8 @@ Coordinate Box::getTopRight()
 
 Box Box::getUnionBox(Box box)
 {
-	Coordinate newBottomLeft (0, 0, 0);
-	Coordinate newTopRight (0, 0, 0);
+	Coordinate newBottomLeft;
+	Coordinate newTopRight;
 
 	(bottomLeft.x < box.bottomLeft.x) ?
 		newBottomLeft.x = bottomLeft.x : newBottomLeft.x = box.bottomLeft.x;
@@ -123,7 +123,7 @@ Box Box::getIntersectionBox(Box box)
 	else
 	{
 		// no intersection box
-		return Box(Coordinate(0.0,0.0,0.0), Coordinate(0.0,0.0,0.0));
+		return Box(Coordinate(), Coordinate());
 	}
 		
 }
@@ -149,4 +149,4 @@ Box Box::operator=(const Box & rhs)
 
 std::ostream & operator <<(std::ostream & lhs, const Box & rhs) {
 	lhs << "box (" << rhs.bottomLeft << " " << rhs.topRight << ")";
-} */
+}

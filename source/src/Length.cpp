@@ -35,18 +35,6 @@ Length operator* (double n, const Length & rhs) {
   temp.l = temp.l * n;
   return temp;
 }
-	
-		
-		
-		
-//Length operator* (const Duration & lhs, const Speed & rhs);
-
-
-
-
-
-
-
 
 Length Length::operator/ (double number) const {		// mag niet delen door 0!!
 	Length temp {*this};
@@ -63,17 +51,6 @@ double Length::operator/ (const Length & rhs) const{
 	}
 	return temp; 
 }
-
-
-//friend Speed operator/ (const Length & l, const Duration & d);
-
-
-
-
-
-
-
-
 
 Length& Length::operator+= (const Length & rhs) {
   l += rhs.l;
@@ -106,7 +83,6 @@ std::ostream& operator<< (std::ostream& lhs, const Length& rhs) {
 	lhs << rhs.l;
     return lhs;
 }
-
 
 //==============================================================================================================
 std::istream& operator>>( std::istream& is, Length& rhs){  //?
