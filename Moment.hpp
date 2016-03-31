@@ -110,14 +110,15 @@ public:
 	double seconds;
 };
 #endif 
-enum DAY : int8_t{
+enum DAY : uint8_t{
 	SUNDAY = 0,
 	MONDAY,
 	TUESDAY,
 	WEDNESDAY,
 	THURSDAY,
 	FRIDAY,
-	SATURDAY
+	SATURDAY,
+	INVALID = 0xff
 	
 };
 enum MONTH{
@@ -135,32 +136,13 @@ enum MONTH{
 	DECEMBER
 };
 struct proto_datetime{
-	DAY day;
+
+	int year, mday;
 	MONTH month;
-	int mday, year, hour, minute, second;
-	proto_datetime(MONTH month, int year, int mday, DAY day) : day{day}, month{month}, year{year} mday{mday} {
+	DAY day;
+	proto_datetime(int year, int mday, MONTH month) : year{year}, mday{mday}, month{month} {
 
 	}
-};
-/*enum MONTH_OFFSET{
-	JANUARY = 6,
-	FEBRUARY = 2,
-	MARCH = 2,
-	APRIL = 5,
-	MAY = 0,
-	JUNE = 3,
-	JULY = 5,
-	AUGUST = 1,
-	SEPTEMBER = 4,
-	OCTOBER = 6,
-	NOVEMBER = 2,
-	DECEMBER = 4
-};*/
-enum CENTURY_PATTERN	{
-	CENTURY_FIRST 	=    4,
-	CENTURY_SECOND 	=    2,
-	CENTURY_THIRD 	=    0,
-	CENTURY_FOURTH 	=    6
 };
 struct DATETIME{ // Should be changed into a class
 	
@@ -178,19 +160,14 @@ struct DATETIME{ // Should be changed into a class
 		year 	= (now->tm_year + 1900);
 		month 	= (MONTH)(now->tm_mon + 1);
 		mday 	= now->tm_mday;
-		//DAY d 	= (DAY)5;
 
-		// value of century divided by 100, modulus 4 + 4
-		proto_datetime testDateTime()
-		int test0 = (int)(6 + 16 + 4 + 3 + 31) % 7;
-		int test1 = (int)(calculateCenturyPattern(2016) + (2016 - 2000) + (int)((2016 - 2000) / 4) + calculateMonthlyPattern(2016, 4) + 24) % 7; // formula
-		int test = (int)(mday + 2 + (year - 2000) + ( (int)(year - 2000) / 4 ) ) % 7;
-		cout << "test is:\t" << test1 << "\t and year is: " << year << endl;
-		calculateCenturyPattern(year);
+		proto_datetime testDateTime(2015, 31, MONTH::MARCH);
+		cout << "test is:\t" << (int)calculateDay(testDateTime) << "\t and year is: " << year << endl;
 		//(d + m + y + absolute(y / 4) + 0) % 7
 	}
 	DAY calculateDay(proto_datetime& dt)	{
 		//Todo maybe init datetime struct?
+		//ToDo ready for testing
 
 		const int year = dt.year;
 		const int digitYear = dt.year - (dt.year - dt.year % 100);
