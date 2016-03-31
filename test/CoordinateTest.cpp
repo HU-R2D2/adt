@@ -17,46 +17,46 @@ TEST(Coordinate, Assignment) {
    Coordinate c1 = Coordinate::origin;
    Coordinate c2 = Coordinate::origin;
    c1 = c2;
-   EXPECT_DOUBLE_EQ(0, c1.getX());
-   EXPECT_DOUBLE_EQ(0, c1.getY());
-   EXPECT_DOUBLE_EQ(0, c1.getY());
+   EXPECT_DOUBLE_EQ(0, c1.getX() / Length::METER);
+   EXPECT_DOUBLE_EQ(0, c1.getY() / Length::METER);
+   EXPECT_DOUBLE_EQ(0, c1.getY() / Length::METER);
 }
 
 TEST(Coordinate, Addition) {
    Coordinate c1 = Coordinate::origin;
    Coordinate c2 = c1 + (Coordinate::origin - Coordinate::origin);
-   EXPECT_DOUBLE_EQ(0, c1.getX());
-   EXPECT_DOUBLE_EQ(0, c1.getY());
-   EXPECT_DOUBLE_EQ(0, c1.getY());
+   EXPECT_DOUBLE_EQ(0, c1.getX() / Length::METER);
+   EXPECT_DOUBLE_EQ(0, c1.getY() / Length::METER);
+   EXPECT_DOUBLE_EQ(0, c1.getY() / Length::METER);
 
    Distance d{0,0,0};
    const Coordinate * const coordPointer = &c1;
 
    ASSERT_EQ(coordPointer, &(c1 -= d)) << "Wrong reference returned.";
-   EXPECT_DOUBLE_EQ(0, c1.getX());
-   EXPECT_DOUBLE_EQ(0, c1.getY());
-   EXPECT_DOUBLE_EQ(0, c1.getY());
+   EXPECT_DOUBLE_EQ(0, c1.getX() / Length::METER);
+   EXPECT_DOUBLE_EQ(0, c1.getY() / Length::METER);
+   EXPECT_DOUBLE_EQ(0, c1.getY() / Length::METER);
 }
 
 TEST(Coordinate, Subtraction) {
    Coordinate c1 = Coordinate::origin;
    Coordinate c2 = Coordinate::origin;
    Distance d = c1 - c2;
-   EXPECT_DOUBLE_EQ(0, d.getX());
-   EXPECT_DOUBLE_EQ(0, d.getY());
-   EXPECT_DOUBLE_EQ(0, d.getZ());
+   EXPECT_DOUBLE_EQ(0, d.getX() / Length::METER);
+   EXPECT_DOUBLE_EQ(0, d.getY() / Length::METER);
+   EXPECT_DOUBLE_EQ(0, d.getZ() / Length::METER);
 
    Coordinate c3 = c1 - d;
-   EXPECT_DOUBLE_EQ(0, c3.getX());
-   EXPECT_DOUBLE_EQ(0, c3.getY());
-   EXPECT_DOUBLE_EQ(0, c3.getZ());
+   EXPECT_DOUBLE_EQ(0, c3.getX() / Length::METER);
+   EXPECT_DOUBLE_EQ(0, c3.getY() / Length::METER);
+   EXPECT_DOUBLE_EQ(0, c3.getZ() / Length::METER);
 
    const Coordinate * const coordPointer = &c1;
 
    ASSERT_EQ(coordPointer, &(c1 -= d)) << "Wrong reference returned.";
-   EXPECT_DOUBLE_EQ(0, c1.getX());
-   EXPECT_DOUBLE_EQ(0, c1.getY());
-   EXPECT_DOUBLE_EQ(0, c1.getY());
+   EXPECT_DOUBLE_EQ(0, c1.getX() / Length::METER);
+   EXPECT_DOUBLE_EQ(0, c1.getY() / Length::METER);
+   EXPECT_DOUBLE_EQ(0, c1.getY() / Length::METER);
 }
 
 TEST(Coordinate, WriteTo) {
@@ -75,9 +75,9 @@ TEST(Coordinate, ReadFrom) {
 
    stream << "coordinate (15m, 7.5m, 3.75m)";
    stream >> coord;
-   ASSERT_DOUBLE_EQ(15, coord.getX());
-   ASSERT_DOUBLE_EQ(7.5, coord.getY());
-   ASSERT_DOUBLE_EQ(3.75, coord.getZ());
+   ASSERT_DOUBLE_EQ(15, coord.getX() / Length::METER);
+   ASSERT_DOUBLE_EQ(7.5, coord.getY() / Length::METER);
+   ASSERT_DOUBLE_EQ(3.75, coord.getZ() / Length::METER);
    ASSERT_EQ(originalPointer, &coord) << "A wrong reference is returned.";
 
    // A list of strings which should NOT be parsed.
@@ -100,9 +100,9 @@ TEST(Coordinate, ReadFrom) {
          FAIL() << "Parsing \"" << failure << "\" to a coordinate should not be possible." << std::endl;
       } catch (std::runtime_error & e) {
          // Behaves as expected.
-         ASSERT_DOUBLE_EQ(15, coord.getX()) << "X value was modified despite the promise";
-         ASSERT_DOUBLE_EQ(7.5, coord.getY()) << "Y value was modified despite the promise";
-         ASSERT_DOUBLE_EQ(3.75, coord.getZ()) << "Z value was modified despite the promise";
+         ASSERT_DOUBLE_EQ(15, coord.getX() / Length::METER) << "X value was modified despite the promise";
+         ASSERT_DOUBLE_EQ(7.5, coord.getY() / Length::METER) << "Y value was modified despite the promise";
+         ASSERT_DOUBLE_EQ(3.75, coord.getZ() / Length::METER) << "Z value was modified despite the promise";
          //std::cerr << e.what() << std::endl;
       } catch (...) {
          FAIL() << "Wrong exception; was expecting [std::runtime_error]";

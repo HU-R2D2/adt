@@ -6,11 +6,11 @@
 #ifndef COORDINATE_HPP
 #define COORDINATE_HPP
 #include <iostream>
+#include "Length.hpp"
 
 // Forward declaration.
 class Distance;
 class Box;
-//class Length; // TODO: Replace with an import, as it should become a component of this.
 
 //! @class coordinate
 //! @brief A location in space, specified as an offset to an arbitrary origin.
@@ -22,16 +22,21 @@ class Coordinate {
    friend class Box;
 
 private:
-   double x;
-   double y;
-   double z;
+   Length x;
+   Length y;
+   Length z;
 
+   //! @brief Constructs a coordinate with the given offsets from the origin on the X,Y and Z axis.
    //!
-   //!
-   //!
-   Coordinate(double x, double y, double z);
+   //! @param x Distance between the origin's X, and this coordinate's.
+   //! @param y Distance between the origin's Y, and this coordinate's.
+   //! @param z Distance between the origin's Z, and this coordinate's.
+   Coordinate(Length x, Length y, Length z);
 
 public:
+   //! @brief Creates a coordinate specifying a meaningless location.
+   Coordinate() = default;
+
     //! @brief Copies the fields from the right hand side into this,
    //! and returns a reference to this.
    //!
@@ -101,17 +106,17 @@ public:
    //! @brief Gets a reference to this coordinate's X-offset to that of the origin.
    //!
    //! @return Reference to the difference between this coordinate's X-position and that of the origin.
-   const double & getX() const;
+   const Length & getX() const;
 
    //! @brief Gets a reference to this coordinate's Y-offset to that of the origin.
    //!
    //! @return Reference to the difference between this coordinate's Y-position and that of the origin.
-   const double & getY() const;
+   const Length & getY() const;
 
    //! @brief Gets a reference to this coordinate's Z-offset to that of the origin.
    //!
    //! @return Reference to the difference between this coordinate's Z-position and that of the origin.
-   const double & getZ() const;
+   const Length & getZ() const;
 
 };
 #endif // COORDINATE_HPP
