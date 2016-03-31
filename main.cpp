@@ -1,13 +1,16 @@
 #include "bmptk.h"
 #include "gtest/gtest.h"
 #include "string20.hpp"
+#include "Datetime.hpp"
 #include "Moment.hpp"
 #include "Duration.hpp" // temp dummy object
+
 #include <ctime> // For time test
 #include <stdint.h>
 #include <iostream>
 using namespace std;
 using namespace adt;
+
 /**
    Moment Tests
 
@@ -74,7 +77,7 @@ TEST( ADD_AND_SUBTRACT_SAME_OBJECT, Moment)  {
    ASSERT_EQ(testTime - d1.seconds, m1.seconds) << "-= returns incorrect value";
    ASSERT_EQ(ptrValue, ptrValue2) << "-= returned not the same object";
 }
-TEST( STREAM_OPERATORS, Streams) {
+TEST( STREAM_OPERATORS, Streams ) {
    Moment m1(0);
    Moment m2(0);
    double testValue;
@@ -98,7 +101,7 @@ TEST( STREAM_OPERATORS, Streams) {
 int main( int argc, char **argv ){	      
 
    std::cout << "testing Moment" << "\n";
-
+   DATETIME mydatetime(time(0));
    testing::InitGoogleTest( &argc, argv );
    int result = RUN_ALL_TESTS();
    (void) result;

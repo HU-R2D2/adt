@@ -75,4 +75,4 @@ istream& operator>> (istream & lhs, Moment & rhs)	{
 	lhs >> rhs.seconds;
 	return lhs;
 }
-}
+};
