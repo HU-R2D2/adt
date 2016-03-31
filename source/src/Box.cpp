@@ -1,5 +1,6 @@
+/*
 #include "../include/Box.hpp"
-
+/*
 Box::Box(Coordinate bottomLeft, Coordinate topRight):
 	bottomLeft(bottomLeft),
 	topRight(topRight)
@@ -149,4 +150,4 @@ Box Box::operator=(const Box & rhs)
 
 std::ostream & operator <<(std::ostream & lhs, const Box & rhs) {
 	lhs << "box (" << rhs.bottomLeft << " " << rhs.topRight << ")";
-}
+} */

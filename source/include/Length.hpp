@@ -12,8 +12,10 @@
 #ifndef  _LENGTH_HPP
 #define _LENGTH_HPP
 class Speed;
+class Distance;
 // nog inbouwen dat geen negatieve lengtes mogen bestaan!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-class Length{	
+class Length{
+	friend class Distance;	
 	private:
 		/**********************************************************************************************//**
 		 * @fn		Length::Length(double l)

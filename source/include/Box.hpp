@@ -1,6 +1,6 @@
 #ifndef _BOX_HPP
 #define _BOX_HPP
-
+/*
 #include "Coordinate.hpp" // Fake mock-class until naming off Coordinate class is fixed
 #include "Distance.hpp"
 #include <iostream>
@@ -16,7 +16,7 @@
 	@brief	A 3D rectangular box in space, which is aligned to the 3 axises.
 	
 */
-
+/*
 class Box {
 	friend class Distance;
 public:

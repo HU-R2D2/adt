@@ -1,4 +1,4 @@
-#include "../source/include/Box.hpp"
+/* #include "../source/include/Box.hpp"
 #include <iostream>
 
 /**
@@ -10,7 +10,7 @@
 /**
 * CONSTRUCTORS 
 */
-
+/*
 TEST (Box, Coordinates) 
 {
 	// construct Box object with 2 Coordinates
@@ -53,7 +53,7 @@ TEST (Box, CoordinateDistance)
 /**
 * OPERATORS 
 */
-
+/*
 TEST (Box, Assign) 
 {
 
@@ -96,7 +96,7 @@ TEST (Box, Ostream)
 /**
 * METHODS 
 */
-
+/*
 TEST (Box, ContainsCoordinate) 
 {
 	Coordinate bl = Coordinate::origin + Distance{0.0, 0.0, 0.0};
