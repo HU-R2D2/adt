@@ -68,17 +68,17 @@ bool Box::intersects(Box box)
 	return false;
 }
 
-Coordinate Box::getBottomLeft()
+Coordinate Box::get_bottom_left()
 {
 	return bottomLeft;
 }
 
-Coordinate Box::getTopRight()
+Coordinate Box::get_top_right()
 {
 	return topRight;
 }
 
-Box Box::getUnionBox(Box box)
+Box Box::get_union_box(Box box)
 {
 	Coordinate newBottomLeft;
 	Coordinate newTopRight;
@@ -105,7 +105,7 @@ Box Box::getUnionBox(Box box)
 	return Box(newBottomLeft, newTopRight);
 }
 
-Box Box::getIntersectionBox(Box box)
+Box Box::get_intersection_box(Box box)
 {
 	if(this->intersects(box))
 	{
@@ -128,13 +128,13 @@ Box Box::getIntersectionBox(Box box)
 		
 }
 
-Distance Box::getAxisSize()
+Distance Box::get_axis_size()
 {
 	Distance dist;
 
-	dist.setX(topRight.x - bottomLeft.x);
-	dist.setY(topRight.y - bottomLeft.y);
-	dist.setZ(topRight.z - bottomLeft.z);
+	dist.set_x(topRight.x - bottomLeft.x);
+	dist.set_y(topRight.y - bottomLeft.y);
+	dist.set_z(topRight.z - bottomLeft.z);
 
 	return dist;
 }
