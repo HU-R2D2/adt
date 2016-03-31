@@ -5,7 +5,7 @@
 
 //Assign
 TEST(SpeedTestAssign,Speed){
-	Speed a = 5 * Length::METER / Duration::SECOND;
+	Speed a = (5 * Length::METER) / Duration::SECOND;
 	ASSERT_DOUBLE_EQ(a/(Length::METER/Duration::SECOND), 5) << "speed created";
 	Speed b = 7 * Length::METER / Duration::SECOND;
 	a = b;

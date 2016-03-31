@@ -77,7 +77,8 @@ double Speed::operator/(const Speed & rhs){
 }
 
 std::ostream& operator<<(std::ostream & os, const Speed &rhs){
-  os << "Speed: " << rhs.value << "Meter/seconds" << std::endl;
+  os << rhs.value << "m/s" << std::endl;
+  return os;
 }
 
 std::istream& operator>>(std::istream & is, Speed & rhs){}

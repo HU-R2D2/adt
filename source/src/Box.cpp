@@ -1,16 +1,36 @@
 #include "../include/Box.hpp"
 
-Box::Box(Coordinate bottomLeft, Coordinate topRight):
-	bottomLeft(bottomLeft),
-	topRight(topRight)
-{}
+Box::Box(Coordinate lhs, Coordinate rhs)
+{
+	if(lhs.x < rhs.x){
+		bottomLeft.x = lhs.x;
+		topRight.x = rhs.x;
+	}
+	else{
+		bottomLeft.x = rhs.x;
+		topRight.x = lhs.x;
+	}
+	if(lhs.y < rhs.y){
+		bottomLeft.y = lhs.y;
+		topRight.y = rhs.y;
+	}
+	else{
+		bottomLeft.y = rhs.y;
+		topRight.y = lhs.y;
+	}
+	if(lhs.z < rhs.z){
+		bottomLeft.z = lhs.z;
+		topRight.z = rhs.z;
+	}
+	else{
+		bottomLeft.z = rhs.z;
+		topRight.z = lhs.z;
+	}
+}
 
 Box::Box(Coordinate origin, Distance dist):
-	bottomLeft(origin),
-	topRight(origin) // construct with origin element so the reference gets assigned
+	Box(origin, origin + dist)
 {
-	// add distance to the topRight attribute
-	topRight = Coordinate(topRight.x + dist.getX(),topRight.y + dist.getY(),topRight.z + dist.getZ());
 }
 
 bool Box::contains(Coordinate coord)
@@ -148,5 +168,5 @@ Box Box::operator=(const Box & rhs)
 }
 
 std::ostream & operator <<(std::ostream & lhs, const Box & rhs) {
-	lhs << "box (" << rhs.bottomLeft << " " << rhs.topRight << ")";
+	lhs << "box (" << rhs.bottomLeft << ", " << rhs.topRight << ")";
 }

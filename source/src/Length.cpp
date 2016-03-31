@@ -80,8 +80,8 @@ bool Length::operator< (const Length& rhs) const{
 }
 
 std::ostream& operator<< (std::ostream& lhs, const Length& rhs) {
-	lhs << rhs.l;
-    return lhs;
+	lhs << rhs.l << "m";
+  return lhs;
 }
 
 //==============================================================================================================

@@ -36,7 +36,6 @@ private:
 public:
    //! @brief Creates a coordinate specifying a meaningless location.
    Coordinate();
-   
     //! @brief Copies the fields from the right hand side into this,
    //! and returns a reference to this.
    //!
