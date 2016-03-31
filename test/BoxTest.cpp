@@ -46,7 +46,9 @@ TEST (Box, CoordinateDistance)
 
 	Distance unevenDistance (25.0*Length::METER,0.0*Length::METER,50.0*Length::METER);
 	Box noRectangleBox (origin, unevenDistance); //cant happen -> exception or different behavior
-
+	ASSERT_DOUBLE_EQ(noRectangleBox.getTopRight().get_x()/Length::METER, 25);
+	ASSERT_DOUBLE_EQ(noRectangleBox.getTopRight().get_y()/Length::METER, 0);
+	ASSERT_DOUBLE_EQ(noRectangleBox.getTopRight().get_z()/Length::METER, 50);
 
 }
 
@@ -215,9 +217,9 @@ TEST (Box, getBottomLeft)
 	ASSERT_DOUBLE_EQ(box2.getBottomLeft().get_z()/Length::METER, 27);
 
 	Box negative(Coordinate::origin + Distance(-10*Length::METER,-10*Length::METER,-10*Length::METER), Coordinate::origin + Distance(-50*Length::METER,-50*Length::METER,-50*Length::METER));
-	ASSERT_DOUBLE_EQ(negative.getBottomLeft().get_x()/Length::METER, -10);
-	ASSERT_DOUBLE_EQ(negative.getBottomLeft().get_y()/Length::METER, -10);
-	ASSERT_DOUBLE_EQ(negative.getBottomLeft().get_z()/Length::METER, -10);
+	ASSERT_DOUBLE_EQ(negative.getBottomLeft().get_x()/Length::METER, -50);
+	ASSERT_DOUBLE_EQ(negative.getBottomLeft().get_y()/Length::METER, -50);
+	ASSERT_DOUBLE_EQ(negative.getBottomLeft().get_z()/Length::METER, -50);
 }
 
 
@@ -240,9 +242,9 @@ TEST (Box, getTopRight)
 	ASSERT_DOUBLE_EQ(box2.getTopRight().get_z()/Length::METER, 25);
 
 	Box negative(Coordinate::origin + Distance(-10*Length::METER,-10*Length::METER,-10*Length::METER), Coordinate::origin + Distance(-50*Length::METER,-50*Length::METER,-50*Length::METER));
-	ASSERT_DOUBLE_EQ(negative.getTopRight().get_x()/Length::METER, -50);
-	ASSERT_DOUBLE_EQ(negative.getTopRight().get_y()/Length::METER, -50);
-	ASSERT_DOUBLE_EQ(negative.getTopRight().get_z()/Length::METER, -50);
+	ASSERT_DOUBLE_EQ(negative.getTopRight().get_x()/Length::METER, -10);
+	ASSERT_DOUBLE_EQ(negative.getTopRight().get_y()/Length::METER, -10);
+	ASSERT_DOUBLE_EQ(negative.getTopRight().get_z()/Length::METER, -10);
 
 }
 
@@ -253,13 +255,13 @@ TEST (Box, getUnionBox)
 
 	Box box (Coordinate::origin + Distance(), Coordinate::origin + Distance(100*Length::METER,100*Length::METER,100*Length::METER));
 
-	Box biggerBox(Coordinate::origin + Distance(25*Length::METER,25*Length::METER,25*Length::METER), Coordinate::origin + Distance(120*Length::METER,120*Length::METER,120*Length::METER));
+	Box biggerBox(Coordinate::origin + Distance(-25*Length::METER,-35*Length::METER,-45*Length::METER), Coordinate::origin + Distance(120*Length::METER,120*Length::METER,120*Length::METER));
 	Box unionBox(Coordinate::origin + Distance(), Coordinate::origin + Distance());
 	unionBox = box.getUnionBox(biggerBox);
 
-	ASSERT_DOUBLE_EQ(unionBox.getBottomLeft().get_x()/Length::METER, 0);
-	ASSERT_DOUBLE_EQ(unionBox.getBottomLeft().get_y()/Length::METER, 0);
-	ASSERT_DOUBLE_EQ(unionBox.getBottomLeft().get_z()/Length::METER, 0);
+	ASSERT_DOUBLE_EQ(unionBox.getBottomLeft().get_x()/Length::METER, -25);
+	ASSERT_DOUBLE_EQ(unionBox.getBottomLeft().get_y()/Length::METER, -35);
+	ASSERT_DOUBLE_EQ(unionBox.getBottomLeft().get_z()/Length::METER, -45);
 
 	ASSERT_DOUBLE_EQ(unionBox.getTopRight().get_x()/Length::METER, 120);
 	ASSERT_DOUBLE_EQ(unionBox.getTopRight().get_y()/Length::METER, 120);
