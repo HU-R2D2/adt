@@ -4,9 +4,16 @@
 
 const Coordinate Coordinate::origin(0 * Length::METER, 0 * Length::METER, 0 * Length::METER);
 Coordinate::Coordinate(Length x, Length y, Length z)
-:  x{x},
-   y{y},
-   z{z} {
+:  x{x}
+,  y{y}
+,  z{z} {
+   // The initializer list is all that is needed.
+}
+
+Coordinate::Coordinate()
+:  x{0 * Length::METER}
+,  y{0 * Length::METER}
+,  z{0 * Length::METER} {
    // The initializer list is all that is needed.
 }
 
@@ -44,7 +51,7 @@ Coordinate Coordinate::operator -(const Distance & rhs) const {
 }
 
 Distance Coordinate::operator-(const Coordinate &rhs) const {
-   return Distance{};//{this->x - rhs.x, this->y - rhs.y, this->z - rhs.z};
+   return Distance{this->x - rhs.x, this->y - rhs.y, this->z - rhs.z};
 }
 
 std::ostream & operator <<(std::ostream & lhs, const Coordinate & rhs) {
