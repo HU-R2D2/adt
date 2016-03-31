@@ -2,11 +2,18 @@
 #include "../include/Distance.hpp"
 #include <string>
 
-const Coordinate Coordinate::origin(0, 0, 0);
-Coordinate::Coordinate(double x, double y, double z)
-:  x{x},
-   y{y},
-   z{z} {
+const Coordinate Coordinate::origin(0 * Length::METER, 0 * Length::METER, 0 * Length::METER);
+Coordinate::Coordinate(Length x, Length y, Length z)
+:  x{x}
+,  y{y}
+,  z{z} {
+   // The initializer list is all that is needed.
+}
+
+Coordinate::Coordinate()
+:  x{0 * Length::METER}
+,  y{0 * Length::METER}
+,  z{0 * Length::METER} {
    // The initializer list is all that is needed.
 }
 
@@ -51,8 +58,7 @@ std::ostream & operator <<(std::ostream & lhs, const Coordinate & rhs) {
    // Since a coordinate is specified as a distance in meters to an arbitrary origin,
    // the symbol for meter, 'm',  is added.
    // Metric prefixes are not (yet) included as to keep the code concise.
-   // TODO: remove the 'm', as this is the task of the underlying "distance"(?) type.
-   lhs << "coordinate (" << rhs.x << "m, " << rhs.y << "m, " << rhs.z << "m)";
+   lhs << "coordinate (" << rhs.x << ", " << rhs.y << ", " << rhs.z << ")";
    return lhs;
 }
 
@@ -72,22 +78,19 @@ std::istream & operator >>(std::istream & lhs, Coordinate & rhs) {
    // To guarantee the coordinate remains unchanged when an error occurs,
    // a temporary storage is needed for the values.
    // If not, throw an exception or something along those lines.
-   double x, y, z;
-   auto ReadComponent = [](std::istream & lhs, char expectedUnit, char expectedSeperator) {
-      double value;
-      char unit, separator;
-      lhs >> value >> unit >> separator;
-      if(unit != expectedUnit) {
-         throw std::runtime_error{"Wrong or missing unit indicator."};
-      }
+   Length x, y, z;
+   auto ReadComponent = [](std::istream & lhs, char expectedSeperator) {
+      Length value;
+      char separator;
+      lhs >> value >> separator;
       if(separator != expectedSeperator){
          throw std::runtime_error{"Wrong or missing seperator."};
       }
       return value;
    };
-   x = ReadComponent(lhs, 'm', ',');
-   y = ReadComponent(lhs, 'm', ',');
-   z = ReadComponent(lhs, 'm', ')');
+   x = ReadComponent(lhs, ',');
+   y = ReadComponent(lhs, ',');
+   z = ReadComponent(lhs, ')');
 
    if (!lhs) {
       throw std::runtime_error{"Coordinate wasn't read in its entirety when end of stream was reached. "};
@@ -100,14 +103,14 @@ std::istream & operator >>(std::istream & lhs, Coordinate & rhs) {
    return lhs;
 }
 
-const double & Coordinate::getX() const {
+const Length & Coordinate::getX() const {
    return x;
 }
 
-const double & Coordinate::getY() const {
+const Length & Coordinate::getY() const {
    return y;
 }
 
-const double & Coordinate::getZ() const {
+const Length & Coordinate::getZ() const {
    return z;
 }

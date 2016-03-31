@@ -20,7 +20,10 @@ Length Distance::getZ() {
 
 Length Distance::getLength() const {
 	Length a;
-	a = sqrt((x*x) + (y*y) + (z*z));
+	double tempx = x / Length::METER;
+	double tempy = y / Length::METER;
+	double tempz = z / Length::METER;
+	a = sqrt((tempx * tempx) + (tempy * tempy) + (tempz * tempz)) * Length::METER;
 	return a;
 }
 

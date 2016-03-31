@@ -99,8 +99,6 @@ private:
 	
 	Coordinate bottomLeft;
 	Coordinate topRight;
-
-
 };
 
 #endif	// _BOX_HPP
