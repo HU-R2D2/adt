@@ -81,6 +81,7 @@ public:
 
    //! @brief Writes the specified coordinate to the std::ostream, returning that stream.
    //!
+   //! The output is given in the format somewhat similar to "coordinate(x, y, z)",
    //! where the 'x', 'y' and 'z' are replaced by the offsets to the origin.
    //! The suffixes could vary.
    //! @param lhs Stream to which to write the string representation of the coordinate.
@@ -92,6 +93,7 @@ public:
 
    //! @brief Reads a coordinate from the given input stream, returning said stream.
    //!
+   //! The input should be given in the format "coordinate(z, y, z)",
    //! ignoring the quotes. The values 'x', 'y' and 'z' should be replaced with floating point values.
    //! Any excess whitespace is ignored. The supported suffixes are dependent on Length's implementation.
    //! @param lhs Stream from which to read data
