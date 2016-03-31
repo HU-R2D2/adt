@@ -12,6 +12,7 @@
 #include "gtest/gtest.h"
 #include <iostream>
 #include <math.h> 
+#include "Length.hpp"
 
 class Coordinate;	// Forward declaration. Used to declare as friend.
 
@@ -19,7 +20,7 @@ class Distance {
 		friend class Coordinate;
 	public:		// moet eigenlijk friend ofzo worden....
 		/**********************************************************************************************//**
-		 * @fn		Distance::Distance(double x, double y, double z)
+		 * @fn		Distance::Distance(Length x, Length y, Length z)
 		 *
 		 * @brief	Constructor of a Distance
 		 *
@@ -27,66 +28,66 @@ class Distance {
 		 * @param	y			The Y coordinate of the distance
 		 * @param	z			The Z coordinate of the distance
 		 **************************************************************************************************/
-		Distance(double x = 0.0, double y = 0.0, double z = 0.0);
+		Distance(Length x = 0.0, Length y = 0.0, Length z = 0.0);
 		
 	public:
 		/**********************************************************************************************//**
-		 * @fn		double Distance::getX()
+		 * @fn		Length Distance::getX()
 		 *
-		 * @brief	Gets the x value of the Distance and returns it
+		 * @brief	Gets the x Length value of the Distance and returns it
 		 *
-		 * @return	double		The x coordinate of the distance
+		 * @return	Length		The x Length of the distance
 		 **************************************************************************************************/
-		double getX();
+		Length getX();
 		/**********************************************************************************************//**
-		 * @fn		double Distance::getY()
+		 * @fn		Length Distance::getY()
 		 *
-		 * @brief	Gets the y value of the Distance and returns it
+		 * @brief	Gets the y Length value of the Distance and returns it
 		 *
-		 * @return	double		The y coordinate of the distance
+		 * @return	Length		The y Length of the distance
 		 **************************************************************************************************/
-		double getY();
+		Length getY();
 		/**********************************************************************************************//**
-		 * @fn		double Distance::getZ()
+		 * @fn		Length Distance::getZ()
 		 *
-		 * @brief	Gets the z value of the Distance and returns it
+		 * @brief	Gets the z Length value of the Distance and returns it
 		 *
-		 * @return	double		The z coordinate of the distance
+		 * @return	Length		The z Length of the distance
 		 **************************************************************************************************/
-		double getZ();
+		Length getZ();
 		/**********************************************************************************************//**
-		 * @fn		double Distance::getLength()
+		 * @fn		Length Distance::getLength()
 		 *
 		 * @brief	Gets the calculated Length of the Distance and returns it
 		 *
-		 * @return	double		The Length of the distance
+		 * @return	Length		The absolute Length of the distance
 		 **************************************************************************************************/
-		double getLength() const;
+		Length getLength() const;
 		
 		/**********************************************************************************************//**
-		 * @fn		void Distance::setX(double x)
+		 * @fn		void Distance::setX(Length x)
 		 *
-		 * @brief	Sets the x value of the Distance to the given value
+		 * @brief	Sets the x Length value of the Distance to the given value
 		 *
-		 * @param	x			The x coordinate of the distance
+		 * @param	x			The x Lengthof the distance
 		 **************************************************************************************************/
-		void setX(double x);
+		void setX(Length x);
 		/**********************************************************************************************//**
-		 * @fn		void Distance::setY(double y)
+		 * @fn		void Distance::setY(Length y)
 		 *
-		 * @brief	Sets the y value of the Distance to the given value
+		 * @brief	Sets the y Length value of the Distance to the given value
 		 *
-		 * @param	y			The y coordinate of the distance
+		 * @param	y			The y Length of the distance
 		 **************************************************************************************************/
-		void setY(double y);
+		void setY(Length y);
 		/**********************************************************************************************//**
-		 * @fn		void Distance::setZ(double z)
+		 * @fn		void Distance::setZ(Length z)
 		 *
-		 * @brief	Sets the z value of the Distance to the given value
+		 * @brief	Sets the z Length value of the Distance to the given value
 		 *
-		 * @param	z			The z coordinate of the distance
+		 * @param	z			The z Length of the distance
 		 **************************************************************************************************/
-		void setZ(double z);
+		void setZ(Length z);
 	
 		/**********************************************************************************************//**
 		 * @fn		Distance& Distance::operator= (const Distance& rhs)
@@ -171,7 +172,7 @@ class Distance {
 		bool operator< (const Distance& rhs) const;
 		
 	private:
-		double x,y,z;
+		Length x,y,z;
 		FRIEND_TEST(Distance, DefaultConstructor);	// Friend classes (So tests can access private parts.)
 };
 

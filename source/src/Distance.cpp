@@ -1,36 +1,38 @@
 #include "../include/Distance.hpp"
 
-Distance::Distance(double x, double y, double z) :
+Distance::Distance(Length x, Length y, Length z) :
 	x(x),
 	y(y),
 	z(z)
 {}
 
-double Distance::getX() {
+Length Distance::getX() {
 	return x;
 }
 
-double Distance::getY() {
+Length Distance::getY() {
 	return y;
 }
 
-double Distance::getZ() {
+Length Distance::getZ() {
 	return z;
 }
 
-double Distance::getLength() const {
-	return sqrt((x*x) + (y*y) + (z*z));
+Length Distance::getLength() const {
+	Length a;
+	a = sqrt((x*x) + (y*y) + (z*z));
+	return a;
 }
 
-void Distance::setX(double x) {
+void Distance::setX(Length x) {
 	x = x;
 }
 
-void Distance::setY(double y) {
+void Distance::setY(Length y) {
 	y = y;
 }
 
-void Distance::setZ(double z) {
+void Distance::setZ(Length z) {
 	z = z;
 }
 
@@ -106,7 +108,7 @@ std::ostream& operator<< (std::ostream& lhs, Distance& rhs) {
 Distance& operator>>(std::istream& input, Distance& rhs) {		// WAT WIL JE HIER TERUGKRIJGEN?? een Distance lijkt me?
 	std::string prefix;
 	input >> std::ws >> prefix;
-	double x,y,z;
+	Length x,y,z;
 	char temp;
 	
 	if(prefix == "Distance") {
