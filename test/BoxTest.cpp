@@ -20,14 +20,14 @@ TEST (Box, Coordinates)
 	Box box (bl, tr);
 
 	// get bottomLeft
-	ASSERT_DOUBLE_EQ(bl.get_x()/Length::METER, box.getBottomLeft().get_x()/Length::METER);
-	ASSERT_DOUBLE_EQ(bl.get_y()/Length::METER, box.getBottomLeft().get_y()/Length::METER);
-	ASSERT_DOUBLE_EQ(bl.get_z()/Length::METER, box.getBottomLeft().get_z()/Length::METER);
+	ASSERT_DOUBLE_EQ(bl.get_x()/Length::METER, box.get_bottom_left().get_x()/Length::METER);
+	ASSERT_DOUBLE_EQ(bl.get_y()/Length::METER, box.get_bottom_left().get_y()/Length::METER);
+	ASSERT_DOUBLE_EQ(bl.get_z()/Length::METER, box.get_bottom_left().get_z()/Length::METER);
 
 	// get topRight
-	ASSERT_DOUBLE_EQ(tr.get_x()/Length::METER, box.getTopRight().get_x()/Length::METER);
-	ASSERT_DOUBLE_EQ(tr.get_y()/Length::METER, box.getTopRight().get_y()/Length::METER);
-	ASSERT_DOUBLE_EQ(tr.get_z()/Length::METER, box.getTopRight().get_z()/Length::METER);
+	ASSERT_DOUBLE_EQ(tr.get_x()/Length::METER, box.get_top_right().get_x()/Length::METER);
+	ASSERT_DOUBLE_EQ(tr.get_y()/Length::METER, box.get_top_right().get_y()/Length::METER);
+	ASSERT_DOUBLE_EQ(tr.get_z()/Length::METER, box.get_top_right().get_z()/Length::METER);
 
 }
 
@@ -39,16 +39,16 @@ TEST (Box, CoordinateDistance)
 
 	
 	Box rectangleBox (origin, evenDistance);
-	ASSERT_DOUBLE_EQ(rectangleBox.getTopRight().get_x()/Length::METER, 50);
-	ASSERT_DOUBLE_EQ(rectangleBox.getTopRight().get_y()/Length::METER, 50);
-	ASSERT_DOUBLE_EQ(rectangleBox.getTopRight().get_z()/Length::METER, 50);
+	ASSERT_DOUBLE_EQ(rectangleBox.get_top_right().get_x()/Length::METER, 50);
+	ASSERT_DOUBLE_EQ(rectangleBox.get_top_right().get_y()/Length::METER, 50);
+	ASSERT_DOUBLE_EQ(rectangleBox.get_top_right().get_z()/Length::METER, 50);
 
 
 	Distance unevenDistance (25.0*Length::METER,0.0*Length::METER,50.0*Length::METER);
 	Box noRectangleBox (origin, unevenDistance); //cant happen -> exception or different behavior
-	ASSERT_DOUBLE_EQ(noRectangleBox.getTopRight().get_x()/Length::METER, 25);
-	ASSERT_DOUBLE_EQ(noRectangleBox.getTopRight().get_y()/Length::METER, 0);
-	ASSERT_DOUBLE_EQ(noRectangleBox.getTopRight().get_z()/Length::METER, 50);
+	ASSERT_DOUBLE_EQ(noRectangleBox.get_top_right().get_x()/Length::METER, 25);
+	ASSERT_DOUBLE_EQ(noRectangleBox.get_top_right().get_y()/Length::METER, 0);
+	ASSERT_DOUBLE_EQ(noRectangleBox.get_top_right().get_z()/Length::METER, 50);
 
 }
 
@@ -65,13 +65,13 @@ TEST (Box, Assign)
 	// assign boxTwo to boxOne
 	boxOne = boxTwo;
 
-	ASSERT_DOUBLE_EQ(boxOne.getBottomLeft().get_x()/Length::METER, 50);
-	ASSERT_DOUBLE_EQ(boxOne.getBottomLeft().get_y()/Length::METER, 50);
-	ASSERT_DOUBLE_EQ(boxOne.getBottomLeft().get_z()/Length::METER, 50);
+	ASSERT_DOUBLE_EQ(boxOne.get_bottom_left().get_x()/Length::METER, 50);
+	ASSERT_DOUBLE_EQ(boxOne.get_bottom_left().get_y()/Length::METER, 50);
+	ASSERT_DOUBLE_EQ(boxOne.get_bottom_left().get_z()/Length::METER, 50);
 
-	ASSERT_DOUBLE_EQ(boxOne.getTopRight().get_x()/Length::METER, 100);
-	ASSERT_DOUBLE_EQ(boxOne.getTopRight().get_y()/Length::METER, 100);
-	ASSERT_DOUBLE_EQ(boxOne.getTopRight().get_z()/Length::METER, 100);
+	ASSERT_DOUBLE_EQ(boxOne.get_top_right().get_x()/Length::METER, 100);
+	ASSERT_DOUBLE_EQ(boxOne.get_top_right().get_y()/Length::METER, 100);
+	ASSERT_DOUBLE_EQ(boxOne.get_top_right().get_z()/Length::METER, 100);
 
 
 
@@ -199,7 +199,7 @@ TEST (Box, IntersectsBox)
 }
 
 
-TEST (Box, getBottomLeft) 
+TEST (Box, get_bottom_left) 
 {
 	// test if it returns the right bottom left coordinate
 	Coordinate bl = Coordinate::origin;
@@ -207,24 +207,24 @@ TEST (Box, getBottomLeft)
 	Coordinate bl2 = Coordinate::origin + Distance(25*Length::METER,26*Length::METER,27*Length::METER);
 
 	Box box (bl, tr);
-	ASSERT_DOUBLE_EQ(box.getBottomLeft().get_x()/Length::METER, 0);
-	ASSERT_DOUBLE_EQ(box.getBottomLeft().get_y()/Length::METER, 0);
-	ASSERT_DOUBLE_EQ(box.getBottomLeft().get_z()/Length::METER, 0);
+	ASSERT_DOUBLE_EQ(box.get_bottom_left().get_x()/Length::METER, 0);
+	ASSERT_DOUBLE_EQ(box.get_bottom_left().get_y()/Length::METER, 0);
+	ASSERT_DOUBLE_EQ(box.get_bottom_left().get_z()/Length::METER, 0);
 
 	Box box2(bl2, tr);
-	ASSERT_DOUBLE_EQ(box2.getBottomLeft().get_x()/Length::METER, 25);
-	ASSERT_DOUBLE_EQ(box2.getBottomLeft().get_y()/Length::METER, 26);
-	ASSERT_DOUBLE_EQ(box2.getBottomLeft().get_z()/Length::METER, 27);
+	ASSERT_DOUBLE_EQ(box2.get_bottom_left().get_x()/Length::METER, 25);
+	ASSERT_DOUBLE_EQ(box2.get_bottom_left().get_y()/Length::METER, 26);
+	ASSERT_DOUBLE_EQ(box2.get_bottom_left().get_z()/Length::METER, 27);
 
 	Box negative(Coordinate::origin + Distance(-10*Length::METER,-10*Length::METER,-10*Length::METER), Coordinate::origin + Distance(-50*Length::METER,-50*Length::METER,-50*Length::METER));
-	ASSERT_DOUBLE_EQ(negative.getBottomLeft().get_x()/Length::METER, -50);
-	ASSERT_DOUBLE_EQ(negative.getBottomLeft().get_y()/Length::METER, -50);
-	ASSERT_DOUBLE_EQ(negative.getBottomLeft().get_z()/Length::METER, -50);
+	ASSERT_DOUBLE_EQ(negative.get_bottom_left().get_x()/Length::METER, -50);
+	ASSERT_DOUBLE_EQ(negative.get_bottom_left().get_y()/Length::METER, -50);
+	ASSERT_DOUBLE_EQ(negative.get_bottom_left().get_z()/Length::METER, -50);
 }
 
 
 
-TEST (Box, getTopRight) 
+TEST (Box, get_top_right) 
 {
 	// test if it returns the right top right coordinate
 	Coordinate bl = Coordinate::origin + Distance();
@@ -232,24 +232,24 @@ TEST (Box, getTopRight)
 	Coordinate tr2 = Coordinate::origin + Distance(25*Length::METER,25*Length::METER,25*Length::METER);
 
 	Box box (bl, tr);
-	ASSERT_DOUBLE_EQ(box.getTopRight().get_x()/Length::METER, 50);
-	ASSERT_DOUBLE_EQ(box.getTopRight().get_y()/Length::METER, 50);
-	ASSERT_DOUBLE_EQ(box.getTopRight().get_z()/Length::METER, 50);
+	ASSERT_DOUBLE_EQ(box.get_top_right().get_x()/Length::METER, 50);
+	ASSERT_DOUBLE_EQ(box.get_top_right().get_y()/Length::METER, 50);
+	ASSERT_DOUBLE_EQ(box.get_top_right().get_z()/Length::METER, 50);
 
 	Box box2(bl, tr2);
-	ASSERT_DOUBLE_EQ(box2.getTopRight().get_x()/Length::METER, 25);
-	ASSERT_DOUBLE_EQ(box2.getTopRight().get_y()/Length::METER, 25);
-	ASSERT_DOUBLE_EQ(box2.getTopRight().get_z()/Length::METER, 25);
+	ASSERT_DOUBLE_EQ(box2.get_top_right().get_x()/Length::METER, 25);
+	ASSERT_DOUBLE_EQ(box2.get_top_right().get_y()/Length::METER, 25);
+	ASSERT_DOUBLE_EQ(box2.get_top_right().get_z()/Length::METER, 25);
 
 	Box negative(Coordinate::origin + Distance(-10*Length::METER,-10*Length::METER,-10*Length::METER), Coordinate::origin + Distance(-50*Length::METER,-50*Length::METER,-50*Length::METER));
-	ASSERT_DOUBLE_EQ(negative.getTopRight().get_x()/Length::METER, -10);
-	ASSERT_DOUBLE_EQ(negative.getTopRight().get_y()/Length::METER, -10);
-	ASSERT_DOUBLE_EQ(negative.getTopRight().get_z()/Length::METER, -10);
+	ASSERT_DOUBLE_EQ(negative.get_top_right().get_x()/Length::METER, -10);
+	ASSERT_DOUBLE_EQ(negative.get_top_right().get_y()/Length::METER, -10);
+	ASSERT_DOUBLE_EQ(negative.get_top_right().get_z()/Length::METER, -10);
 
 }
 
 
-TEST (Box, getUnionBox) 
+TEST (Box, get_union_box) 
 {
 	// test if method returns right result
 
@@ -257,15 +257,15 @@ TEST (Box, getUnionBox)
 
 	Box biggerBox(Coordinate::origin + Distance(-25*Length::METER,-35*Length::METER,-45*Length::METER), Coordinate::origin + Distance(120*Length::METER,120*Length::METER,120*Length::METER));
 	Box unionBox(Coordinate::origin + Distance(), Coordinate::origin + Distance());
-	unionBox = box.getUnionBox(biggerBox);
+	unionBox = box.get_union_box(biggerBox);
 
-	ASSERT_DOUBLE_EQ(unionBox.getBottomLeft().get_x()/Length::METER, -25);
-	ASSERT_DOUBLE_EQ(unionBox.getBottomLeft().get_y()/Length::METER, -35);
-	ASSERT_DOUBLE_EQ(unionBox.getBottomLeft().get_z()/Length::METER, -45);
+	ASSERT_DOUBLE_EQ(unionBox.get_bottom_left().get_x()/Length::METER, -25);
+	ASSERT_DOUBLE_EQ(unionBox.get_bottom_left().get_y()/Length::METER, -35);
+	ASSERT_DOUBLE_EQ(unionBox.get_bottom_left().get_z()/Length::METER, -45);
 
-	ASSERT_DOUBLE_EQ(unionBox.getTopRight().get_x()/Length::METER, 120);
-	ASSERT_DOUBLE_EQ(unionBox.getTopRight().get_y()/Length::METER, 120);
-	ASSERT_DOUBLE_EQ(unionBox.getTopRight().get_z()/Length::METER, 120);
+	ASSERT_DOUBLE_EQ(unionBox.get_top_right().get_x()/Length::METER, 120);
+	ASSERT_DOUBLE_EQ(unionBox.get_top_right().get_y()/Length::METER, 120);
+	ASSERT_DOUBLE_EQ(unionBox.get_top_right().get_z()/Length::METER, 120);
 
 
 	// test if method returns the right result when using negative boxes
@@ -274,22 +274,22 @@ TEST (Box, getUnionBox)
 
 	Box negativeBox2(Coordinate::origin + Distance(-125*Length::METER,-125*Length::METER,-125*Length::METER), Coordinate::origin + Distance(-75*Length::METER,-75*Length::METER,-75*Length::METER));
 
-	unionBox = negativeBox.getUnionBox(negativeBox2);
+	unionBox = negativeBox.get_union_box(negativeBox2);
 
-	ASSERT_DOUBLE_EQ(unionBox.getBottomLeft().get_x()/Length::METER, -125);
-	ASSERT_DOUBLE_EQ(unionBox.getBottomLeft().get_y()/Length::METER, -125);
-	ASSERT_DOUBLE_EQ(unionBox.getBottomLeft().get_z()/Length::METER, -125);
+	ASSERT_DOUBLE_EQ(unionBox.get_bottom_left().get_x()/Length::METER, -125);
+	ASSERT_DOUBLE_EQ(unionBox.get_bottom_left().get_y()/Length::METER, -125);
+	ASSERT_DOUBLE_EQ(unionBox.get_bottom_left().get_z()/Length::METER, -125);
 
-	ASSERT_DOUBLE_EQ(unionBox.getTopRight().get_x()/Length::METER, -25);
-	ASSERT_DOUBLE_EQ(unionBox.getTopRight().get_y()/Length::METER, -25);
-	ASSERT_DOUBLE_EQ(unionBox.getTopRight().get_z()/Length::METER, -25);
+	ASSERT_DOUBLE_EQ(unionBox.get_top_right().get_x()/Length::METER, -25);
+	ASSERT_DOUBLE_EQ(unionBox.get_top_right().get_y()/Length::METER, -25);
+	ASSERT_DOUBLE_EQ(unionBox.get_top_right().get_z()/Length::METER, -25);
 
 
 
 
 }
 
-TEST (Box, getIntersectionBox) 
+TEST (Box, get_intersection_box) 
 {
 	// test if 2 boxes that are intersecting returns the right box
 	Box box (Coordinate::origin + Distance(), Coordinate::origin + Distance(100*Length::METER,100*Length::METER,100*Length::METER));
@@ -297,28 +297,28 @@ TEST (Box, getIntersectionBox)
 	Box collidingBox (Coordinate::origin + Distance(75*Length::METER,75*Length::METER,75*Length::METER), Coordinate::origin + Distance(125*Length::METER,125*Length::METER,125*Length::METER));
 
 	Box collidedBox(Coordinate::origin + Distance(), Coordinate::origin + Distance());
-	collidedBox = box.getIntersectionBox(collidingBox);
+	collidedBox = box.get_intersection_box(collidingBox);
 
-	ASSERT_DOUBLE_EQ(collidedBox.getBottomLeft().get_x()/Length::METER, 75);
-	ASSERT_DOUBLE_EQ(collidedBox.getBottomLeft().get_y()/Length::METER, 75);
-	ASSERT_DOUBLE_EQ(collidedBox.getBottomLeft().get_z()/Length::METER, 75);
+	ASSERT_DOUBLE_EQ(collidedBox.get_bottom_left().get_x()/Length::METER, 75);
+	ASSERT_DOUBLE_EQ(collidedBox.get_bottom_left().get_y()/Length::METER, 75);
+	ASSERT_DOUBLE_EQ(collidedBox.get_bottom_left().get_z()/Length::METER, 75);
 
-	ASSERT_DOUBLE_EQ(collidedBox.getTopRight().get_x()/Length::METER, 100);
-	ASSERT_DOUBLE_EQ(collidedBox.getTopRight().get_y()/Length::METER, 100);
-	ASSERT_DOUBLE_EQ(collidedBox.getTopRight().get_z()/Length::METER, 100);
+	ASSERT_DOUBLE_EQ(collidedBox.get_top_right().get_x()/Length::METER, 100);
+	ASSERT_DOUBLE_EQ(collidedBox.get_top_right().get_y()/Length::METER, 100);
+	ASSERT_DOUBLE_EQ(collidedBox.get_top_right().get_z()/Length::METER, 100);
 
 
 	// test 2 boxes that aren't intersecting
 	Box notCollidingBox (Coordinate::origin + Distance(125*Length::METER,125*Length::METER,125*Length::METER), Coordinate::origin + Distance(150*Length::METER,150*Length::METER,150*Length::METER));
 
 	Box notCollidedBox(Coordinate::origin + Distance(), Coordinate::origin + Distance());
-	ASSERT_DOUBLE_EQ(notCollidedBox.getBottomLeft().get_x()/Length::METER, 0);
-	ASSERT_DOUBLE_EQ(notCollidedBox.getBottomLeft().get_y()/Length::METER, 0);
-	ASSERT_DOUBLE_EQ(notCollidedBox.getBottomLeft().get_z()/Length::METER, 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.get_bottom_left().get_x()/Length::METER, 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.get_bottom_left().get_y()/Length::METER, 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.get_bottom_left().get_z()/Length::METER, 0);
 
-	ASSERT_DOUBLE_EQ(notCollidedBox.getTopRight().get_x()/Length::METER, 0);
-	ASSERT_DOUBLE_EQ(notCollidedBox.getTopRight().get_y()/Length::METER, 0);
-	ASSERT_DOUBLE_EQ(notCollidedBox.getTopRight().get_z()/Length::METER, 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.get_top_right().get_x()/Length::METER, 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.get_top_right().get_y()/Length::METER, 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.get_top_right().get_z()/Length::METER, 0);
 
 
 	// test 2 negative boxes that are intersecting
@@ -326,27 +326,27 @@ TEST (Box, getIntersectionBox)
 
 	Box negativeBoxIntersecting(Coordinate::origin + Distance(-125*Length::METER,-125*Length::METER,-125*Length::METER), Coordinate::origin + Distance(-50*Length::METER,-50*Length::METER,-50*Length::METER));
 
-	collidedBox = negativeBox.getIntersectionBox(negativeBoxIntersecting);
+	collidedBox = negativeBox.get_intersection_box(negativeBoxIntersecting);
 
-	ASSERT_DOUBLE_EQ(collidedBox.getBottomLeft().get_x()/Length::METER, -75);
-	ASSERT_DOUBLE_EQ(collidedBox.getBottomLeft().get_y()/Length::METER, -75);
-	ASSERT_DOUBLE_EQ(collidedBox.getBottomLeft().get_z()/Length::METER, -75);
+	ASSERT_DOUBLE_EQ(collidedBox.get_bottom_left().get_x()/Length::METER, -75);
+	ASSERT_DOUBLE_EQ(collidedBox.get_bottom_left().get_y()/Length::METER, -75);
+	ASSERT_DOUBLE_EQ(collidedBox.get_bottom_left().get_z()/Length::METER, -75);
 
-	ASSERT_DOUBLE_EQ(collidedBox.getTopRight().get_x()/Length::METER, -50);
-	ASSERT_DOUBLE_EQ(collidedBox.getTopRight().get_y()/Length::METER, -50);
-	ASSERT_DOUBLE_EQ(collidedBox.getTopRight().get_z()/Length::METER, -50);
+	ASSERT_DOUBLE_EQ(collidedBox.get_top_right().get_x()/Length::METER, -50);
+	ASSERT_DOUBLE_EQ(collidedBox.get_top_right().get_y()/Length::METER, -50);
+	ASSERT_DOUBLE_EQ(collidedBox.get_top_right().get_z()/Length::METER, -50);
 
 	// test 2 negative boxes that aren't intersecting
 	Box negativeBoxNotIntersecting(Coordinate::origin + Distance(-80*Length::METER,-80*Length::METER,-80*Length::METER), Coordinate::origin + Distance(-125*Length::METER,-125*Length::METER,-125*Length::METER));
 
-	notCollidedBox = negativeBox.getIntersectionBox(negativeBoxNotIntersecting);
+	notCollidedBox = negativeBox.get_intersection_box(negativeBoxNotIntersecting);
 
-	ASSERT_DOUBLE_EQ(notCollidedBox.getBottomLeft().get_x()/Length::METER, 0);
-	ASSERT_DOUBLE_EQ(notCollidedBox.getBottomLeft().get_y()/Length::METER, 0);
-	ASSERT_DOUBLE_EQ(notCollidedBox.getBottomLeft().get_z()/Length::METER, 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.get_bottom_left().get_x()/Length::METER, 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.get_bottom_left().get_y()/Length::METER, 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.get_bottom_left().get_z()/Length::METER, 0);
 
-	ASSERT_DOUBLE_EQ(notCollidedBox.getTopRight().get_x()/Length::METER, 0);
-	ASSERT_DOUBLE_EQ(notCollidedBox.getTopRight().get_y()/Length::METER, 0);
-	ASSERT_DOUBLE_EQ(notCollidedBox.getTopRight().get_z()/Length::METER, 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.get_top_right().get_x()/Length::METER, 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.get_top_right().get_y()/Length::METER, 0);
+	ASSERT_DOUBLE_EQ(notCollidedBox.get_top_right().get_z()/Length::METER, 0);
 
 } 

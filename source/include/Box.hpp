@@ -56,30 +56,30 @@ public:
 	//! @brief return bottom left coordinate
     //!
     //! @return bottomLeft coordinate
-	Coordinate getBottomLeft();
+	Coordinate get_bottom_left();
 
 	//! @brief return the top right coordinate
     //!
     //! @return topright coordinate
-	Coordinate getTopRight();
+	Coordinate get_top_right();
 
 	//! @brief Returns the smallest possible box that contains both boxes
     //!
     //! @param box the box to create an union box with
     //! @return Box the union box
-	Box getUnionBox(Box box);
+	Box get_union_box(Box box);
 
 	//! @brief Returns box that contains the shared space (intersection area) between two boxes
     //! @note If there is no intersection between the boxes, a empty box will be returned
     //!
     //! @param box the box to create an shared space with
     //! @return Box The box that contains the shared space. When there is no overlapse in the two boxes a box with (0.0,0.0,0.0) is returned.
-	Box getIntersectionBox(Box box);
+	Box get_intersection_box(Box box);
 
 	//! @brief Returns the size of the axis
     //!
     //! @return Distance of the axis
-	Distance getAxisSize();
+	Distance get_axis_size();
 
 
 	//! @brief assignment operator for a box

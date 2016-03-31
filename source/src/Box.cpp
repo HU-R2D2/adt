@@ -133,11 +133,11 @@ Box Box::get_intersection_box(Box box)
 		if(this->contains(box.bottomLeft))
 		{
 			// intersectionBox bottomLeft
-			return Box(box.getBottomLeft(), topRight);
+			return Box(box.get_bottom_left(), topRight);
 		}
 		else
 		{
-			return Box(bottomLeft, box.getTopRight());
+			return Box(bottomLeft, box.get_top_right());
 		}
 	}
 	else
@@ -152,9 +152,9 @@ Distance Box::get_axis_size()
 {
 	Distance dist;
 
-	dist.set_x(topRight.x - bottomLeft.x);
-	dist.set_y(topRight.y - bottomLeft.y);
-	dist.set_z(topRight.z - bottomLeft.z);
+	dist.setX(topRight.x - bottomLeft.x);
+	dist.setY(topRight.y - bottomLeft.y);
+	dist.setZ(topRight.z - bottomLeft.z);
 
 	return dist;
 }
