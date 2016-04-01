@@ -10,8 +10,8 @@
 
 #include "gtest/gtest.h"
 
-#include "Acceleration.hpp"
-#include "Duration.hpp"
+//#include "Acceleration.hpp"
+//#include "Duration.hpp"
 
 #include <iostream> 
 
@@ -132,7 +132,7 @@ class Length {
 		//! @brief	divide length by duration and return the speed
 		//!
 		//! @param	
-		friend Speed operator/ (const Length & length, const Duration & d);
+		//friend Speed operator/ (const Length & length, const Duration & d);
 
 		FRIEND_TEST(Length, doubleConstructor);
 		static const Length METER;
