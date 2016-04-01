@@ -13,15 +13,15 @@
 #ifndef _ACCELERATION_HPP
 #define _ACCELERATION_HPP
 
-#include "Distance.hpp"
-#include "Duration.hpp"
 #include "Length.hpp"
+#include "Duration.hpp"
 
 #include <iostream>
 
 class Acceleration {
+
 	public:
-		
+
 		//! @brief The default constructor
 		Acceleration();
 
@@ -30,11 +30,11 @@ class Acceleration {
 		//! @param val Raw acceleration value in meter per second
 		Acceleration(double val);
 
-		//! @brief Constructs an acceleration from a distance and a duration
+		//! @brief Constructs an acceleration from a Length and a duration
 		//!
-		//! @param dist The distance of the acceleration
+		//! @param dist The Length of the acceleration
 		//! @param duration The duration of the acceleration
-		Acceleration(Distance dist, Duration dur);
+		Acceleration(const Length & lt, const Duration & dur);
 
 
 		//! @fn Acceleration::get_acceleration()
@@ -69,7 +69,7 @@ class Acceleration {
 		//!
 		//! @param rhs
 		//! @return Duration
-		Duration operator/ (const Distance & rhs) const;
+		Duration operator/ (const Length & rhs) const;
 
 		//! @brief
 		//!

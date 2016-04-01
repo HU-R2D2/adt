@@ -10,9 +10,13 @@ Acceleration::Acceleration(double value):
 {
 }
 
-Acceleration::Acceleration(Distance dist, Duration dur)
+Acceleration::Acceleration(const Length & lt, const Duration & dur)
 {
-	
+	double travelLength = lt.l * 2;
+
+	double travelTime = dur.get_seconds();
+
+	value = (2 * travelTime) / (travelLength * travelLength);
 }
 
 const double Acceleration::get_acceleration() const
@@ -44,7 +48,7 @@ Acceleration Acceleration::operator/ (const double & rhs) const
 
 }
 
-Duration Acceleration::operator/ (const Distance & rhs) const
+Duration Acceleration::operator/ (const Length & rhs) const
 {
 
 }

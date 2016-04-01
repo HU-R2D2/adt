@@ -7,7 +7,10 @@
 
 #ifndef _LENGTH_HPP
 #define _LENGTH_HPP
+
 #include "gtest/gtest.h"
+
+#include "Acceleration.hpp"
 #include "Duration.hpp"
 
 #include <iostream> 
@@ -17,6 +20,7 @@ class Distance;
 
 class Length {
 	friend class Distance;
+	friend class Acceleration;
 
 	private:
 		
