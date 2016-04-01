@@ -62,22 +62,25 @@ Speed operator* ( double n, const Speed & rhs ){
 }
 
 Speed Speed::operator/ ( const double & rhs ) const{
-  return Speed{value / rhs};
-}
-
-Speed & Speed::operator/= ( const double & rhs ){
-  value /= rhs;
+  if(rhs != 0){
+    return Speed{value / rhs};
+  }
   return *this;
 }
 
-
+Speed & Speed::operator/= ( const double & rhs ){
+  if(rhs != 0){
+    value /= rhs;
+  } 
+  return *this;
+}
 
 double Speed::operator/(const Speed & rhs){
   return value/rhs.value;
 }
 
 std::ostream& operator<<(std::ostream & os, const Speed &rhs){
-  os << rhs.value << "m/s" << std::endl;
+  os << rhs.value << "m/s";
   return os;
 }
 

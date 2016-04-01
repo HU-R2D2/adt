@@ -154,8 +154,17 @@ TEST(Speed, MultiplyAssignDouble){
 	// no more other test because itern it uses multiply and assign operators so if you test them properly it isn't nessecarly here.
 }
 
+TEST(Speed, WriteTo){
+   std::stringstream stream{};
+   Speed s = 5 * Length::METER/Duration::SECOND;
+   stream << s << std::endl;
+   std::string output;
+   std::getline(stream, output);
+   EXPECT_EQ("5m/s", output);
+   EXPECT_EQ(&stream, &(stream << s)) << "Wrong stream is returned.";
+}
 
-//Divide by Speed
+
 
 
 
