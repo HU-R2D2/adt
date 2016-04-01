@@ -165,6 +165,16 @@ TEST(Speed, WriteTo){
 }
 
 
+TEST(Speed, ReadFrom){
+	std::stringstream stream{};
+	const Speed meter_per_second = Length::METER / Duration::SECOND;
+	Speed speed = meter_per_second;
 
+	// Check whether the coordinate is read in correct form from the stream.
+	stream << "15m/s";
+	stream >> speed;
+	ASSERT_DOUBLE_EQ(15, speed / meter_per_second);
+	
+}
 
 
