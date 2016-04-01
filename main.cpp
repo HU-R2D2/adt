@@ -111,6 +111,7 @@ TEST( Constructors, DateTime ) {
    const int minute = 0;
    const int second = 0;
    int year2 = 1800 + 0 * 50;
+   // ToDo check if test is completely useless or not
    for(int i = 1; i < 5; i++)   {
       year2 = 1800 + i * 50;
       DATETIME payday(year2, i * 2,  (MONTH)((int)MONTH::JANUARY + i), 2 + hour * i, minute + 2 * i, second + 3 * i);
@@ -149,8 +150,41 @@ TEST( Constructors, DateTime ) {
    ASSERT_EQ(legit.getMonth(), MONTH::FEBRUARY) << "Month in leap-year does not equal ctor month";
    ASSERT_EQ((int)legit.getYear(), 2016 ) << "Leap-year Year does not equal ctor year";
    ASSERT_EQ((int)legit.getMonthDay(), 29) << "Leap-year Monthday does not equal ctor Monthday";
-
 }
+void assertAllDateTimeData(DATETIME dt, DATETIME dt2)   {
+   ASSERT_EQ( dt.getMonth(),   dt2.getMonth() )     << "Month does not equal ctor month";
+   ASSERT_EQ( dt.getYear(),    dt2.getYear() )      << "Year does not equal ctor year";
+   ASSERT_EQ( dt.getMonthDay(),dt2.getMonthDay() )  << "Monthday does not equal ctor Monthday";
+   ASSERT_EQ( dt.getHour(),    dt2.getHour() )      << "Hour does not equal ctor Hour";
+   ASSERT_EQ( dt.getMinute(),  dt2.getMinute() )    << "Minute does not equal ctor Minute";
+   ASSERT_EQ( dt.getSecond(),  dt2.getSecond() )    << "Second does not equal ctor Second";
+}
+TEST(Assignment_Operator, DateTime) {
+   DATETIME dt1(2016, 29, MONTH::FEBRUARY, 12, 12, 12);
+   DATETIME dt2(2014, 16, MONTH::JANUARY, 5, 6, 7);
+   intptr_t ptrdt1 = (intptr_t)&dt1;
+   intptr_t ptrdt2 = (intptr_t)&dt2;
+   dt1 = dt2;
+   ASSERT_NE( &dt1, &dt2 )     << "Same Object, invalid operator (Objects should be different)";
+   ASSERT_EQ( (intptr_t)&dt1, ptrdt1 )   << "dt1 Ptr has changed!";
+   ASSERT_EQ( (intptr_t)&dt2, ptrdt2 )   << "dt2 Ptr has changed!";
+   assertAllDateTimeData(dt1, dt2);
+}
+TEST( Addition_and_subtraction, DateTime)  {
+   DATETIME dt1(2016, 29, MONTH::FEBRUARY, 12, 12, 12);
+   Duration dt2(5000);
+   DATETIME - dt2;
+}
+/*void assertAllDateTimeData(DATETIME dt, uint16_t year, uint8_t mday, MONTH month, 
+      uint8_t hour = 0, uint8_t minute = 0, uint8_t second = 0)   {
+   ASSERT_EQ( dt.getMonth(),   month )     << "Month does not equal ctor month";
+   ASSERT_EQ( dt.getYear(),    year )      << "Year does not equal ctor year";
+   ASSERT_EQ( dt.getMonthDay(),Monthday )  << "Monthday does not equal ctor Monthday";
+   ASSERT_EQ( dt.getHour(),    hour )      << "Hour does not equal ctor Hour";
+   ASSERT_EQ( dt.getMinute(),  minute )      << "Minute does not equal ctor Minute";
+   ASSERT_EQ( dt.getSecond(),  second )    << "Second does not equal ctor Second";
+}*/
+
 int main( int argc, char **argv ){	      
 
    std::cout << "testing Moment" << "\n";

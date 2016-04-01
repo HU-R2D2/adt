@@ -104,7 +104,7 @@ public:
 	DATETIME(uint16_t year, uint8_t mday, MONTH month, 
 		uint8_t hour = 0, uint8_t minute = 0, uint8_t second = 0) throw(DateTimeException); // Should not be friended to clock class
 
-	DATETIME& operator= (const DATETIME& refMoment);
+	DATETIME& operator= (const DATETIME& refDT);
 
 	DATETIME operator+ ( const Duration& refDuration ) const;
 	DATETIME operator- ( const Duration& refDuration ) const;
@@ -113,10 +113,9 @@ public:
 	DATETIME& operator-= (const Duration& refDuration);
 
 	Duration operator- (const DATETIME& refDateTime) const;
-
+	Duration operator- (const Moment& refMoment) const;
 	friend ostream& operator<< (ostream& lhs, const DATETIME& refDateTime);
 	friend istream& operator>> (istream& lhs, DATETIME& refDateTime);
-
 
 	DAY getDay 			() const;
 	MONTH getMonth 		() const;
@@ -138,11 +137,6 @@ private:
 	int calculateMonthlyPattern(int year, int month);
 	int calculateCenturyPattern(int year);
 	proto_datetime dt;
-
-
-	DAY day;
-	MONTH month;
-	int mday, year, hour, minute, second;
 
 };
 }

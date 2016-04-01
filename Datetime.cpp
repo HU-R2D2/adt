@@ -13,18 +13,22 @@ DATETIME::DATETIME(uint16_t year, uint8_t mday, MONTH month,
 			throw DateTimeException("minute");
 		else if(second > 59)
 			throw DateTimeException("second");
-	}
-	/*day{t_day}, month{t_month}, mday{mday}, year{year}, 
-	hour{hour}, minute{minute}, second{second}	{}*/
+}
 
 DATETIME::DATETIME(double gtime)	{
 		// ToDo figure out what to do with gtime, could be unnecessary
-		time_t givenTime = (time_t)gtime;
+/*		time_t givenTime = (time_t)gtime;
 		struct tm * now = localtime( & givenTime );
 		year 	= (now->tm_year + 1900);
 		month 	= (MONTH)(now->tm_mon + 1);
-		mday 	= now->tm_mday;
+		mday 	= now->tm_mday;*/
 		dt = proto_datetime(2015, 12, MONTH::MARCH);
+}
+DATETIME& DATETIME::operator= (const DATETIME& refDT)	{
+	if(&refDT == this)
+    	return *this;
+    this->dt = refDT.dt;
+    return *this;
 }
 DAY DATETIME::calculateDay(proto_datetime& dt)	{
 		//Todo maybe init datetime struct?
