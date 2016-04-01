@@ -71,7 +71,7 @@ class Distance {
 		 //!
 		 //! @brief	Sets the x Length value of the Distance to the given value
 		 //!
-		 //! @param	x			The x Lengthof the distance
+		 //! @param	x			The x Length of the distance
 		 
 		void set_x(Length x);
 		
