@@ -1,6 +1,37 @@
-//
-// Created by Matthijs on 29-3-2016.
-//
+//!______      _          ______
+//!| ___ \    | |         | ___ \
+//!| |_/ /___ | |__   ___ | |_/ /___  ___  ___ _   _  ___
+//!|    // _ \| '_ \ / _ \|    // _ \/ __|/ __| | | |/ _ \
+//!| |\ \ (_) | |_) | (_) | |\ \  __/\__ \ (__| |_| |  __/
+//!\_| \_\___/|_.__/ \___/\_| \_\___||___/\___|\__,_|\___|
+//!
+//!
+//! @file Coordinate.cpp
+//! @date Created: 14-03-16
+//! @version 1.0.0
+//!
+//! @author Matthijs Mud
+//!
+//! @section LICENSE
+//! License: newBSD
+//!
+//! Copyright © 2016, HU University of Applied Sciences Utrecht.
+//! All rights reserved.
+//!
+//! Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+//! - Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+//! - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+//! - Neither the name of the HU University of Applied Sciences Utrecht nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+//!
+//! THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+//! "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+//! THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+//! ARE DISCLAIMED. IN NO EVENT SHALL THE HU UNIVERSITY OF APPLIED SCIENCES UTRECHT
+//! BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+//! CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+//! GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+//! HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+//! LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
 
 #ifndef ADT_COORDINATETEST_H
 #define ADT_COORDINATETEST_H
@@ -92,8 +123,9 @@ TEST(Coordinate, ReadFrom) {
    Coordinate coord = Coordinate::origin;
    const Coordinate * const originalPointer = &coord;
 
+   // Check whether the coordinate is read in correct form from the stream.
    stream << "coordinate (15m, 7.5m, 3.75m)";
-   try { stream >> coord;}catch(std::exception & e){ std::cerr << e.what() << std::endl; }
+   stream >> coord;
    ASSERT_DOUBLE_EQ(15, coord.get_x() / Length::METER);
    ASSERT_DOUBLE_EQ(7.5, coord.get_y() / Length::METER);
    ASSERT_DOUBLE_EQ(3.75, coord.get_z() / Length::METER);
@@ -102,15 +134,18 @@ TEST(Coordinate, ReadFrom) {
    // A list of strings which should NOT be parsed.
    // In comments is listed what is wrong with the string.
    auto failures = {
-      "coordinate(0m,0m,0m)",    // Space between "coordinate" and opening brace is missing.
-            "coordinate (0, 0, 0)",    // Unit declarations are missing.
-            "coordinate (0m, 0, 0)",   // Same as above, only for 1 value.
-            "coordinate (0, 0m, 0)",   // Same as above.
-            "coordinate (0, 0, 0m)",   // Same as above.
-            "coordinate (0m, 0m, 0m]", // Wrong closing brace.
-            "coordinate [0m, 0m, 0m)", // Wrong opening brace.
-            "coordinate [0m, 0m, 0m]", // Wrong opening and closing brace.
-            "coord (0m, 0m, 0m)"       // Incomplete indication of type; should be "coordinate".
+         "coordinate(0m,0m,0m)",           // Space between "coordinate" and opening brace is missing.
+         "coordinate (0, 0, 0)",           // Unit declarations are missing.
+         "coordinate (0m, 0, 0)",          // Same as above, only for 1 value.
+         "coordinate (0, 0m, 0)",          // Same as above.
+         "coordinate (0, 0, 0m)",          // Same as above.
+         "coordinate (10m,55.2m, 0m]",     // Wrong closing brace.
+         "coordinate [10m, 55.2m, 0m)",    // Wrong opening brace.
+         "coordinate [10m, 55.2m, 0m]",    // Wrong opening and closing brace.
+         "coordinate (24m, 1.3m; 6.0m)",   // Incorrect separator.
+         "coordinate (24m; 1.3m; 6.0m)",   // Incorrect separator.
+         "coordinate (24m; 1.3m; 6.0m)",   // Incorrect separator.
+         "coord (0m, 0m, 0m)"              // Incomplete indication of type; should be "coordinate".
    };
    for (auto failure : failures) {
       try {
@@ -119,10 +154,10 @@ TEST(Coordinate, ReadFrom) {
          FAIL() << "Parsing \"" << failure << "\" to a coordinate should not be possible." << std::endl;
       } catch (std::runtime_error & e) {
          // Behaves as expected.
+         // So let's check they values remain unchanged... for what its worth.
          ASSERT_DOUBLE_EQ(15, coord.get_x() / Length::METER) << "X value was modified despite the promise";
          ASSERT_DOUBLE_EQ(7.5, coord.get_y() / Length::METER) << "Y value was modified despite the promise";
          ASSERT_DOUBLE_EQ(3.75, coord.get_z() / Length::METER) << "Z value was modified despite the promise";
-         //std::cerr << e.what() << std::endl;
       } catch (...) {
          FAIL() << "Wrong exception; was expecting [std::runtime_error]";
       }
