@@ -154,9 +154,9 @@ TEST(Speed, MultiplyAssignDouble){
 	// no more other test because itern it uses multiply and assign operators so if you test them properly it isn't nessecarly here.
 }
 
-TEST(SpeedtestWriteTo, Speed){
+TEST(Speed, WriteTo){
    std::stringstream stream{};
-   speed s = 5 * length::Meter/Duration::SECOND;
+   Speed s = 5 * Length::METER/Duration::SECOND;
    stream << s << std::endl;
    std::string output;
    std::getline(stream, output);
