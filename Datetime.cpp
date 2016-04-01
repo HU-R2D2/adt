@@ -1,8 +1,10 @@
 #include "Datetime.hpp"
 namespace adt{
-DATETIME::DATETIME(adt::DAY t_day, adt::MONTH t_month, int mday, int year, int hour, int minute, int second) : 
-	day{t_day}, month{t_month}, mday{mday}, year{year}, 
-	hour{hour}, minute{minute}, second{second}	{}
+DATETIME::DATETIME(uint16_t year, uint8_t mday, MONTH month, 
+		uint8_t hour, uint8_t minute, uint8_t second) : 
+	dt{year, mday, month, hour, minute, second}{}
+	/*day{t_day}, month{t_month}, mday{mday}, year{year}, 
+	hour{hour}, minute{minute}, second{second}	{}*/
 
 DATETIME::DATETIME(double gtime)	{
 		// ToDo figure out what to do with gtime, could be unnecessary
@@ -11,10 +13,7 @@ DATETIME::DATETIME(double gtime)	{
 		year 	= (now->tm_year + 1900);
 		month 	= (MONTH)(now->tm_mon + 1);
 		mday 	= now->tm_mday;
-
-		proto_datetime testDateTime(2015, 31, MONTH::MARCH);
-		cout << "test is:\t" << (int)calculateDay(testDateTime) << "\t and year is: " << year << endl;
-		//(d + m + y + absolute(y / 4) + 0) % 7
+		dt = proto_datetime(2015, 12, MONTH::MARCH);
 	}
 DAY DATETIME::calculateDay(proto_datetime& dt)	{
 		//Todo maybe init datetime struct?
@@ -54,5 +53,31 @@ int DATETIME::calculateCenturyPattern(int year)	{
 		if(number < 0)								// If number is negative, add 4 for the correct array element
 			number += 4;
 		return centuryPattern[number];				// Return century value for day calculation
-	}
+}
+DAY DATETIME::getDay() const{
+	return dt.day;
+}
+MONTH DATETIME::getMonth() const	{
+	return dt.month;
+}
+
+int DATETIME::getSecond		()	const	{
+	return dt.HT.second;
+}
+int DATETIME::getMinute		()	const	{
+	return dt.HT.minute;
+}
+int DATETIME::getHour			()	const	{
+	return dt.HT.hour;
+}
+int DATETIME::getMonthDay		() const	{
+	return dt.mday;
+}
+int DATETIME::getMonthNumber	()	const	{
+	return dt.month;
+}
+int DATETIME::getYear			()	const	{
+	return dt.year;
+}
+
 };

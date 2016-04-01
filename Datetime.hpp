@@ -49,7 +49,24 @@ struct proto_hourlyTimes{
 	proto_hourlyTimes(uint8_t hour = 0, uint8_t minute = 0, uint8_t second = 0) : 
 	hour{hour}, minute{minute}, second{second}	{}
 };
+
 /**
+*	@author 		Ferdi Stoeltie 1665045
+*	@date			31-03-2016
+*	@version		0.1
+*	@brief			The DateTime class contains a datetime format, together with operations for subtracting, adding, differentiating and streams
+*	@details		The difference between this DateTime class and Moment, 
+					is that a Moment contains a single double (seconds) and stores it as a moment in time.
+					DateTime offers an ordered way of storing this data and also a more human readable method of using Moment.
+					Also note that a Moment can be relative to any given moment whereas DateTime always represents the Gregorian  DateTime
+	@ToDo			Offer Formatting, link DateTime data to Moment for lossless switching between the two.
+*	@warning		STILL UNDER DEVELOPMENT
+*	@bug			List bugs here
+*/
+class DATETIME{
+//friend Clock::get_datetime();
+private:
+	/**
 	@brief The proto_datetime contains a time and date
 	@warning PROTOTYPE, NOT READY FOR DEPLOYMENT
 */
@@ -67,25 +84,11 @@ struct proto_datetime{
 	proto_datetime(uint16_t year, uint8_t mday, MONTH month, 
 		proto_hourlyTimes HT) : 
 	year{year}, mday{mday}, month{month}, HT{HT} {}
+	proto_datetime(){}
 };
-/**
-*	@author 		Ferdi Stoeltie 1665045
-*	@date			31-03-2016
-*	@version		0.1
-*	@brief			The DateTime class contains a datetime format, together with operations for subtracting, adding, differentiating and streams
-*	@details		The difference between this DateTime class and Moment, 
-					is that a Moment contains a single double (seconds) and stores it as a moment in time.
-					DateTime offers an ordered way of storing this data and also a more human readable method of using Moment.
-					Also note that a Moment can be relative to any given moment whereas DateTime always represents the Gregorian  DateTime
-	@ToDo			Offer Formatting, link DateTime data to Moment for lossless switching between the two.
-*	@warning		STILL UNDER DEVELOPMENT
-*	@bug			List bugs here
-*/
-class DATETIME{
-
 public:
-	DATETIME(DAY day, MONTH month, int mday, int year, int hour, int minute, int second);
-	DATETIME(double gtime);
+	DATETIME(uint16_t year, uint8_t mday, MONTH month, 
+		uint8_t hour = 0, uint8_t minute = 0, uint8_t second = 0); // Should not be friended to clock class
 
 	DATETIME& operator= (const DATETIME& refMoment);
 
@@ -100,11 +103,28 @@ public:
 	friend ostream& operator<< (ostream& lhs, const DATETIME& refDateTime);
 	friend istream& operator>> (istream& lhs, DATETIME& refDateTime);
 
+
+	DAY getDay 			() const;
+	MONTH getMonth 		() const;
+
+	int getSecond		() const;
+	int getMinute		() const;
+	int getHour			() const;
+	int getMonthDay		() const;
+	int getMonthNumber	() const;
+	int getYear			() const;
+	
 private:
+	DATETIME(double gtime); // Should be friend of Clock Class
+
+
 	DAY calculateDay(proto_datetime& dt);
 	DAY calculateMonthDayPattern(int16_t mday);
 	int calculateMonthlyPattern(int year, int month);
 	int calculateCenturyPattern(int year);
+	proto_datetime dt;
+
+
 	DAY day;
 	MONTH month;
 	int mday, year, hour, minute, second;
