@@ -5,7 +5,7 @@
 #include <stdlib.h> 
 #include <math.h>
 #include <stdint.h>
-
+#include <exception>
 namespace adt{
 using namespace std;
 /**
@@ -26,7 +26,7 @@ enum DAY : uint8_t{
 /**
 	@brief Contains the Months of a year with January = 1 and December = 12
 */
-enum MONTH{
+enum MONTH : uint8_t{
 	JANUARY = 1,
 	FEBRUARY,
 	MARCH,
@@ -49,7 +49,21 @@ struct proto_hourlyTimes{
 	proto_hourlyTimes(uint8_t hour = 0, uint8_t minute = 0, uint8_t second = 0) : 
 	hour{hour}, minute{minute}, second{second}	{}
 };
-
+class DateTimeException : public exception
+{
+public:
+	DateTimeException(string error) : error{error} {
+		string invalid("Invalid DateTime");
+		string failed("failed");
+		error = (invalid + error + failed);
+	}
+	virtual const char* what() const throw()
+	{
+		return error.c_str();
+	}
+private:
+	string error;
+};
 /**
 *	@author 		Ferdi Stoeltie 1665045
 *	@date			31-03-2016
@@ -88,7 +102,7 @@ struct proto_datetime{
 };
 public:
 	DATETIME(uint16_t year, uint8_t mday, MONTH month, 
-		uint8_t hour = 0, uint8_t minute = 0, uint8_t second = 0); // Should not be friended to clock class
+		uint8_t hour = 0, uint8_t minute = 0, uint8_t second = 0) throw(DateTimeException); // Should not be friended to clock class
 
 	DATETIME& operator= (const DATETIME& refMoment);
 
@@ -117,6 +131,7 @@ public:
 private:
 	DATETIME(double gtime); // Should be friend of Clock Class
 
+	bool isValidDay(int year, MONTH month, int mday);
 
 	DAY calculateDay(proto_datetime& dt);
 	DAY calculateMonthDayPattern(int16_t mday);
