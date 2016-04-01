@@ -180,6 +180,9 @@ TEST (Box, IntersectsBox)
 	Box outsideBox(Coordinate(200*Length::METER,200*Length::METER,200*Length::METER), Coordinate(500*Length::METER,500*Length::METER,500*Length::METER));
 	ASSERT_EQ(box.intersects(outsideBox), false);
 
+	// test box that is bigger than the box it will check
+	Box biggerBox(Coordinate(-50 * Length::METER,-50 * Length::METER, -50 * Length::METER), Coordinate(200*Length::METER,200*Length::METER,200*Length::METER));
+	ASSERT_EQ(true, box.intersects(biggerBox));
 	
 	Box negativeBox(Coordinate(-50*Length::METER,-50*Length::METER,-50*Length::METER), Coordinate(-100*Length::METER,-100*Length::METER,-100*Length::METER));
 	

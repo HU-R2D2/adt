@@ -81,7 +81,7 @@ bool Box::contains(Box box)
 bool Box::intersects(Box box)
 {
 	// Check if there is an intersection between two boxes
-	if(this->contains(box.bottomLeft) || this->contains(box.topRight))
+	if(this->contains(box.bottomLeft) || this->contains(box.topRight) || box.contains(this->bottomLeft) || box.contains(this->topRight))
 	{
 		return true;
 	}
