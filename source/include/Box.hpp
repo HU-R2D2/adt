@@ -5,9 +5,6 @@
 #include "Distance.hpp"
 
 #include <iostream>
-
-//!	ToDo:
-//!	Review
 	
 //!	@author 		Stephan Vivie
 //! @date			15-03-2016
