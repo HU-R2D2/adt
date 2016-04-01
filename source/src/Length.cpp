@@ -62,25 +62,16 @@ Length& Length::operator+= (const Length & rhs) {
 }
 
 Length& Length::operator-= (const Length & rhs) {
-	double temp = length;
 	length -= rhs.length;
 	return *this;
 }
 
 bool Length::operator> (const Length& rhs) const {
-  if(length > rhs.length){
-    return true;
-   }else{
-    return false;
-   }
+  return(length > rhs.length);
 }
 
 bool Length::operator< (const Length& rhs) const{
-   if(length < rhs.length) {
-      return true;
-   } else {
-      return false;
-   }	
+   return(length < rhs.length);	
 }
 
 std::ostream& operator<< (std::ostream& lhs, const Length& rhs) {
