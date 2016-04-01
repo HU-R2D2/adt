@@ -69,6 +69,14 @@ Distance Distance::operator* (double number) const{
 	temp.z = temp.z * number;
 	return temp;
 }
+
+Distance operator* (double number, const Distance& rhs) {
+	Distance temp(rhs);
+	temp.x = number * temp.x;
+	temp.y = number * temp.y;
+	temp.z = number * temp.z;
+	return temp;
+}
 		
 Distance Distance::operator/ (double number) const{
 	Distance temp(*this);
@@ -78,6 +86,19 @@ Distance Distance::operator/ (double number) const{
 	temp.x = temp.x / number;
 	temp.y = temp.y / number;
 	temp.z = temp.z / number;
+	return temp;
+}
+
+Distance operator/ (double number, const Distance& rhs) {
+	Distance temp(rhs);
+	double tx = temp.x / Length::METER;
+	double ty = temp.y / Length::METER;
+	double tz = temp.z / Length::METER;
+	if((tx != 0) && (ty != 0) && (tz != 0)){
+		temp.x = number * Length::METER / tx;
+		temp.y = number * Length::METER / ty;
+		temp.z = number * Length::METER / tz;
+	}
 	return temp;
 }
 	

@@ -80,6 +80,7 @@ class Length {
 		//! @brief	Add assign operator of a Length
 		//!
 		//! @param	number the number to add to the length 
+
 		Length& operator+= (const Length& rhs);
 		
 		//! @fn		Length::Length(const Length& rhs)

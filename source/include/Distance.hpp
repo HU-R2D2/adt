@@ -128,6 +128,13 @@ class Distance {
 		 
 		Distance operator * (double number) const;
 		
+		
+		
+		friend Distance operator* (double number, const Distance& rhs);
+		friend Distance operator/ (double number, const Distance& rhs);
+		
+		
+		
 		 //! @fn		Distance Distance::operator/ (double number) const
 		 //!
 		 //! @brief	Division operator of a Distance
