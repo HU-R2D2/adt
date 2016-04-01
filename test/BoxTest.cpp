@@ -96,6 +96,11 @@ TEST (Box, Ostream)
 
 }
 
+TEST(Box, Istream)
+{
+	
+}
+
 
 /**
 * METHODS 
@@ -359,4 +364,4 @@ TEST (Box, get_intersection_box)
 	ASSERT_DOUBLE_EQ(notCollidedBox.get_top_right().get_y()/Length::METER, 0);
 	ASSERT_DOUBLE_EQ(notCollidedBox.get_top_right().get_z()/Length::METER, 0);
 
-} 
+}

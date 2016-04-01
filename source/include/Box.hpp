@@ -36,47 +36,47 @@ public:
     //!
     //! @param coord The coordinate to check
     //! @return boolean State if parameter is inside of this object 
-	bool contains (Coordinate coord);
+	bool contains (const Coordinate & coord) const;
 
 	//! @brief Check whether box contains another box
     //!
     //! @param box 
     //! @return boolean State if parameter is inside of this object	
-	bool contains (Box box);
+	bool contains (const Box & box) const;
 
 	//! @brief Check whether box intersects with another box, returns boolean
     //!
     //! @param 
     //! @return 	
-	bool intersects (Box box);
+	bool intersects (const Box & box) const;
 
 	//! @brief return bottom left coordinate
     //!
     //! @return bottomLeft coordinate
-	Coordinate get_bottom_left();
+	Coordinate get_bottom_left() const;
 
 	//! @brief return the top right coordinate
     //!
     //! @return topright coordinate
-	Coordinate get_top_right();
+	Coordinate get_top_right() const;
 
 	//! @brief Returns the smallest possible box that contains both boxes
     //!
     //! @param box the box to create an union box with
     //! @return Box the union box
-	Box get_union_box(Box box);
+	Box get_union_box(const Box & box) const;
 
 	//! @brief Returns box that contains the shared space (intersection area) between two boxes
     //! @note If there is no intersection between the boxes, a empty box will be returned
     //!
     //! @param box the box to create an shared space with
     //! @return Box The box that contains the shared space. When there is no overlapse in the two boxes a box with (0.0,0.0,0.0) is returned.
-	Box get_intersection_box(Box box);
+	Box get_intersection_box(const Box & box) const;
 
 	//! @brief Returns the size of the axis
     //!
     //! @return Distance of the axis
-	Distance get_axis_size();
+	Distance get_axis_size() const;
 
 
 	//! @brief assignment operator for a box
@@ -91,6 +91,14 @@ public:
     //! @param rhs Object to append
     //! @return std::ostream
 	friend std::ostream & operator<< (std::ostream & os, const Box & rhs);
+
+
+    //! @brief read a box from std::istream and return the istream
+    //!
+    //! @param lhs the istream to read from
+    //! @param rhs the coordinate to write the values to
+    //! @return std::istream the istream
+    friend std::istream &operator>>(std::istream &lhs, Box & rhs);
 
 private:
 	

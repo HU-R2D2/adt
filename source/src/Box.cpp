@@ -33,7 +33,7 @@ Box::Box(Coordinate origin, Distance dist):
 {
 }
 
-bool Box::contains(Coordinate coord)
+bool Box::contains(const Coordinate & coord) const
 {
 	// Check if coordinate  is within bottomLeft attribute and topRight attribute
 	if (coord.x > bottomLeft.x &&
@@ -68,7 +68,7 @@ bool Box::contains(Coordinate coord)
 	return false;
 }
 
-bool Box::contains(Box box)
+bool Box::contains(const Box & box) const
 {
 	// Check if both coordinates of the box attribute are within current box bottomLeft and topRight
 	if (this->contains(box.bottomLeft) && this->contains(box.topRight))
@@ -78,7 +78,7 @@ bool Box::contains(Box box)
 	return false;
 }
 
-bool Box::intersects(Box box)
+bool Box::intersects(const Box & box) const
 {
 	// Check if there is an intersection between two boxes
 	// Uses AABB collision detection (Angle Aligned Bounding Box)
@@ -95,17 +95,17 @@ bool Box::intersects(Box box)
 	return false;
 }
 
-Coordinate Box::get_bottom_left()
+Coordinate Box::get_bottom_left() const
 {
 	return bottomLeft;
 }
 
-Coordinate Box::get_top_right()
+Coordinate Box::get_top_right() const
 {
 	return topRight;
 }
 
-Box Box::get_union_box(Box box)
+Box Box::get_union_box(const Box & box) const
 {
 	Coordinate newBottomLeft;
 	Coordinate newTopRight;
@@ -132,7 +132,7 @@ Box Box::get_union_box(Box box)
 	return Box(newBottomLeft, newTopRight);
 }
 
-Box Box::get_intersection_box(Box box)
+Box Box::get_intersection_box(const Box & box) const
 {
 	if(this->intersects(box))
 	{
@@ -155,7 +155,7 @@ Box Box::get_intersection_box(Box box)
 		
 }
 
-Distance Box::get_axis_size()
+Distance Box::get_axis_size() const
 {
 	Distance dist;
 
@@ -176,4 +176,50 @@ Box & Box::operator=(const Box & rhs)
 
 std::ostream & operator <<(std::ostream & lhs, const Box & rhs) {
 	lhs << "box (" << rhs.bottomLeft << " " << rhs.topRight << ")";
+}
+
+std::istream & operator >>(std::istream & lhs, Box & rhs )
+{
+ 	// Make sure the data that is being decoded is a Box.
+   std::string prefix;
+   lhs >> std::ws >> prefix;
+   if (prefix != "boxes") {
+      throw std::runtime_error{"Expecting prefix \"box\", got something else."};
+   }
+   char temp;
+   lhs >> std::ws >> temp;
+   if (temp != '(') {
+      throw std::runtime_error{"No opening brace encountered"};
+   }
+
+   // To guarantee the box remains unchanged when an error occurs,
+   // a temporary storage is needed for the values.
+   // If not, throw an exception or something along those lines.
+   Coordinate bottomLeft;
+   Coordinate topRight;
+
+   // The different values are separated by certain characters.
+   // As they require multiple similar steps, this small lambda is defined.
+   auto ReadComponent = [](std::istream & lhs, char expectedSeperator) {
+      Coordinate value;
+      char separator;
+      lhs >> value >> separator;
+      if(separator != expectedSeperator){
+         throw std::runtime_error{"Wrong or missing seperator."};
+      }
+      return value;
+   };
+
+   bottomLeft = ReadComponent(lhs, ' ');
+   topRight = ReadComponent(lhs, ' ');
+
+
+   if (!lhs) {
+      throw std::runtime_error{"Coordinate wasn't read in its entirety when end of stream was reached. "};
+   }
+
+   rhs.bottomLeft = bottomLeft;
+   rhs.topRight = topRight;
+
+   return lhs;
 }
