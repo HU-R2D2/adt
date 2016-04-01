@@ -4,68 +4,71 @@
 const Length Length::METER(1);
 const Length Length::CENTIMETER(1/100.0);
 
-Length::Length(double l):
-	l{l}
+Length::Length():
+  length{0.0}
+{}
+Length::Length(double length):
+	length{length}
 {}
 
 Length& Length::operator= (const Length& rhs){
-	l = rhs.l;
+	length = rhs.length;
 	return *this;
 }
 
 Length Length::operator+ (const Length& rhs) const {
   Length temp {*this};
-  temp.l = temp.l + rhs.l;
+  temp.length = temp.length + rhs.length;
   return temp;
 }
 
 Length Length::operator- (const Length& rhs) const {
 	Length temp {*this};
-	temp.l = temp.l - rhs.l;
+	temp.length = temp.length - rhs.length;
 	return temp;	
 }
 
 Length Length::operator* (double number) const {
   Length temp {*this};
-  temp.l = number * temp.l;
+  temp.length = number * temp.length;
   return temp;	
 }
 
 Length operator* (double n, const Length & rhs) {
   Length temp {rhs};
-  temp.l = temp.l * n;
+  temp.length = temp.length * n;
   return temp;
 }
 
 Length Length::operator/ (double number) const {		// mag niet delen door 0!!
 	Length temp {*this};
 	if(number != 0) {
-		temp.l = temp.l / number;
+		temp.length = temp.length / number;
 	}
 	return temp; 
 }
 
 double Length::operator/ (const Length & rhs) const{
-	double temp = l;
-	if(rhs.l != 0) {
-		temp = temp / rhs.l;
+	double temp = length;
+	if(rhs.length != 0) {
+		temp = temp / rhs.length;
 	}
 	return temp; 
 }
 
 Length& Length::operator+= (const Length & rhs) {
-  l += rhs.l;
+  length += rhs.length;
   return *this;
 }
 
 Length& Length::operator-= (const Length & rhs) {
-	double temp = l;
-	l -= rhs.l;
+	double temp = length;
+	length -= rhs.length;
 	return *this;
 }
 
 bool Length::operator> (const Length& rhs) const {
-  if(l > rhs.l){
+  if(length > rhs.length){
     return true;
    }else{
     return false;
@@ -73,7 +76,7 @@ bool Length::operator> (const Length& rhs) const {
 }
 
 bool Length::operator< (const Length& rhs) const{
-   if(l < rhs.l) {
+   if(length < rhs.length) {
       return true;
    } else {
       return false;
@@ -81,7 +84,7 @@ bool Length::operator< (const Length& rhs) const{
 }
 
 std::ostream& operator<< (std::ostream& lhs, const Length& rhs) {
-   lhs << rhs.l << "m";
+   lhs << rhs.length << "m";
    return lhs;
 }
 

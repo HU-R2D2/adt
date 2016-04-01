@@ -21,21 +21,19 @@ class Distance;
 class Length {
 	friend class Distance;
 	friend class Acceleration;
-
-	private:
-		
+	
+	public:
 		//! @fn		Length::Length(double l)
 		//!
 		//! @brief	Constructor of a Length
 		//!
 		//! @param	l The coordinate of the distance
-		Length(double l);
+		Length(double length);
 
-	public:	
 		//! @fn 	Length::Length()
 		//!
 		//! @brief 	Defaut constructor of length
-		Length(){l = 0;}
+		Length();
 		
 		//! @fn		Length::Length(const Length& rhs)
 		//!
@@ -134,13 +132,13 @@ class Length {
 		//! @brief	divide length by duration and return the speed
 		//!
 		//! @param	
-		friend Speed operator/ (const Length & l, const Duration & d);
+		friend Speed operator/ (const Length & length, const Duration & d);
 
 		FRIEND_TEST(Length, doubleConstructor);
 		static const Length METER;
 		static const Length CENTIMETER;
 	private:
-		double l;
+		double length;
 };
 
 #endif

@@ -12,7 +12,7 @@ Acceleration::Acceleration(double value):
 
 Acceleration::Acceleration(const Length & lt, const Duration & dur)
 {
-	double travelLength = lt.l * 2;
+	double travelLength = lt.length * 2;
 
 	double travelTime = dur.get_seconds();
 

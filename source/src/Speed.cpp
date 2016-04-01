@@ -4,7 +4,7 @@ Speed::Speed(double val): value{val}{}
 
 // Operators
 Speed operator/ ( const Length & l, const Duration & d){
-  return Speed{l.l /d.seconds}; 
+  return Speed{l.length /d.seconds}; 
 }
 
 Speed & Speed::operator= (const Speed & rhs){
