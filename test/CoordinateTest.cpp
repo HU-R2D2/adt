@@ -83,7 +83,7 @@ TEST(Coordinate, WriteTo) {
    stream << Coordinate::origin << std::endl;
    std::string output;
    std::getline(stream, output);
-   EXPECT_EQ("coordinate (0, 0, 0)", output);
+   EXPECT_EQ("coordinate (0m, 0m, 0m)", output);
    EXPECT_EQ(&stream, &(stream << Coordinate::origin)) << "Wrong stream is returned.";
 }
 
@@ -92,7 +92,7 @@ TEST(Coordinate, ReadFrom) {
    Coordinate coord = Coordinate::origin;
    const Coordinate * const originalPointer = &coord;
 
-   stream << "coordinate (15, 7.5, 3.75)";
+   stream << "coordinate (15m, 7.5m, 3.75m)";
    try { stream >> coord;}catch(std::exception & e){ std::cerr << e.what() << std::endl; }
    ASSERT_DOUBLE_EQ(15, coord.get_x() / Length::METER);
    ASSERT_DOUBLE_EQ(7.5, coord.get_y() / Length::METER);
@@ -102,13 +102,15 @@ TEST(Coordinate, ReadFrom) {
    // A list of strings which should NOT be parsed.
    // In comments is listed what is wrong with the string.
    auto failures = {
-         "coordinate(0,0,0)",    // Space between "coordinate" and opening brace is missing.
-         "coordinate (0, 0, 0]", // Wrong closing brace.
-         "coordinate [0, 0, 0)", // Wrong opening brace.
-         "coordinate [0, 0, 0]", // Wrong opening and closing brace.
-         "coordinate (0; 0, 0)", // Wrong separator.
-         "coordinate (0, 0 0)",  // Missing separator.
-         "coord (0, 0, 0)"       // Incomplete indication of type; should be "coordinate".
+      "coordinate(0m,0m,0m)",    // Space between "coordinate" and opening brace is missing.
+            "coordinate (0, 0, 0)",    // Unit declarations are missing.
+            "coordinate (0m, 0, 0)",   // Same as above, only for 1 value.
+            "coordinate (0, 0m, 0)",   // Same as above.
+            "coordinate (0, 0, 0m)",   // Same as above.
+            "coordinate (0m, 0m, 0m]", // Wrong closing brace.
+            "coordinate [0m, 0m, 0m)", // Wrong opening brace.
+            "coordinate [0m, 0m, 0m]", // Wrong opening and closing brace.
+            "coord (0m, 0m, 0m)"       // Incomplete indication of type; should be "coordinate".
    };
    for (auto failure : failures) {
       try {
