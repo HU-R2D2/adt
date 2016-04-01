@@ -238,7 +238,7 @@ TEST(Length, OutputStream) { 				//operator<<
 	stream << a << std::endl;
 	std::string output;
 	std::getline(stream, output);
-	EXPECT_EQ("1", output);
+	EXPECT_EQ("1m", output);
 }
 
 /*		

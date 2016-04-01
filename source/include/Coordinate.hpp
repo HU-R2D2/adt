@@ -1,6 +1,6 @@
 //! @file Coordinate.hpp
 //! @author Matthijs Mud
-//! @date March 31th, 2016
+//! @date April 1st, 2016
 //! @version 1.0
 
 #ifndef COORDINATE_HPP
@@ -16,17 +16,16 @@ class Box;
 //! @brief A location in space, specified as an offset to an arbitrary origin.
 //!
 //! The offset to the origin is given in Lengths.
-class Coordinate {
+class Coordinate final {
 
-   friend class Distance;
+   // Box consists out of multiple coordinates, and might change some aspects or create new ones.
+   // This could require access to private fields / functions.
    friend class Box;
 
 private:
    Length x;
    Length y;
    Length z;
-
-   
 
 public:
    //! @brief Constructs a coordinate with the given offsets from the origin on the X,Y and Z axis.
@@ -83,7 +82,7 @@ public:
    //!
    //! The output is given in the format somewhat similar to "coordinate(x, y, z)",
    //! where the 'x', 'y' and 'z' are replaced by the offsets to the origin.
-   //! The suffixes could vary.
+   //! The suffixes could vary based on the magnitude of the lengths.
    //! @param lhs Stream to which to write the string representation of the coordinate.
    //! @param rhs Reference to the object to write to the outputstream.
    //! @return Reference to the stream passed in by lhs.
