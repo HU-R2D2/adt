@@ -92,7 +92,7 @@ TEST (Box, Ostream)
    	stream << box << std::endl;
    	std::string output;
    	std::getline(stream, output);
-   	EXPECT_EQ("box (coordinate (0, 0, 0) coordinate (50, 50, 50))", output);
+   	EXPECT_EQ("box (coordinate (0m, 0m, 0m) coordinate (50m, 50m, 50m))", output);
 
 }
 

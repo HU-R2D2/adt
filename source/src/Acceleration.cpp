@@ -28,36 +28,51 @@ void Acceleration::set_acceleration(const double val)
 
 Acceleration & Acceleration::operator= (const Acceleration & rhs)
 {
+	value = rhs.value;
 
+	return *this;
 }
 
-Acceleration Acceleration::operator* (const double & lhs) const
+Acceleration Acceleration::operator* (const double & rhs) const
 {
-
+	return value * rhs;
 }
 
 Acceleration Acceleration::operator/ (const double & rhs) const
 {
+	return value / rhs;
 
 }
 
-Duration Acceleration::operator/ (const Distance & lhs) const
+Duration Acceleration::operator/ (const Distance & rhs) const
 {
 
 }
 
 bool Acceleration::operator> (const Acceleration & rhs) const
 {
+	if(value > rhs.value)
+	{
+		return true;
+	}
 
+	return false;
 }
 
 bool Acceleration::operator< (const Acceleration & rhs) const
 {
+	if(value < rhs.value)
+	{
+		return true;
+	}
+
+	return false;
 
 }
 
 std::ostream & operator <<(std::ostream & lhs, const Acceleration & rhs) {
-
+	lhs << "acceleration (" << rhs.value << " m/sec)";
+	return lhs;
 }
 
 
