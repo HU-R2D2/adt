@@ -4,7 +4,7 @@
 
 
 //Assign
-TEST(SpeedTestAssign,Speed){
+TEST(Speed, Assign){
 	Speed a = (5 * Length::METER) / Duration::SECOND;
 	ASSERT_DOUBLE_EQ(a/(Length::METER/Duration::SECOND), 5) << "speed created";
 	Speed b = 7 * Length::METER / Duration::SECOND;
@@ -13,7 +13,7 @@ TEST(SpeedTestAssign,Speed){
 }
 
 
-TEST(SpeedTestDivide, Speed){
+TEST(Speed, Divide){
 	Speed a = 4 * Length::METER / Duration::SECOND;
 	Speed b = 8 * Length::METER / Duration::SECOND;
 	Speed c = -16 * Length::METER / Duration::SECOND;
@@ -22,7 +22,7 @@ TEST(SpeedTestDivide, Speed){
 }
 
 //Smaller
-TEST(SpeedTestSmaller,Speed){
+TEST(Speed, Smaller){
 	Speed a = 8 * Length::METER / Duration::SECOND;
 	Speed b = 6 * Length::METER / Duration::SECOND;
 	EXPECT_EQ(a < b, false) << "a not smaller than b";
@@ -30,7 +30,7 @@ TEST(SpeedTestSmaller,Speed){
 }
 
 //Bigger
-TEST(SpeedTestBigger,Speed){
+TEST(Speed, Bigger){
 	Speed a = 6 * Length::METER / Duration::SECOND;
 	Speed b = 8 * Length::METER / Duration::SECOND;
 	EXPECT_EQ(a > b, false) << "a not greater than b";
@@ -38,7 +38,7 @@ TEST(SpeedTestBigger,Speed){
 }
 
 //onedd
-TEST(SpeedTestAdd, Speed){
+TEST(Speed, Add){
 	Speed a = 3 * Length::METER / Duration::SECOND;
 	Speed b = 6 * Length::METER / Duration::SECOND;
 	Speed c = 0 * Length::METER / Duration::SECOND;
@@ -57,7 +57,7 @@ TEST(SpeedTestAdd, Speed){
 
 
 //AddAssign
-TEST(SpeedTestAddAssign, Speed){
+TEST(Speed, AddAssign){
 	Speed a = 6 * Length::METER / Duration::SECOND;
 	Speed b = 5 * Length::METER / Duration::SECOND;
 	a += b;
@@ -66,7 +66,7 @@ TEST(SpeedTestAddAssign, Speed){
 }
 
 //Subtract
-TEST(SpeedTestSubtract, Speed){
+TEST(Speed, Subtract){
 	Speed a = 3 * Length::METER / Duration::SECOND;
 	Speed b = 6 * Length::METER / Duration::SECOND;
 	Speed c = 0 * Length::METER / Duration::SECOND;
@@ -83,7 +83,7 @@ TEST(SpeedTestSubtract, Speed){
 
 
 //SubtractAssign
-TEST(SpeedTestSubtractAssign, Speed){
+TEST(Speed, SubtractAssign){
 	Speed a = 6 * Length::METER / Duration::SECOND;
 	Speed b = 5 * Length::METER / Duration::SECOND;
 	a -= b;
@@ -92,7 +92,7 @@ TEST(SpeedTestSubtractAssign, Speed){
 }
 
 //multiply by Duration
-TEST(SpeedTestMultiply, Duration){
+TEST(Speed, MultiplyDuration){
 	Speed a = 6 * Length::METER / Duration::SECOND;
 	Duration dur = 7 * Duration::SECOND;
 	Length l = a * dur;
@@ -102,7 +102,7 @@ TEST(SpeedTestMultiply, Duration){
 
 //divide by Duration
 /*
-TEST(SpeedTestDivide, Duration){
+TEST(Divide, Duration){
 	Speed a = 14 * Length::METER / Duration::SECOND;
 	Duration dur = 7 * SECOND;
 	Acceleration le = a / dur;
@@ -114,7 +114,7 @@ TEST(SpeedTestDivide, Duration){
 
 //Multiply by double
 
-TEST(SpeedTestMultiply, double){
+TEST(Speed,MultiplyDouble){
 	Speed a = 8 * Length::METER/ Duration::SECOND;
 	double pos = 2;
 	a = a * pos;
@@ -146,7 +146,7 @@ TEST(SpeedTestMultiply, double){
 
 
 //MultiplyAssign by double
-TEST(SpeedTestMultiplyAssign, double){
+TEST(Speed, MultiplyAssignDouble){
 	Speed a = 6 * Length::METER / Duration::SECOND;
 	double d = 7;
 	a = a * d;

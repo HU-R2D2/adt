@@ -3,7 +3,7 @@
 #include <iostream>
 
 // constructors:
-TEST(Constructor, Default) {
+TEST(Length, DefaultConstructor) {
 	Length a;
 	ASSERT_DOUBLE_EQ(a/Length::METER , 0) << "length";
 }
