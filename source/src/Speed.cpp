@@ -72,7 +72,7 @@ Speed & Speed::operator/= ( const double & rhs ){
   if(rhs != 0){
     value /= rhs;
   } 
-  return *this
+  return *this;
 }
 
 double Speed::operator/(const Speed & rhs){
