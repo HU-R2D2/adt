@@ -125,11 +125,11 @@ bool Distance::operator< (const Distance& rhs) const {
 }
 		
 std::ostream& operator<< (std::ostream& lhs, Distance& rhs) {
-	lhs << "distance (" << rhs.get_x() << ", " << rhs.get_y() << ", " << rhs.get_z() << ")";
+	lhs << "(" << rhs.get_x() << ", " << rhs.get_y() << ", " << rhs.get_z() << ")";
 	return lhs;
 }
 		
-Distance& operator>>(std::istream& input, Distance& rhs) {		// WAT WIL JE HIER TERUGKRIJGEN?? een Distance lijkt me?
+Distance& operator>>(std::istream& input, Distance& rhs) {
 	std::string prefix;
 	input >> std::ws >> prefix;
 	Length x,y,z;

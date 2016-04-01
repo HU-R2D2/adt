@@ -325,7 +325,7 @@ TEST(Distance, OutputStream) { 				//operator<<
 	stream << a << std::endl;
 	std::string output;
 	std::getline(stream, output);
-	EXPECT_EQ("(1,2,3)", output);
+	EXPECT_EQ("(1m, 2m, 3m)", output);
 }
 /*		
 TEST(Distance, InputStream) { 			//operator>>				// ZOIETS??????????????
