@@ -36,19 +36,19 @@ public:
     //!
     //! @param coord The coordinate to check
     //! @return boolean State if parameter is inside of this object 
-	bool contains (const Coordinate & coord) const;
+	const bool contains (const Coordinate & coord) const;
 
 	//! @brief Check whether box contains another box
     //!
     //! @param box 
     //! @return boolean State if parameter is inside of this object	
-	bool contains (const Box & box) const;
+	const bool contains (const Box & box) const;
 
 	//! @brief Check whether box intersects with another box, returns boolean
     //!
     //! @param 
     //! @return 	
-	bool intersects (const Box & box) const;
+	const bool intersects (const Box & box) const;
 
 	//! @brief return bottom left coordinate
     //!

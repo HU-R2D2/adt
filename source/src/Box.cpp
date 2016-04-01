@@ -33,7 +33,7 @@ Box::Box(Coordinate origin, Distance dist):
 {
 }
 
-bool Box::contains(const Coordinate & coord) const
+const bool Box::contains(const Coordinate & coord) const
 {
 	// Check if coordinate  is within bottomLeft attribute and topRight attribute
 	if (coord.x > bottomLeft.x &&
@@ -68,7 +68,7 @@ bool Box::contains(const Coordinate & coord) const
 	return false;
 }
 
-bool Box::contains(const Box & box) const
+const bool Box::contains(const Box & box) const
 {
 	// Check if both coordinates of the box attribute are within current box bottomLeft and topRight
 	if (this->contains(box.bottomLeft) && this->contains(box.topRight))
@@ -78,7 +78,7 @@ bool Box::contains(const Box & box) const
 	return false;
 }
 
-bool Box::intersects(const Box & box) const
+const bool Box::intersects(const Box & box) const
 {
 	// Check if there is an intersection between two boxes
 	// Uses AABB collision detection (Angle Aligned Bounding Box)
