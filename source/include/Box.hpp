@@ -83,7 +83,7 @@ public:
     //!
     //! @param box the box to assign
     //! @return the object
-	Box operator= ( const Box & );
+	Box & operator= ( const Box & );
 
 	//! @brief appends a box to an std::ostream and returns the ostream
     //!

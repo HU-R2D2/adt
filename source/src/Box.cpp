@@ -159,12 +159,12 @@ Distance Box::get_axis_size()
 	return dist;
 }
 
-Box Box::operator=(const Box & rhs)
+Box & Box::operator=(const Box & rhs)
 {	
 	bottomLeft = rhs.bottomLeft;
 	topRight = rhs.topRight;
 
-	return Box(bottomLeft, topRight);
+	return *this;
 }
 
 std::ostream & operator <<(std::ostream & lhs, const Box & rhs) {
