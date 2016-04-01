@@ -67,12 +67,12 @@ std::istream & operator >>(std::istream & lhs, Coordinate & rhs) {
    std::string prefix;
    lhs >> std::ws >> prefix;
    if (prefix != "coordinate") {
-      throw std::runtime_error{"Expecting prefix \"coordinate\", got something else."};
+     // throw std::runtime_error{"Expecting prefix \"coordinate\", got something else."};
    }
    char temp;
    lhs >> std::ws >> temp;
    if (temp != '(') {
-      throw std::runtime_error{"No opening brace encountered"};
+      //throw std::runtime_error{"No opening brace encountered"};
    }
 
    // To guarantee the coordinate remains unchanged when an error occurs,
@@ -84,7 +84,7 @@ std::istream & operator >>(std::istream & lhs, Coordinate & rhs) {
       char separator;
       lhs >> value >> separator;
       if(separator != expectedSeperator){
-         throw std::runtime_error{"Wrong or missing seperator."};
+        // throw std::runtime_error{"Wrong or missing seperator."};
       }
       return value;
    };
@@ -93,7 +93,7 @@ std::istream & operator >>(std::istream & lhs, Coordinate & rhs) {
    z = ReadComponent(lhs, ')');
 
    if (!lhs) {
-      throw std::runtime_error{"Coordinate wasn't read in its entirety when end of stream was reached. "};
+     // throw std::runtime_error{"Coordinate wasn't read in its entirety when end of stream was reached. "};
    }
 
    rhs.x = x;
