@@ -127,17 +127,33 @@ public:
 	*/
 	Speed & operator/= ( const double & rhs );
 
-    //! Divide a speed by a speed
-    /*!
-      \param rhs a Speed.
-      \return calculated result in double with no unit.
-    */
-    double operator/ ( const Speed & rhs);
-	/// appends a speeds to an ostream and returns an ostream
+  //! Divide a speed by a speed
+  /*!
+    \param rhs a Speed.
+    \return calculated result in double with no unit.
+  */
+  double operator/ ( const Speed & rhs);
+	//! Appends a speed to an std::ostream and returns the ostream
+  /*!
+    \param os the std::ostream to append to
+    \param rhs Object to append
+    \return std::ostream
+  */
 	friend std::ostream& operator<<(std::ostream & os, const Speed &rhs);
-	/// depend a speed from an istream and return the istream
+	//! Reads a speed from an std::istream and returns the istream
+  /*!
+    \param os the std::istream to read it from;
+    \param rhs Object to read
+    \return std::istream
+  */
 	friend std::istream& operator>>(std::istream & is, Speed & rhs);
 
+  //! Divides a Length by a duration.
+    /*!
+      \param l the length
+      \param d the duration
+      \return the calculated speed.
+  */
 	friend Speed operator/ ( const Length & l, const Duration & d);
 
 };
