@@ -43,7 +43,7 @@
 class Distance;
 class Box;
 
-//! @class coordinate
+//! @class Coordinate
 //! @brief A location in space, specified as an offset to an arbitrary origin.
 //!
 //! The offset to the origin is given in Lengths.
