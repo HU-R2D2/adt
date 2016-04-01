@@ -56,9 +56,6 @@ Distance Coordinate::operator-(const Coordinate &rhs) const {
 }
 
 std::ostream & operator <<(std::ostream & lhs, const Coordinate & rhs) {
-   // Since a coordinate is specified as a distance in meters to an arbitrary origin,
-   // the symbol for meter, 'm',  is added.
-   // Metric prefixes are not (yet) included as to keep the code concise.
    lhs << "coordinate (" << rhs.x << ", " << rhs.y << ", " << rhs.z << ")";
    return lhs;
 }
@@ -80,6 +77,9 @@ std::istream & operator >>(std::istream & lhs, Coordinate & rhs) {
    // a temporary storage is needed for the values.
    // If not, throw an exception or something along those lines.
    Length x, y, z;
+
+   // The different values are separated by certain characters.
+   // As they require multiple similar steps, this small lambda is defined.
    auto ReadComponent = [](std::istream & lhs, char expectedSeperator) {
       Length value;
       char separator;
