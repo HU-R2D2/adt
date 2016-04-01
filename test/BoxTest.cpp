@@ -180,6 +180,12 @@ TEST (Box, IntersectsBox)
 	Box outsideBox(Coordinate(200*Length::METER,200*Length::METER,200*Length::METER), Coordinate(500*Length::METER,500*Length::METER,500*Length::METER));
 	ASSERT_EQ(box.intersects(outsideBox), false);
 
+	// test box that doesn't have coordinates inside of eachother (Collision between box.topleftfront and noCoordinateBox.bottomrightback corner)
+	Box newBox(Coordinate(0,0,0), Coordinate(100,100,100));
+	Box noCoordinateBox(Coordinate(-50,50,0), Coordinate(50,150,100));
+	ASSERT_EQ(true, newBox.intersects(noCoordinateBox));
+
+
 	// test box that is bigger than the box it will check
 	Box biggerBox(Coordinate(-50 * Length::METER,-50 * Length::METER, -50 * Length::METER), Coordinate(200*Length::METER,200*Length::METER,200*Length::METER));
 	ASSERT_EQ(true, box.intersects(biggerBox));

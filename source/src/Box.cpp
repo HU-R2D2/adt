@@ -81,10 +81,17 @@ bool Box::contains(Box box)
 bool Box::intersects(Box box)
 {
 	// Check if there is an intersection between two boxes
-	if(this->contains(box.bottomLeft) || this->contains(box.topRight) || box.contains(this->bottomLeft) || box.contains(this->topRight))
+	// Uses AABB collision detection (Angle Aligned Bounding Box)
+	if (topRight.x > box.bottomLeft.x && 
+    bottomLeft.x < box.topRight.x &&
+    topRight.y > box.bottomLeft.y &&
+    bottomLeft.y < box.topRight.y &&
+    topRight.z > box.bottomLeft.z &&
+    bottomLeft.z < box.topRight.z)
 	{
 		return true;
 	}
+
 	return false;
 }
 
