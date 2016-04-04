@@ -15,38 +15,22 @@
 
 #include "Length.hpp"
 #include "Duration.hpp"
+#include "Speed.hpp"
 
 #include <iostream>
 
 class Acceleration {
-
-	public:
-
-		//! @brief The default constructor of and acceleration
-		Acceleration();
+	private: 
 
 		//! @brief Constructor that sets the value to whichever value. value should be in meter per second.
 		//!
 		//! @param val Raw acceleration value in meter per second
 		Acceleration(double val);
+	public:
 
-		//! @brief Constructs an acceleration from a Length and a duration
-		//!
-		//! @param dist The Length of the acceleration
-		//! @param duration The duration of the acceleration
-		Acceleration(const Length & lt, const Duration & dur);
-
-
-		//! @fn Acceleration::get_acceleration()
-		//!
-		//! @brief gets the valua of the acceleration and returns this
-		const double get_acceleration() const;
-
-		//! @brief sets a new valua for the accelration
-		//!
-		//! @param val		the value that the acceleration will be set to
-		void set_acceleration(double val);
-
+		//! @brief The default constructor of and acceleration
+		Acceleration();
+		
 		//! @brief assignment operator for an acceleration
 		//! 
 		//! @param rhs				the right hand sight acceleration, this one is being assigned to another acceleration
@@ -59,17 +43,23 @@ class Acceleration {
 		//! @return Acceleration	the acceleration on which the multiply operator was called
 		Acceleration operator* (const double & rhs) const;
 
+		//! @brief	multiplies an acceleration by a number, assign it to current object and return current object
+		//!
+		//! @param rhs				the number by which the acceleration is being multiplied
+		//! @return Acceleration	the acceleration on which the multiply operator was called
+		Acceleration operator*= (const double & rhs);
+
 		//! @brief divides an acceleration by a number and returns an acceleration
 		//!
 		//! @param rhs				the number by which the acceleration is being divided
 		//! @return Acceleration	the acceleration on which the division operator was called
 		Acceleration operator/ (const double & rhs) const;
 
-		//! @brief divides an acceleration by a length and returns a duration
+		//! @brief divides an acceleration by a number assign it to current object and return current object
 		//!
-		//! @param rhs			the length that the acceleration is being divided by
-		//! @return Duration	the result of the division of acceleration by length, which is a duration
-		Duration operator/ (const Length & rhs) const;
+		//! @param rhs				the number by which the acceleration is being divided
+		//! @return Acceleration	the acceleration on which the division operator was called
+		Acceleration operator/= (const double & rhs);
 
 		//! @brief checks which acceleration is bigger and returns a bool (true if 1st is bigger, false if 2nd)
 		//!
@@ -100,6 +90,12 @@ class Acceleration {
 		friend std::ostream &operator<<(std::ostream & lhs, const Acceleration & rhs);
 	
 
+		//! @brief Divides a speed with duration
+		//!
+		//! @param s the speed to divide
+		//! @param d the duration
+		//! @return Acceleration
+  		friend Acceleration operator/ (Speed & s, const Duration &d);
 	private:
 		double value;
 };

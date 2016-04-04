@@ -186,8 +186,8 @@ TEST (Box, IntersectsBox)
 	ASSERT_EQ(box.intersects(outsideBox), false);
 
 	// test box that doesn't have coordinates inside of eachother (Collision between box.topleftfront and noCoordinateBox.bottomrightback corner)
-	Box newBox(Coordinate(0,0,0), Coordinate(100,100,100));
-	Box noCoordinateBox(Coordinate(-50,50,0), Coordinate(50,150,100));
+	Box newBox(Coordinate(0 * Length::METER,0 * Length::METER,0 * Length::METER), Coordinate(100 * Length::METER,100 * Length::METER,100* Length::METER));
+	Box noCoordinateBox(Coordinate(-50* Length::METER,50* Length::METER,0* Length::METER), Coordinate(50* Length::METER,150* Length::METER,100* Length::METER));
 	ASSERT_EQ(true, newBox.intersects(noCoordinateBox));
 
 
