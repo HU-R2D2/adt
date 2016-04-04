@@ -117,10 +117,12 @@ std::istream & operator >>(std::istream & lhs, Acceleration & rhs){
 
 }
 
-Acceleration operator/ (Speed & s, Duration & d)
+Acceleration operator/ (const Speed & s, const Duration & d)
 {
+
 	//return Acceleration{s.value / (d.seconds / Duration::SECONDS)};
 	double durationValue = d / Duration::SECOND;
 	double speedValue = s / (1 * Length::METER / Duration::SECOND);
 	return Acceleration{ durationValue / speedValue };
+	
 }
