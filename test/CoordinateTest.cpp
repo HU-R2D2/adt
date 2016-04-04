@@ -43,6 +43,24 @@
 #include <string>
 #include <sstream>
 
+TEST(Coordinate, Constructor) {
+   Coordinate c1 = Coordinate::origin;
+   EXPECT_DOUBLE_EQ(0, c1.get_x() / Length::METER);
+   EXPECT_DOUBLE_EQ(0, c1.get_y() / Length::METER);
+   EXPECT_DOUBLE_EQ(0, c1.get_z() / Length::METER);
+
+   Coordinate c2 = Coordinate{20, 3.5, 4};
+   EXPECT_DOUBLE_EQ(20,  c2.get_x() / Length::METER);
+   EXPECT_DOUBLE_EQ(3.5, c2.get_y() / Length::METER);
+   EXPECT_DOUBLE_EQ(4,   c2.get_z() / Length::METER);
+
+   Coordinate c3 = Coordinate{-20, -3.5, -4};
+   EXPECT_DOUBLE_EQ(-20,  c3.get_x() / Length::METER);
+   EXPECT_DOUBLE_EQ(-3.5, c3.get_y() / Length::METER);
+   EXPECT_DOUBLE_EQ(-4,   c3.get_z() / Length::METER);
+
+
+}
 
 TEST(Coordinate, Assignment) {
    Coordinate c1 = Coordinate::origin;
