@@ -14,14 +14,13 @@ TEST(Acceleration, DefaultConstructor)
 	Acceleration accel;
 	ASSERT_DOUBLE_EQ(0.0, accel / oneMA);
 }
-/*
+
 TEST(Acceleration, Assign)
 {
 	Speed speed = 5 * Length::METER / Duration::SECOND;
 	Duration duration = 2 * Duration::SECOND;
+
 	Acceleration accel = speed / duration;
-
-
 	ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
 
 }
@@ -44,20 +43,18 @@ TEST(Acceleration, DivideDouble)
 	Duration duration = 2 * Duration::SECOND;
 	Acceleration accel = speed / duration; //2.5 m/s
 
-	accel = accel * 10;
+	accel = accel / 10.0;
 	ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
 
 	// divide by one
-
+	accel = accel / 1.0;
+	ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
 
 	// divide by zero
-}
+	accel = accel / 0.0;
+	ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
 
-TEST(Acceleration, DivideDistance)
-{
-	/// ???
 }
-
 
 TEST(Acceleration, GreaterThan)
 {
@@ -91,8 +88,18 @@ TEST(Acceleration, LessThan)
 
 TEST(Acceleration, OutputStream)
 {
-	
+	std::stringstream stream{};
+	Speed speed = (5.0 * Length::METER) / Duration::SECOND;
+	Duration duration = 2.0 * Duration::SECOND;
+	Acceleration accel = speed / duration; //2.5 m/s
+	stream << accel << std::endl;
 
+	std::string output;
+	std::getline(stream, output);
+	
+	EXPECT_EQ("acceleration( 2.5 m/sec )", output);
+	EXPECT_EQ(&stream, &(stream << accel)) << "Wrong stream is returned.";
+	
 }
 
 
@@ -100,5 +107,5 @@ TEST(Acceleration, InputStream)
 {
 
 }
-*/
+
 

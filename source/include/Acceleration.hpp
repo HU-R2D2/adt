@@ -1,8 +1,6 @@
 //!	ToDo:
-//! Write headers
-//! Write tests
-//! Write methods
-//! Test and fix errors
+//! Check if all methods have been implemented
+//! Write tests for istream
 //!	Review
 	
 //!	@author 		Stephan Vivie
@@ -89,21 +87,12 @@ class Acceleration {
 	    //! @param rhs 				Object to append
 	    //! @return std::ostream 	the ostream
 		friend std::ostream &operator<<(std::ostream & lhs, const Acceleration & rhs);
-		
-		///MISSES DOXYGEN AND IMPLEMENTATION TO CPP TEST BUT NOT MY WORK
-		double operator/(const Acceleration & rhs)const{
-			 double temp = value;
-  			if(rhs.value != 0) {
-    			temp = temp / rhs.value;
-  			}
-  			return temp;
-		}
 
-		//! @brief Divides a speed with duration
+		//! @brief Divides a speed with a duration and returns Acceleration
 		//!
 		//! @param s the speed to divide
 		//! @param d the duration
-		//! @return Acceleration
+		//! @return Acceleration the acceleration
   		friend Acceleration operator/ (const Speed & s, const Duration &d);
 	private:
 		double value;
