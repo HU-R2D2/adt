@@ -49,12 +49,12 @@ TEST(Coordinate, Constructor) {
    EXPECT_DOUBLE_EQ(0, c1.get_y() / Length::METER);
    EXPECT_DOUBLE_EQ(0, c1.get_z() / Length::METER);
 
-   Coordinate c2 = Coordinate{20, 3.5, 4};
+   Coordinate c2 = Coordinate{20 * Length::METER, 3.5 * Length::METER, 4 * Length::METER};
    EXPECT_DOUBLE_EQ(20,  c2.get_x() / Length::METER);
    EXPECT_DOUBLE_EQ(3.5, c2.get_y() / Length::METER);
    EXPECT_DOUBLE_EQ(4,   c2.get_z() / Length::METER);
 
-   Coordinate c3 = Coordinate{-20, -3.5, -4};
+   Coordinate c3 = Coordinate{-20 * Length::METER, -3.5 * Length::METER, -4 * Length::METER};
    EXPECT_DOUBLE_EQ(-20,  c3.get_x() / Length::METER);
    EXPECT_DOUBLE_EQ(-3.5, c3.get_y() / Length::METER);
    EXPECT_DOUBLE_EQ(-4,   c3.get_z() / Length::METER);
