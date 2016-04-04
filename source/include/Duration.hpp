@@ -17,16 +17,19 @@ class Speed;
 class Length;
 
 class Duration {
+
+	private:
+		//! @brief
+		//!
+		//! @param seconds
+		Duration(double seconds);
 		
 	public:
 		//! @brief Default constructor
 		Duration();
 
 
-		//! @brief
-		//!
-		//! @param seconds
-		Duration(double seconds);
+		
 
 		//! @brief assignment operator for a duration
 		//!
@@ -82,6 +85,13 @@ class Duration {
 		//! @return Duration
 		bool operator< (const Duration & rhs) const;
 
+
+		//! @brief
+		//!
+		//! @param
+		//! @return
+		double operator/ (const Duration & rhs) const;
+
 		//! @brief
 		//!
 		//! @param seconds
@@ -112,6 +122,8 @@ class Duration {
 		//! @param
 		//! @return
 		friend std::ostream& operator<< (std::ostream & os, const Duration &rhs);
+
+
 
 	private:
 		double seconds;

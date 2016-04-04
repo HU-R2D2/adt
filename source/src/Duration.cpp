@@ -35,6 +35,10 @@ bool Duration::operator< (const Duration& rhs) const{
 bool Duration::operator> (const Duration& rhs) const{
 	return seconds > rhs.seconds;
 }
+double Duration::operator/ (const Duration & rhs) const
+{
+	return seconds / rhs.seconds;
+}
 
 std::ostream& operator<<(std::ostream& lhs, const Duration& rhs){
 	lhs<< rhs.seconds << "s";

@@ -156,6 +156,7 @@ public:
   */
 	friend Speed operator/ ( const Length & l, const Duration & d);
 
+
 };
 
 Speed operator/ ( const Length & l, const Duration & d);

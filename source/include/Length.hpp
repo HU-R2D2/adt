@@ -21,14 +21,17 @@ class Distance;
 class Length {
 	friend class Distance;
 	friend class Acceleration;
-	
-	public:
+
+	private:
 		//! @fn		Length::Length(double l)
 		//!
 		//! @brief	Constructor of a Length
 		//!
 		//! @param	l The coordinate of the distance
 		Length(double length);
+	
+	public:
+		
 
 		//! @fn 	Length::Length()
 		//!
