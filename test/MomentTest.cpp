@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include <iostream>
 using namespace std;
-using namespace adt;
+//using namespace adt;
 Clock test_clock;
 /**
    Moment Tests
@@ -47,7 +47,9 @@ TEST(Moment , AddAndSubtract)  {
    Moment m1 = test_clock.getMoment(5000);
    Moment m2 = test_clock.getMoment(10000);
    Moment m3 = test_clock.getMoment(5000);
-   Duration d1(20);
+   Moment m4 = test_clock.getMoment(30);
+   Moment m5 = test_clock.getMoment(10);
+   Duration d1 = m4 - m5;
    intptr_t ptrValue = (intptr_t)&m3;
    double test = m1.getSeconds();
 
@@ -61,7 +63,7 @@ TEST(Moment , AddAndSubtract)  {
 }
 TEST(Moment , AddAndSubtract2)  {
    Moment m1 = test_clock.getMoment (1000);
-   Duration d1(500);
+   Duration d1 = test_clock.getMoment (1000) - test_clock.getMoment (500);
    intptr_t ptrValue = (intptr_t)&m1;
    double testTime = m1.getSeconds();
    m1 += d1;

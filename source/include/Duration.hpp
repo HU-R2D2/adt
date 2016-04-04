@@ -10,14 +10,11 @@
 #define _DURATION_HPP
 
 #include <iostream>
-
-
-
+#include "Moment.hpp"
 class Speed;
 class Length;
-
 class Duration {
-
+	friend class Moment;
 	private:
 		//! @brief
 		//!
@@ -27,7 +24,7 @@ class Duration {
 	public:
 		//! @brief Default constructor
 		Duration();
-
+		
 
 		
 

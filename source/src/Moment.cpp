@@ -1,12 +1,12 @@
 #include "../include/Moment.hpp"
-namespace adt	{
+//#include "../include/Duration.hpp"
+//namespace adt	{
 
 
 Moment::Moment( )	{
 	//time_t t = time(0);
 	//seconds = t;
 }
-
 Moment::Moment(double seconds) throw (MomentException) : seconds{seconds} 	{
 	//time_t t = time(0);
 	if(this->seconds < 0)
@@ -47,8 +47,8 @@ Duration Moment::operator- (const Moment & rhs) const	{
 	assert(rhs.seconds > 0);
 	double savedResult;
 	if( (savedResult = (this->seconds - rhs.seconds) ) < 0)
-		return Duration(0);
-	return Duration(savedResult);
+		return (0 * Duration::SECOND);
+	return (savedResult * Duration::SECOND);
 }
 
 Moment& Moment::operator+= (const Duration & rhs)	{
@@ -81,4 +81,4 @@ istream& operator>> (istream & lhs, Moment & rhs)	{
 	return lhs;
 }
 
-};
+//};

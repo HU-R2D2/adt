@@ -7,8 +7,7 @@
 #include <stdint.h>
 #ifndef _MOMENT_HPP
 #define _MOMENT_HPP
-
-namespace adt	{
+//namespace adt	{
 using namespace std;
 /*
 	[ToDo (not ordered)
@@ -28,7 +27,7 @@ public:
 		return "Invalid Moment";
 	}
 };
-
+class Duration;
 //!	@author 		Ferdi Stoeltie 1665045
 //!	@date			31-03-2016
 //!	@version		0.4
@@ -113,6 +112,6 @@ public:
 		return Moment(time);
 	}
 };
-};
+//};
 
 #endif 
