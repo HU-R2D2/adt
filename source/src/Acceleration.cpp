@@ -30,12 +30,19 @@ Acceleration Acceleration::operator*= (const double & rhs)
 
 Acceleration Acceleration::operator/ (const double & rhs) const
 {
-	if(rhs != 0)
-	{
-		return Acceleration{value / rhs};
-	}
-	return * this;
+	
+	return Acceleration{0.0};
+	//return Acceleration{value / rhs.value};
+	
+	//return * this;
 
+}
+double Acceleration::operator/ (const Acceleration & rhs) const
+{
+	if (value  == 0.0 || rhs.value == 0.0){
+		return 0.0;
+	}
+	return value / rhs.value;
 }
 
 Acceleration Acceleration::operator/= (const double & rhs)

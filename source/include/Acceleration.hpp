@@ -60,6 +60,8 @@ class Acceleration {
 		//! @return Acceleration	the acceleration on which the division operator was called
 		Acceleration operator/= (const double & rhs);
 
+		double operator/ (const Acceleration & rhs) const;
+
 		//! @brief checks which acceleration is bigger and returns a bool (true if 1st is bigger, false if 2nd)
 		//!
 		//! @param rhs		The right hand sight acceleration, this one will be compared to another acceleration

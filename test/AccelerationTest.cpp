@@ -5,12 +5,16 @@
 
 #include "gtest/gtest.h"
 
+static Duration oneSec = 1.0 * Duration::SECOND; // one second
+static Speed oneMS = (1.0 * Length::METER) / oneSec; // Speed: one meter er second
+static Acceleration oneMA = oneMS / oneSec; // Acceleration: one meter per second 
+
 TEST(Acceleration, DefaultConstructor)
 {
 	Acceleration accel;
-
+	ASSERT_DOUBLE_EQ(0.0, accel / oneMA);
 }
-
+/*
 TEST(Acceleration, Assign)
 {
 	Speed speed = (5 * Length::METER) / Duration::SECOND;
@@ -18,55 +22,70 @@ TEST(Acceleration, Assign)
 	Acceleration accel = speed / duration;
 
 
-	
+	ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
 
 }
 
 TEST(Acceleration, MultiplyDouble)
 {
-	//Acceleration accel(5.0);
+	Speed speed = (5 * Length::METER) / Duration::SECOND;
+	Duration duration = 2 * Duration::SECOND;
+	Acceleration accel = speed / duration; //2.5 m/s
 
-	//accel = accel * 2.0;
+	accel = accel * 10;
 
-	//ASSERT_DOUBLE_EQ(10.0, accel.get_acceleration());
+
+	ASSERT_DOUBLE_EQ(25.0, accel / oneMA);
 }
 
 TEST(Acceleration, DivideDouble)
 {
-	//Acceleration accel(10.0);
+	Speed speed = (50 * Length::METER) / Duration::SECOND;
+	Duration duration = 2 * Duration::SECOND;
+	Acceleration accel = speed / duration; //2.5 m/s
 
-	//accel = accel / 2.0;
+	accel = accel * 10;
+	ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
 
-	//ASSERT_DOUBLE_EQ(5.0, accel.get_acceleration());
+	// divide by one
+
+
+	// divide by zero
 }
 
 TEST(Acceleration, DivideDistance)
 {
-	// todo
+	/// ???
 }
 
 
 TEST(Acceleration, GreaterThan)
 {
-	//Acceleration small(5.0);
+	Speed speed = (5.0 * Length::METER) / Duration::SECOND;
+	Duration duration = 2.0 * Duration::SECOND;
+	Acceleration accel = speed / duration; //2.5 m/s
 
-	//Acceleration big(10.0);
+	Speed fasterSpeed = (50.0 * Length::METER) / Duration::SECOND;
+	Acceleration fasterAccel = fasterSpeed / duration; //25 m/s
 
-	//ASSERT_TRUE(big > small);
+	ASSERT_TRUE(fasterAccel > accel);
+	ASSERT_FALSE(accel > fasterAccel);
 
-	//ASSERT_FALSE(small > big);
+	
 
 }
 
 TEST(Acceleration, LessThan)
 {
-	//Acceleration small(5.0);
+	Speed speed = (5.0 * Length::METER) / Duration::SECOND;
+	Duration duration = 2.0 * Duration::SECOND;
+	Acceleration accel = speed / duration; //2.5 m/s
 
-	//Acceleration big(10.0);
+	Speed fasterSpeed = (50.0 * Length::METER) / Duration::SECOND;
+	Acceleration fasterAccel = fasterSpeed / duration; //25 m/s
 
-	//ASSERT_TRUE(small < big);
-
-	//ASSERT_FALSE(big < small);
+	ASSERT_TRUE(accel < fasterAccel);
+	ASSERT_FALSE(fasterAccel < accel);
 }
 
 
@@ -81,4 +100,5 @@ TEST(Acceleration, InputStream)
 {
 
 }
+*/
 
