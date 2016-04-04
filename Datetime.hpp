@@ -1,6 +1,7 @@
 #include <ctime>
 #include <assert.h> 
 #include "Duration.hpp"
+#include "Moment.hpp"
 #include <iostream>
 #include <stdlib.h> 
 #include <math.h>

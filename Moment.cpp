@@ -3,15 +3,16 @@ namespace adt	{
 
 
 Moment::Moment( )	{
-	time_t t = time(0);
-	seconds = t;
+	//time_t t = time(0);
+	//seconds = t;
 }
 
-Moment::Moment(double seconds) : seconds{seconds}	{
-	time_t t = time(0);
-	this->seconds += t;
+Moment::Moment(double seconds) throw (MomentException) : seconds{seconds} 	{
+	//time_t t = time(0);
+	if(this->seconds < 0)
+		throw MomentException();
+	//this->seconds = seconds;
 }
-
 Moment& Moment::operator= (const Moment& m)	{
 	if(&m == this)
     	return *this;
@@ -66,6 +67,10 @@ Moment& Moment::operator-= (const Duration & rhs)	{
 	return *this;
 }
 
+double Moment::getSeconds()	{
+	return this->seconds;
+}
+
 ostream& operator<< (ostream & lhs, const Moment &rhs)	{
 	lhs << rhs.seconds;
 	return lhs;
@@ -75,4 +80,5 @@ istream& operator>> (istream & lhs, Moment & rhs)	{
 	lhs >> rhs.seconds;
 	return lhs;
 }
+
 };

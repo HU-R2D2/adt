@@ -19,6 +19,15 @@ using namespace std;
 	Test on Linux
 	Add a timestamp struct and Enums]
 */
+class MomentException : public exception
+{
+public:
+	virtual const char* what() const throw()
+	{
+		return "Invalid Moment";
+	}
+};
+
 /**
 *	@author 		Ferdi Stoeltie 1665045
 *	@date			31-03-2016
@@ -33,13 +42,13 @@ public:
 	/**
 		@brief Creates a Moment with the current moment of time as its default Moment
 	*/
-	Moment(); // MUST BE PRIVATE FOR CLOCK FRIEND
+	Moment(); // Public default ctor
 	// Creates a moment out of a given amount of seconds
 	/**
 		@brief Creates a Moment by its given parameter and current system time in seconds
 		@param seconds Time that will be added to current time, for a new moment in time
 	*/
-	Moment(double seconds); // must be private
+	
 	// Test constructor for tests only!
 //public:
 	/// assignment operator for a moment
@@ -109,8 +118,20 @@ public:
 		@return Same istream for chaining
 	*/
 	friend istream& operator>> (istream& lhs, Moment& refDuration);
-//private:
-	double seconds;
+	double getSeconds();
+private:
+	Moment(double seconds) throw (MomentException); // must be private
+	double seconds = 0;
+};
+class Clock{
+public:
+	Moment getMoment()	{
+		return Moment(time(0));
+	}
+	Moment getMoment(double time)	{
+		return Moment(time);
+	}
 };
 };
+
 #endif 
