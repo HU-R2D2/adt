@@ -29,31 +29,84 @@ TEST(Acceleration, MultiplyDouble)
 {
 	Speed speed = (5 * Length::METER) / Duration::SECOND;
 	Duration duration = 2 * Duration::SECOND;
-	Acceleration accel = speed / duration; //2.5 m/s
+	Acceleration accel = speed / duration; // 2.5 m/s
 
-	accel = accel * 10;
-
-
+	// multiply by 10
+	accel = accel * 10.0; // 25 m/s
 	ASSERT_DOUBLE_EQ(25.0, accel / oneMA);
+
+	// multiply by 1
+	accel = accel * 1.0;
+	ASSERT_DOUBLE_EQ(25.0, accel / oneMA);
+
+	// multiply by 0
+	accel = accel * 0.0;
+	ASSERT_DOUBLE_EQ(0.0, accel / oneMA);
+
+	
+}
+
+TEST(Acceleration, MultiplyDoubleAssign)
+{
+	Speed speed = (5 * Length::METER) / Duration::SECOND;
+	Duration duration = 2 * Duration::SECOND;
+	Acceleration accel = speed / duration; // 2.5 m/s
+
+	ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
+
+	// multiply by 10
+	accel *= 10.0;
+	ASSERT_DOUBLE_EQ(25.0, accel / oneMA);
+
+	// multiply by 1
+	accel *= 1.0;
+	ASSERT_DOUBLE_EQ(25.0, accel / oneMA);
+
+	// multiply by 0
+	accel *= 0.0;
+	ASSERT_DOUBLE_EQ(0.0, accel / oneMA);
+
 }
 
 TEST(Acceleration, DivideDouble)
 {
 	Speed speed = (50 * Length::METER) / Duration::SECOND;
 	Duration duration = 2 * Duration::SECOND;
-	Acceleration accel = speed / duration; //2.5 m/s
+	Acceleration accel = speed / duration; //25 m/s
 
+	// divide by 10
 	accel = accel / 10.0;
 	ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
 
-	// divide by one
+	// divide by 1
 	accel = accel / 1.0;
 	ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
 
-	// divide by zero
+	// divide by 0
 	accel = accel / 0.0;
 	ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
 
+}
+
+TEST(Acceleration, DivideDoubleAssign)
+{
+	Speed speed = (50 * Length::METER) / Duration::SECOND;
+	Duration duration = 2 * Duration::SECOND;
+	Acceleration accel = speed / duration; //2.5 m/s
+
+	ASSERT_DOUBLE_EQ(25.0, accel / oneMA);
+
+	// dividee by 10
+	accel /= 10;
+	ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
+
+	// divide by 0
+	accel /= 0.0;
+	ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
+
+	// divide by 1
+	accel /= 1.0;
+	ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
 }
 
 TEST(Acceleration, GreaterThan)
@@ -96,7 +149,7 @@ TEST(Acceleration, OutputStream)
 
 	std::string output;
 	std::getline(stream, output);
-	
+
 	EXPECT_EQ("acceleration( 2.5 m/sec )", output);
 	EXPECT_EQ(&stream, &(stream << accel)) << "Wrong stream is returned.";
 	
