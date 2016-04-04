@@ -13,7 +13,11 @@ TEST(Acceleration, DefaultConstructor)
 
 TEST(Acceleration, Assign)
 {
-	//Acceleration accel(1.0);
+	Speed speed = (5 * Length::METER) / Duration::SECOND;
+	Duration duration = 2 * Duration::SECOND;
+	Acceleration accel = speed / duration;
+
+
 	
 
 }

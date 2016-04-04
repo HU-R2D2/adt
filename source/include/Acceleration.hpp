@@ -13,7 +13,6 @@
 #ifndef _ACCELERATION_HPP
 #define _ACCELERATION_HPP
 
-#include "Length.hpp"
 #include "Duration.hpp"
 #include "Speed.hpp"
 
@@ -95,10 +94,10 @@ class Acceleration {
 		//! @param s the speed to divide
 		//! @param d the duration
 		//! @return Acceleration
-  		friend Acceleration operator/ (Speed & s, const Duration &d);
+  		friend Acceleration operator/ (Speed & s, Duration &d);
 	private:
 		double value;
 };
-
+Acceleration operator/ (Speed & s, Duration &d);
 #endif
 
