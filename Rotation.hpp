@@ -36,7 +36,7 @@ class Rotation{
 		//!@param rhs Rotation of which the rotation_radians value has to be added to this
 		Rotation & Operator+=( const Rotation rhs& );
 
-		//!@brief Substracts the rotation_radians value on the right hand from this and returns the resulting Rotation
+		//!@brief Subtracts the rotation_radians value on the right hand from this and returns the resulting Rotation
 		//!@param rhs Rotation of which the rotation_radians value has to be substracted from this
 		Rotation & Operator-=( const Rotation rhs& );
 
@@ -48,32 +48,33 @@ class Rotation{
 		//!@param rhs The Rotation to divide this with
 		Rotation & Operator/=( const double rhs& );
 
-		//!@brief
-		//!@param
+		//!@brief compares two Rotations to each other and return a boolean (true if 1st greater than 2nd)
+		//!@param rhs The Rotation that is being compared to the other Rotation
 		bool Operator<( const Rotation rhs& );
 
-		//!@brief
-		//!@param
+		//!@brief compares two Rotations to each other and return a boolean (true if 1st smaller  than 2nd)
+		//!@param rhs The Rotation that is being compared to the other Rotation
 		bool Operator>( const Rotation rhs& );
 
-		//!@brief
-		//!@param
+		//!@brief add the Rotation in Radians value on the right hand to this and returns a Rotation
+		//!@param rhs Rotation of which the rotation_radians value has to be added to this
 		Rotation Operator+( const Rotation rhs& );
 
-		//!@brief
-		//!@param
+		//!@brief subtracts the rotation_radians value on the right hand from this and returns the a Rotation
+		//!@param rhs Rotation of which the rotation_radians value has to be substracted from this
 		Rotation Operator-( const Rotation rhs& );
 
-		//!@brief
-		//!@param
+		//!@brief multiplies the Rotation by a number and returns a Rotation
+		//!@param rhs The number by which the Rotation will be multiplied
 		Rotation Operator*( const double rhs&);
 
-		//!@brief
-		//!@param
+		//!@brief divides the Rotation by a number and return a Rotation
+		//!@param rhs The number by which the Rotation will be divided
 		Rotation Operator/( const double rhs& );
 
-		//!@brief
-		//!@param
+		//!@brief Output operator of a Rotation
+		//!@param lhs The ostream that will be appended
+		//!@param rhs The Rotation that will be added to the ostream
 		friend std::ostream & Operator<<( std::ostream lhs&, Rotation rhs& );
 
 		double get_Rotation();
