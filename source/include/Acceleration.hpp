@@ -89,17 +89,25 @@ class Acceleration {
 	    //! @param rhs 				Object to append
 	    //! @return std::ostream 	the ostream
 		friend std::ostream &operator<<(std::ostream & lhs, const Acceleration & rhs);
-	
+		
+		///MISSES DOXYGEN AND IMPLEMENTATION TO CPP TEST BUT NOT MY WORK
+		double operator/(const Acceleration & rhs)const{
+			 double temp = value;
+  			if(rhs.value != 0) {
+    			temp = temp / rhs.value;
+  			}
+  			return temp;
+		}
 
 		//! @brief Divides a speed with duration
 		//!
 		//! @param s the speed to divide
 		//! @param d the duration
 		//! @return Acceleration
-  		friend Acceleration operator/ (Speed & s, Duration &d);
+  		friend Acceleration operator/ (const Speed & s, const Duration &d);
 	private:
 		double value;
 };
-Acceleration operator/ (Speed & s, Duration &d);
+Acceleration operator/( const Speed & s, const Duration &d);
 #endif
 

@@ -1,7 +1,7 @@
 #include "../include/Duration.hpp"
 
 const Duration Duration::SECOND(1);
-const Duration Duration::MILLISECOND(1/1000);
+const Duration Duration::MILLISECOND(1.0/1000.0);
 const Duration Duration::MINUTE(60);
 
 Duration::Duration():
