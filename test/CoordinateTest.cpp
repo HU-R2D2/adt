@@ -180,6 +180,5 @@ TEST(Coordinate, ReadFrom) {
          FAIL() << "Wrong exception; was expecting [std::runtime_error]";
       }
    }
-
 }
 #endif //ADT_COORDINATETEST_H

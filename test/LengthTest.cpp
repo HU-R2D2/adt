@@ -246,7 +246,7 @@ TEST(Length, ReadFrom) {					//operator>>
 	Length l;
 	const Length * const originalPointer = &l;
 
-	stream << "Length 15m";
+	stream << "15m";
 	stream >> l;
 	ASSERT_DOUBLE_EQ(l/Length::METER , 15);
 	//ASSERT_EQ(originalPointer, &d) << "A wrong reference is returned.";
