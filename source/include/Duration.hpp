@@ -11,8 +11,6 @@
 
 #include <iostream>
 
-
-
 class Speed;
 class Length;
 
