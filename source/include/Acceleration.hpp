@@ -18,7 +18,7 @@
 
 #include <iostream>
 
-class Acceleration {
+class Acceleration final {
 
 	public:
 

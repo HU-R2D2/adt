@@ -12,9 +12,7 @@
 #include "Length.hpp"
 class Acceleration;
 
-class Speed {
-
-
+class Speed final {
 private:
 	Speed();
 	//! Constructor for speed
