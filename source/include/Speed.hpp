@@ -16,7 +16,7 @@ class Speed {
 
 
 private:
-	Speed();
+	
 	//! Constructor for speed
 	/*!
 		\param val the value for speed in m\s
@@ -25,7 +25,8 @@ private:
 	double value;
 public:
 	//! Default constructor of a speed
-	
+	Speed();
+
 	//! Assigns a speed to this speed. 
     /*!
       \param rhs a speed
@@ -132,7 +133,7 @@ public:
     \param rhs a Speed.
     \return calculated result in double with no unit.
   */
-  double operator/ ( const Speed & rhs);
+  double operator/ ( const Speed & rhs) const;
 	//! Appends a speed to an std::ostream and returns the ostream
   /*!
     \param os the std::ostream to append to

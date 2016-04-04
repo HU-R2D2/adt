@@ -5,7 +5,7 @@
 
 //Assign
 TEST(Speed, Assign){
-	Speed a = (5 * Length::METER) / Duration::SECOND;
+	Speed a = 5 * Length::METER / Duration::SECOND;
 	ASSERT_DOUBLE_EQ(a/(Length::METER/Duration::SECOND), 5) << "speed created";
 	Speed b = 7 * Length::METER / Duration::SECOND;
 	a = b;
@@ -99,18 +99,6 @@ TEST(Speed, MultiplyDuration){
 	EXPECT_DOUBLE_EQ(l/Length::METER, 42) << "Multiply speed by duration";
 }
 
-
-//divide by Duration
-/*
-TEST(Divide, Duration){
-	Speed a = 14 * Length::METER / Duration::SECOND;
-	Duration dur = 7 * SECOND;
-	Acceleration le = a / dur;
-	Acceleration oneUnit = 1 * Length::METER / Duration::SECOND / Duration::SECOND;
-	EXPECT_DOUBLE_EQ(le/oneUnit, 2) << "Multiply speed by duration";
-}
-!--Not testable because Acceleration isnt implemented
-*/
 
 //Multiply by double
 
