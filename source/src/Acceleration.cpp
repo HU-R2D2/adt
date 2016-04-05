@@ -12,7 +12,7 @@ std::ostream & operator <<(std::ostream & lhs, const Acceleration & rhs) {
 }
 
 
-std::istream & operator >>(std::istream & lhs, Acceleration & rhs){
+std::istream & operator >>(std::istream & lhs, Acceleration & rhs) {
  	// Make sure the data that is being decoded is an acceleration.
    std::string prefix;
    lhs >> std::ws >> prefix;
@@ -52,18 +52,14 @@ std::istream & operator >>(std::istream & lhs, Acceleration & rhs){
    rhs.value = acceleration;
 
    return lhs;
-
 }
 
-Acceleration operator/ (const Speed & s, const Duration & d)
-{
+Acceleration operator/ (const Speed & s, const Duration & d) {
 	double durationValue = d / Duration::SECOND;
 	double speedValue = s / (1 * Length::METER / Duration::SECOND);
 
-	if (durationValue == 0.0 || speedValue == 0.0)
-	{
+	if (durationValue == 0.0 || speedValue == 0.0) {
 		return Acceleration{0.0};
 	}
-	return Acceleration{ speedValue / durationValue };
-	
+	return Acceleration{ speedValue / durationValue };	
 }
