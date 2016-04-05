@@ -22,10 +22,13 @@ using namespace std;
 class MomentException : public exception
 {
 public:
+	MomentException(string error) : error{error} {
+	}
 	virtual const char* what() const throw()
 	{
-		return "Invalid Moment";
+		return error.c_str();
 	}
+	string error;
 };
 class Duration;
 //!	@author 		Ferdi Stoeltie 1665045
@@ -95,12 +98,15 @@ public:
 	//!	@param [in] The Moment that will contain the data
 	//!	@return Same istream for chaining
 	friend istream& operator>> (istream& lhs, Moment& refDuration);
-	double getSeconds();
+	
+	//! @brief Returns current moment in time as a double
+	//! @return Current time held by this moment as a double
+	double get_time() const;
 private:
 	//!	@brief Creates a Moment by its given parameter in seconds
 	//!	@param seconds Time that will be added to current time, for a new moment in time
 	Moment(double seconds) throw (MomentException); // must be private, and friendly acces to Clock
-	double seconds = 0;
+	double moment = 0;
 };
 // Dummy for test of Moment
 class Clock{
