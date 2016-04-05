@@ -360,7 +360,7 @@ TEST(Translation, OutputStream) { 				//operator<<
 TEST(Translation, ReadFrom) {					//operator>>
 	std::stringstream stream{};
 	Translation d;
-	const Translation * const originalPointer = &d;
+	//const Translation * const originalPointer = &d;
 
 	stream << "Translation (15m, 15m, 15m)";
 	stream >> d;

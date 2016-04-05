@@ -272,7 +272,7 @@ TEST(Length, OutputStream) { 				//operator<<
 TEST(Length, ReadFrom) {					//operator>>
 	std::stringstream stream{};
 	Length l;
-	const Length * const originalPointer = &l;
+	//const Length * const originalPointer = &l;
 
 	stream << "15m";
 	stream >> l;
