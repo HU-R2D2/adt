@@ -41,7 +41,7 @@ public:
 	//!
   //! @param rhs a Force
   //! @return the boolean that indicates if the Force greater than the Force
-    bool operator> (const Force & rhs) const;
+  bool operator> (const Force & rhs) const;
 
 	//! @brief Adds a Force to a Force.
   //!
@@ -118,6 +118,11 @@ public:
   //!	@return std::istream
 	friend std::istream& operator>>(std::istream & is, Force & rhs);
 
+  //! @brief Calculates acceleration based on Speed and Duration.
+  //!
+  //! @param s the Speed
+  //! @param d the Duration
+  //! @return the caclculated acceleration
 	friend Acceleration operator/ (Speed & s, Duration &d);
 
 	//! @brief Multiplies a Weight by a Accceleration.
