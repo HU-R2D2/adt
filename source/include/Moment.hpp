@@ -88,8 +88,20 @@ public:
 	//!	@param [in] Duration const reference
 	//!	@return Same Moment with subtracted duration
 	//!	@warning Only accepts Durations with positive values
-	Moment & operator-= (const Duration& refDuration);
-
+	Moment& operator-= (const Duration& refDuration);
+	
+	//! @brief Compares whether Moment m1 is smaller than Moment m2, and returns the result of this comparison as a boolean
+	//! @param [in] m1 The Left hand Moment
+	//! @param [in] m2 The Right hand Moment
+	//! @return True if m1 is greater than m2, else false
+	friend bool operator>(const Moment& m1, const Moment& m2);
+	
+	//! @brief Compares whether Moment m1 is smaller than Moment m2, and returns the result of this comparison as a boolean
+	//! @param [in] m1 The Left hand Moment
+	//! @param [in] m2 The Right hand Moment
+	//! @return True if m1 is smaller than m2, else false
+	friend bool operator<(const Moment& m1, const Moment& m2);
+	
 	//!	@brief Reads Moment into given ostream
 	//!	@param [in] lhs The ostream to which should be written
 	//!	@param [in] The Moment that contains the data

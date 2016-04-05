@@ -97,6 +97,15 @@ TEST(Moment,  StreamOperators) {
    ASSERT_EQ(m1.get_time(), firstDouble) << "First outputstream for Moment is incorrect";
    ASSERT_EQ(m2.get_time(), secondDouble) << "First outputstream for Moment is incorrect";
 }
+TEST(Moment, RelationalOperators)	{
+	Moment m1 = test_clock.getMoment(500);
+	Moment m2 = test_clock.getMoment(1000);
+	ASSERT_EQ(m2 > m1, true) << "Greater than Comparison failed, should return true but did not";
+	ASSERT_EQ(m1 > m2, false) << "Greater than Comparison failed, should return treu but did not";
+	
+	ASSERT_EQ(m1 < m2, true) << "Smaller than Comparison failed, should return true but did not";
+	ASSERT_EQ(m2 < m1, false) << "Smaller than Comparison failed, should return false but did not";
+}
 TEST(Moment, ExceptionSafety)	{
 	
 	double d = -10000;

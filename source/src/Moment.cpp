@@ -84,5 +84,14 @@ istream& operator>> (istream & lhs, Moment & rhs)	{
 	rhs.moment = read_error;
 	return lhs;
 }
-
+bool operator>(const Moment& m1, const Moment& m2)	{
+	if (m1.get_time() > m2.get_time())
+		return true;
+	return false;
+}
+bool operator<(const Moment& m1, const Moment& m2)	{
+	if (m1.get_time() < m2.get_time())
+		return true;
+	return false;
+}
 //};
