@@ -12,7 +12,7 @@
 
 #include <iostream> 
 
-class Weight {
+class Weight final {
 	private:
 		//! @fn		Weight::Weight(double l)
 		//!

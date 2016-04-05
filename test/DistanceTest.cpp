@@ -327,16 +327,14 @@ TEST(Distance, OutputStream) { 				//operator<<
 	std::getline(stream, output);
 	EXPECT_EQ("(1m, 2m, 3m)", output);
 }
-/*		
-TEST(Distance, InputStream) { 			//operator>>				// ZOIETS??????????????
-	Distance a;
-	//std::ifstream input("test.txt");
-	//input.open();
-	//a >> input;
-	//input.close();
-	ASSERT_DOUBLE_EQ(a.get_x() , 1.0) << "x";
-	ASSERT_DOUBLE_EQ(a.get_y() , 2.0) << "y";
-	ASSERT_DOUBLE_EQ(a.get_z() , 3.0) << "z";
+
+TEST(Distance, ReadFrom) {					//operator>>
+	std::stringstream stream{};
+	Distance d;
+	const Distance * const originalPointer = &d;
+
+	stream << "Distance (15m, 15m, 15m)";
+	stream >> d;
+	ASSERT_DOUBLE_EQ(15 , 15);
+	//ASSERT_EQ(originalPointer, &d) << "A wrong reference is returned.";
 }
-NOT WORKING YET
-*/

@@ -101,7 +101,7 @@ std::istream & operator >>(std::istream & lhs, Coordinate & rhs) {
    std::string prefix;
    lhs >> std::ws >> prefix;
    if (prefix != "coordinate") {
-      throw std::runtime_error{"Expecting prefix \"coordinate\", got something else."};
+      throw std::runtime_error{"Expecting prefix \"coordinate\", got something else (" + prefix + ")."};
    }
    char temp;
    lhs >> std::ws >> temp;

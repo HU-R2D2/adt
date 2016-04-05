@@ -98,7 +98,28 @@ TEST (Box, Ostream)
 
 TEST(Box, Istream)
 {
-	
+	/*
+	std::stringstream stream{};
+	Coordinate bl = Coordinate::origin + Distance{};
+	Coordinate tr = Coordinate::origin + Distance{50.0*Length::METER, 50.0*Length::METER, 50.0*Length::METER};
+
+	Box box (bl, tr);
+
+	Box boxCopy (Coordinate::origin, Coordinate(100*Length::METER,100*Length::METER,100*Length::METER));
+
+	// Check whether the coordinate is read in correct form from the stream.
+	stream << "box ( coordinate ( 0m , 0m , 0m ) coordinate ( 100m , 100m , 100m ) )";
+	stream >> box;
+
+	ASSERT_DOUBLE_EQ(box.get_bottom_left().get_x()/Length::METER, 0);
+	ASSERT_DOUBLE_EQ(box.get_bottom_left().get_y()/Length::METER, 0);
+	ASSERT_DOUBLE_EQ(box.get_bottom_left().get_z()/Length::METER, 0);
+
+	ASSERT_DOUBLE_EQ(box.get_top_right().get_x()/Length::METER, 100);
+	ASSERT_DOUBLE_EQ(box.get_top_right().get_y()/Length::METER, 100);
+	ASSERT_DOUBLE_EQ(box.get_top_right().get_z()/Length::METER, 100);
+
+	*/
 }
 
 

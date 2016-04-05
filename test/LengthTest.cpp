@@ -241,13 +241,13 @@ TEST(Length, OutputStream) { 				//operator<<
 	EXPECT_EQ("1m", output);
 }
 
-/*		
-TEST(Length, InputStream) { 			//operator>>
-	Length a;
-	//std::ifstream input("test.txt");
-	//input.open();
-	//a >> input;
-	//input.close();
+TEST(Length, ReadFrom) {					//operator>>
+	std::stringstream stream{};
+	Length l;
+	const Length * const originalPointer = &l;
+
+	stream << "15m";
+	stream >> l;
+	ASSERT_DOUBLE_EQ(l/Length::METER , 15);
+	//ASSERT_EQ(originalPointer, &d) << "A wrong reference is returned.";
 }
-//NOT WORKING YET
-*/

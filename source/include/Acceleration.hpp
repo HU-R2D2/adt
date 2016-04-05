@@ -1,6 +1,5 @@
 //!	ToDo:
 //! Check if all methods have been implemented
-//! Write tests for istream
 //!	Review
 	
 //!	@author 		Stephan Vivie
@@ -16,9 +15,9 @@
 
 #include <iostream>
 
+
 class Acceleration {
 	private: 
-
 		//! @brief Constructor that sets the value to whichever value. value should be in meter per second.
 		//!
 		//! @param val Raw acceleration value in meter per second
@@ -30,7 +29,7 @@ class Acceleration {
 		
 		//! @brief assignment operator for an acceleration
 		//! 
-		//! @param rhs				the right hand sight acceleration, this one is being assigned to another acceleration
+		//! @param rhs				the right hand side acceleration, this one is being assigned to another acceleration
 		//! @return Acceleration&	reference to the acceleration on which the assignment operator was called
 		Acceleration & operator= (const Acceleration & rhs);
 
@@ -58,18 +57,21 @@ class Acceleration {
 		//! @return Acceleration	the acceleration on which the division operator was called
 		Acceleration operator/= (const double & rhs);
 
+		//! @brief divides an acceleration by an acceleration and returns the raw value in m/sec
+		//!
+		//! @param rhs				the Accelration by which the Acceleration is being divided
+		//! @return double			raw acceleration value in m/sec
 		double operator/ (const Acceleration & rhs) const;
 
 		//! @brief checks which acceleration is bigger and returns a bool (true if 1st is bigger, false if 2nd)
 		//!
-		//! @param rhs		The right hand sight acceleration, this one will be compared to another acceleration
+		//! @param rhs		The right hand side acceleration, this one will be compared to another acceleration
 		//! @return bool	True if acceleration is greater, false if not
 		bool operator> (const Acceleration & rhs) const;
 
-
 		//! @brief checks which acceleration is smaller and returns a bool (true if 1st is smaller, false if 2nd)
 		//!
-		//! @param rhs		The right hand sight acceleration, this one will be compared to another acceleration
+		//! @param rhs		The right hand side acceleration, this one will be compared to another acceleration
 		//! @return bool 	true if acceleration is smaller, false if not
 		bool operator< (const Acceleration & rhs) const;
 
