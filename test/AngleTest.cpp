@@ -93,7 +93,8 @@ TEST(AngleAdding, singleOperator){
 TEST(AngleAdding, dualOperator){
 	Angle a = (pi/4) * Angle::rad;
 	Angle b = (pi/4) * Angle::rad;
-	a += b;
+	const Angle * const temp = &a;
+	EXPECT_EQ(temp, &(a += b));
 	ASSERT_DOUBLE_EQ(a.get_angle(),(pi/2));
 }
 
@@ -127,6 +128,7 @@ TEST(AngleDivision, singleOperator){
 	Angle a = (pi*2) * Angle::rad;
 	a = a / 2.0;
 	ASSERT_DOUBLE_EQ(a.get_angle(),pi);
+
 }
 
 TEST(AngleDivision, dualOperator){
@@ -134,7 +136,13 @@ TEST(AngleDivision, dualOperator){
 	a /= 2.0;
 	ASSERT_DOUBLE_EQ(a.get_angle(),(pi/2));
 }
+#include <sstream>
 
 TEST(RotatationOutstream, angle){
-	Angle a = pi * Angle::rad;
+	Angle a = Angle::rad;
+	std::stringstream stream{};
+	stream << a;
+	std::string temp;
+	getline(stream, temp);
+	EXPECT_EQ("1 rad", temp);
 }
