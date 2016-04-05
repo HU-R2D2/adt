@@ -18,7 +18,7 @@
 class Speed;
 class Distance;
 
-class Length {
+class Length final {
 	friend class Distance;
 	friend class Acceleration;
 
@@ -31,8 +31,6 @@ class Length {
 		Length(double length);
 	
 	public:
-		
-
 		//! @fn 	Length::Length()
 		//!
 		//! @brief 	Defaut constructor of length
@@ -109,32 +107,32 @@ class Length {
 		//! @param	rhs 		the right hand side to compare 
 		bool operator< (const Length& rhs) const;
 
-		//! @fn
+		//! @fn		std::ostream& operator<< (std:: ostream& os, const Length& rhs)
 		//!
 		//! @brief	appends a Length to an ostream and returns an ostream
 		//!
 		//! @param	rhs 		the right hand side to compare 
 		friend std::ostream& operator<< (std:: ostream& os, const Length& rhs);
 
-		//! @fn		
+		//! @fn		std::istream& operator>>(std::istream& is, Length& rhs)
 		//!
 		//! @brief	adds an istream to a Length
 		//!
-		//! @param
+		//! @param	rhs
 		friend std::istream& operator>>(std::istream& is, Length& rhs);
 
-		//! @fn		
+		//! @fn		Length operator* (double n, const Length& rhs)
 		//!
 		//! @brief	multiply a Length by another Length and returns a Length
 		//!
-		//! @param
+		//! @param	rhs
 		friend Length operator* (double n, const Length& rhs);
 
-		//! @fn		
+		//! @fn		Speed operator/ (const Length & length, const Duration & d)
 		//!
 		//! @brief	divide length by duration and return the speed
 		//!
-		//! @param	
+		//! @param	rhs
 		friend Speed operator/ (const Length & length, const Duration & d);
 
 		FRIEND_TEST(Length, doubleConstructor);

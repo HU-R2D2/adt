@@ -11,6 +11,8 @@
 
 #include <iostream>
 #include "Moment.hpp"
+#include "gtest/gtest.h"
+
 class Speed;
 class Length;
 class Duration {
@@ -23,10 +25,7 @@ class Duration {
 		
 	public:
 		//! @brief Default constructor
-		Duration();
-		
-
-		
+		Duration();	
 
 		//! @brief assignment operator for a duration
 		//!
@@ -82,7 +81,6 @@ class Duration {
 		//! @return Duration
 		bool operator< (const Duration & rhs) const;
 
-
 		//! @brief
 		//!
 		//! @param
@@ -120,8 +118,7 @@ class Duration {
 		//! @return
 		friend std::ostream& operator<< (std::ostream & os, const Duration &rhs);
 
-
-
+		FRIEND_TEST(Duration, ConstructorDouble);
 	private:
 		double seconds;
 };

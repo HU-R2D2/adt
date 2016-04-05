@@ -108,12 +108,13 @@ std::istream & operator >>(std::istream & lhs, Acceleration & rhs){
       char separator;
       lhs >> value >> separator;
       if(separator != expectedSeperator){
+      	std::cout << "sep: " << separator << std::endl;
          throw std::runtime_error{"Wrong or missing seperator."};
       }
       return value;
    };
 
-   acceleration = ReadComponent(lhs, ' ');
+   acceleration = ReadComponent(lhs, 'm');
 
    if (!lhs) {
       throw std::runtime_error{"Acceleration wasn't read in its entirety when end of stream was reached. "};
@@ -128,7 +129,7 @@ std::istream & operator >>(std::istream & lhs, Acceleration & rhs){
 Acceleration operator/ (const Speed & s, const Duration & d)
 {
 	double durationValue = d / Duration::SECOND;
-	double speedValue = s / ((1 * Length::METER) / Duration::SECOND);
+	double speedValue = s / (1 * Length::METER / Duration::SECOND);
 
 	if (durationValue == 0.0 || speedValue == 0.0)
 	{

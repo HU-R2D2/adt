@@ -12,7 +12,7 @@
 //!	@brief	        A 3D rectangular box in space, which is aligned to the 3 axises.
 	
 
-class Box {
+class Box final {
 	friend class Distance;
 
 public:
