@@ -231,3 +231,21 @@ TEST(Weight, LessThan) { 					//operator>
 	ASSERT_TRUE(a < b) << "greater than";
 	ASSERT_FALSE(b < a) << "less than";
 }
+
+TEST(Weight, WriteTo) {
+	std::stringstream stream{};
+	Weight w = 5 * Weight::KILOGRAM;
+	stream << w << std::endl;
+	std::string output;
+	std::getline(stream, output);
+	EXPECT_EQ("5Kg", output);
+	EXPECT_EQ(&stream, &(stream << w))<< "Wrong stream is returned.";
+}
+
+TEST(Weight, ReadFrom){
+	std::stringstream stream{};
+	Weight w;
+	stream << "20Kg";
+	stream >> w;
+	ASSERT_DOUBLE_EQ(20,w/Weight::KILOGRAM);
+}

@@ -10,21 +10,22 @@
 #define _DURATION_HPP
 
 #include <iostream>
+#include "Moment.hpp"
+#include "gtest/gtest.h"
 
 class Speed;
 class Length;
-
 class Duration {
-		
-	public:
-		//! @brief Default constructor
-		Duration();
-
-
+	friend class Moment;
+	private:
 		//! @brief
 		//!
 		//! @param seconds
 		Duration(double seconds);
+		
+	public:
+		//! @brief Default constructor
+		Duration();	
 
 		//! @brief assignment operator for a duration
 		//!
@@ -82,6 +83,12 @@ class Duration {
 
 		//! @brief
 		//!
+		//! @param
+		//! @return
+		double operator/ (const Duration & rhs) const;
+
+		//! @brief
+		//!
 		//! @param seconds
 		double get_seconds() const;
 
@@ -111,6 +118,7 @@ class Duration {
 		//! @return
 		friend std::ostream& operator<< (std::ostream & os, const Duration &rhs);
 
+		FRIEND_TEST(Duration, ConstructorDouble);
 	private:
 		double seconds;
 };

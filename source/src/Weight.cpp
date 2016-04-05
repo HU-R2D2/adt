@@ -104,7 +104,7 @@ std::istream& operator>>(std::istream& is, Weight& rhs){
    }
    // Specifies all available suffixes, and which value corresponds to it.
    const struct {std::string suffix; const Weight & factor;} possible_suffixes[] = {
-         {"kg", Weight::KILOGRAM}
+         {"Kg", Weight::KILOGRAM}
    };
    for (const auto & possibility : possible_suffixes) {
       if (suffix == possibility.suffix) {
