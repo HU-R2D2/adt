@@ -3,7 +3,6 @@
 
 #include "Coordinate.hpp"
 #include "Translation.hpp"
-
 #include <iostream>
 	
 //!	@author 		Stephan Vivie
@@ -14,7 +13,6 @@
 
 class Box final {
 	friend class Translation;
-
 public:
     Box();
 	//! @brief Constructs a box with 2 coordinates, bottom left and top right of the 3D ractangle
@@ -28,8 +26,6 @@ public:
     //! @param origin bottom left coordinate of the rectangle
     //! @param dist the size of one edge (axis) 
 	Box (Coordinate origin, Translation dist);
-
-	
 
 public:
 	//! @brief Checks whether box contains coordinate
@@ -78,7 +74,6 @@ public:
     //! @return Translation of the axis
 	Translation get_axis_size() const;
 
-
 	//! @brief assignment operator for a box
     //!
     //! @param box the box to assign
@@ -92,7 +87,6 @@ public:
     //! @return std::ostream
 	friend std::ostream & operator<< (std::ostream & os, const Box & rhs);
 
-
     //! @brief read a box from std::istream and return the istream
     //!
     //! @param lhs the istream to read from
@@ -101,12 +95,8 @@ public:
     friend std::istream &operator>>(std::istream &lhs, Box & rhs);
 
 private:
-	
 	Coordinate bottomLeft;
 	Coordinate topRight;
-
-    
-
 };
 
 #endif	// _BOX_HPP

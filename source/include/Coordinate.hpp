@@ -65,6 +65,7 @@ public:
    //! @param y Translation between the origin's Y, and this coordinate's.
    //! @param z Translation between the origin's Z, and this coordinate's.
    Coordinate(const Length& x, const Length& y, const Length& z);
+
    //! @brief Creates a coordinate specifying a meaningless location.
    Coordinate();
     //! @brief Copies the fields from the right hand side into this,
@@ -150,6 +151,5 @@ public:
    //!
    //! @return Reference to the difference between this coordinate's Z-position and that of the origin.
    const Length &get_z() const;
-
 };
 #endif // COORDINATE_HPP

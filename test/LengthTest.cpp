@@ -122,7 +122,6 @@ TEST(Length, MultiplyDoubleLength) { 						//operator* (2)
 	Length d =3  * Length::METER;
 	d = getal2 * d;
 	ASSERT_DOUBLE_EQ(d/Length::METER , 7.5) << "full * getal2 Length";
-
 }
 
 TEST(Length, DivideDouble) { 					//operator/ (1)

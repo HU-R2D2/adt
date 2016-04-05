@@ -40,10 +40,11 @@
 #include <stdexcept>
 
 const Coordinate Coordinate::origin(0 * Length::METER, 0 * Length::METER, 0 * Length::METER);
-Coordinate::Coordinate(const Length& x, const Length& y, const Length& z)
-:  x{x}
-,  y{y}
-,  z{z} {
+
+Coordinate::Coordinate(const Length& x, const Length& y, const Length& z):
+	x{x},
+  	y{y},
+	z{z} {
    // The initializer list is all that is needed.
 }
 
