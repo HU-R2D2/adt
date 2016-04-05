@@ -1,6 +1,5 @@
 //!	ToDo:
 //! Check if all methods have been implemented
-//! Write tests for istream
 //!	Review
 	
 //!	@author 		Stephan Vivie
@@ -18,12 +17,13 @@
 #include <iostream>
 
 class Acceleration : public ADT_Base<Acceleration>{
-	public: 
+	protected: 
 		//! @brief Constructor that sets the value to whichever value. value should be in meter per second.
 		//!
 		//! @param val Raw acceleration value in meter per second
 		Acceleration(double val);
 	public:
+		friend ADT_Base<Acceleration>;
 		//! @brief The default constructor of and acceleration
 		Acceleration();
 

@@ -28,7 +28,7 @@ Box::Box(Coordinate lhs, Coordinate rhs)
 	}
 }
 
-Box::Box(Coordinate origin, Distance dist):
+Box::Box(Coordinate origin, Translation dist):
 	Box(origin, origin + dist)
 {
 }
@@ -155,9 +155,9 @@ Box Box::get_intersection_box(const Box & box) const
 		
 }
 
-Distance Box::get_axis_size() const
+Translation Box::get_axis_size() const
 {
-	Distance dist;
+	Translation dist;
 
 	dist.set_x(topRight.x - bottomLeft.x);
 	dist.set_y(topRight.y - bottomLeft.y);
@@ -176,6 +176,7 @@ Box & Box::operator=(const Box & rhs)
 
 std::ostream & operator <<(std::ostream & lhs, const Box & rhs) {
 	lhs << "box (" << rhs.bottomLeft << " " << rhs.topRight << ")";
+	return lhs;
 }
 
 std::istream & operator >>(std::istream & lhs, Box & rhs )
@@ -183,7 +184,7 @@ std::istream & operator >>(std::istream & lhs, Box & rhs )
  	// Make sure the data that is being decoded is a Box.
    std::string prefix;
    lhs >> std::ws >> prefix;
-   if (prefix != "boxes") {
+   if (prefix != "box") {
       throw std::runtime_error{"Expecting prefix \"box\", got something else."};
    }
    char temp;
@@ -205,7 +206,9 @@ std::istream & operator >>(std::istream & lhs, Box & rhs )
       char separator;
       lhs >> value >> separator;
       if(separator != expectedSeperator){
-         throw std::runtime_error{"Wrong or missing seperator."};
+      	std::cout << "sep: " << separator << std::endl;
+      	std::cout << "exp: " << expectedSeperator << std::endl;
+         throw std::runtime_error{"Wrong or missing seperator. "};
       }
       return value;
    };

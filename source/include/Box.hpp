@@ -2,7 +2,7 @@
 #define _BOX_HPP
 
 #include "Coordinate.hpp"
-#include "Distance.hpp"
+#include "Translation.hpp"
 
 #include <iostream>
 	
@@ -12,8 +12,8 @@
 //!	@brief	        A 3D rectangular box in space, which is aligned to the 3 axises.
 	
 
-class Box {
-	friend class Distance;
+class Box final {
+	friend class Translation;
 
 public:
     Box();
@@ -23,11 +23,11 @@ public:
     //! @param topRight 
 	Box (Coordinate bottomLeft, Coordinate topRight);
 
-	//! @brief Constructs a box with one coordinate and a distance, bottom left coordinate and the distance of the axises.
+	//! @brief Constructs a box with one coordinate and a Translation, bottom left coordinate and the Translation of the axises.
     //!
     //! @param origin bottom left coordinate of the rectangle
     //! @param dist the size of one edge (axis) 
-	Box (Coordinate origin, Distance dist);
+	Box (Coordinate origin, Translation dist);
 
 	
 
@@ -75,8 +75,8 @@ public:
 
 	//! @brief Returns the size of the axis
     //!
-    //! @return Distance of the axis
-	Distance get_axis_size() const;
+    //! @return Translation of the axis
+	Translation get_axis_size() const;
 
 
 	//! @brief assignment operator for a box

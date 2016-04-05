@@ -12,6 +12,8 @@
 #include <iostream>
 #include "Moment.hpp"
 #include "ADT_Base.hpp"
+#include "gtest/gtest.h"
+
 class Speed;
 class Length;
 class Acceleration;
@@ -27,7 +29,6 @@ class Duration : public ADT_Base<Duration>{
 		//friend class Acceleration;
 		//! @brief Default constructor
 		Duration();
-
 		//! @brief
 		//!
 		//! @param seconds
@@ -59,8 +60,7 @@ class Duration : public ADT_Base<Duration>{
 		//! @return
 		friend std::ostream& operator<< (std::ostream & os, const Duration &rhs);
 
-
-
+		FRIEND_TEST(Duration, ConstructorDouble);
 	private:
 		//double seconds;
 };

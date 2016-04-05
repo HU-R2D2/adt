@@ -1,4 +1,5 @@
 #include "../include/Duration.hpp"
+#include <stdexcept>
 
 const Duration Duration::SECOND(1);
 const Duration Duration::MILLISECOND(1.0/1000.0);
@@ -19,9 +20,22 @@ std::ostream& operator<<(std::ostream& lhs, const Duration& rhs){
 
 Duration operator* ( double n, const Duration & rhs){
 	return Duration{n * rhs.value};
+
 }
 
-std::istream& operator>>(std::istream& lhs, Duration& rhs){
+std::istream & operator>>(std::istream & lhs, Duration & rhs) {
+	std::string prefix;
+	double seconds;
+	lhs >> std::ws >> prefix;
+	if (prefix != "Duration") {
+		throw std::runtime_error{"Expecting prefix \"duration\", got something else."};
+	}
+	lhs >> seconds;
+	if (!lhs) {
+		throw std::runtime_error{"Duration wasn't read in its entirety when end of stream was reached. "};
+	}
+	rhs.value = seconds;
+	return lhs;
 }
 
 

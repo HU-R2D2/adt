@@ -32,40 +32,41 @@ class Length: public ADT_Base<Length>{
 		Length(double length);
 	
 	public:
-		
 		friend ADT_Base<Length>;
 		//! @fn 	Length::Length()
 		//!
 		//! @brief 	Defaut constructor of length
 		Length();
-		
-		//! @fn
+
+		//! @fn		std::ostream& operator<< (std:: ostream& os, const Length& rhs)
 		//!
 		//! @brief	appends a Length to an ostream and returns an ostream
 		//!
 		//! @param	rhs 		the right hand side to compare 
 		friend std::ostream& operator<< (std:: ostream& os, const Length& rhs);
 
-		//! @fn		
+		//! @fn		std::istream& operator>>(std::istream& is, Length& rhs)
 		//!
 		//! @brief	adds an istream to a Length
 		//!
-		//! @param
+		//! @param	rhs
 		friend std::istream& operator>>(std::istream& is, Length& rhs);
 
-		//! @fn		
+		//! @fn		Length operator* (double n, const Length& rhs)
 		//!
 		//! @brief	multiply a Length by another Length and returns a Length
 		//!
-		//! @param
+		//! @param	rhs
 		friend Length operator* (double n, const Length& rhs);
 
-		//! @fn		
+		//! @fn		Speed operator/ (const Length & length, const Duration & d)
 		//!
 		//! @brief	divide length by duration and return the speed
 		//!
 		//! @param	
 		//friend Speed operator/ (const Length & length, const Duration & d);
+		//! @param	rhs
+		friend Speed operator/ (const Length & length, const Duration & d);
 
 		FRIEND_TEST(Length, doubleConstructor);
 		static const Length METER;

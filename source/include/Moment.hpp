@@ -19,6 +19,9 @@ using namespace std;
 	Add a timestamp struct and Enums]
 */
 
+//! @author Ferdi Stoeltie 1665045
+//! @brief Created specifically for the Moment class, it is meant as it's exception.
+//! @date 05-04-2016
 class MomentException : public exception
 {
 public:
@@ -32,8 +35,8 @@ public:
 };
 class Duration;
 //!	@author 		Ferdi Stoeltie 1665045
-//!	@date			31-03-2016
-//!	@version		0.4
+//!	@date			05-04-2016
+//!	@version		0.8
 //!	@brief			This class provides a timestamp of a moment in time. Due to its use in R2D2 (as of yet), a Moment object can only be created by the Clock.
 class Moment{
 friend class Clock;
@@ -85,28 +88,43 @@ public:
 	//!	@param [in] Duration const reference
 	//!	@return Same Moment with subtracted duration
 	//!	@warning Only accepts Durations with positive values
-	Moment & operator-= (const Duration& refDuration);
-
+	Moment& operator-= (const Duration& refDuration);
+	
+	//! @brief Compares whether Moment m1 is smaller than Moment m2, and returns the result of this comparison as a boolean
+	//! @param [in] m1 The Left hand Moment
+	//! @param [in] m2 The Right hand Moment
+	//! @return True if m1 is greater than m2, else false
+	friend bool operator>(const Moment& m1, const Moment& m2);
+	
+	//! @brief Compares whether Moment m1 is smaller than Moment m2, and returns the result of this comparison as a boolean
+	//! @param [in] m1 The Left hand Moment
+	//! @param [in] m2 The Right hand Moment
+	//! @return True if m1 is smaller than m2, else false
+	friend bool operator<(const Moment& m1, const Moment& m2);
+	
 	//!	@brief Reads Moment into given ostream
 	//!	@param [in] lhs The ostream to which should be written
 	//!	@param [in] The Moment that contains the data
 	//!	@return Same ostream for chaining
 	friend ostream& operator<< (ostream& lhs, const Moment& refDuration);
 	
-	//!	@brief Reads from stream data into Moment
+	//!	@brief Reads from stream data into Moment, format: double
 	//!	@param [in] lhs The istream from which should be read
 	//!	@param [in] The Moment that will contain the data
 	//!	@return Same istream for chaining
+	//! @exception <MomentException> Thrown when the stream format is wrong or a double is given < 0
 	friend istream& operator>> (istream& lhs, Moment& refDuration);
 	
 	//! @brief Returns current moment in time as a double
 	//! @return Current time held by this moment as a double
 	double get_time() const;
 private:
-	//!	@brief Creates a Moment by its given parameter in seconds
-	//!	@param seconds Time that will be added to current time, for a new moment in time
-	Moment(double seconds) throw (MomentException); // must be private, and friendly acces to Clock
-	double moment = 0;
+	//!	@brief Creates a Moment by its given parameter
+	//!	@param time Time that will be stored within moment
+	//! @exception <MomentException> Thrown when a time is given < 0
+	Moment(double time) throw (MomentException); // must be private, and friendly acces to Clock
+	
+	double moment = 0; // Variable that holds this moment's time
 };
 // Dummy for test of Moment
 class Clock{
