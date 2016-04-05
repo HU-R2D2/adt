@@ -28,7 +28,7 @@ Box::Box(Coordinate lhs, Coordinate rhs)
 	}
 }
 
-Box::Box(Coordinate origin, Distance dist):
+Box::Box(Coordinate origin, Translation dist):
 	Box(origin, origin + dist)
 {
 }
@@ -155,9 +155,9 @@ Box Box::get_intersection_box(const Box & box) const
 		
 }
 
-Distance Box::get_axis_size() const
+Translation Box::get_axis_size() const
 {
-	Distance dist;
+	Translation dist;
 
 	dist.set_x(topRight.x - bottomLeft.x);
 	dist.set_y(topRight.y - bottomLeft.y);

@@ -39,7 +39,7 @@
 #include <limits.h>
 #include "gtest/gtest.h"
 #include "../source/include/Coordinate.hpp"
-#include "../source/include/Distance.hpp"
+#include "../source/include/Translation.hpp"
 #include <string>
 #include <sstream>
 
@@ -64,13 +64,13 @@ TEST(Coordinate, Constructor) {
 
 TEST(Coordinate, Assignment) {
    Coordinate c1 = Coordinate::origin;
-   Coordinate c2 = Coordinate::origin + Distance{1 * Length::METER, 2 * Length::METER, 3 * Length::METER};
+   Coordinate c2 = Coordinate::origin + Translation{1 * Length::METER, 2 * Length::METER, 3 * Length::METER};
    c1 = c2;
    EXPECT_DOUBLE_EQ(1, c1.get_x() / Length::METER);
    EXPECT_DOUBLE_EQ(2, c1.get_y() / Length::METER);
    EXPECT_DOUBLE_EQ(3, c1.get_z() / Length::METER);
 
-   Coordinate c3 = Coordinate::origin + Distance{-1 * Length::METER, -2 * Length::METER, -3 * Length::METER};
+   Coordinate c3 = Coordinate::origin + Translation{-1 * Length::METER, -2 * Length::METER, -3 * Length::METER};
    c1 = c3;
    EXPECT_DOUBLE_EQ(-1, c1.get_x() / Length::METER);
    EXPECT_DOUBLE_EQ(-2, c1.get_y() / Length::METER);
@@ -78,21 +78,21 @@ TEST(Coordinate, Assignment) {
 }
 
 TEST(Coordinate, Addition) {
-   Coordinate c1 = Coordinate::origin + Distance{2 * Length::METER, 4 * Length::METER, 8 * Length::METER};
+   Coordinate c1 = Coordinate::origin + Translation{2 * Length::METER, 4 * Length::METER, 8 * Length::METER};
    EXPECT_DOUBLE_EQ(2, c1.get_x() / Length::METER);
    EXPECT_DOUBLE_EQ(4, c1.get_y() / Length::METER);
    EXPECT_DOUBLE_EQ(8, c1.get_z() / Length::METER);
 
-   Coordinate c2 = Coordinate::origin + Distance{-2 * Length::METER, -4 * Length::METER, -8 * Length::METER};
+   Coordinate c2 = Coordinate::origin + Translation{-2 * Length::METER, -4 * Length::METER, -8 * Length::METER};
    EXPECT_DOUBLE_EQ(-2, c2.get_x() / Length::METER);
    EXPECT_DOUBLE_EQ(-4, c2.get_y() / Length::METER);
    EXPECT_DOUBLE_EQ(-8, c2.get_z() / Length::METER);
 
-   Coordinate c3 = c2 + Distance{4 * Length::METER, 6 * Length::METER, 0 * Length::METER};
+   Coordinate c3 = c2 + Translation{4 * Length::METER, 6 * Length::METER, 0 * Length::METER};
    EXPECT_DOUBLE_EQ(2, c3.get_x()/Length::METER);
    EXPECT_DOUBLE_EQ(2, c3.get_y()/Length::METER);
    EXPECT_DOUBLE_EQ(-8, c3.get_z()/Length::METER);
-   Distance d{3 * Length::METER, -7 * Length::METER, 13 * Length::METER};
+   Translation d{3 * Length::METER, -7 * Length::METER, 13 * Length::METER};
 
    const Coordinate * const coordPointer = &c3;
 
@@ -103,21 +103,21 @@ TEST(Coordinate, Addition) {
 }
 
 TEST(Coordinate, Subtraction) {
-   Coordinate c1 = Coordinate::origin - Distance{2 * Length::METER, 4 * Length::METER, 8 * Length::METER};
+   Coordinate c1 = Coordinate::origin - Translation{2 * Length::METER, 4 * Length::METER, 8 * Length::METER};
    EXPECT_DOUBLE_EQ(-2, c1.get_x() / Length::METER);
    EXPECT_DOUBLE_EQ(-4, c1.get_y() / Length::METER);
    EXPECT_DOUBLE_EQ(-8, c1.get_z() / Length::METER);
 
-   Coordinate c2 = Coordinate::origin - Distance{-2 * Length::METER, -4 * Length::METER, -8 * Length::METER};
+   Coordinate c2 = Coordinate::origin - Translation{-2 * Length::METER, -4 * Length::METER, -8 * Length::METER};
    EXPECT_DOUBLE_EQ(2, c2.get_x() / Length::METER);
    EXPECT_DOUBLE_EQ(4, c2.get_y() / Length::METER);
    EXPECT_DOUBLE_EQ(8, c2.get_z() / Length::METER);
 
-   Coordinate c3 = c2 - Distance{4 * Length::METER, 6 * Length::METER, 0 * Length::METER};
+   Coordinate c3 = c2 - Translation{4 * Length::METER, 6 * Length::METER, 0 * Length::METER};
    EXPECT_DOUBLE_EQ(-2, c3.get_x()/Length::METER);
    EXPECT_DOUBLE_EQ(-2, c3.get_y()/Length::METER);
    EXPECT_DOUBLE_EQ(8, c3.get_z()/Length::METER);
-   Distance d{3 * Length::METER, -7 * Length::METER, 13 * Length::METER};
+   Translation d{3 * Length::METER, -7 * Length::METER, 13 * Length::METER};
 
    const Coordinate * const coordPointer = &c3;
 
