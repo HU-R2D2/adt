@@ -26,6 +26,8 @@ Acceleration Acceleration::operator* (const double & rhs) const
 Acceleration Acceleration::operator*= (const double & rhs)
 {
 	value *= rhs;
+
+	return * this;
 }
 
 Acceleration Acceleration::operator/ (const double & rhs) const

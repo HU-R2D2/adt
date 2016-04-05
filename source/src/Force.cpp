@@ -70,6 +70,7 @@ double Force::operator/ ( const Force & rhs){
 
 std::ostream& operator<<(std::ostream & os, const Force &rhs){
   os <<  rhs.value << "N";
+  return os;
 }
 
 std::istream& operator>>(std::istream & is, Force & rhs){
