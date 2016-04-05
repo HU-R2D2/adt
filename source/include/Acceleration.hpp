@@ -20,7 +20,7 @@ class Acceleration : public ADT_Base<Acceleration>{
 	protected: 
 		//! @brief Constructor that sets the value to whichever value. value should be in meter per second.
 		//!
-		//! @param val Raw acceleration value in meter per second
+		//! @param val Raw acceleration value in meter per second per second
 		Acceleration(double val);
 	public:
 		friend ADT_Base<Acceleration>;
