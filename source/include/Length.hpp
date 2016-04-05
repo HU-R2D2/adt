@@ -18,7 +18,7 @@
 class Speed;
 class Distance;
 
-class Length {
+class Length final {
 	friend class Distance;
 	friend class Acceleration;
 

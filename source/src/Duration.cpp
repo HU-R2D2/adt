@@ -1,4 +1,5 @@
 #include "../include/Duration.hpp"
+#include <stdexcept>
 
 const Duration Duration::SECOND(1);
 const Duration Duration::MILLISECOND(1/1000);
