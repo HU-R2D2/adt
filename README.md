@@ -8,7 +8,7 @@ Types is that a good ADT is final and contains only Plain Old Data types or PODs
 no pointers or references. Some examples of PODs are integers, floats and doubles. In this case, doubles are used.  
   
 
-In portent note 
+Important note 
 ------------------
 As previously stated, these ADTs have doubles as underlying types. 
 This could result in unpredictable results for the equality operators (== and !=) due to slight precision errors.
