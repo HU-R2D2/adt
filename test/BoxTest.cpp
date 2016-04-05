@@ -39,6 +39,23 @@
 /**
 * CONSTRUCTORS 
 */
+TEST(Box, Constructor)
+{
+	Coordinate bl = Coordinate::origin;
+	Coordinate tr = Coordinate::origin;
+	Box box;
+
+	// get bottomLeft
+	ASSERT_DOUBLE_EQ(bl.get_x()/Length::METER, box.get_bottom_left().get_x()/Length::METER);
+	ASSERT_DOUBLE_EQ(bl.get_y()/Length::METER, box.get_bottom_left().get_y()/Length::METER);
+	ASSERT_DOUBLE_EQ(bl.get_z()/Length::METER, box.get_bottom_left().get_z()/Length::METER);
+
+	// get topRight
+	ASSERT_DOUBLE_EQ(tr.get_x()/Length::METER, box.get_top_right().get_x()/Length::METER);
+	ASSERT_DOUBLE_EQ(tr.get_y()/Length::METER, box.get_top_right().get_y()/Length::METER);
+	ASSERT_DOUBLE_EQ(tr.get_z()/Length::METER, box.get_top_right().get_z()/Length::METER);
+
+}
 
 TEST (Box, Coordinates) {
 	// construct Box object with 2 Coordinates
