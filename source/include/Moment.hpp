@@ -39,15 +39,6 @@
 #define _MOMENT_HPP
 //namespace adt	{
 using namespace std;
-/*
-	[ToDo (not ordered)
-	implementation of a moment
-	Testing
-	Review
-	Add a DateTime 
-	Test on Linux
-	Add a timestamp struct and Enums]
-*/
 
 //! @author Ferdi Stoeltie 1665045
 //! @brief Created specifically for the Moment class, it is meant as it's exception.

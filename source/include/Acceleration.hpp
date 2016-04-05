@@ -28,9 +28,6 @@
 // LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
 // OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // ++--++
-//!	ToDo:
-//! Check if all methods have been implemented
-//!	Review
 	
 //!	@author 		Stephan Vivie
 //! @date			01-04-2016
