@@ -108,7 +108,8 @@ TEST(AngleSubstraction, singleOperator){
 TEST(AngleSubstraction, dualOperator){
 	Angle a = (2 * pi) * Angle::rad;
 	Angle b = pi * Angle::rad;
-	a -= b;
+	const Angle * const temp = &a;
+	EXPECT_EQ(temp, &(a -= b));
 	ASSERT_DOUBLE_EQ(a.get_angle(),pi);
 }
 
@@ -120,7 +121,9 @@ TEST(AngleMultiplication, singleOperator){
 
 TEST(AngleMultiplication, dualOperator){
 	Angle a = (pi/4) * Angle::rad;
+	const Angle * const temp = &a;
 	a *= 4.0;
+	EXPECT_EQ(temp,&a);
 	ASSERT_DOUBLE_EQ(a.get_angle(),pi);
 }
 
@@ -133,7 +136,9 @@ TEST(AngleDivision, singleOperator){
 
 TEST(AngleDivision, dualOperator){
 	Angle a = pi * Angle::rad;
+	const Angle * const temp = &a;
 	a /= 2.0;
+	EXPECT_EQ(temp,&a);
 	ASSERT_DOUBLE_EQ(a.get_angle(),(pi/2));
 }
 #include <sstream>
