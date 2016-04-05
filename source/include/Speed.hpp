@@ -146,7 +146,7 @@ public:
    //!
    //! \param rhs a Speed.
    //! \return calculated result in double with no unit.
-   double operator/ ( const Speed & rhs);
+   double operator/ ( const Speed & rhs) const;
 
    //! Appends a speed to an std::ostream and returns the ostream
    //!

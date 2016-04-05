@@ -1,8 +1,6 @@
 //!	ToDo:
-//! Write headers
-//! Write tests
-//! Write methods
-//! Test and fix errors
+//! Check if all methods have been implemented
+//! Write tests for istream
 //!	Review
 	
 //!	@author 		Stephan Vivie
@@ -60,6 +58,8 @@ class Acceleration {
 		//! @return Acceleration	the acceleration on which the division operator was called
 		Acceleration operator/= (const double & rhs);
 
+		double operator/ (const Acceleration & rhs) const;
+
 		//! @brief checks which acceleration is bigger and returns a bool (true if 1st is bigger, false if 2nd)
 		//!
 		//! @param rhs		The right hand sight acceleration, this one will be compared to another acceleration
@@ -87,17 +87,16 @@ class Acceleration {
 	    //! @param rhs 				Object to append
 	    //! @return std::ostream 	the ostream
 		friend std::ostream &operator<<(std::ostream & lhs, const Acceleration & rhs);
-	
 
-		//! @brief Divides a speed with duration
+		//! @brief Divides a speed with a duration and returns Acceleration
 		//!
 		//! @param s the speed to divide
 		//! @param d the duration
-		//! @return Acceleration
-  		friend Acceleration operator/ (Speed & s, Duration &d);
+		//! @return Acceleration the acceleration
+  		friend Acceleration operator/ (const Speed & s, const Duration &d);
 	private:
 		double value;
 };
-Acceleration operator/ (Speed & s, Duration &d);
+Acceleration operator/( const Speed & s, const Duration &d);
 #endif
 

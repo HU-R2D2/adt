@@ -30,12 +30,20 @@ Acceleration Acceleration::operator*= (const double & rhs)
 
 Acceleration Acceleration::operator/ (const double & rhs) const
 {
-	if(rhs != 0)
-	{
+	
+	if(rhs != 0.0)
 		return Acceleration{value / rhs};
-	}
+	
 	return * this;
 
+}
+double Acceleration::operator/ (const Acceleration & rhs) const
+{
+	double temp = value;
+  	if(rhs.value != 0) {
+    	temp = temp / rhs.value;
+  	}
+  	return temp;
 }
 
 Acceleration Acceleration::operator/= (const double & rhs)
@@ -70,7 +78,7 @@ bool Acceleration::operator< (const Acceleration & rhs) const
 }
 
 std::ostream & operator <<(std::ostream & lhs, const Acceleration & rhs) {
-	lhs << "acceleration (" << rhs.value << " m/sec)";
+	lhs << "acceleration( " << rhs.value << " m/sec )";
 	return lhs;
 }
 
@@ -117,10 +125,15 @@ std::istream & operator >>(std::istream & lhs, Acceleration & rhs){
 
 }
 
-Acceleration operator/ (Speed & s, Duration & d)
+Acceleration operator/ (const Speed & s, const Duration & d)
 {
-	//return Acceleration{s.value / (d.seconds / Duration::SECONDS)};
 	double durationValue = d / Duration::SECOND;
 	double speedValue = s / (1 * Length::METER / Duration::SECOND);
-	return Acceleration{ durationValue / speedValue };
+
+	if (durationValue == 0.0 || speedValue == 0.0)
+	{
+		return Acceleration{0.0};
+	}
+	return Acceleration{ speedValue / durationValue };
+	
 }
