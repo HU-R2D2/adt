@@ -9,93 +9,25 @@
 #define _WEIGHT_HPP
 
 #include "gtest/gtest.h"
+#include "ADT_Base.hpp"
 
 #include <iostream> 
 
-class Weight {
-	private:
+class Weight : public ADT_Base<Weight>{
+	protected:
 		//! @fn		Weight::Weight(double l)
 		//!
 		//! @brief	Constructor of a Weight
 		//!
 		//! @param	Weight the 
-		Weight(double Weight);
+		Weight(double value);
+
 	public:
+		friend ADT_Base<Weight>;
 		//! @fn 	Weight::Weight()
 		//!
 		//! @brief 	Defaut constructor of Weight
 		Weight();
-		
-		//! @fn		Weight::Weight(const Weight& rhs)
-		//!
-		//! @brief	assignment operator of a Weight
-		//!
-		//! @param	rhs the right hand side Weight, this one is being assigned to another Weight
-		Weight& operator= (const Weight& rhs);
-		
-		//! @fn		Weight::Weight(const Weight& rhs)
-		//!
-		//! @brief	Add operator of a Weight
-		//!
-		//! @param	number the number to add to the Weight
-		Weight operator+ (const Weight& rhs) const; 
-		
-		//! @fn		Weight::Weight(const Weight& rhs)
-		//!
-		//! @brief	substract operator of a Weight
-		//!
-		//! @param	number the number to subtrackt from the Weight
-		Weight operator- (const Weight& rhs) const;
-		
-		//! @fn		Weight::Weight(const Weight& rhs)
-		//!
-		//! @brief	multiply operator of a Weight
-		//!
-		//! @param	number the number to multyply the Weight by
-		Weight operator* (double number) const;
-		
-		//! @fn 	Weight::Weight(const Weight& rhs)
-		//!
-		//! @brief	division operator of a Weight
-		//!
-		//! @param	number the number to devide the Weight by
-		Weight operator/ (double number) const;
-		
-		//! @fn 	Weight::Weight(const Weight& rhs)
-		//!
-		//! @brief	division operator of a Weight
-		//!
-		//! @param	number the number to devide the Weight by
-		double operator/ (const Weight & rhs) const;
-
-		//! @fn	Weight::Weight(const Weight& rhs)
-		//!
-		//! @brief	Add assign operator of a Weight
-		//!
-		//! @param	number the number to add to the Weight 
-
-		Weight& operator+= (const Weight& rhs);
-		
-		//! @fn		Weight::Weight(const Weight& rhs)
-		//!
-		//! @brief	subtract assign operator of a Weight
-		//!
-		//! @param	number 		the number to subtract from the Weight
-		Weight& operator-= (const Weight& rhs);
-		
-		//! @fn		Weight::Weight(const Weight& rhs)
-		//!
-		//! @brief	greater then operator of a Weight
-		//!
-		//! @param	rhs 		the right hand side to compare 
-		bool operator> (const Weight& rhs) const;
-
-		//! @fn		Weight::Weight(const Weight& rhs)
-		//!
-		//! @brief	smaller then operator of a Weight
-		//!
-		//! @param	rhs 		the right hand side to compare 
-		bool operator< (const Weight& rhs) const;
 
 		//! @fn
 		//!
@@ -121,8 +53,6 @@ class Weight {
 		FRIEND_TEST(Weight, doubleConstructor);
 		static const Weight KILOGRAM;
 		static const Weight GRAM;
-	private:
-		double value;
 };
 
 #endif

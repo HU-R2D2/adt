@@ -11,83 +11,22 @@
 
 #include <iostream>
 #include "Moment.hpp"
+#include "ADT_Base.hpp"
 class Speed;
 class Length;
-class Duration {
-	friend class Moment;
-	private:
+class Acceleration;
+class Duration : public ADT_Base<Duration>{
+	protected:
 		//! @brief
 		//!
 		//! @param seconds
-		Duration(double seconds);
+		explicit Duration(double value);
 		
 	public:
+		friend ADT_Base<Duration>;
+		//friend class Acceleration;
 		//! @brief Default constructor
 		Duration();
-		
-
-		
-
-		//! @brief assignment operator for a duration
-		//!
-		//! @param rhs
-		//! @return Duration
-		Duration & operator= (const Duration & rhs);
- 
-		//! @brief  adds a duration to a duration and returns a duration
-		//!
-		//! @param rhs
-		//! @return Duration
-		Duration operator+ ( const Duration & rhs ) const;
-
-		//! @brief substracts a duration from a duration and returns a duration
-		//!
-		//! @param rhs
-		//! @return Duration
-		Duration operator- ( const Duration & rhs ) const;
-
-		//! @brief multiplies a duration by a number and returns a duration
-		//!
-		//! @param rhs
-		//! @return Duration
-		Duration operator* (const double & rhs) const;
-
-		//! @brief divides a duration by a number and returns a duration
-		//!
-		//! @param rhs
-		//! @return Duration
-		Duration operator/ (const double & rhs) const;
-
-		//! @brief adds a duration to a duration and returns this duration
-		//!
-		//! @param rhs
-		//! @return Duration
-		Duration & operator+= (const Duration & rhs);
-
-		//! @brief substracts a duration from a duration and returns this duration
-		//!
-		//! @param rhs
-		//! @return Duration
-		Duration & operator-= (const Duration & rhs);
-
-		//! @brief compares to durations to eachother and return a boolean (true if 1st greater than 2nd)
-		//!
-		//! @param rhs
-		//! @return Duration
-		bool operator> (const Duration & rhs) const;
-
-		//! @brief compares two durations to each other and returns a boolean (true if 1st smaller than 2nd)
-		//!
-		//! @param rhs
-		//! @return Duration
-		bool operator< (const Duration & rhs) const;
-
-
-		//! @brief
-		//!
-		//! @param
-		//! @return
-		double operator/ (const Duration & rhs) const;
 
 		//! @brief
 		//!
@@ -123,7 +62,7 @@ class Duration {
 
 
 	private:
-		double seconds;
+		//double seconds;
 };
 #endif
 

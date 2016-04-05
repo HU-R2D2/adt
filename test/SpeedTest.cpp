@@ -102,7 +102,7 @@ TEST(Speed, MultiplyDuration){
 
 //Multiply by double
 
-TEST(Speed,MultiplyDouble){
+/*TEST(Speed,MultiplyDouble){
 	Speed a = 8 * Length::METER/ Duration::SECOND;
 	double pos = 2;
 	a = a * pos;
@@ -130,17 +130,17 @@ TEST(Speed,MultiplyDouble){
 	EXPECT_DOUBLE_EQ(a/(Length::METER/Duration::SECOND),-64) << "Multiply positive by negative rhs";
 	a = z * a;
 	EXPECT_DOUBLE_EQ(a/(Length::METER/Duration::SECOND), 0) << "Multiply by zero rhs";
-}
+}*/
 
 
 //MultiplyAssign by double
-TEST(Speed, MultiplyAssignDouble){
+/*TEST(Speed, MultiplyAssignDouble){
 	Speed a = 6 * Length::METER / Duration::SECOND;
 	double d = 7;
 	a = a * d;
 	EXPECT_DOUBLE_EQ(a/(Length::METER/Duration::SECOND), 42) << "MultiplyAssign speed"; 
 	// no more other test because itern it uses multiply and assign operators so if you test them properly it isn't nessecarly here.
-}
+}*/
 
 TEST(Speed, WriteTo){
    std::stringstream stream{};

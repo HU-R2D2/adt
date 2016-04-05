@@ -10,130 +10,33 @@
 #include <iostream>
 #include "Duration.hpp"
 #include "Length.hpp"
+#include "ADT_Base.hpp"
 class Acceleration;
 
-class Speed {
+class Speed : public ADT_Base<Speed>{
 
 
-private:
+protected:
 	
 	//! Constructor for speed
 	/*!
 		\param val the value for speed in m\s
 	*/
-	Speed(double val);
-	double value;
+	Speed(double value);
+	//double value;
 public:
+  friend ADT_Base<Speed>;
 	//! Default constructor of a speed
 	Speed();
-
-	//! Assigns a speed to this speed. 
-    /*!
-      \param rhs a speed
-      \return the assigned speed.
-    */
-	Speed & operator= (const Speed & rhs);
-
-	//! Adds a speed to a speed.
-    /*!
-      \param rhs a speed
-      \return the calculated speed.
-    */
-	Speed operator+ ( const Speed & rhs ) const;
-	//! Checks if a speed is smaller than another speed
-	/*!
-      \param rhs a speed
-      \return the boolean that indicates if the speed is smaller than the speed
-    */
-    
-	bool operator< (const Speed & rhs) const;
-
-	//! Checks if a speed is greater  than another speed
-	/*!
-      \param rhs a speed
-      \return the boolean that indicates if the speed greater than the speed
-    */
-    bool operator> (const Speed & rhs) const;
-
-	
-	
-	//! Adds a speed to a speed and assign it to this speed.
-    /*!
-      \param rhs a speed
-      \return reference to updated speed.
-    */
-	Speed & operator+= ( const Speed & rhs);
-
-	//! Substracts a speed by a speed.
-    /*!
-      \param rhs a speed.
-      \return the calculated speed.
-    */
-	Speed operator- ( const Speed & rhs ) const;
-
-	//! Substracts a speed by a speed and assign it to this speed.
-    /*!
-      \param rhs a speed.
-      \return refence to updated speed.
-    */
-	Speed & operator-= ( const Speed & rhs );
-
-	//! Multiplies a speed by a duration.
-    /*!
-      \param rhs a Duration.
-      \return the calculated length in meters.
-    */
-	Length operator*(const Duration & rhs) const;
-
-	//! Multiplies a speed by a duration.
-    /*!
-      \param lhs a Duration.
-      \param rhs a Speed.
-      \return the calculated length in meters.
-    */
-	friend Length operator*(const Duration & lhs, const Speed & rhs);
-	//! Multiplie a speed by a double
-    /*!
-      \param rhs a double.
-      \return the calculated speed.
-    */
-	Speed operator* ( const double & rhs ) const;
-
-	//! Multiplies this speed by a double.
-    /*!
-      \param rhs a double.
-      \return the reference to updated speed.
-    */
-	Speed & operator*= ( const double & rhs );
-
-   	//! Multiplies a speed by a double
-    /*!
-      \param n a double.
-      \param rhs a Speed.
-      \return the calculated speed.
-    */
-    friend Speed operator* ( double n, const Speed & rhs );
-
-    //! Divides a speed by a double.
-    /*!
-      \param rhs a double.
-      \return the calculated speed.
-    */
-    Speed operator/ ( const double & rhs ) const;
-
-	//! Divides this speed by a double.
-	/*!
-	  \param rhs a double.
-	  \return reference to updated speed.
-	*/
-	Speed & operator/= ( const double & rhs );
-
-  //! Divide a speed by a speed
+  
+  //! Multiplies a speed by a double
   /*!
+    \param n a double.
     \param rhs a Speed.
-    \return calculated result in double with no unit.
+    \return the calculated speed.
   */
-  double operator/ ( const Speed & rhs) const;
+  friend Speed operator* ( double n, const Speed & rhs );
+  
 	//! Appends a speed to an std::ostream and returns the ostream
   /*!
     \param os the std::ostream to append to
@@ -157,6 +60,20 @@ public:
   */
 	friend Speed operator/ ( const Length & l, const Duration & d);
 
+  //! Multiplies a speed by a duration.
+    /*!
+      \param rhs a Duration.
+      \return the calculated length in meters.
+    */
+  Length operator*(const Duration & rhs) const;
+
+  //! Multiplies a speed by a duration.
+    /*!
+      \param lhs a Duration.
+      \param rhs a Speed.
+      \return the calculated length in meters.
+    */
+  friend Length operator*(const Duration & lhs, const Speed & rhs);
 
 };
 

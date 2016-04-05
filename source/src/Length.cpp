@@ -5,77 +5,20 @@ const Length Length::METER(1);
 const Length Length::CENTIMETER(1/100.0);
 
 Length::Length():
-  length{0.0}
+  ADT_Base<Length>(0.0)
 {}
 Length::Length(double length):
-	length{length}
+	ADT_Base<Length>(length)
 {}
-
-Length& Length::operator= (const Length& rhs){
-	length = rhs.length;
-	return *this;
-}
-
-Length Length::operator+ (const Length& rhs) const {
-  Length temp {*this};
-  temp.length = temp.length + rhs.length;
-  return temp;
-}
-
-Length Length::operator- (const Length& rhs) const {
-	Length temp {*this};
-	temp.length = temp.length - rhs.length;
-	return temp;	
-}
-
-Length Length::operator* (double number) const {
-  Length temp {*this};
-  temp.length = number * temp.length;
-  return temp;	
-}
 
 Length operator* (double n, const Length & rhs) {
   Length temp {rhs};
-  temp.length = temp.length * n;
+  temp.value = temp.value * n;
   return temp;
 }
 
-Length Length::operator/ (double number) const {		// mag niet delen door 0!!
-	Length temp {*this};
-	if(number != 0) {
-		temp.length = temp.length / number;
-	}
-	return temp; 
-}
-
-double Length::operator/ (const Length & rhs) const{
-	double temp = length;
-	if(rhs.length != 0) {
-		temp = temp / rhs.length;
-	}
-	return temp; 
-}
-
-Length& Length::operator+= (const Length & rhs) {
-  length += rhs.length;
-  return *this;
-}
-
-Length& Length::operator-= (const Length & rhs) {
-	length -= rhs.length;
-	return *this;
-}
-
-bool Length::operator> (const Length& rhs) const {
-  return(length > rhs.length);
-}
-
-bool Length::operator< (const Length& rhs) const{
-   return(length < rhs.length);	
-}
-
 std::ostream& operator<< (std::ostream& lhs, const Length& rhs) {
-   lhs << rhs.length << "m";
+   lhs << rhs.value << "m";
    return lhs;
 }
 

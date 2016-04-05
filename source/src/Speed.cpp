@@ -1,89 +1,27 @@
 #include "../include/Speed.hpp"
 // Constructors
-Speed::Speed(double val): value{val}{}
+Speed::Speed(double value): ADT_Base<Speed>(value){}
 
 // Operators
 Speed operator/ ( const Length & l, const Duration & d){
-  if (d.seconds != 0){
-    return Speed{l.length /d.seconds}; 
+  if (d.value != 0){
+     return Speed{l/Length::METER / (d/Duration::SECOND)}; 
   }
   return Speed{0};
 }
 
-Speed & Speed::operator= (const Speed & rhs){
-  value = rhs.value;
-  return *this;
-}
-
-bool Speed::operator< (const Speed & rhs) const{
-  return value < rhs.value;
-}
-
-bool Speed::operator> (const Speed & rhs) const{
-  return value > rhs.value;
-}
-
-Speed Speed::operator+ ( const Speed & rhs ) const{
-  return Speed{value + rhs.value};
-}
-
-Speed & Speed::operator+= ( const Speed & rhs){
-  value += rhs.value;
-  return *this;
-}
-
-Speed Speed::operator- ( const Speed & rhs ) const{
-  return Speed{value - rhs.value};
-}
-
-Speed & Speed::operator-= ( const Speed & rhs ){
-  value -= rhs.value;
-  return *this;
-}
-
 Length Speed::operator*(const Duration & rhs) const{
-  Length l = value * rhs.seconds * Length::METER;
-  return l;
+    Length l = value * rhs.value * Length::METER;
+    return l;
 }
 
 Length operator*(const Duration & lhs, const Speed & rhs){
-  Length l = lhs.seconds * rhs.value * Length::METER;
+  Length l = lhs.value * rhs.value * Length::METER;
   return l;
-}
-
-Speed Speed::operator* ( const double & rhs ) const{
-  return Speed{value * rhs};
-}
-
-Speed & Speed::operator*= ( const double & rhs ){
-  value *= rhs;
-  return *this;
 }
   
 Speed operator* ( double n, const Speed & rhs ){
   return Speed{rhs.value * n};
-}
-
-Speed Speed::operator/ ( const double & rhs ) const{
-  if(rhs != 0){
-    return Speed{value / rhs};
-  }
-  return *this;
-}
-
-Speed & Speed::operator/= ( const double & rhs ){
-  if(rhs != 0){
-    value /= rhs;
-  } 
-  return *this;
-}
-
-double Speed::operator/(const Speed & rhs) const{
-  if(rhs.value != 0){
-
-    return value/rhs.value;
-  }
-  return 0;
 }
 
 std::ostream& operator<<(std::ostream & os, const Speed &rhs){

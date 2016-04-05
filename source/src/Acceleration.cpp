@@ -2,80 +2,9 @@
 
 #include <iostream>
 
-Acceleration::Acceleration()
-{
-	value = 0.0;
-}
+Acceleration::Acceleration():ADT_Base<Acceleration>(0.0){}
 
-Acceleration::Acceleration(double value):
-	value{value}
-{}
-
-Acceleration & Acceleration::operator= (const Acceleration & rhs)
-{
-	value = rhs.value;
-
-	return *this;
-}
-
-Acceleration Acceleration::operator* (const double & rhs) const
-{
-	return Acceleration{value * rhs};
-}
-
-Acceleration Acceleration::operator*= (const double & rhs)
-{
-	value *= rhs;
-}
-
-Acceleration Acceleration::operator/ (const double & rhs) const
-{
-	
-	if(rhs != 0.0)
-		return Acceleration{value / rhs};
-	
-	return * this;
-
-}
-double Acceleration::operator/ (const Acceleration & rhs) const
-{
-	double temp = value;
-  	if(rhs.value != 0) {
-    	temp = temp / rhs.value;
-  	}
-  	return temp;
-}
-
-Acceleration Acceleration::operator/= (const double & rhs)
-{
-	if(rhs != 0)
-	{
-		value = value / rhs;
-	}
-	return * this;
-
-}
-
-bool Acceleration::operator> (const Acceleration & rhs) const
-{
-	if(value > rhs.value)
-	{
-		return true;
-	}
-
-	return false;
-}
-
-bool Acceleration::operator< (const Acceleration & rhs) const
-{
-	if(value < rhs.value)
-	{
-		return true;
-	}
-
-	return false;
-
-}
+Acceleration::Acceleration(double value):ADT_Base<Acceleration>(value){}
 
 std::ostream & operator <<(std::ostream & lhs, const Acceleration & rhs) {
 	lhs << "acceleration( " << rhs.value << " m/sec )";
