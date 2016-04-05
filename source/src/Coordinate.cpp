@@ -40,7 +40,7 @@
 #include <stdexcept>
 
 const Coordinate Coordinate::origin(0 * Length::METER, 0 * Length::METER, 0 * Length::METER);
-Coordinate::Coordinate(Length x, Length y, Length z)
+Coordinate::Coordinate(const Length& x, const Length& y, const Length& z)
 :  x{x}
 ,  y{y}
 ,  z{z} {

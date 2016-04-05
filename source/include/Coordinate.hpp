@@ -64,7 +64,7 @@ public:
    //! @param x Distance between the origin's X, and this coordinate's.
    //! @param y Distance between the origin's Y, and this coordinate's.
    //! @param z Distance between the origin's Z, and this coordinate's.
-   Coordinate(Length x, Length y, Length z);
+   Coordinate(const Length& x, const Length& y, const Length& z);
    //! @brief Creates a coordinate specifying a meaningless location.
    Coordinate();
     //! @brief Copies the fields from the right hand side into this,
@@ -118,7 +118,7 @@ public:
    //! @param rhs Reference to the object to write to the outputstream.
    //! @return Reference to the stream passed in by lhs.
    //! @see operator>>(std::istream, coordinate &)
-   //! @see operator<<(std::ostream, const Length &)
+   //! @see operator<<(std::ostream, const coordinate &)
    friend std::ostream &operator<<(std::ostream &lhs, const Coordinate &rhs);
 
    //! @brief Reads a coordinate from the given input stream, returning said stream.
@@ -133,7 +133,7 @@ public:
    //! due to it being in an incorrect format.
    //! The values in the supplied coordinate are not modified when an exception is thrown.
    //! @see operator<<(std::ostream &, coordinate &)
-   //! @see operator>>(std::istream &, Length &)
+   //! @see operator>>(std::istream &, coordinate &)
    friend std::istream &operator>>(std::istream &lhs, Coordinate &rhs);
 
    //! @brief Gets a reference to this coordinate's X-offset to that of the origin.
