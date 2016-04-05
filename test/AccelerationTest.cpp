@@ -158,6 +158,16 @@ TEST(Acceleration, OutputStream)
 
 TEST(Acceleration, InputStream)
 {
+	std::stringstream stream{};
+	Speed speed = (5.0 * Length::METER) / Duration::SECOND;
+	Duration duration = 2.0 * Duration::SECOND;
+	Acceleration accel = speed / duration; //2.5 m/s
+
+	// Check whether the coordinate is read in correct form from the stream.
+	stream << "acceleration ( 2.5m/s )";
+	stream >> accel;
+
+	ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
 
 }
 
