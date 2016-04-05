@@ -7,7 +7,7 @@
 //  ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝
 //                                                                                                                                          
 //
-// @file RotationTest.cpp
+// @file AngleTest.cpp
 // @date Created: 31-03-16
 // @version 1.1.0
 //
@@ -36,105 +36,105 @@
 // OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ////
 #include "gtest/gtest.h"
-#include "../source/include/Rotation.hpp"
+#include "../source/include/Angle.hpp"
 #include <iostream>
 
 double pi = 3.14159265358979323846;
 
-TEST(RotationConstructor, Default){
-	Rotation a;
-	ASSERT_DOUBLE_EQ(a.get_Rotation(),0.0);
+TEST(AngleConstructor, Default){
+	Angle a;
+	ASSERT_DOUBLE_EQ(a.get_angle(),0.0);
 }
 
-TEST(RotationConstructor, ConstructorValue){
-	Rotation a;
-	a = pi * Rotation::rad;
-	ASSERT_DOUBLE_EQ(a.get_Rotation(),pi);
+TEST(AngleConstructor, ConstructorValue){
+	Angle a;
+	a = pi * Angle::rad;
+	ASSERT_DOUBLE_EQ(a.get_angle(),pi);
 }
 
-TEST(RotationConversion, Radians_Degrees){
+TEST(AngleConversion, Radians_Degrees){
 	EXPECT_DOUBLE_EQ(pi,3.14159265358979323846) << "Is Pi equal to the assigned variable or is the double still considered unequal anyway";
-	Rotation a =  pi * Rotation::rad;
-	Rotation b = 180.0 * Rotation::deg;
-	ASSERT_DOUBLE_EQ(a.get_Rotation(),b.get_Rotation());
+	Angle a =  pi * Angle::rad;
+	Angle b = 180.0 * Angle::deg;
+	ASSERT_DOUBLE_EQ(a.get_angle(),b.get_angle());
 }
 
-TEST(RotationAssign, Assign){
-	Rotation a();
-	a = (pi/2) * Rotation::rad;
-	Rotation b();
-	EXPECT_DOUBLE_EQ((pi/2),a.get_Rotation());
-	EXPECT_DOUBLE_EQ(0.0,b.get_Rotation());
+TEST(AngleAssign, Assign){
+	Angle a();
+	a = (pi/2) * Angle::rad;
+	Angle b();
+	EXPECT_DOUBLE_EQ((pi/2),a.get_angle());
+	EXPECT_DOUBLE_EQ(0.0,b.get_angle());
 	b = a;
-	ASSERT_DOUBLE_EQ((pi/2),b.get_Rotation());
+	ASSERT_DOUBLE_EQ((pi/2),b.get_angle());
 }
 	
-TEST(RotationComparison, Smaller){
-	Rotation a = (pi/4) * Rotation::rad;
-	Rotation b = (pi/8) * Rotation::rad;
+TEST(AngleComparison, Smaller){
+	Angle a = (pi/4) * Angle::rad;
+	Angle b = (pi/8) * Angle::rad;
 	ASSERT_EQ(a < b, false);
 	ASSERT_EQ(b < a, true);
 }
 
-TEST(RotationComparison, Bigger){
-	Rotation a = (pi/16) * Rotation::rad;
-	Rotation b = (pi/4) * Rotation::rad;
+TEST(AngleComparison, Bigger){
+	Angle a = (pi/16) * Angle::rad;
+	Angle b = (pi/4) * Angle::rad;
 	ASSERT_EQ(a > b, false);
 	ASSERT_EQ(b > a, true);
 }
 
-TEST(RotationAdding, singleOperator){
-	Rotation a = (pi/2) * Rotation::rad;
-	Rotation b = (pi/2) * Rotation::rad;
-	Rotation c = a + b;
-	ASSERT_DOUBLE_EQ(c.get_Rotation(),(pi));
+TEST(AngleAdding, singleOperator){
+	Angle a = (pi/2) * Angle::rad;
+	Angle b = (pi/2) * Angle::rad;
+	Angle c = a + b;
+	ASSERT_DOUBLE_EQ(c.get_angle(),(pi));
 }
 
-TEST(RotationAdding, dualOperator){
-	Rotation a = (pi/4) * Rotation::rad;
-	Rotation b = (pi/4) * Rotation::rad;
+TEST(AngleAdding, dualOperator){
+	Angle a = (pi/4) * Angle::rad;
+	Angle b = (pi/4) * Angle::rad;
 	a += b;
-	ASSERT_DOUBLE_EQ(a.get_Rotation(),(pi/2));
+	ASSERT_DOUBLE_EQ(a.get_angle(),(pi/2));
 }
 
-TEST(RotationSubstraction, singleOperator){
-	Rotation a = pi * Rotation::rad;
-	Rotation b = (pi/2) * Rotation::rad;
-	Rotation c = a - b;
-	ASSERT_DOUBLE_EQ(c.get_Rotation(),(pi/2));
+TEST(AngleSubstraction, singleOperator){
+	Angle a = pi * Angle::rad;
+	Angle b = (pi/2) * Angle::rad;
+	Angle c = a - b;
+	ASSERT_DOUBLE_EQ(c.get_angle(),(pi/2));
 }
 
-TEST(RotationSubstraction, dualOperator){
-	Rotation a = (2 * pi) * Rotation::rad;
-	Rotation b = pi * Rotation::rad;
+TEST(AngleSubstraction, dualOperator){
+	Angle a = (2 * pi) * Angle::rad;
+	Angle b = pi * Angle::rad;
 	a -= b;
-	ASSERT_DOUBLE_EQ(c.get_Rotation(),pi);
+	ASSERT_DOUBLE_EQ(c.get_angle(),pi);
 }
 
-TEST(RotationMultiplication, singleOperator){
-	Rotation a = pi * Rotation::rad;
+TEST(AngleMultiplication, singleOperator){
+	Angle a = pi * Angle::rad;
 	a = a * 2.0;
-	ASSERT_DOUBLE_EQ(a.get_Rotation(),(pi * 2));
+	ASSERT_DOUBLE_EQ(a.get_angle(),(pi * 2));
 }
 
-TEST(RotationMultiplication, dualOperator){
-	Rotation a = (pi/4) * Rotation::rad;
+TEST(AngleMultiplication, dualOperator){
+	Angle a = (pi/4) * Angle::rad;
 	a *= 4.0;
-	ASSERT_DOUBLE_EQ(a.get_Rotation(),pi);
+	ASSERT_DOUBLE_EQ(a.get_angle(),pi);
 }
 
-TEST(RotationDivision, singleOperator){
-	Rotation a = (pi*2) * Rotation::rad;
+TEST(AngleDivision, singleOperator){
+	Angle a = (pi*2) * Angle::rad;
 	a = a / 2.0;
-	ASSERT_DOUBLE_EQ(a.get_Rotation(),pi);
+	ASSERT_DOUBLE_EQ(a.get_angle(),pi);
 }
 
-TEST(RotationDivision, dualOperator){
-	Rotation a = pi * Rotation::rad;
+TEST(AngleDivision, dualOperator){
+	Angle a = pi * Angle::rad;
 	a /= 2.0;
-	ASSERT_DOUBLE_EQ(a.get_Rotation(),(pi/2));
+	ASSERT_DOUBLE_EQ(a.get_angle(),(pi/2));
 }
 
-TEST(RotatationOutstream, rotation){
-	Rotation a = pi * Rotation::rad;
+TEST(RotatationOutstream, angle){
+	Angle a = pi * Angle::rad;
 }

@@ -7,7 +7,7 @@
 //  ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝
 //                                                                                                                                          
 //
-// @file Rotation.cpp
+// @file Angle.cpp
 // @date Created: 29-03-16
 // @version 2.0.0
 //
@@ -37,77 +37,77 @@
 ////
 # define M_PI 3.14159265358979323846  /* pi */
 
-#include "Rotation.hpp"
+#include "Angle.hpp"
 
-double rotation_radians;
-constexpr double full_circle = M_PI * 2.0; /* Rotation holds max of 1 circle, multiple rotations are meaningless */
-Rotation::Rotation() : rotation_radians{ 0.0 } {}
-Rotation::Rotation( double rotation_radians ) : rotation_radians { rotation_radians%full_circle } {}
+double angle_radians;
+constexpr double full_circle = M_PI * 2.0; /* Angle holds max of 1 circle, multiple angles are meaningless */
+Angle::Angle() : angle_radians{ 0.0 } {}
+Angle::Angle( double angle_radians ) : angle_radians { angle_radians%full_circle } {}
 
-static constexpr rad Rotation( 1.0 );
-static constexpr deg Rotation( 180.0/M_PI );
+static constexpr rad Angle( 1.0 );
+static constexpr deg Angle( 180.0/M_PI );
 
-Rotation & Rotation::Operator=( const Rotation rhs& ){
-	rotation_radians = rhs.rotation_radians;
+Angle & Angle::Operator=( const Angle rhs& ){
+	angle_radians = rhs.angle_radians;
 	return this*;
 }
 
-Rotation & Rotation::Operator+=( const Rotation rhs& ){
-	rotation_radians += rhs.rotation_radians;
+Angle & Angle::Operator+=( const Angle rhs& ){
+	angle_radians += rhs.angle_radians;
 	return this*;
 }
 
-Rotation & Rotation::Operator-=( const Rotation rhs& ){
-	rotation_radians -= rhs.rotation_radians;
+Angle & Angle::Operator-=( const Angle rhs& ){
+	angle_radians -= rhs.angle_radians;
 	return this*;
 }	
 
-Rotation & Rotation::Operator*=( const double rhs& ){
-	rotation_radians *= rhs;
+Angle & Angle::Operator*=( const double rhs& ){
+	angle_radians *= rhs;
 	return this*;	
 }
 
-Rotation & Rotation::Operator/=( const Rotation rhs& ){
-	rotation_radians /= rhs;
+Angle & Angle::Operator/=( const Angle rhs& ){
+	angle_radians /= rhs;
 	return this*;
 }
 
-bool Rotation::Operator<( const Rotation rhs& ){
-	return rotation_radians < rhs.rotation_radians;
+bool Angle::Operator<( const Angle rhs& ){
+	return angle_radians < rhs.angle_radians;
 }
 
-bool Rotation::Operator>( const Rotation rhs& ){
-	return rotation_radians > rhs.rotation_radians;
+bool Angle::Operator>( const Angle rhs& ){
+	return angle_radians > rhs.angle_radians;
 }
 
-Rotation Rotation::Operator+( const Rotation rhs& ){
-	Rotation result{ this* };
+Angle Angle::Operator+( const Angle rhs& ){
+	Angle result{ this* };
 	result += rhs;
 	return result;
 }
 
-Rotation Rotation::Operator-( const Rotation rhs& ){
-	Rotation result{ this* };
+Angle Angle::Operator-( const Angle rhs& ){
+	Angle result{ this* };
 	result -= rhs;
 	return result;
 }
 
-Rotation Rotation::Operator*( const double rhs&){
-	Rotation result{ this* };
+Angle Angle::Operator*( const double rhs&){
+	Angle result{ this* };
 	result *= rhs;
 	return result;
 }
 
-Rotation Rotation::Operator/( const Rotation rhs& ){
-	Rotation result{ this* };
+Angle Angle::Operator/( const Angle rhs& ){
+	Angle result{ this* };
 	result /= rhs;
 	return result;
 }
 
-friend std::ostream & Rotation::Operator<<( std::ostream lhs&, Rotation rhs& ){
-	return lhs<< rhs.rotation_radians << " rad";
+friend std::ostream & Angle::Operator<<( std::ostream lhs&, Angle rhs& ){
+	return lhs<< rhs.angle_radians << " rad";
 }
 
-double Rotation::get_rotation(){
-	return rotation_radians;
+double Angle::get_angle(){
+	return angle_radians;
 }
