@@ -20,9 +20,6 @@ Length operator*(const Duration & lhs, const Speed & rhs){
   return l;
 }
   
-Speed operator* ( double n, const Speed & rhs ){
-  return Speed{rhs.value * n};
-}
 
 std::ostream& operator<<(std::ostream & os, const Speed &rhs){
   os << rhs.value << "m/s";

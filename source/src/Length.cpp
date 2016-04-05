@@ -11,12 +11,6 @@ Length::Length(double length):
 	ADT_Base<Length>(length)
 {}
 
-Length operator* (double n, const Length & rhs) {
-  Length temp {rhs};
-  temp.value = temp.value * n;
-  return temp;
-}
-
 std::ostream& operator<< (std::ostream& lhs, const Length& rhs) {
    lhs << rhs.value << "m";
    return lhs;

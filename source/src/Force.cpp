@@ -6,10 +6,6 @@ Force::Force(double value):ADT_Base<Force>(value){
 
 Force::Force():ADT_Base<Force>(0.0){}
 
-Force operator* ( double n, const Force & rhs ){
-  return Force{rhs.value * n};
-}
-
 std::ostream& operator<<(std::ostream & os, const Force &rhs){
   os <<  rhs.value << "N";
 }

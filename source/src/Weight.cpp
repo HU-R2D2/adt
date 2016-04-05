@@ -12,10 +12,6 @@ Weight::Weight():Weight(0.0){
 
 }
 
-Weight operator* (double n, const Weight& rhs){
-	return Weight{rhs.value * n};
-}
-
 std::ostream& operator<< (std:: ostream& os, const Weight& rhs){
 	os << rhs.value << "Kg";
 	return os;

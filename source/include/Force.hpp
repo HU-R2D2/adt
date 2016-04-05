@@ -27,7 +27,7 @@ public:
       \param rhs a Force
       \return the assigned Force.
     */
-    friend Force operator* ( double n, const Force & rhs );
+  friend Force operator* ( double n, const Force & rhs );
 
 	//! @brief Appends a Force to an std::ostream and returns the ostream
   //!

@@ -124,7 +124,9 @@ public:
       \return the calculated speed.
     */
 
-	
+	friend T operator * (double n, const T & rhs){
+		return T{n * rhs.value};
+	}
 	
 	
 	//! @fn		T::T(const T& rhs)

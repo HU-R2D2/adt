@@ -18,11 +18,6 @@ std::ostream& operator<<(std::ostream& lhs, const Duration& rhs){
 	return lhs;
 }
 
-Duration operator* ( double n, const Duration & rhs){
-	return Duration{n * rhs.value};
-
-}
-
 std::istream & operator>>(std::istream & lhs, Duration & rhs) {
 	std::string prefix;
 	double seconds;
