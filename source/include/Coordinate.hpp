@@ -1,11 +1,5 @@
-//!______      _          ______
-//!| ___ \    | |         | ___ \
-//!| |_/ /___ | |__   ___ | |_/ /___  ___  ___ _   _  ___
-//!|    // _ \| '_ \ / _ \|    // _ \/ __|/ __| | | |/ _ \
-//!| |\ \ (_) | |_) | (_) | |\ \  __/\__ \ (__| |_| |  __/
-//!\_| \_\___/|_.__/ \___/\_| \_\___||___/\___|\__,_|\___|
-//!
-//!
+
+//!	Roborescue
 //! @file Coordinate.hpp
 //! @date Created: 14-03-16
 //! @version 1.0.0
@@ -15,7 +9,7 @@
 //! @section LICENSE
 //! License: newBSD
 //!
-//! Copyright © 2016, HU University of Applied Sciences Utrecht.
+//! Copyright Â© 2016, HU University of Applied Sciences Utrecht.
 //! All rights reserved.
 //!
 //! Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
