@@ -60,6 +60,10 @@ Box::Box(Coordinate origin, Translation dist):
 	Box(origin, origin + dist)
 {}
 
+Box::Box():
+	Box(Coordinate::origin, Coordinate::origin)
+{}
+
 
 bool Box::contains(const Coordinate & coord) const
 {
