@@ -176,6 +176,7 @@ Box & Box::operator=(const Box & rhs)
 
 std::ostream & operator <<(std::ostream & lhs, const Box & rhs) {
 	lhs << "box (" << rhs.bottomLeft << " " << rhs.topRight << ")";
+	return lhs;
 }
 
 std::istream & operator >>(std::istream & lhs, Box & rhs )
