@@ -28,7 +28,6 @@
 // LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
 // OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // ++--++
-#include <ctime>
 #include <assert.h> 
 #include "Duration.hpp"
 #include <iostream>
@@ -37,7 +36,6 @@
 #include <stdint.h>
 #ifndef _MOMENT_HPP
 #define _MOMENT_HPP
-//namespace adt	{
 using namespace std;
 
 //! @author Ferdi Stoeltie 1665045
@@ -61,6 +59,7 @@ class Duration;
 //!	@brief			This class provides a timestamp of a moment in time. Due to its use in R2D2 (as of yet), a Moment object can only be created by the Clock.
 class Moment{
 friend class Clock;
+friend class test_Clock; // Testing only, when Moment is merged together with the Clock, this should be removed!
 public:
 	/// Constructor of a moment, is private so that it is only accessible by the Clock
 	
@@ -147,8 +146,9 @@ private:
 	
 	double moment = 0; // Variable that holds this moment's time
 };
-// Dummy for test of Moment
-class Clock{
+// Dummy for test of Moment, cannot be removed because of tests. Should be removed when added to the real clock
+#include <ctime>
+class test_Clock{
 public:
 	Moment getMoment()	{
 		return Moment(time(0));
@@ -157,6 +157,4 @@ public:
 		return Moment(time);
 	}
 };
-//};
-
 #endif 

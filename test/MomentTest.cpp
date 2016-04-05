@@ -35,7 +35,7 @@
 #include <iostream>
 using namespace std;
 //using namespace adt;
-Clock test_clock;
+test_Clock test_clock;
 /**
    Moment Tests
 
