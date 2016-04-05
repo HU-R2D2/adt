@@ -1,71 +1,13 @@
 #include "../include/Force.hpp"
 
 const Force Force::NEWTON(1);
-Force::Force(double val):value{val}{
+Force::Force(double value):ADT_Base<Force>(value){
 }
 
-Force::Force():value{0}{}
-
-Force & Force::operator= (const Force & rhs){
-  value = rhs.value;
-  return *this;
-}
-
-bool Force::operator< (const Force & rhs) const{
-  return (value < rhs.value);
-}
-
-bool Force::operator> (const Force & rhs) const{
-  return (value > rhs.value);
-}
-
-Force Force::operator+ ( const Force & rhs ) const{
-  return Force{value + rhs.value};
-}
-
-Force & Force::operator+= ( const Force & rhs){
-  value += rhs.value;
-  return *this;
-}
-
-Force Force::operator- ( const Force & rhs ) const{
-  return Force{value - rhs.value};
-}
-
-Force & Force::operator-= ( const Force & rhs ){
-  value -= rhs.value;
-  return *this;
-}
-
-Force Force::operator* ( const double & rhs ) const{
-  return Force{value * rhs};
-}
-
-Force & Force::operator*= ( const double & rhs ){
-  value *= rhs;
-  return *this;
-}
+Force::Force():ADT_Base<Force>(0.0){}
 
 Force operator* ( double n, const Force & rhs ){
   return Force{rhs.value * n};
-}
-
-Force Force::operator/ ( const double & rhs ) const{
-  return Force{value / rhs};
-}
-
-
-Force & Force::operator/= ( const double & rhs ){
-  value /= rhs;
-  return *this;
-}
-
-double Force::operator/ ( const Force & rhs){
-  double temp = value;
-  if(rhs.value != 0) {
-    temp = temp / rhs.value;
-  }
-  return temp; 
 }
 
 std::ostream& operator<<(std::ostream & os, const Force &rhs){

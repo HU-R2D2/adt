@@ -7,13 +7,11 @@
 *	@date			29-03-2016
 */
 
-
 /**
 * CONSTRUCTORS 
 */
 
-TEST (Box, Coordinates) 
-{
+TEST (Box, Coordinates) {
 	// construct Box object with 2 Coordinates
 	Coordinate bl = Coordinate::origin;
 	Coordinate tr = Coordinate(50.0*Length::METER, 50.0*Length::METER, 50.0*Length::METER);
@@ -32,36 +30,33 @@ TEST (Box, Coordinates)
 
 }
 
-TEST (Box, CoordinateDistance) 
-{
-	// construct Box object with Coordinate and Distance
-	Distance evenDistance (50.0*Length::METER,50.0*Length::METER,50.0*Length::METER);
+TEST (Box, CoordinateTranslation) {
+	// construct Box object with Coordinate and Translation
+	Translation evenTranslation (50.0*Length::METER,50.0*Length::METER,50.0*Length::METER);
 	Coordinate origin = Coordinate::origin;
 
 	
-	Box rectangleBox (origin, evenDistance);
+	Box rectangleBox (origin, evenTranslation);
 	ASSERT_DOUBLE_EQ(rectangleBox.get_top_right().get_x()/Length::METER, 50);
 	ASSERT_DOUBLE_EQ(rectangleBox.get_top_right().get_y()/Length::METER, 50);
 	ASSERT_DOUBLE_EQ(rectangleBox.get_top_right().get_z()/Length::METER, 50);
 
 
-	Distance unevenDistance (25.0*Length::METER,0.0*Length::METER,50.0*Length::METER);
-	Box noRectangleBox (origin, unevenDistance); //cant happen -> exception or different behavior
+	Translation unevenTranslation (25.0*Length::METER,0.0*Length::METER,50.0*Length::METER);
+	Box noRectangleBox (origin, unevenTranslation); //cant happen -> exception or different behavior
 	ASSERT_DOUBLE_EQ(noRectangleBox.get_top_right().get_x()/Length::METER, 25);
 	ASSERT_DOUBLE_EQ(noRectangleBox.get_top_right().get_y()/Length::METER, 0);
 	ASSERT_DOUBLE_EQ(noRectangleBox.get_top_right().get_z()/Length::METER, 50);
-
 }
 
 /**
 * OPERATORS 
 */
 
-TEST (Box, Assign) 
-{
+TEST (Box, Assign) {
 
 	Box boxOne (Coordinate::origin, Coordinate(25*Length::METER,25*Length::METER,25*Length::METER));
-	Box boxTwo (Coordinate::origin + Distance{50*Length::METER,50*Length::METER,50*Length::METER}, Coordinate::origin + Distance{100*Length::METER,100*Length::METER,100*Length::METER});
+	Box boxTwo (Coordinate::origin + Translation{50*Length::METER,50*Length::METER,50*Length::METER}, Coordinate::origin + Translation{100*Length::METER,100*Length::METER,100*Length::METER});
 
 	// assign boxTwo to boxOne
 	boxOne = boxTwo;
@@ -73,18 +68,11 @@ TEST (Box, Assign)
 	ASSERT_DOUBLE_EQ(boxOne.get_top_right().get_x()/Length::METER, 100);
 	ASSERT_DOUBLE_EQ(boxOne.get_top_right().get_y()/Length::METER, 100);
 	ASSERT_DOUBLE_EQ(boxOne.get_top_right().get_z()/Length::METER, 100);
-
-
-
-
-
 }
 
-
-TEST (Box, Ostream) 
-{
-	Coordinate bl = Coordinate::origin + Distance{};
-	Coordinate tr = Coordinate::origin + Distance{50.0*Length::METER, 50.0*Length::METER, 50.0*Length::METER};
+TEST (Box, Ostream) {
+	Coordinate bl = Coordinate::origin + Translation{};
+	Coordinate tr = Coordinate::origin + Translation{50.0*Length::METER, 50.0*Length::METER, 50.0*Length::METER};
 
 	Box box (bl, tr);
 
@@ -93,15 +81,13 @@ TEST (Box, Ostream)
    	std::string output;
    	std::getline(stream, output);
    	EXPECT_EQ("box (coordinate (0m, 0m, 0m) coordinate (50m, 50m, 50m))", output);
-
 }
 
-TEST(Box, Istream)
-{
+TEST(Box, Istream) {
 	/*
 	std::stringstream stream{};
-	Coordinate bl = Coordinate::origin + Distance{};
-	Coordinate tr = Coordinate::origin + Distance{50.0*Length::METER, 50.0*Length::METER, 50.0*Length::METER};
+	Coordinate bl = Coordinate::origin + Translation{};
+	Coordinate tr = Coordinate::origin + Translation{50.0*Length::METER, 50.0*Length::METER, 50.0*Length::METER};
 
 	Box box (bl, tr);
 
@@ -118,7 +104,6 @@ TEST(Box, Istream)
 	ASSERT_DOUBLE_EQ(box.get_top_right().get_x()/Length::METER, 100);
 	ASSERT_DOUBLE_EQ(box.get_top_right().get_y()/Length::METER, 100);
 	ASSERT_DOUBLE_EQ(box.get_top_right().get_z()/Length::METER, 100);
-
 	*/
 }
 
@@ -127,38 +112,33 @@ TEST(Box, Istream)
 * METHODS 
 */
 
-TEST (Box, ContainsCoordinate) 
-{
-	Coordinate bl = Coordinate::origin + Distance{};
-	Coordinate tr = Coordinate::origin + Distance{50.0*Length::METER, 50.0*Length::METER, 50.0*Length::METER};
+TEST (Box, ContainsCoordinate) {
+	Coordinate bl = Coordinate::origin + Translation{};
+	Coordinate tr = Coordinate::origin + Translation{50.0*Length::METER, 50.0*Length::METER, 50.0*Length::METER};
 
 	Box box (bl, tr);
 
 	// test coordinate thats inside box
-	Coordinate inside =Coordinate::origin + Distance{25.0*Length::METER,25.0*Length::METER,25.0*Length::METER};
+	Coordinate inside =Coordinate::origin + Translation{25.0*Length::METER,25.0*Length::METER,25.0*Length::METER};
 	ASSERT_EQ(box.contains(inside), true);
 
 	// test coordinate thats outside box
-	Coordinate outside = Coordinate::origin + Distance{75.0*Length::METER,75.0*Length::METER,75.0*Length::METER};
+	Coordinate outside = Coordinate::origin + Translation{75.0*Length::METER,75.0*Length::METER,75.0*Length::METER};
 	ASSERT_EQ(box.contains(outside), false);
 
-	Box negativeBox(Coordinate::origin + Distance{-25*Length::METER,-25*Length::METER,-25*Length::METER},Coordinate::origin + Distance{-75*Length::METER,-75*Length::METER,-75*Length::METER});
+	Box negativeBox(Coordinate::origin + Translation{-25*Length::METER,-25*Length::METER,-25*Length::METER},Coordinate::origin + Translation{-75*Length::METER,-75*Length::METER,-75*Length::METER});
 	// test coordinate thats inside negative box
-	Coordinate insideNegative = Coordinate::origin + Distance{-50*Length::METER,-50*Length::METER,-50*Length::METER};
+	Coordinate insideNegative = Coordinate::origin + Translation{-50*Length::METER,-50*Length::METER,-50*Length::METER};
 	ASSERT_EQ(negativeBox.contains(insideNegative),true);
 
 	// test coordinate thats outside negative box
-	Coordinate outsideNegative = Coordinate::origin + Distance{-150*Length::METER,-150*Length::METER,-150*Length::METER};
+	Coordinate outsideNegative = Coordinate::origin + Translation{-150*Length::METER,-150*Length::METER,-150*Length::METER};
 	ASSERT_EQ(negativeBox.contains(outsideNegative),false);
 	ASSERT_EQ(negativeBox.contains(outside),false);
-
-
 }
 
-
-TEST (Box, ContainsBox) 
-{
-	Box box(Coordinate::origin + Distance(), Coordinate(100*Length::METER,100*Length::METER,100*Length::METER));
+TEST (Box, ContainsBox) {
+	Box box(Coordinate::origin + Translation(), Coordinate(100*Length::METER,100*Length::METER,100*Length::METER));
 	
 	// test box thats inside box
 	Box insideBigBox(Coordinate(50*Length::METER,50*Length::METER,50*Length::METER), Coordinate(75*Length::METER,75*Length::METER,75*Length::METER));
@@ -171,7 +151,6 @@ TEST (Box, ContainsBox)
 	// test boxes that collide (shouldn't return true as it isn't fully inside the box)
 	Box collidesWithBigBox(Coordinate(50*Length::METER,50*Length::METER,50*Length::METER), Coordinate(200*Length::METER,200*Length::METER,200*Length::METER));
 	ASSERT_EQ(box.contains(collidesWithBigBox), false);
-
 	
 	Box negativeBox(Coordinate(-50*Length::METER,-50*Length::METER,-50*Length::METER), Coordinate(-100*Length::METER,-100*Length::METER,-100*Length::METER));
 	
@@ -185,14 +164,11 @@ TEST (Box, ContainsBox)
 
 	// test negative box that doesnt intersect at all
 	Box negativeBoxOutside(Coordinate(-175*Length::METER,-175*Length::METER,-175*Length::METER), Coordinate(-125*Length::METER,-125*Length::METER,-125*Length::METER));
-	ASSERT_EQ(negativeBox.contains(negativeBoxOutside), false);
-
-	
+	ASSERT_EQ(negativeBox.contains(negativeBoxOutside), false);	
 }
 
-TEST (Box, IntersectsBox) 
-{
-	Box box(Coordinate::origin + Distance(), Coordinate(100*Length::METER,100*Length::METER,100*Length::METER));
+TEST (Box, IntersectsBox) {
+	Box box(Coordinate::origin + Translation(), Coordinate(100*Length::METER,100*Length::METER,100*Length::METER));
 
 	// test box that is inside
 	Box insideBox(Coordinate(25*Length::METER,25*Length::METER,25*Length::METER), Coordinate(75*Length::METER,75*Length::METER,75*Length::METER));
@@ -229,17 +205,13 @@ TEST (Box, IntersectsBox)
 	// test negative box that doesn't intersect
 	Box negativeBoxOutside(Coordinate(-175*Length::METER,-175*Length::METER,-175*Length::METER), Coordinate(-125*Length::METER,-125*Length::METER,-125*Length::METER));
 	ASSERT_EQ(negativeBox.intersects(negativeBoxOutside), false);
-
-
-
 }
 
 
-TEST (Box, get_bottom_left) 
-{
+TEST (Box, get_bottom_left) {
 	// test if it returns the right bottom left coordinate
 	Coordinate bl = Coordinate::origin;
-	Coordinate tr = Coordinate::origin +Distance(50.0*Length::METER, 50.0*Length::METER, 50.0*Length::METER);
+	Coordinate tr = Coordinate::origin +Translation(50.0*Length::METER, 50.0*Length::METER, 50.0*Length::METER);
 	Coordinate bl2 = Coordinate(25*Length::METER,26*Length::METER,27*Length::METER);
 
 	Box box (bl, tr);
@@ -258,12 +230,9 @@ TEST (Box, get_bottom_left)
 	ASSERT_DOUBLE_EQ(negative.get_bottom_left().get_z()/Length::METER, -50);
 }
 
-
-
-TEST (Box, get_top_right) 
-{
+TEST (Box, get_top_right) {
 	// test if it returns the right top right coordinate
-	Coordinate bl = Coordinate::origin + Distance();
+	Coordinate bl = Coordinate::origin + Translation();
 	Coordinate tr = Coordinate(50.0*Length::METER, 50.0*Length::METER, 50.0*Length::METER);
 	Coordinate tr2 = Coordinate(25*Length::METER,25*Length::METER,25*Length::METER);
 
@@ -281,18 +250,16 @@ TEST (Box, get_top_right)
 	ASSERT_DOUBLE_EQ(negative.get_top_right().get_x()/Length::METER, -10);
 	ASSERT_DOUBLE_EQ(negative.get_top_right().get_y()/Length::METER, -10);
 	ASSERT_DOUBLE_EQ(negative.get_top_right().get_z()/Length::METER, -10);
-
 }
 
 
-TEST (Box, get_union_box) 
-{
+TEST (Box, get_union_box) {
 	// test if method returns right result
 
-	Box box (Coordinate::origin + Distance(), Coordinate(100*Length::METER,100*Length::METER,100*Length::METER));
+	Box box (Coordinate::origin + Translation(), Coordinate(100*Length::METER,100*Length::METER,100*Length::METER));
 
 	Box biggerBox(Coordinate(-25*Length::METER,-35*Length::METER,-45*Length::METER), Coordinate(120*Length::METER,120*Length::METER,120*Length::METER));
-	Box unionBox(Coordinate::origin + Distance(), Coordinate::origin + Distance());
+	Box unionBox(Coordinate::origin + Translation(), Coordinate::origin + Translation());
 	unionBox = box.get_union_box(biggerBox);
 
 	ASSERT_DOUBLE_EQ(unionBox.get_bottom_left().get_x()/Length::METER, -25);
@@ -303,11 +270,9 @@ TEST (Box, get_union_box)
 	ASSERT_DOUBLE_EQ(unionBox.get_top_right().get_y()/Length::METER, 120);
 	ASSERT_DOUBLE_EQ(unionBox.get_top_right().get_z()/Length::METER, 120);
 
-
 	// test if method returns the right result when using negative boxes
 
 	Box negativeBox(Coordinate(-75*Length::METER,-75*Length::METER,-75*Length::METER), Coordinate(-25*Length::METER,-25*Length::METER,-25*Length::METER));
-
 	Box negativeBox2(Coordinate(-125*Length::METER,-125*Length::METER,-125*Length::METER), Coordinate(-75*Length::METER,-75*Length::METER,-75*Length::METER));
 
 	unionBox = negativeBox.get_union_box(negativeBox2);
@@ -319,20 +284,15 @@ TEST (Box, get_union_box)
 	ASSERT_DOUBLE_EQ(unionBox.get_top_right().get_x()/Length::METER, -25);
 	ASSERT_DOUBLE_EQ(unionBox.get_top_right().get_y()/Length::METER, -25);
 	ASSERT_DOUBLE_EQ(unionBox.get_top_right().get_z()/Length::METER, -25);
-
-
-
-
 }
 
-TEST (Box, get_intersection_box) 
-{
+TEST (Box, get_intersection_box) {
 	// test if 2 boxes that are intersecting returns the right box
-	Box box (Coordinate::origin + Distance(), Coordinate(100*Length::METER,100*Length::METER,100*Length::METER));
+	Box box (Coordinate::origin + Translation(), Coordinate(100*Length::METER,100*Length::METER,100*Length::METER));
 
 	Box collidingBox (Coordinate(75*Length::METER,75*Length::METER,75*Length::METER), Coordinate(125*Length::METER,125*Length::METER,125*Length::METER));
 
-	Box collidedBox(Coordinate::origin + Distance(), Coordinate::origin + Distance());
+	Box collidedBox(Coordinate::origin + Translation(), Coordinate::origin + Translation());
 	collidedBox = box.get_intersection_box(collidingBox);
 
 	ASSERT_DOUBLE_EQ(collidedBox.get_bottom_left().get_x()/Length::METER, 75);
@@ -343,11 +303,9 @@ TEST (Box, get_intersection_box)
 	ASSERT_DOUBLE_EQ(collidedBox.get_top_right().get_y()/Length::METER, 100);
 	ASSERT_DOUBLE_EQ(collidedBox.get_top_right().get_z()/Length::METER, 100);
 
-
 	// test 2 boxes that aren't intersecting
 	Box notCollidingBox (Coordinate(125*Length::METER,125*Length::METER,125*Length::METER), Coordinate(150*Length::METER,150*Length::METER,150*Length::METER));
-
-	Box notCollidedBox(Coordinate::origin + Distance(), Coordinate::origin + Distance());
+	Box notCollidedBox(Coordinate::origin + Translation(), Coordinate::origin + Translation());
 	ASSERT_DOUBLE_EQ(notCollidedBox.get_bottom_left().get_x()/Length::METER, 0);
 	ASSERT_DOUBLE_EQ(notCollidedBox.get_bottom_left().get_y()/Length::METER, 0);
 	ASSERT_DOUBLE_EQ(notCollidedBox.get_bottom_left().get_z()/Length::METER, 0);
@@ -355,7 +313,6 @@ TEST (Box, get_intersection_box)
 	ASSERT_DOUBLE_EQ(notCollidedBox.get_top_right().get_x()/Length::METER, 0);
 	ASSERT_DOUBLE_EQ(notCollidedBox.get_top_right().get_y()/Length::METER, 0);
 	ASSERT_DOUBLE_EQ(notCollidedBox.get_top_right().get_z()/Length::METER, 0);
-
 
 	// test 2 negative boxes that are intersecting
 	Box negativeBox(Coordinate(-75*Length::METER,-75*Length::METER,-75*Length::METER), Coordinate(-25*Length::METER,-25*Length::METER,-25*Length::METER));
@@ -374,7 +331,6 @@ TEST (Box, get_intersection_box)
 
 	// test 2 negative boxes that aren't intersecting
 	Box negativeBoxNotIntersecting(Coordinate(-80*Length::METER,-80*Length::METER,-80*Length::METER), Coordinate(-125*Length::METER,-125*Length::METER,-125*Length::METER));
-
 	notCollidedBox = negativeBox.get_intersection_box(negativeBoxNotIntersecting);
 
 	ASSERT_DOUBLE_EQ(notCollidedBox.get_bottom_left().get_x()/Length::METER, 0);
@@ -384,5 +340,4 @@ TEST (Box, get_intersection_box)
 	ASSERT_DOUBLE_EQ(notCollidedBox.get_top_right().get_x()/Length::METER, 0);
 	ASSERT_DOUBLE_EQ(notCollidedBox.get_top_right().get_y()/Length::METER, 0);
 	ASSERT_DOUBLE_EQ(notCollidedBox.get_top_right().get_z()/Length::METER, 0);
-
 }

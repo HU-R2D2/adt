@@ -39,7 +39,7 @@
 #include <limits.h>
 #include "gtest/gtest.h"
 #include "../source/include/Coordinate.hpp"
-#include "../source/include/Distance.hpp"
+#include "../source/include/Translation.hpp"
 #include <string>
 #include <sstream>
 
@@ -58,19 +58,17 @@ TEST(Coordinate, Constructor) {
    EXPECT_DOUBLE_EQ(-20,  c3.get_x() / Length::METER);
    EXPECT_DOUBLE_EQ(-3.5, c3.get_y() / Length::METER);
    EXPECT_DOUBLE_EQ(-4,   c3.get_z() / Length::METER);
-
-
 }
 
 TEST(Coordinate, Assignment) {
    Coordinate c1 = Coordinate::origin;
-   Coordinate c2 = Coordinate::origin + Distance{1 * Length::METER, 2 * Length::METER, 3 * Length::METER};
+   Coordinate c2 = Coordinate::origin + Translation{1 * Length::METER, 2 * Length::METER, 3 * Length::METER};
    c1 = c2;
    EXPECT_DOUBLE_EQ(1, c1.get_x() / Length::METER);
    EXPECT_DOUBLE_EQ(2, c1.get_y() / Length::METER);
    EXPECT_DOUBLE_EQ(3, c1.get_z() / Length::METER);
 
-   Coordinate c3 = Coordinate::origin + Distance{-1 * Length::METER, -2 * Length::METER, -3 * Length::METER};
+   Coordinate c3 = Coordinate::origin + Translation{-1 * Length::METER, -2 * Length::METER, -3 * Length::METER};
    c1 = c3;
    EXPECT_DOUBLE_EQ(-1, c1.get_x() / Length::METER);
    EXPECT_DOUBLE_EQ(-2, c1.get_y() / Length::METER);
@@ -78,24 +76,23 @@ TEST(Coordinate, Assignment) {
 }
 
 TEST(Coordinate, Addition) {
-   Coordinate c1 = Coordinate::origin + Distance{2 * Length::METER, 4 * Length::METER, 8 * Length::METER};
+   Coordinate c1 = Coordinate::origin + Translation{2 * Length::METER, 4 * Length::METER, 8 * Length::METER};
    EXPECT_DOUBLE_EQ(2, c1.get_x() / Length::METER);
    EXPECT_DOUBLE_EQ(4, c1.get_y() / Length::METER);
    EXPECT_DOUBLE_EQ(8, c1.get_z() / Length::METER);
 
-   Coordinate c2 = Coordinate::origin + Distance{-2 * Length::METER, -4 * Length::METER, -8 * Length::METER};
+   Coordinate c2 = Coordinate::origin + Translation{-2 * Length::METER, -4 * Length::METER, -8 * Length::METER};
    EXPECT_DOUBLE_EQ(-2, c2.get_x() / Length::METER);
    EXPECT_DOUBLE_EQ(-4, c2.get_y() / Length::METER);
    EXPECT_DOUBLE_EQ(-8, c2.get_z() / Length::METER);
 
-   Coordinate c3 = c2 + Distance{4 * Length::METER, 6 * Length::METER, 0 * Length::METER};
+   Coordinate c3 = c2 + Translation{4 * Length::METER, 6 * Length::METER, 0 * Length::METER};
    EXPECT_DOUBLE_EQ(2, c3.get_x()/Length::METER);
    EXPECT_DOUBLE_EQ(2, c3.get_y()/Length::METER);
    EXPECT_DOUBLE_EQ(-8, c3.get_z()/Length::METER);
-   Distance d{3 * Length::METER, -7 * Length::METER, 13 * Length::METER};
+   Translation d{3 * Length::METER, -7 * Length::METER, 13 * Length::METER};
 
    const Coordinate * const coordPointer = &c3;
-
    ASSERT_EQ(coordPointer, &(c3 += d)) << "Wrong reference returned.";
    EXPECT_DOUBLE_EQ(5, c3.get_x() / Length::METER);
    EXPECT_DOUBLE_EQ(-5, c3.get_y() / Length::METER);
@@ -103,24 +100,23 @@ TEST(Coordinate, Addition) {
 }
 
 TEST(Coordinate, Subtraction) {
-   Coordinate c1 = Coordinate::origin - Distance{2 * Length::METER, 4 * Length::METER, 8 * Length::METER};
+   Coordinate c1 = Coordinate::origin - Translation{2 * Length::METER, 4 * Length::METER, 8 * Length::METER};
    EXPECT_DOUBLE_EQ(-2, c1.get_x() / Length::METER);
    EXPECT_DOUBLE_EQ(-4, c1.get_y() / Length::METER);
    EXPECT_DOUBLE_EQ(-8, c1.get_z() / Length::METER);
 
-   Coordinate c2 = Coordinate::origin - Distance{-2 * Length::METER, -4 * Length::METER, -8 * Length::METER};
+   Coordinate c2 = Coordinate::origin - Translation{-2 * Length::METER, -4 * Length::METER, -8 * Length::METER};
    EXPECT_DOUBLE_EQ(2, c2.get_x() / Length::METER);
    EXPECT_DOUBLE_EQ(4, c2.get_y() / Length::METER);
    EXPECT_DOUBLE_EQ(8, c2.get_z() / Length::METER);
 
-   Coordinate c3 = c2 - Distance{4 * Length::METER, 6 * Length::METER, 0 * Length::METER};
+   Coordinate c3 = c2 - Translation{4 * Length::METER, 6 * Length::METER, 0 * Length::METER};
    EXPECT_DOUBLE_EQ(-2, c3.get_x()/Length::METER);
    EXPECT_DOUBLE_EQ(-2, c3.get_y()/Length::METER);
    EXPECT_DOUBLE_EQ(8, c3.get_z()/Length::METER);
-   Distance d{3 * Length::METER, -7 * Length::METER, 13 * Length::METER};
+   Translation d{3 * Length::METER, -7 * Length::METER, 13 * Length::METER};
 
    const Coordinate * const coordPointer = &c3;
-
    ASSERT_EQ(coordPointer, &(c3 -= d)) << "Wrong reference returned.";
    EXPECT_DOUBLE_EQ(-5, c3.get_x() / Length::METER);
    EXPECT_DOUBLE_EQ(5, c3.get_y() / Length::METER);
@@ -143,7 +139,7 @@ TEST(Coordinate, ReadFrom) {
 
    // Check whether the coordinate is read in correct form from the stream.
    stream << "coordinate (15m, 7.5m, 3.75m)";
-   stream >> coord;
+   try { stream >> coord;}catch(std::exception & e){ std::cerr << e.what() << std::endl; }
    ASSERT_DOUBLE_EQ(15, coord.get_x() / Length::METER);
    ASSERT_DOUBLE_EQ(7.5, coord.get_y() / Length::METER);
    ASSERT_DOUBLE_EQ(3.75, coord.get_z() / Length::METER);
@@ -152,18 +148,15 @@ TEST(Coordinate, ReadFrom) {
    // A list of strings which should NOT be parsed.
    // In comments is listed what is wrong with the string.
    auto failures = {
-         "coordinate(0m,0m,0m)",           // Space between "coordinate" and opening brace is missing.
-         "coordinate (0, 0, 0)",           // Unit declarations are missing.
-         "coordinate (0m, 0, 0)",          // Same as above, only for 1 value.
-         "coordinate (0, 0m, 0)",          // Same as above.
-         "coordinate (0, 0, 0m)",          // Same as above.
-         "coordinate (10m,55.2m, 0m]",     // Wrong closing brace.
-         "coordinate [10m, 55.2m, 0m)",    // Wrong opening brace.
-         "coordinate [10m, 55.2m, 0m]",    // Wrong opening and closing brace.
-         "coordinate (24m, 1.3m; 6.0m)",   // Incorrect separator.
-         "coordinate (24m; 1.3m; 6.0m)",   // Incorrect separator.
-         "coordinate (24m; 1.3m; 6.0m)",   // Incorrect separator.
-         "coord (0m, 0m, 0m)"              // Incomplete indication of type; should be "coordinate".
+			"coordinate(0m,0m,0m)",    // Space between "coordinate" and opening brace is missing.
+            "coordinate (0, 0, 0)",    // Unit declarations are missing.
+            "coordinate (0m, 0, 0)",   // Same as above, only for 1 value.
+            "coordinate (0, 0m, 0)",   // Same as above.
+            "coordinate (0, 0, 0m)",   // Same as above.
+            "coordinate (0m, 0m, 0m]", // Wrong closing brace.
+            "coordinate [0m, 0m, 0m)", // Wrong opening brace.
+            "coordinate [0m, 0m, 0m]", // Wrong opening and closing brace.
+            "coord (0m, 0m, 0m)"       // Incomplete indication of type; should be "coordinate".
    };
    for (auto failure : failures) {
       try {
@@ -172,7 +165,6 @@ TEST(Coordinate, ReadFrom) {
          FAIL() << "Parsing \"" << failure << "\" to a coordinate should not be possible." << std::endl;
       } catch (std::runtime_error & e) {
          // Behaves as expected.
-         // So let's check they values remain unchanged... for what its worth.
          ASSERT_DOUBLE_EQ(15, coord.get_x() / Length::METER) << "X value was modified despite the promise";
          ASSERT_DOUBLE_EQ(7.5, coord.get_y() / Length::METER) << "Y value was modified despite the promise";
          ASSERT_DOUBLE_EQ(3.75, coord.get_z() / Length::METER) << "Z value was modified despite the promise";

@@ -4,68 +4,16 @@
 const Weight Weight::KILOGRAM(1);
 const Weight Weight::GRAM(1/1000);
 
-Weight::Weight(double Weight):value{Weight}{
+Weight::Weight(double value):ADT_Base<Weight>(value){
 
 }
 
-Weight::Weight():value{0}{
+Weight::Weight():Weight(0.0){
 
-}
-
-Weight& Weight::operator= (const Weight& rhs){
-	value = rhs.value;
-	return *this;
-}
-
-Weight Weight::operator+ (const Weight& rhs) const{
-	return Weight{value + rhs.value};
-} 
-
-Weight Weight::operator- (const Weight& rhs) const{
-	return Weight{value - rhs.value};
-}
-
-Weight Weight::operator* (double number) const{
-	return Weight{value * number};
 }
 
 Weight operator* (double n, const Weight& rhs){
 	return Weight{rhs.value * n};
-}
-
-Weight Weight::operator/ (double number) const{
-	Weight temp{*this};
-	if (number != 0) 
-	{
-		temp.value = temp.value / number;
-	}
-	return temp;
-}
-
-double Weight::operator/ (const Weight & rhs) const{
-	double temp = value;
-	if(rhs.value != 0) {
-		temp = temp / rhs.value;
-	}
-	return temp;
-}
-
-Weight& Weight::operator+= (const Weight& rhs){
-	value += rhs.value;
-	return *this;
-}
-
-Weight& Weight::operator-= (const Weight& rhs){
-	value -= rhs.value;
-	return *this;
-}
-
-bool Weight::operator> (const Weight& rhs) const{
-	return (value > rhs.value);
-}
-
-bool Weight::operator< (const Weight& rhs) const{
-	return (value < rhs.value);
 }
 
 std::ostream& operator<< (std:: ostream& os, const Weight& rhs){

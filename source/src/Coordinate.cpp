@@ -35,15 +35,16 @@
 //! OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "../include/Coordinate.hpp"
-#include "../include/Distance.hpp"
+#include "../include/Translation.hpp"
 #include <string>
 #include <stdexcept>
 
 const Coordinate Coordinate::origin(0 * Length::METER, 0 * Length::METER, 0 * Length::METER);
-Coordinate::Coordinate(const Length& x, const Length& y, const Length& z)
-:  x{x}
-,  y{y}
-,  z{z} {
+
+Coordinate::Coordinate(const Length& x, const Length& y, const Length& z):
+	x{x},
+  	y{y},
+	z{z} {
    // The initializer list is all that is needed.
 }
 
@@ -61,34 +62,34 @@ Coordinate & Coordinate::operator =(const Coordinate & rhs) {
    return *this;
 }
 
-Coordinate & Coordinate::operator +=(const Distance & rhs) {
+Coordinate & Coordinate::operator +=(const Translation & rhs) {
    this->x += rhs.x;
    this->y += rhs.y;
    this->z += rhs.z;
    return *this;
 }
 
-Coordinate & Coordinate::operator -=(const Distance & rhs) {
+Coordinate & Coordinate::operator -=(const Translation & rhs) {
    this->x -= rhs.x;
    this->y -= rhs.y;
    this->z -= rhs.z;
    return *this;
 }
 
-Coordinate Coordinate::operator +(const Distance & rhs) const {
+Coordinate Coordinate::operator +(const Translation & rhs) const {
    Coordinate output{*this};
    output += rhs;
    return output;
 }
 
-Coordinate Coordinate::operator -(const Distance & rhs) const {
+Coordinate Coordinate::operator -(const Translation & rhs) const {
    Coordinate output{*this};
    output -= rhs;
    return output;
 }
 
-Distance Coordinate::operator-(const Coordinate &rhs) const {
-   return Distance{this->x - rhs.x, this->y - rhs.y, this->z - rhs.z};
+Translation Coordinate::operator-(const Coordinate &rhs) const {
+   return Translation{this->x - rhs.x, this->y - rhs.y, this->z - rhs.z};
 }
 
 std::ostream & operator <<(std::ostream & lhs, const Coordinate & rhs) {

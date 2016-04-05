@@ -11,98 +11,23 @@
 #include "Acceleration.hpp"
 #include <iostream>
 
-class Force
+class Force : public ADT_Base<Force>
 {
 private:
-	//! @brief Constructor for force
-	//!
-	//! @param val the value for force in kg*m\s²
-	Force(double val);
-
-	double value;
-
+	//! Constructor for force
+	/*!
+		\param val the value for force in kg*m\s²
+	*/
+	Force(double value);
 public:
-  //! @brief Defaul force constructor
+  friend ADT_Base<Force>;
 	Force();
-
-	//! @brief Assigns a Force to this Force. 
-  //!
-  //! @param rhs a Force
-  //! @return the assigned Force.
-	Force & operator= (const Force & rhs);
-
-	//! @brief Checks if a Force is smaller than another Force
-	//!
-  //! @param rhs a Force
-  //! @return the boolean that indicates if the Force is smaller than the Force
-	bool operator< (const Force & rhs) const;
-
-	//! @brief Checks if a Force is greater  than another Force
-	//!
-  //! @param rhs a Force
-  //! @return the boolean that indicates if the Force greater than the Force
-  bool operator> (const Force & rhs) const;
-
-	//! @brief Adds a Force to a Force.
-  //!
-  //! @param rhs a Force
-  //! @return the calculated Force.
-	Force operator+ ( const Force & rhs ) const;
-	
-	//! @brief Adds a Force to a Force and assign it to this Force.
-  //!
-  //! @param rhs a Force
-  //! @return reference to updated Force.
-	Force & operator+= ( const Force & rhs);
-
-	//! @brief Substracts a Force by a Force.
-  //!
-  //! @param rhs a Force.
-  //! @return the calculated Force.
-	Force operator- ( const Force & rhs ) const;
-
-	//! @brief Substracts a Force by a Force and assign it to this Force.
-  //!
-  //! @param rhs a Force.
-  //! @return refence to updated Force.
-	Force & operator-= ( const Force & rhs );
-
-	//! @brief Multiplie a Force by a double
-  //!
-  //! @param rhs a double.
-  //! @return the calculated Force.
-	Force operator* ( const double & rhs ) const;
-
-	//! @brief Multiplies this Force by a double.
-  //!
-  //! @param rhs a double.
-  //! @return the reference to updated Force.
-	Force & operator*= ( const double & rhs );
-
- 	//! @brief Multiplies a Force by a double
-  //!
-  //! @param n a double.
-  //! @param rhs a Force.
-  //! @return the calculated Force.
-  friend Force operator* ( double n, const Force & rhs );
-
-  //! @brief Divides a Force by a double.
-  //!
-  //! @param rhs a double.
-  //! @return the calculated Force.
-  Force operator/ ( const double & rhs ) const;
-
-	//! @brief Divides this Force by a double.
-	//!
-	//! @param rhs a double.
-	//! @return reference to updated Force.
-	Force & operator/= ( const double & rhs );
-
-	//! @brief Divide a Force by a Force
-	//!
-	//! @param rhs a Force.
-	//! @return calculated result in double with no unit.
-  double operator/ ( const Force & rhs);
+	//! Assigns a Force to this Force. 
+    /*!
+      \param rhs a Force
+      \return the assigned Force.
+    */
+    friend Force operator* ( double n, const Force & rhs );
 
 	//! @brief Appends a Force to an std::ostream and returns the ostream
   //!

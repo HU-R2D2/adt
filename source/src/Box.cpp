@@ -1,7 +1,6 @@
 #include "../include/Box.hpp"
 
-Box::Box(Coordinate lhs, Coordinate rhs)
-{
+Box::Box(Coordinate lhs, Coordinate rhs) {
 	if(lhs.x < rhs.x){
 		bottomLeft.x = lhs.x;
 		topRight.x = rhs.x;
@@ -28,13 +27,14 @@ Box::Box(Coordinate lhs, Coordinate rhs)
 	}
 }
 
-Box::Box(Coordinate origin, Distance dist):
+Box::Box(Coordinate origin, Translation dist):
 	Box(origin, origin + dist)
-{
-}
+{}
+
 
 bool Box::contains(const Coordinate & coord) const
 {
+
 	// Check if coordinate  is within bottomLeft attribute and topRight attribute
 	if (coord.x > bottomLeft.x &&
 		coord.y > bottomLeft.y &&
@@ -61,10 +61,7 @@ bool Box::contains(const Coordinate & coord) const
 		{
 			return true;	
 		}
-	}
-
-
-			
+	}		
 	return false;
 }
 
@@ -87,26 +84,22 @@ bool Box::intersects(const Box & box) const
     topRight.y > box.bottomLeft.y &&
     bottomLeft.y < box.topRight.y &&
     topRight.z > box.bottomLeft.z &&
-    bottomLeft.z < box.topRight.z)
-	{
+    bottomLeft.z < box.topRight.z) {
 		return true;
 	}
 
 	return false;
 }
 
-Coordinate Box::get_bottom_left() const
-{
+Coordinate Box::get_bottom_left() const {
 	return bottomLeft;
 }
 
-Coordinate Box::get_top_right() const
-{
+Coordinate Box::get_top_right() const {
 	return topRight;
 }
 
-Box Box::get_union_box(const Box & box) const
-{
+Box Box::get_union_box(const Box & box) const {
 	Coordinate newBottomLeft;
 	Coordinate newTopRight;
 
@@ -132,45 +125,34 @@ Box Box::get_union_box(const Box & box) const
 	return Box(newBottomLeft, newTopRight);
 }
 
-Box Box::get_intersection_box(const Box & box) const
-{
-	if(this->intersects(box))
-	{
+Box Box::get_intersection_box(const Box & box) const {
+	if(this->intersects(box)) {
 		// return intersection box
-		if(this->contains(box.bottomLeft))
-		{
+		if(this->contains(box.bottomLeft)) {
 			// intersectionBox bottomLeft
 			return Box(box.get_bottom_left(), topRight);
 		}
-		else
-		{
+		else {
 			return Box(bottomLeft, box.get_top_right());
 		}
 	}
-	else
-	{
+	else {
 		// no intersection box
 		return Box(Coordinate(), Coordinate());
-	}
-		
+	}	
 }
 
-Distance Box::get_axis_size() const
-{
-	Distance dist;
-
+Translation Box::get_axis_size() const {
+	Translation dist;
 	dist.set_x(topRight.x - bottomLeft.x);
 	dist.set_y(topRight.y - bottomLeft.y);
 	dist.set_z(topRight.z - bottomLeft.z);
-
 	return dist;
 }
 
-Box & Box::operator=(const Box & rhs)
-{	
+Box & Box::operator=(const Box & rhs) {	
 	bottomLeft = rhs.bottomLeft;
 	topRight = rhs.topRight;
-
 	return *this;
 }
 
@@ -179,8 +161,7 @@ std::ostream & operator <<(std::ostream & lhs, const Box & rhs) {
 	return lhs;
 }
 
-std::istream & operator >>(std::istream & lhs, Box & rhs )
-{
+std::istream & operator >>(std::istream & lhs, Box & rhs ) {
  	// Make sure the data that is being decoded is a Box.
    std::string prefix;
    lhs >> std::ws >> prefix;
@@ -216,13 +197,11 @@ std::istream & operator >>(std::istream & lhs, Box & rhs )
    bottomLeft = ReadComponent(lhs, ' ');
    topRight = ReadComponent(lhs, ' ');
 
-
    if (!lhs) {
       throw std::runtime_error{"Coordinate wasn't read in its entirety when end of stream was reached. "};
    }
 
    rhs.bottomLeft = bottomLeft;
    rhs.topRight = topRight;
-
    return lhs;
 }

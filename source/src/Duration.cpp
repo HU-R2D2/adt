@@ -6,62 +6,21 @@ const Duration Duration::MILLISECOND(1.0/1000.0);
 const Duration Duration::MINUTE(60);
 
 Duration::Duration():
-	seconds{0.0}
+	ADT_Base<Duration>(0.0)
 {}
 
-Duration::Duration(double seconds): 
-	seconds{seconds} 
+Duration::Duration(double value): 
+	ADT_Base<Duration>(value) 
 {}
 
-Duration Duration::operator+( const Duration& rhs) const {
-	double result = seconds + rhs.seconds;
-	return Duration(result);
-}
-
-Duration Duration::operator- (const Duration& rhs) const {
-	double result = seconds - rhs.seconds;
-	return Duration(result);
-}
-
-Duration& Duration::operator+= (const Duration& rhs) {
-	this->seconds += rhs.seconds;
-	return *this;
-}
-	
-Duration& Duration::operator-= (const Duration& rhs) {
-	seconds -= rhs.seconds;
-	return *this;
-}
-
-Duration Duration::operator* (const double& rhs) const {
-	return Duration{seconds * rhs};
-}
-
-Duration Duration::operator/ (const double& rhs) const {
-	Duration temp {*this};
-	if(rhs != 0) {
-		temp.seconds = temp.seconds / rhs;
-	}
-	return temp; 
-}
-bool Duration::operator< (const Duration& rhs) const {
-	return seconds < rhs.seconds;
-}
-bool Duration::operator> (const Duration& rhs) const {
-	return seconds > rhs.seconds;
-}
-double Duration::operator/ (const Duration & rhs) const
-{
-	return seconds / rhs.seconds;
-}
-
-std::ostream& operator<<(std::ostream& lhs, const Duration& rhs) {
-	lhs<< rhs.seconds << "s";
+std::ostream& operator<<(std::ostream& lhs, const Duration& rhs){
+	lhs<< rhs.value << "s";
 	return lhs;
 }
 
-Duration operator* ( double n, const Duration & rhs) {
-	return Duration{n * rhs.seconds};
+Duration operator* ( double n, const Duration & rhs){
+	return Duration{n * rhs.value};
+
 }
 
 std::istream & operator>>(std::istream & lhs, Duration & rhs) {
@@ -75,15 +34,12 @@ std::istream & operator>>(std::istream & lhs, Duration & rhs) {
 	if (!lhs) {
 		throw std::runtime_error{"Duration wasn't read in its entirety when end of stream was reached. "};
 	}
-	rhs.seconds = seconds;
+	rhs.value = seconds;
 	return lhs;
 }
 
-Duration& Duration::operator=(const Duration& rhs) {
-	seconds = rhs.seconds;
-	return *this;
-}
 
-double Duration::get_seconds() const {
-	return seconds;
+double Duration::get_seconds() const
+{
+	return value;
 }

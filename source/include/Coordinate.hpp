@@ -40,7 +40,7 @@
 #include "Length.hpp"
 
 // Forward declaration.
-class Distance;
+class Translation;
 class Box;
 
 //! @class Coordinate
@@ -61,10 +61,11 @@ private:
 public:
    //! @brief Constructs a coordinate with the given offsets from the origin on the X,Y and Z axis.
    //!
-   //! @param x Distance between the origin's X, and this coordinate's.
-   //! @param y Distance between the origin's Y, and this coordinate's.
-   //! @param z Distance between the origin's Z, and this coordinate's.
+   //! @param x Translation between the origin's X, and this coordinate's.
+   //! @param y Translation between the origin's Y, and this coordinate's.
+   //! @param z Translation between the origin's Z, and this coordinate's.
    Coordinate(const Length& x, const Length& y, const Length& z);
+
    //! @brief Creates a coordinate specifying a meaningless location.
    Coordinate();
     //! @brief Copies the fields from the right hand side into this,
@@ -74,37 +75,37 @@ public:
    //! @return Reference to the left hand side of the operator.
    Coordinate &operator=(const Coordinate &rhs);
 
-   //! @brief Adds the distance to this coordinate,
+   //! @brief Adds the Translation to this coordinate,
    //! and returns a reference to it.
    //!
-   //! @param rhs Distance to add to this coordinate.
+   //! @param rhs Translation to add to this coordinate.
    //! @return Reference to this coordinate.
-   Coordinate &operator+=(const Distance &rhs);
+   Coordinate &operator+=(const Translation &rhs);
 
-   //! @brief Substracts the given distance from this coordinate,
+   //! @brief Substracts the given Translation from this coordinate,
    //! and returns a reference to it.
    //!
-   //! @param rhs Distance to subtract from this coordinate.
+   //! @param rhs Translation to subtract from this coordinate.
    //! @return Reference to this coordinate.
-   Coordinate &operator-=(const Distance &rhs);
+   Coordinate &operator-=(const Translation &rhs);
 
-   //! @brief Gets the coordinate at the given distance from this coordinate.
+   //! @brief Gets the coordinate at the given Translation from this coordinate.
    //!
-   //! @param rhs Distance to add to this coordinate.
-   //! @return The coordinate at the given distance from this coordinate.
-   Coordinate operator+(const Distance &rhs) const;
+   //! @param rhs Translation to add to this coordinate.
+   //! @return The coordinate at the given Translation from this coordinate.
+   Coordinate operator+(const Translation &rhs) const;
 
-   //! @brief Gets the coordinate at the given distance from this coordinate.
+   //! @brief Gets the coordinate at the given Translation from this coordinate.
    //!
-   //! @param rhs Distance to subtract from this coordinate.
-   //! @return The coordinate at the given distance from this coordinate.
-   Coordinate operator-(const Distance &rhs) const;
+   //! @param rhs Translation to subtract from this coordinate.
+   //! @return The coordinate at the given Translation from this coordinate.
+   Coordinate operator-(const Translation &rhs) const;
 
-   //! @brief Gets the distance the other coordinate is away from this coordinate.
+   //! @brief Gets the Translation the other coordinate is away from this coordinate.
    //!
-   //! @param rhs Other coordinate which is used to determine the distance.
-   //! @return Distance from this coordinate to the other.
-   Distance operator-(const Coordinate &rhs) const;
+   //! @param rhs Other coordinate which is used to determine the Translation.
+   //! @return Translation from this coordinate to the other.
+   Translation operator-(const Coordinate &rhs) const;
 
    //! @brief The arbitrary origin to be used.
    static const Coordinate origin;
@@ -150,6 +151,5 @@ public:
    //!
    //! @return Reference to the difference between this coordinate's Z-position and that of the origin.
    const Length &get_z() const;
-
 };
 #endif // COORDINATE_HPP
