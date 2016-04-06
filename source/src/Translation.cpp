@@ -56,18 +56,6 @@ Length Translation::get_length() const {
 	return a;
 }
 
-void Translation::set_x(Length x) {
-	x = x;
-}
-
-void Translation::set_y(Length y) {
-	y = y;
-}
-
-void Translation::set_z(Length z) {
-	z = z;
-}
-
 Translation& Translation::operator= (const Translation& rhs){
 	x = rhs.x;
 	y = rhs.y;
@@ -157,25 +145,40 @@ std::ostream& operator<< (std::ostream& lhs, Translation& rhs) {
 	lhs << "(" << rhs.get_x() << ", " << rhs.get_y() << ", " << rhs.get_z() << ")";
 	return lhs;
 }
-		
-Translation& operator>>(std::istream& input, Translation& rhs) {
-	std::string prefix;
-	input >> std::ws >> prefix;
-	Length x,y,z;
-	char temp;
-	
-	if(prefix == "Translation") {
-		input >> temp;
-		if (temp!='(') {
-			std::cerr << "No opening brace encountered";
-		}
-		input >> x >> temp >> y >> temp >> z >> temp;
-		rhs.set_x(x);
-		rhs.set_y(y);
-		rhs.set_z(z);
-	}
-	else {
-		std::cerr << "No Translation!";
-	}
-	return rhs;
+
+std::istream & operator >>(std::istream & lhs, Translation & rhs) {
+   std::string prefix;
+   lhs >> std::ws >> prefix;
+   if (prefix != "Translation") {
+      throw std::runtime_error{"Expecting prefix \"Translation\", got something else (" + prefix + ")."};
+   }
+   char temp;
+   lhs >> std::ws >> temp;
+   if (temp != '(') {
+      throw std::runtime_error{"No opening brace encountered"};
+   }
+
+   Length x, y, z;
+
+   auto ReadComponent = [](std::istream & lhs, char expectedSeperator) {
+      Length value;
+      char separator;
+      lhs >> value >> separator;
+      if(separator != expectedSeperator){
+         throw std::runtime_error{"Wrong or missing seperator."};
+      }
+      return value;
+   };
+   x = ReadComponent(lhs, ',');
+   y = ReadComponent(lhs, ',');
+   z = ReadComponent(lhs, ')');
+
+   if (!lhs) {
+      throw std::runtime_error{"Translation wasn't read in its entirety when end of stream was reached. "};
+   }
+   rhs.x = x;
+   rhs.y = y;
+   rhs.z = z;
+
+   return lhs;
 }
