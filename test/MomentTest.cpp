@@ -35,11 +35,21 @@
 #include <iostream>
 using namespace std;
 //using namespace adt;
-test_Clock test_clock;
+
 /**
    Moment Tests
 
 */
+class test_Clock{
+public:
+   Moment getMoment()   {
+      return Moment(time(0));
+   }
+   Moment getMoment(double time) {
+      return Moment(time);
+   }
+};
+test_Clock test_clock;
 TEST(Moment,  Constructors) {
    Moment m1;
    EXPECT_EQ( m1.get_time(), 0 ) << "Default constructor, system time";
