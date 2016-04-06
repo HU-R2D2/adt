@@ -1,5 +1,4 @@
-
-//!	Roborescue
+//! Roborescue
 //! @file Coordinate.hpp
 //! @date Created: 14-03-16
 //! @version 1.0.0
@@ -31,11 +30,23 @@
 #ifndef COORDINATE_HPP
 #define COORDINATE_HPP
 #include <iostream>
+#include <stdexcept>
 #include "Length.hpp"
 
 // Forward declaration.
 class Translation;
 class Box;
+
+//! @class CoordinateException
+//! @brief Specialization for std::runtime_error which indicates coordinate
+//! experienced something unexpected.
+class CoordinateException final : public std::runtime_error {
+public:
+   //! @brief
+   //!
+   //! @param message Message indicating
+   CoordinateException(const char * message);
+};
 
 //! @class Coordinate
 //! @brief A location in space, specified as an offset to an arbitrary origin.
@@ -124,7 +135,7 @@ public:
    //! @param lhs Stream from which to read data
    //! @param rhs Reference to an uninitialized coordinate to overwrite.
    //! @return Reference to the stream passed in by lhs.
-   //! @throw std::runtime_error Indicates a Coordinate could not be read from the given input stream,
+   //! @throw CoordinateException Indicates a Coordinate could not be read from the given input stream,
    //! due to it being in an incorrect format.
    //! The values in the supplied coordinate are not modified when an exception is thrown.
    //! @see operator<<(std::ostream &, coordinate &)

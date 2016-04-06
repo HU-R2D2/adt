@@ -33,12 +33,17 @@
 #include <string>
 #include <stdexcept>
 
-const Coordinate Coordinate::origin(0 * Length::METER, 0 * Length::METER, 0 * Length::METER);
+CoordinateException::CoordinateException(const char * message)
+:  std::runtime_error{message}{
+   // No need for anything in the body.
+}
 
-Coordinate::Coordinate(const Length& x, const Length& y, const Length& z):
-	x{x},
-  	y{y},
-	z{z} {
+const Coordinate Coordinate::origin(0.0 * Length::METER, 0.0 * Length::METER, 0.0 * Length::METER);
+
+Coordinate::Coordinate(const Length& x, const Length& y, const Length& z)
+:  x{x}
+,  y{y}
+,  z{z} {
    // The initializer list is all that is needed.
 }
 
@@ -116,7 +121,7 @@ std::istream & operator >>(std::istream & lhs, Coordinate & rhs) {
       char separator;
       lhs >> value >> separator;
       if(separator != expectedSeperator){
-         throw std::runtime_error{"Wrong or missing seperator."};
+         throw CoordinateException{"Wrong or missing seperator."};
       }
       return value;
    };
@@ -125,7 +130,7 @@ std::istream & operator >>(std::istream & lhs, Coordinate & rhs) {
    z = ReadComponent(lhs, ')');
 
    if (!lhs) {
-      throw std::runtime_error{"Coordinate wasn't read in its entirety when end of stream was reached. "};
+      throw CoordinateException{"Coordinate wasn't read in its entirety when end of stream was reached. "};
    }
 
    rhs.x = x;
