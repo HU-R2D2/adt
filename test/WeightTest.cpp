@@ -37,11 +37,6 @@ TEST(Weight, DefaultConstructor){
 	ASSERT_DOUBLE_EQ(w/Weight::KILOGRAM, 0) << "Weight";
 }
 
-TEST(Weight, doubleConstructor){
-	Weight w{5};
-	ASSERT_DOUBLE_EQ(w/Weight::KILOGRAM, 5) << "Weight";
-}
-
 //Operatoren:
 TEST(Weight, AssignWeight){
 	Weight w;
