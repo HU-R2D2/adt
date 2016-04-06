@@ -83,25 +83,26 @@ class Length: public ADT_Base<Length>{
         //!
         //! @brief  appends a Length to an ostream and returns an ostream
         //!
-        //! @param	rhs     the right hand side to compare 
-        //! @return	ostream ...
+        //! @param  os The stream to which to write the string representation of the length
+        //! @param  rhs Reference to the object to write to the outputstream
+        //! @return	ostream Reference to the stream passed in by os
         friend std::ostream& operator<< (std:: ostream& os, const Length& rhs);
 
         //! @fn     std::istream& Length::operator>>(std::istream& is, Length& rhs)
         //!
         //! @brief  adds an istream to a Length
         //!
-        //! @param	is      ...
-        //! @param	rhs     ...
-        //! @return	istream ...
+        //! @param	is      The stream from which to read data
+        //! @param	rhs     Reference to an uninitialized length to overwrite
+        //! @return	istream Reference to the stream passed in by is
         friend std::istream& operator>>(std::istream& is, Length& rhs);
 
         //! @fn     Length Length::operator* (double n, const Length& rhs)
         //!
         //! @brief  multiply a Length by another Length and returns a Length
         //!
-        //! @param	n       ...
-        //!	@param	rhs     ...
+        //! @param	n       The number by which the length will be multiplied
+        //!	@param	rhs     The length that will be multiplied by a number
         //! @return	Length  The result of the multiplication
         friend Length operator* (double n, const Length& rhs);
 
@@ -110,8 +111,8 @@ class Length: public ADT_Base<Length>{
         //!
         //! @brief  divide length by duration and return the speed
         //!
-        //! @param  length      ...
-        //!	@param  d           ...
+        //! @param  length      The length that will be divided by a duration
+        //!	@param  d           The duration that the length will be divided by
         //! @return Speed       The result of the division
         friend Speed operator/ (const Length & length, const Duration & d);
 
