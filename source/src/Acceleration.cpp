@@ -1,10 +1,17 @@
-// ++--++
-// Roborescue
-// @file <Acceleration.cpp>
-// @date Created: <5-3-16>
-// @version <0.0.1>
+////
+//  ██████╗  ██████╗ ██████╗  ██████╗ ██████╗ ███████╗███████╗ ██████╗██╗   ██╗███████╗
+//  ██╔══██╗██╔═══██╗██╔══██╗██╔═══██╗██╔══██╗██╔════╝██╔════╝██╔════╝██║   ██║██╔════╝
+//  ██████╔╝██║   ██║██████╔╝██║   ██║██████╔╝█████╗  ███████╗██║     ██║   ██║█████╗  
+//  ██╔══██╗██║   ██║██╔══██╗██║   ██║██╔══██╗██╔══╝  ╚════██║██║     ██║   ██║██╔══╝  
+//  ██║  ██║╚██████╔╝██████╔╝╚██████╔╝██║  ██║███████╗███████║╚██████╗╚██████╔╝███████╗
+//  ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝
+//                                                                                                                                          
 //
-// @author <Stephan Vivie>
+// @file Acceleration.cpp
+// @date Created: 28-03-2016
+// @version 1.0
+//
+// @author Stephan Vivie
 //
 // @section LICENSE
 // License: newBSD
@@ -27,7 +34,8 @@
 // HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
 // LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
 // OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-// ++--++
+////
+
 #include "../include/Acceleration.hpp"
 
 #include <iostream>
@@ -47,7 +55,8 @@ std::istream & operator >>(std::istream & lhs, Acceleration & rhs) {
     std::string prefix;
     lhs >> std::ws >> prefix;
     if (prefix != "acceleration") {
-        throw std::runtime_error{"Expecting prefix \"acceleration\", got something else."};
+        throw std::runtime_error{"Expecting prefix \"acceleration\","
+            "got something else."};
     }
     char temp;
     lhs >> std::ws >> temp;
@@ -76,7 +85,8 @@ std::istream & operator >>(std::istream & lhs, Acceleration & rhs) {
     acceleration = ReadComponent(lhs, 'm');
 
     if (!lhs) {
-        throw std::runtime_error{"Acceleration wasn't read in its entirety when end of stream was reached. "};
+        throw std::runtime_error{"Acceleration wasn't read in its entirety"
+            " when end of stream was reached. "};
     }
 
     rhs.value = acceleration;

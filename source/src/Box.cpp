@@ -1,9 +1,17 @@
-// ++--++
-// @file <Box.cpp>
-// @date Created: <5-3-16>
-// @version <0.0.1>
+////
+//  ██████╗  ██████╗ ██████╗  ██████╗ ██████╗ ███████╗███████╗ ██████╗██╗   ██╗███████╗
+//  ██╔══██╗██╔═══██╗██╔══██╗██╔═══██╗██╔══██╗██╔════╝██╔════╝██╔════╝██║   ██║██╔════╝
+//  ██████╔╝██║   ██║██████╔╝██║   ██║██████╔╝█████╗  ███████╗██║     ██║   ██║█████╗  
+//  ██╔══██╗██║   ██║██╔══██╗██║   ██║██╔══██╗██╔══╝  ╚════██║██║     ██║   ██║██╔══╝  
+//  ██║  ██║╚██████╔╝██████╔╝╚██████╔╝██║  ██║███████╗███████║╚██████╗╚██████╔╝███████╗
+//  ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝
+//                                                                                                                                          
 //
-// @author <Stephan Vivie>
+// @file Box.cpp
+// @date Created: 15-03-2016
+// @version 1.0
+//
+// @author Stephan Vivie
 //
 // @section LICENSE
 // License: newBSD
@@ -26,7 +34,8 @@
 // HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
 // LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
 // OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-// ++--++
+////
+
 #include "../include/Box.hpp"
 
 Box::Box(Coordinate lhs, Coordinate rhs) {
@@ -65,10 +74,9 @@ Box::Box():
 {}
 
 
-bool Box::contains(const Coordinate & coord) const
-{
-
-    // Check if coordinate  is within bottomLeft attribute and topRight attribute
+bool Box::contains(const Coordinate & coord) const {
+    //! Check if coordinate  is within bottomLeft attribute and
+    //! topRight attribute
     if (coord.x > bottomLeft.x &&
         coord.y > bottomLeft.y &&
         coord.z > bottomLeft.z)
@@ -98,9 +106,9 @@ bool Box::contains(const Coordinate & coord) const
     return false;
 }
 
-bool Box::contains(const Box & box) const
-{
-    // Check if both coordinates of the box attribute are within current box bottomLeft and topRight
+bool Box::contains(const Box & box) const {
+    //! Check if both coordinates of the box attribute are within current box 
+    //! bottomLeft and topRight
     if (this->contains(box.bottomLeft) && this->contains(box.topRight))
     {
         return true;
@@ -108,8 +116,7 @@ bool Box::contains(const Box & box) const
     return false;
 }
 
-bool Box::intersects(const Box & box) const
-{
+bool Box::intersects(const Box & box) const {
     // Check if there is an intersection between two boxes
     // Uses AABB collision detection (Angle Aligned Bounding Box)
     if (topRight.x > box.bottomLeft.x && 
@@ -164,12 +171,10 @@ Box Box::get_intersection_box(const Box & box) const {
         if(this->contains(box.bottomLeft)) {
             // intersectionBox bottomLeft
             return Box(box.get_bottom_left(), topRight);
-        }
-        else {
+        } else {
             return Box(bottomLeft, box.get_top_right());
         }
-    }
-    else {
+    } else {
         // no intersection box
         return Box(Coordinate(), Coordinate());
     }   
@@ -196,45 +201,46 @@ std::ostream & operator <<(std::ostream & lhs, const Box & rhs) {
 
 std::istream & operator >>(std::istream & lhs, Box & rhs ) {
     // Make sure the data that is being decoded is a Box.
-     std::string prefix;
-     lhs >> std::ws >> prefix;
-     if (prefix != "box") {
-        throw std::runtime_error{"Expecting prefix \"box\", got something else."};
-     }
-     char temp;
-     lhs >> std::ws >> temp;
-     if (temp != '(') {
+    std::string prefix;
+    lhs >> std::ws >> prefix;
+
+    if (prefix != "box") {
+        throw std::runtime_error{"Expecting prefix \"box\","
+            " got something else."};
+    }
+    char temp;
+    lhs >> std::ws >> temp;
+    if (temp != '(') {
         throw std::runtime_error{"No opening brace encountered"};
      }
 
-     // To guarantee the box remains unchanged when an error occurs,
-     // a temporary storage is needed for the values.
-     // If not, throw an exception or something along those lines.
-     Coordinate bottomLeft;
-     Coordinate topRight;
+    // To guarantee the box remains unchanged when an error occurs,
+    // a temporary storage is needed for the values.
+    // If not, throw an exception or something along those lines.
+    Coordinate bottomLeft;
+    Coordinate topRight;
 
-     // The different values are separated by certain characters.
-     // As they require multiple similar steps, this small lambda is defined.
-     auto ReadComponent = [](std::istream & lhs, char expectedSeperator) {
+    // The different values are separated by certain characters.
+    // As they require multiple similar steps, this small lambda is defined.
+    auto ReadComponent = [](std::istream & lhs, char expectedSeperator) {
         Coordinate value;
         char separator;
         lhs >> value >> separator;
         if(separator != expectedSeperator){
-        std::cout << "sep: " << separator << std::endl;
-        std::cout << "exp: " << expectedSeperator << std::endl;
-         throw std::runtime_error{"Wrong or missing seperator. "};
+            throw std::runtime_error{"Wrong or missing seperator. "};
         }
         return value;
-     };
+    };
 
-     bottomLeft = ReadComponent(lhs, ' ');
-     topRight = ReadComponent(lhs, ' ');
+    bottomLeft = ReadComponent(lhs, ' ');
+    topRight = ReadComponent(lhs, ' ');
 
-     if (!lhs) {
-        throw std::runtime_error{"Coordinate wasn't read in its entirety when end of stream was reached. "};
-     }
+    if (!lhs) {
+        throw std::runtime_error{"Coordinate wasn't read in its entirety when"
+            " end of stream was reached. "};
+    }
 
-     rhs.bottomLeft = bottomLeft;
-     rhs.topRight = topRight;
-     return lhs;
+    rhs.bottomLeft = bottomLeft;
+    rhs.topRight = topRight;
+    return lhs;
 }

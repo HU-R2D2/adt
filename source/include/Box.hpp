@@ -1,10 +1,17 @@
-// ++--++
-// Roborescue
-// @file <Box.hpp>
-// @date Created: <5-3-16>
-// @version <0.0.1>
+////
+//  ██████╗  ██████╗ ██████╗  ██████╗ ██████╗ ███████╗███████╗ ██████╗██╗   ██╗███████╗
+//  ██╔══██╗██╔═══██╗██╔══██╗██╔═══██╗██╔══██╗██╔════╝██╔════╝██╔════╝██║   ██║██╔════╝
+//  ██████╔╝██║   ██║██████╔╝██║   ██║██████╔╝█████╗  ███████╗██║     ██║   ██║█████╗  
+//  ██╔══██╗██║   ██║██╔══██╗██║   ██║██╔══██╗██╔══╝  ╚════██║██║     ██║   ██║██╔══╝  
+//  ██║  ██║╚██████╔╝██████╔╝╚██████╔╝██║  ██║███████╗███████║╚██████╗╚██████╔╝███████╗
+//  ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝
+//                                                                                                                                          
 //
-// @author <Stephan Vivie>
+// @file Box.hpp
+// @date Created: 15-03-2016
+// @version 1.0
+//
+// @author Stephan Vivie
 //
 // @section LICENSE
 // License: newBSD
@@ -27,7 +34,8 @@
 // HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
 // LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
 // OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-// ++--++
+////
+
 #ifndef _BOX_HPP
 #define _BOX_HPP
 
@@ -35,29 +43,25 @@
 #include "Translation.hpp"
 #include <iostream>
 
-//! @author         Stephan Vivie
-//! @date           15-03-2016
-//! @version        0.1
-//! @brief          A 3D rectangular box in space, which is aligned to the 3 axises.
-
-
+//! @class Box
+//! @brief          A 3D rectangular box in space, which is aligned to 3 axises.
 class Box final {
-    friend class Translation;
 public:
     Box();
-    //! @brief Constructs a box with 2 coordinates, bottom left and top right of the 3D ractangle
+    //! @brief Constructs a box with 2 coordinates, bottom left and top right 
+    //! of the 3D ractangle
     //!
     //! @param bottomLeft
     //! @param topRight 
     Box (Coordinate bottomLeft, Coordinate topRight);
 
-    //! @brief Constructs a box with one coordinate and a Translation, bottom left coordinate and the Translation of the axises.
+    //! @brief Constructs a box with one coordinate and a Translation, bottom 
+    //! left coordinate and the Translation of the axises.
     //!
     //! @param origin bottom left coordinate of the rectangle
     //! @param dist the size of one edge (axis) 
     Box (Coordinate origin, Translation dist);
 
-public:
     //! @brief Checks whether box contains coordinate
     //!
     //! @param coord The coordinate to check
@@ -92,11 +96,14 @@ public:
     //! @return Box the union box
     Box get_union_box(const Box & box) const;
 
-    //! @brief Returns box that contains the shared space (intersection area) between two boxes
-    //! @note If there is no intersection between the boxes, a empty box will be returned
+    //! @brief Returns box that contains the shared space (intersection area) 
+    //! between two boxes
+    //! @note If there is no intersection between the boxes, 
+    //! a empty box will be returned
     //!
     //! @param box the box to create an shared space with
-    //! @return Box The box that contains the shared space. When there is no overlapse in the two boxes a box with (0.0,0.0,0.0) is returned.
+    //! @return Box The box that contains the shared space. When there is 
+    //! no overlapse in the two boxes a box with (0.0,0.0,0.0) is returned.
     Box get_intersection_box(const Box & box) const;
 
     //! @brief Returns the size of the axis
@@ -127,6 +134,7 @@ public:
 private:
     Coordinate bottomLeft;
     Coordinate topRight;
+    friend class Translation;
 };
 
 #endif  // _BOX_HPP

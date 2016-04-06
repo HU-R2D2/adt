@@ -1,9 +1,17 @@
-// ++--++
-// @file <filename>
-// @date Created: <5-3-16>
-// @version <1.0.0>
+////
+//  ██████╗  ██████╗ ██████╗  ██████╗ ██████╗ ███████╗███████╗ ██████╗██╗   ██╗███████╗
+//  ██╔══██╗██╔═══██╗██╔══██╗██╔═══██╗██╔══██╗██╔════╝██╔════╝██╔════╝██║   ██║██╔════╝
+//  ██████╔╝██║   ██║██████╔╝██║   ██║██████╔╝█████╗  ███████╗██║     ██║   ██║█████╗  
+//  ██╔══██╗██║   ██║██╔══██╗██║   ██║██╔══██╗██╔══╝  ╚════██║██║     ██║   ██║██╔══╝  
+//  ██║  ██║╚██████╔╝██████╔╝╚██████╔╝██║  ██║███████╗███████║╚██████╗╚██████╔╝███████╗
+//  ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝
+//                                                                                                                                          
 //
-// @author <full name>
+// @file AccelerationTest.cpp
+// @date Created: 18-03-2016
+// @version 1.0
+//
+// @author Stephan Vivie
 //
 // @section LICENSE
 // License: newBSD
@@ -26,7 +34,8 @@
 // HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
 // LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
 // OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-// ++--++
+////
+
 #include "../source/include/Length.hpp"
 #include "../source/include/Acceleration.hpp"
 
@@ -46,8 +55,8 @@ TEST(Acceleration, DefaultConstructor)
 
 TEST(Acceleration, Assign)
 {
-    Speed speed = 5 * Length::METER / Duration::SECOND;
-    Duration duration = 2 * Duration::SECOND;
+    Speed speed = 5.0 * Length::METER / Duration::SECOND;
+    Duration duration = 2.0 * Duration::SECOND;
 
     Acceleration accel = speed / duration;
     ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
@@ -56,8 +65,8 @@ TEST(Acceleration, Assign)
 
 TEST(Acceleration, MultiplyDouble)
 {
-    Speed speed = (5 * Length::METER) / Duration::SECOND;
-    Duration duration = 2 * Duration::SECOND;
+    Speed speed = (5.0 * Length::METER) / Duration::SECOND;
+    Duration duration = 2.0 * Duration::SECOND;
     Acceleration accel = speed / duration; // 2.5 m/s
 
     // multiply by 10
@@ -77,8 +86,8 @@ TEST(Acceleration, MultiplyDouble)
 
 TEST(Acceleration, MultiplyDoubleAssign)
 {
-    Speed speed = (5 * Length::METER) / Duration::SECOND;
-    Duration duration = 2 * Duration::SECOND;
+    Speed speed = (5.0 * Length::METER) / Duration::SECOND;
+    Duration duration = 2.0 * Duration::SECOND;
     Acceleration accel = speed / duration; // 2.5 m/s
 
     ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
@@ -99,8 +108,8 @@ TEST(Acceleration, MultiplyDoubleAssign)
 
 TEST(Acceleration, DivideDouble)
 {
-    Speed speed = (50 * Length::METER) / Duration::SECOND;
-    Duration duration = 2 * Duration::SECOND;
+    Speed speed = (50.0 * Length::METER) / Duration::SECOND;
+    Duration duration = 2.0 * Duration::SECOND;
     Acceleration accel = speed / duration; //25 m/s
 
     // divide by 10
@@ -119,14 +128,14 @@ TEST(Acceleration, DivideDouble)
 
 TEST(Acceleration, DivideDoubleAssign)
 {
-    Speed speed = (50 * Length::METER) / Duration::SECOND;
-    Duration duration = 2 * Duration::SECOND;
+    Speed speed = (50.0* Length::METER) / Duration::SECOND;
+    Duration duration = 2.0 * Duration::SECOND;
     Acceleration accel = speed / duration; //2.5 m/s
 
     ASSERT_DOUBLE_EQ(25.0, accel / oneMA);
 
     // dividee by 10
-    accel /= 10;
+    accel /= 10.0;
     ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
 
     // divide by 0
