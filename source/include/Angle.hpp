@@ -114,10 +114,4 @@ class Angle{
 		static const Angle rad;
 		static const Angle deg;
 };
-#ifdef DONT_COMPILE
-//!@brief create an Angle by multiplying with the rad constant when given Angle is in Radians
-
-//!@brief create an Angle by multiplying with the deg constant when given Angle is in Degrees
-static constexpr Angle deg { 180.0/M_PI };
-#endif
 #endif

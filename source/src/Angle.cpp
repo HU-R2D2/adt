@@ -39,7 +39,6 @@
 #include "../include/Angle.hpp"
 #include <math.h>
 
-double angle_radians;
 
 const Angle Angle::rad{1};
 const Angle Angle::deg{ M_PI / 180};
