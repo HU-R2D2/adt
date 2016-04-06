@@ -46,6 +46,7 @@ class Coordinate;
 
 class Translation {
 	friend class Coordinate;
+	friend class Box;
 	public:
 		//! @fn 		Translation::Translation()
 		//!
@@ -94,32 +95,6 @@ class Translation {
 		 //! @return	Length		The absolute Length of the Translation
 		 
 		Length get_length() const;
-		
-		
-		 //! @fn		void Translation::set_x(Length x)
-		 //!
-		 //! @brief		Sets the x Length value of the Translation to the given value
-		 //!
-		 //! @param		x			The x Lengthof the Translation
-		 
-		void set_x(Length x);
-		
-		 //! @fn		void Translation::set_y(Length y)
-		 //!
-		 //! @brief		Sets the y Length value of the Translation to the given value
-		 //!
-		 //! @param		y			The y Length of the Translation
-		 
-		void set_y(Length y);
-		
-		 //! @fn		void Translation::set_z(Length z)
-		 //!
-		 //! @brief		Sets the z Length value of the Translation to the given value
-		 //!
-		 //! @param		z			The z Length of the Translation
-		 
-		void set_z(Length z);
-	
 		
 		 //! @fn		Translation& Translation::operator= (const Translation& rhs)
 		 //!
@@ -220,29 +195,28 @@ class Translation {
 		 
 		bool operator< (const Translation& rhs) const;
 		
+		 //! @fn		std::ostream& Translation::operator<< (std::ostream& lhs, const Translation& rhs) const
+		 //!
+		 //! @brief		Output operator of a Translation
+		 //!
+		 //! @param		lhs			The left hand sight ostream, to this ostream the Translation will be added
+		 //! @param		rhs			The right hand sight Translation, this one will be added to the lhs ostream
+		 //! @return	ostream&	Reference to the tweaked lhs ostream
+		 
+		friend std::ostream& operator<< (std::ostream& lhs, Translation& rhs);
+
+		 //! @fn		Translation& Translation::operator>>(std::istream& lhs, Translation& rhs)
+		 //!
+		 //! @brief		Input operator of a Translation
+		 //!
+		 //! @param		lhs			The istream, from this istream the Translation will be adapted
+		 //! @param		rhs			The right hand sight Translation, this one will be adapted by the lhs istream
+		 //! @return	Translation&	Reference to rhs Translation which is adapted by information from the lhs
+		 
+		friend std::istream& operator>>(std::istream& lhs, Translation& rhs);
+		
 	private:
 		Length x,y,z;
 };
-
-
- //! @fn		std::ostream& Translation::operator<< (std::ostream& lhs, const Translation& rhs) const
- //!
- //! @brief		Output operator of a Translation
- //!
- //! @param		lhs			The left hand sight ostream, to this ostream the Translation will be added
- //! @param		rhs			The right hand sight Translation, this one will be added to the lhs ostream
- //! @return	ostream&	Reference to the tweaked lhs ostream
- 
-std::ostream& operator<< (std::ostream& lhs, Translation& rhs);
-
- //! @fn		Translation& Translation::operator>>(std::istream& lhs, Translation& rhs)
- //!
- //! @brief		Input operator of a Translation
- //!
- //! @param		input		The istream, from this istream the Translation will be adapted
- //! @param		rhs			The right hand sight Translation, this one will be adapted by the lhs istream
- //! @return	Translation&	Reference to rhs Translation which is adapted by information from the lhs
- 
-Translation& operator>>(std::istream& input, Translation& rhs);
 
 #endif

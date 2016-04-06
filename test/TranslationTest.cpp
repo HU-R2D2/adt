@@ -360,10 +360,12 @@ TEST(Translation, OutputStream) { 				//operator<<
 TEST(Translation, ReadFrom) {					//operator>>
 	std::stringstream stream{};
 	Translation d;
-	//const Translation * const originalPointer = &d;
+	const Translation * const originalPointer = &d;
 
 	stream << "Translation (15m, 15m, 15m)";
 	stream >> d;
-	ASSERT_DOUBLE_EQ(15 , 15);
-	//ASSERT_EQ(originalPointer, &d) << "A wrong reference is returned.";
+	ASSERT_DOUBLE_EQ(d.get_x() / Length::METER , 15);
+	ASSERT_DOUBLE_EQ(d.get_y() / Length::METER , 15);
+	ASSERT_DOUBLE_EQ(d.get_z() / Length::METER , 15);
+	ASSERT_EQ(originalPointer, &d);
 }
