@@ -8,7 +8,7 @@
 // @section LICENSE
 // License: newBSD
 //
-// Copyright © 2016, HU University of Applied Sciences Utrecht.
+// Copyright ï¿½ 2016, HU University of Applied Sciences Utrecht.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -158,7 +158,7 @@ TEST(Coordinate, ReadFrom) {
          std::stringstream stream{failure};
          stream >> coord;
          FAIL() << "Parsing \"" << failure << "\" to a coordinate should not be possible." << std::endl;
-      } catch (std::runtime_error & e) {
+      } catch (CoordinateException & e) {
          // Behaves as expected.
          ASSERT_DOUBLE_EQ(15, coord.get_x() / Length::METER) << "X value was modified despite the promise";
          ASSERT_DOUBLE_EQ(7.5, coord.get_y() / Length::METER) << "Y value was modified despite the promise";
