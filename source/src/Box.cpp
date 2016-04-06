@@ -177,9 +177,9 @@ Box Box::get_intersection_box(const Box & box) const {
 
 Translation Box::get_axis_size() const {
 	Translation dist;
-	dist.set_x(topRight.x - bottomLeft.x);
-	dist.set_y(topRight.y - bottomLeft.y);
-	dist.set_z(topRight.z - bottomLeft.z);
+	dist.x = (topRight.x - bottomLeft.x);
+	dist.y = (topRight.y - bottomLeft.y);
+	dist.z = (topRight.z - bottomLeft.z);
 	return dist;
 }
 
