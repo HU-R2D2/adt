@@ -48,15 +48,17 @@ Moment& Moment::operator= (const Moment& m)  {
 Moment Moment::operator+ ( const Duration & rhs ) const  {
    // Return new Moment that is the result of adding a given Duration
    // Old Moment is not modified
+   // If addition results in < 0, return 0
    Moment rMoment(0);
+   if( (saved_result = (this->value + rhs.get_seconds()) ) < 0)  {
+      rMoment.value = 0;
+      return rMoment;
+   }
    rMoment.value = this->value + rhs.get_seconds();
    return rMoment;
 }
 Moment Moment::operator- ( const Duration & rhs ) const  {
-   // Return new Moment that is the result of subtracting a given Duration
-   // Old Moment not modified
    // If Subtraction results in a time smaller than 0, return 0
-   assert(rhs.get_seconds() > 0);
    double saved_result;
    Moment rMoment(0);
    if( (saved_result = (this->value - rhs.get_seconds()) ) < 0)  {
