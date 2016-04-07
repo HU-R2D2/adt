@@ -86,9 +86,8 @@ std::istream& operator>>(std::istream & is, Force & rhs){
    throw std::runtime_error{"Length: Either stream ended, or none of the known extensions match the specified one."};
 }
 
-
-Force operator* ( const Weight & lhs, const Acceleration & rhs){
-  double w = lhs/Weight::KILOGRAM;
+Force operator* ( const Mass & lhs, const Acceleration & rhs){
+  double w = lhs/Mass::KILOGRAM;
   Speed one = 1 * Length::METER/Duration::SECOND;
   Acceleration ac = one/Duration::SECOND;
   double a = rhs/ac;

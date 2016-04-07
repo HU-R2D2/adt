@@ -36,7 +36,7 @@
 #ifndef _FORCE_HPP
 #define _FORCE_HPP
 
-#include "Weight.hpp"
+#include "Mass.hpp"
 #include "Acceleration.hpp"
 #include <iostream>
 
@@ -62,7 +62,7 @@ public:
     //!
     //! @param  n a double
     //! @param  rhs the Force that is multiplied
-    //! @return The calcukated Force
+    //! @return The calculated Force
     friend Force operator*(double n, const Force & rhs);
     
     //! @fn     std::ostream operator<<(std::ostream& os, const Force& rhs)
@@ -83,15 +83,17 @@ public:
     //!	@return std::istream
     friend std::istream& operator>>(std::istream & is, Force & rhs);
 
-    //! @brief Multiplies a Weight by a Accceleration.
+    //! @fn     Force operator*(const Mass & lhs, const Acceleration & rhs)
     //!
-    //! @param w the Weight
-    //! @param a the Accelation
+    //! @brief  Multiplies a Mass by a Accceleration.
+    //!
+    //! @param  w the Mass
+    //! @param  a the Accelation
     //! @return the calculated Force.
-    friend Force operator* ( const Weight & lhs, const Acceleration & rhs);
+    friend Force operator* ( const Mass & lhs, const Acceleration & rhs);
 
     static const Force NEWTON;
 };
-Force operator* ( const Weight & lhs, const Acceleration & rhs);
+Force operator* ( const Mass & lhs, const Acceleration & rhs);
 
 #endif

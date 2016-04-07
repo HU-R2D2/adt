@@ -1,6 +1,6 @@
 // ++--++
 // Roborescue
-// @file <Weight.cpp>
+// @file <Mass.cpp>
 // @date Created: <5-3-16>
 // @version <0.0.1>
 //
@@ -28,27 +28,27 @@
 // LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
 // OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // ++--++
-#include "../include/Weight.hpp"
+#include "../include/Mass.hpp"
 #include <stdexcept>
 
 //constants
-const Weight Weight::KILOGRAM(1);
-const Weight Weight::GRAM(1/1000);
+const Mass Mass::KILOGRAM(1);
+const Mass Mass::GRAM(1/1000);
 
-Weight::Weight(double value):ADT_Base<Weight>(value){
-
-}
-
-Weight::Weight():Weight(0.0){
+Mass::Mass(double value):ADT_Base<Mass>(value){
 
 }
 
-std::ostream& operator<< (std:: ostream& os, const Weight& rhs){
+Mass::Mass():Mass(0.0){
+
+}
+
+std::ostream& operator<< (std:: ostream& os, const Mass& rhs){
 	os << rhs.value << "Kg";
 	return os;
 }
 
-std::istream& operator>>(std::istream& is, Weight& rhs){
+std::istream& operator>>(std::istream& is, Mass& rhs){
    double value;
    std::string suffix;
    // Read the value, and remove any trailing whitespace.
@@ -78,8 +78,8 @@ std::istream& operator>>(std::istream& is, Weight& rhs){
       }
    }
    // Specifies all available suffixes, and which value corresponds to it.
-   const struct {std::string suffix; const Weight & factor;} possible_suffixes[] = {
-         {"Kg", Weight::KILOGRAM}
+   const struct {std::string suffix; const Mass & factor;} possible_suffixes[] = {
+         {"Kg", Mass::KILOGRAM}
    };
    for (const auto & possibility : possible_suffixes) {
       if (suffix == possibility.suffix) {

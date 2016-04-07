@@ -48,6 +48,7 @@
 
 #include <iostream>
 
+class Force;
 class Acceleration : public ADT_Base<Acceleration> {
 protected: 
     //! @brief Constructor that sets the value to whichever value. 
@@ -57,6 +58,7 @@ protected:
     Acceleration(double val);
 public:
     friend ADT_Base<Acceleration>;
+    friend Force;
     //! @brief The default constructor of and acceleration
     Acceleration();
 
@@ -84,6 +86,7 @@ public:
     //! @param d the duration
     //! @return Acceleration the acceleration
     friend Acceleration operator/ (const Speed & s, const Duration &d);
+
 };
 Acceleration operator/( const Speed & s, const Duration &d);
 #endif

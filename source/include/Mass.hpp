@@ -1,6 +1,6 @@
 // ++--++
 // Roborescue
-// @file <Weight.hpp>
+// @file <Mass.hpp>
 // @date Created: <5-3-16>
 // @version <0.0.1>
 //
@@ -32,60 +32,60 @@
 //! @author		Job Verhaar
 //! @date 		04-04-16
 //! @version 	0.1
-//! @brief		Weight is a .....
+//! @brief		Mass is a .....
 //!
 
-#ifndef _WEIGHT_HPP
-#define _WEIGHT_HPP
+#ifndef _Mass_HPP
+#define _Mass_HPP
 
 #include "ADT_Base.hpp"
 
 #include <iostream> 
 
-class Weight : public ADT_Base<Weight>{
+class Mass : public ADT_Base<Mass>{
 protected:
-    //! @fn     Weight::Weight(double l)
+    //! @fn     Mass::Mass(double l)
     //!
-    //! @brief  Constructor of a Weight
+    //! @brief  Constructor of a Mass
     //!
-    //! @param	value the weight in KG
-    Weight(double value);
+    //! @param	value the Mass in KG
+    Mass(double value);
 
 public:
-    friend ADT_Base<Weight>;
-    //! @fn 	Weight::Weight()
+    friend ADT_Base<Mass>;
+    //! @fn 	Mass::Mass()
     //!
-    //! @brief 	Defaut constructor of Weight
-    Weight();
+    //! @brief 	Defaut constructor of Mass
+    Mass();
 
-    //! @fn     std::ostream operator<<(std::ostream& os, const Weight& rhs)
+    //! @fn     std::ostream operator<<(std::ostream& os, const Mass& rhs)
     //!
-    //! @brief Appends a Weight to an std::ostream and returns the ostream
+    //! @brief Appends a Mass to an std::ostream and returns the ostream
     //!
     //! @param os the std::ostream to append to
     //! @param rhs Object to append
     //! @return std::ostream
-    friend std::ostream& operator<< (std:: ostream& os, const Weight& rhs);
+    friend std::ostream& operator<< (std:: ostream& os, const Mass& rhs);
 
-    //! @fn    std::istream operator>>(std::istream& is, Weight& rhs)
+    //! @fn    std::istream operator>>(std::istream& is, Mass& rhs)
     //!
-    //! @brief Reads a Weight from an std::istream and returns the istream
+    //! @brief Reads a Mass from an std::istream and returns the istream
     //!
     //! @param os the std::istream to read it from;
     //! @param rhs Object to read
     //! @return std::istream
-    friend std::istream& operator>>(std::istream& is, Weight& rhs);
+    friend std::istream& operator>>(std::istream& is, Mass& rhs);
 
-    //! @fn		Weight operator*(double n, const Weight & rhs)
+    //! @fn		Mass operator*(double n, const Mass & rhs)
     //!
-    //! @brief	multiply a Weight bu a double and returns a Weight
+    //! @brief	multiply a Mass bu a double and returns a Mass
     //!
     //! @param  n a double
-    //! @param  rhs the Weight that is multiplied
-    //! @return The calcukated Weight
-    friend Weight operator* (double n, const Weight& rhs);
+    //! @param  rhs the Mass that is multiplied
+    //! @return The calcukated Mass
+    friend Mass operator* (double n, const Mass& rhs);
 
-    static const Weight KILOGRAM;
-    static const Weight GRAM;
+    static const Mass KILOGRAM;
+    static const Mass GRAM;
 };
 #endif
