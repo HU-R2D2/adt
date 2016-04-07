@@ -136,7 +136,7 @@ std::istream &operator>>(std::istream &lhs, Coordinate &rhs) {
 
     if (!lhs) {
         throw CoordinateException{
-                "Coordinate wasn't read in its entirety when end of stream was reached. "};
+                "Coordinate wasn't read in its entirety when end of stream was reached."};
     }
 
     rhs.x = x;
