@@ -40,7 +40,7 @@
 
 #include <iostream>
 
-#define M_PI 3.14159265358979323846
+#define 
 
 class Angle {
 private:
@@ -49,8 +49,13 @@ private:
 
     //!@brief Creates an Angle from a double
     //!@brief Anything larger than one circle (2pi) is modulo'd with 2pi
+    //!@brief Note the constructor being private; refer to the deg and rad constants
+    //!@brief to create a new Angle object from a double value
     //!@param angle_radians The Angle in radians
     Angle(double angle_radians);
+
+    //!@brief An approximation of the mathematical PI, as seen in the math.h lib
+    static constexpr double M_PI = 3.14159265358979323846;
 
     //!@brief value in Radians of one full circle
     static constexpr double full_circle = M_PI *
@@ -108,12 +113,16 @@ public:
     //!@param rhs The number by which the Angle will be multiplied
     Angle operator*(const double &rhs) const;
 
+    //!@brief divides the Angle by a number and return a Angle
+    //!@param rhs The number by which the Angle will be divided
     friend Angle operator*(const double &lhs, const Angle &rhs);
 
     //!@brief divides the Angle by a number and return a Angle
     //!@param rhs The number by which the Angle will be divided
     Angle operator/(const double &rhs) const;
 
+    //!@brief divide an Angle by an Angle, returning a double
+    //!@param Angle to divide this by
     double operator/(const Angle &rhs) const;
 
     //!@brief Output operator of a Angle
@@ -121,8 +130,18 @@ public:
     //!@param rhs The Angle that will be added to the ostream
     friend std::ostream &operator<<(std::ostream &lhs, Angle &rhs);
 
+    //!@brief Getter for Angle, returns a double containing the angle value in 
+    //!@brief radians
     double get_angle();
 
+
+    //!@brief A radian and a degree constant to convert a double in radians
+    //!@brief respectively degrees to an Angle object in radians
+    //!@brief Example usages:
+    //!@brief create an Angle of 180 degrees: 
+    //!@brief Angle 180_degrees = 180.0 * Angle::deg
+    //!@brief create an Angle of PI radians:
+    //!@brief Angle pi_radians = PI * Angle::rad
     static const Angle rad;
     static const Angle deg;
 };
