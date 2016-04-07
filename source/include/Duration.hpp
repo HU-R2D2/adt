@@ -50,7 +50,6 @@
 #include <iostream>
 #include "Moment.hpp"
 #include "ADT_Base.hpp"
-#include "gtest/gtest.h"
 
 class Speed;
 class Length;
