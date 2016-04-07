@@ -1,10 +1,17 @@
-// ++--++
-// Roborescue
-// @file <Acceleration.hpp>
-// @date Created: <5-3-16>
-// @version <0.0.1>
+////
+//  ██████╗  ██████╗ ██████╗  ██████╗ ██████╗ ███████╗███████╗ ██████╗██╗   ██╗███████╗
+//  ██╔══██╗██╔═══██╗██╔══██╗██╔═══██╗██╔══██╗██╔════╝██╔════╝██╔════╝██║   ██║██╔════╝
+//  ██████╔╝██║   ██║██████╔╝██║   ██║██████╔╝█████╗  ███████╗██║     ██║   ██║█████╗  
+//  ██╔══██╗██║   ██║██╔══██╗██║   ██║██╔══██╗██╔══╝  ╚════██║██║     ██║   ██║██╔══╝  
+//  ██║  ██║╚██████╔╝██████╔╝╚██████╔╝██║  ██║███████╗███████║╚██████╗╚██████╔╝███████╗
+//  ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝
+//                                                                                                                                          
 //
-// @author <Stephan Vivie>
+// @file Box.cpp
+// @date Created: 28-03-2016
+// @version 1.0
+//
+// @author Stephan Vivie
 //
 // @section LICENSE
 // License: newBSD
@@ -27,13 +34,11 @@
 // HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
 // LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
 // OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-// ++--++
-	
-//!	@author 		Stephan Vivie
-//! @date			01-04-2016
-//!	@version		0.1
-//!	@brief	       	Acceleration data type stored in meters per second.
-	
+////
+
+//! @class Acceleration
+//! @brief Acceleration data type stored in meters per second.
+
 #ifndef _ACCELERATION_HPP
 #define _ACCELERATION_HPP
 
@@ -43,38 +48,45 @@
 
 #include <iostream>
 
-class Acceleration : public ADT_Base<Acceleration>{
-	protected: 
-		//! @brief Constructor that sets the value to whichever value. value should be in meter per second.
-		//!
-		//! @param val Raw acceleration value in meter per second per second
-		Acceleration(double val);
-	public:
-		friend ADT_Base<Acceleration>;
-		//! @brief The default constructor of and acceleration
-		Acceleration();
+class Force;
+class Acceleration : public ADT_Base<Acceleration> {
+protected: 
+    //! @brief Constructor that sets the value to whichever value. 
+    //! value should be in meter per second.
+    //!
+    //! @param val Raw acceleration value in meter per second per second
+    Acceleration(double val);
+public:
+    friend ADT_Base<Acceleration>;
+    friend Force;
+    //! @brief The default constructor of and acceleration
+    Acceleration();
 
-		//! @brief	input operator for an acceleration
-		//! 
-		//! @param lhs				the istream, from this istream the acceleration will be adapted
-		//! @param rhs				the acceleration that will be adapted by the lhs istream
-		//! @return std::istream 	the inputstream
-		friend std::istream &operator>>(std::istream & lhs, Acceleration & rhs);
+    //! @brief  input operator for an acceleration
+    //! 
+    //! @param lhs              the istream, from this istream the 
+    //! acceleration will be adapted
+    //! @param rhs              the acceleration that will be adapted by 
+    //! the lhs istream
+    //! @return std::istream    the inputstream
+    friend std::istream &operator>>(std::istream & lhs, Acceleration & rhs);
 
-		//! @brief appends an accelration to an std::ostream and returns the ostream
-		//! The format of the accelration will be "acceleration( 1.5 m/sec )"
-	    //!
-	    //! @param os 				the std::ostream to append to
-	    //! @param rhs 				Object to append
-	    //! @return std::ostream 	the ostream
-		friend std::ostream &operator<<(std::ostream & lhs, const Acceleration & rhs);
+    //! @brief appends an accelration to an std::ostream and returns the ostream
+    //! The format of the accelration will be "acceleration( 1.5 m/sec )"
+    //!
+    //! @param os               the std::ostream to append to
+    //! @param rhs              Object to append
+    //! @return std::ostream    the ostream
+    friend std::ostream &operator<<(std::ostream & lhs, 
+        const Acceleration & rhs);
 
-		//! @brief Divides a speed with a duration and returns Acceleration
-		//!
-		//! @param s the speed to divide
-		//! @param d the duration
-		//! @return Acceleration the acceleration
-  		friend Acceleration operator/ (const Speed & s, const Duration &d);
+    //! @brief Divides a speed with a duration and returns Acceleration
+    //!
+    //! @param s the speed to divide
+    //! @param d the duration
+    //! @return Acceleration the acceleration
+    friend Acceleration operator/ (const Speed & s, const Duration &d);
+
 };
 Acceleration operator/( const Speed & s, const Duration &d);
 #endif

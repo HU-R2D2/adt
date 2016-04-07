@@ -7,11 +7,11 @@
 //  ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝
 //                                                                                                                                          
 //
-// @file Acceleration.cpp
-// @date Created: 28-03-2016
-// @version 1.0
+// @file AngleTest.cpp
+// @date Created: 31-03-16
+// @version 1.1.0
 //
-// @author Stephan Vivie
+// @author Casper Wolf
 //
 // @section LICENSE
 // License: newBSD
@@ -35,72 +35,119 @@
 // LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
 // OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ////
-
-#include "../include/Acceleration.hpp"
-
+#include "gtest/gtest.h"
+#include "../source/include/Angle.hpp"
 #include <iostream>
 
-Acceleration::Acceleration():ADT_Base<Acceleration>(0.0){}
+double pi = 3.14159265358979323846;
 
-Acceleration::Acceleration(double value):ADT_Base<Acceleration>(value){}
-
-std::ostream & operator <<(std::ostream & lhs, const Acceleration & rhs) {
-    lhs << rhs.value << "m/s/s";
-    return lhs;
+TEST(AngleConstructor, Default){
+	Angle a;
+	ASSERT_DOUBLE_EQ(a.get_angle(),0.0);
 }
 
-
-std::istream & operator >>(std::istream & lhs, Acceleration & rhs) {
-   double value;
-    std::string suffix;
-    // Read the value, and remove any trailing whitespace.
-    lhs >> value >> std::ws;
-    if (!lhs) {
-        throw std::invalid_argument{"Acceleration: Reached end of stream before\
-        fully reading a length."};
-    }
-    // Construct the metric suffix.
-    while(1) {
-        char temp;
-        // The end of the stream might coincidence with the end of the metric specifier.
-        // As such do not throw an exception but test the current stream.
-        if (lhs >> temp) {
-            // A suffix for metric values only consist out of alphabetic characters;
-            // anything else could indicate the end of this suffix, and should be put back.
-            if (!isdigit(temp)) {
-                suffix += temp;
-            } else {
-                // That character is not supposed to be used by this stream;
-                // put it back, as some other stream might rely on it.
-                lhs.putback(temp);
-                break;
-            }
-        } else {
-            // No point in reading from an empty or corrupt stream.
-            break;
-        }
-    }
-    // Specifies all available suffixes, and which value corresponds to it.
-    const struct {std::string suffix; const double factor;} possible_suffixes[] = {
-        {"m/s/s", 1},
-    };
-    for (const auto & possibility : possible_suffixes) {
-       if (suffix == possibility.suffix) {
-           rhs.value = value * possibility.factor;
-           return lhs;
-       }
-    }
-    rhs.value = value;
-    throw std::invalid_argument{"Acceleration: Either stream ended, or none of the known\
-    extensions match the specified one."};
+TEST(AngleConstructor, ConstructorValue){
+	Angle a;
+	a = pi * Angle::rad;
+	ASSERT_DOUBLE_EQ(a.get_angle(),pi);
 }
 
-Acceleration operator/ (const Speed & s, const Duration & d) {
-    double durationValue = d / Duration::SECOND;
-    double speedValue = s / (1 * Length::METER / Duration::SECOND);
+TEST(AngleConversion, Radians_Degrees){
+	EXPECT_DOUBLE_EQ(pi,3.14159265358979323846) << "Is Pi equal to the assigned variable or is the double still considered unequal anyway";
+	Angle a =  pi * Angle::rad;
+	Angle b = 180.0 * Angle::deg;
+	ASSERT_DOUBLE_EQ(a.get_angle(),b.get_angle());
+}
 
-    if (durationValue == 0.0 || speedValue == 0.0) {
-        return Acceleration{0.0};
-    }
-    return Acceleration{ speedValue / durationValue };  
+TEST(AngleAssign, Assign){
+	Angle a{};
+	a = ((pi/2) * Angle::rad);
+	Angle b{};
+	EXPECT_DOUBLE_EQ((pi/2),a.get_angle());
+	EXPECT_DOUBLE_EQ(0.0,b.get_angle());
+	b = a;
+	ASSERT_DOUBLE_EQ((pi/2),b.get_angle());
+}
+	
+TEST(AngleComparison, Smaller){
+	Angle a = (pi/4) * Angle::rad;
+	Angle b = (pi/8) * Angle::rad;
+	ASSERT_EQ(a < b, false);
+	ASSERT_EQ(b < a, true);
+}
+
+TEST(AngleComparison, Bigger){
+	Angle a = (pi/16) * Angle::rad;
+	Angle b = (pi/4) * Angle::rad;
+	ASSERT_EQ(a > b, false);
+	ASSERT_EQ(b > a, true);
+}
+
+TEST(AngleAdding, singleOperator){
+	Angle a = (pi/2) * Angle::rad;
+	Angle b = (pi/2) * Angle::rad;
+	Angle c = a + b;
+	ASSERT_DOUBLE_EQ(c.get_angle(),(pi));
+}
+
+TEST(AngleAdding, dualOperator){
+	Angle a = (pi/4) * Angle::rad;
+	Angle b = (pi/4) * Angle::rad;
+	const Angle * const temp = &a;
+	EXPECT_EQ(temp, &(a += b));
+	ASSERT_DOUBLE_EQ(a.get_angle(),(pi/2));
+}
+
+TEST(AngleSubstraction, singleOperator){
+	Angle a = pi * Angle::rad;
+	Angle b = (pi/2) * Angle::rad;
+	Angle c = a - b;
+	ASSERT_DOUBLE_EQ(c.get_angle(),(pi/2));
+}
+
+TEST(AngleSubstraction, dualOperator){
+	Angle a = (2 * pi) * Angle::rad;
+	Angle b = pi * Angle::rad;
+	const Angle * const temp = &a;
+	EXPECT_EQ(temp, &(a -= b));
+	ASSERT_DOUBLE_EQ(a.get_angle(),pi);
+}
+
+TEST(AngleMultiplication, singleOperator){
+	Angle a = pi * Angle::rad;
+	a = a * 2.0;
+	ASSERT_DOUBLE_EQ(a.get_angle(),(pi * 2));
+}
+
+TEST(AngleMultiplication, dualOperator){
+	Angle a = (pi/4) * Angle::rad;
+	const Angle * const temp = &a;
+	a *= 4.0;
+	EXPECT_EQ(temp,&a);
+	ASSERT_DOUBLE_EQ(a.get_angle(),pi);
+}
+
+TEST(AngleDivision, singleOperator){
+	Angle a = (pi*2) * Angle::rad;
+	a = a / 2.0;
+	ASSERT_DOUBLE_EQ(a.get_angle(),pi);
+
+}
+
+TEST(AngleDivision, dualOperator){
+	Angle a = pi * Angle::rad;
+	const Angle * const temp = &a;
+	a /= 2.0;
+	EXPECT_EQ(temp,&a);
+	ASSERT_DOUBLE_EQ(a.get_angle(),(pi/2));
+}
+#include <sstream>
+
+TEST(RotatationOutstream, angle){
+	Angle a = Angle::rad;
+	std::stringstream stream{};
+	stream << a;
+	std::string temp;
+	getline(stream, temp);
+	EXPECT_EQ("1 rad", temp);
 }

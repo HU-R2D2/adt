@@ -7,11 +7,11 @@
 //  ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝
 //                                                                                                                                          
 //
-// @file Acceleration.cpp
-// @date Created: 28-03-2016
-// @version 1.0
+// @file Angle.cpp
+// @date Created: 29-03-16
+// @version 2.0.0
 //
-// @author Stephan Vivie
+// @author Casper Wolf
 //
 // @section LICENSE
 // License: newBSD
@@ -36,71 +36,88 @@
 // OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ////
 
-#include "../include/Acceleration.hpp"
+#include "../include/Angle.hpp"
+#include <math.h>
 
-#include <iostream>
 
-Acceleration::Acceleration():ADT_Base<Acceleration>(0.0){}
+const Angle Angle::rad{1};
+const Angle Angle::deg{M_PI / 180};
 
-Acceleration::Acceleration(double value):ADT_Base<Acceleration>(value){}
+Angle::Angle() : angle_radians{0.0} { }
 
-std::ostream & operator <<(std::ostream & lhs, const Acceleration & rhs) {
-    lhs << rhs.value << "m/s/s";
-    return lhs;
+Angle::Angle(double angle_radians) : angle_radians{
+        fmod(angle_radians, full_circle)} { }
+
+Angle &Angle::operator=(const Angle &rhs) {
+    angle_radians = rhs.angle_radians;
+    return *this;
 }
 
-
-std::istream & operator >>(std::istream & lhs, Acceleration & rhs) {
-   double value;
-    std::string suffix;
-    // Read the value, and remove any trailing whitespace.
-    lhs >> value >> std::ws;
-    if (!lhs) {
-        throw std::invalid_argument{"Acceleration: Reached end of stream before\
-        fully reading a length."};
-    }
-    // Construct the metric suffix.
-    while(1) {
-        char temp;
-        // The end of the stream might coincidence with the end of the metric specifier.
-        // As such do not throw an exception but test the current stream.
-        if (lhs >> temp) {
-            // A suffix for metric values only consist out of alphabetic characters;
-            // anything else could indicate the end of this suffix, and should be put back.
-            if (!isdigit(temp)) {
-                suffix += temp;
-            } else {
-                // That character is not supposed to be used by this stream;
-                // put it back, as some other stream might rely on it.
-                lhs.putback(temp);
-                break;
-            }
-        } else {
-            // No point in reading from an empty or corrupt stream.
-            break;
-        }
-    }
-    // Specifies all available suffixes, and which value corresponds to it.
-    const struct {std::string suffix; const double factor;} possible_suffixes[] = {
-        {"m/s/s", 1},
-    };
-    for (const auto & possibility : possible_suffixes) {
-       if (suffix == possibility.suffix) {
-           rhs.value = value * possibility.factor;
-           return lhs;
-       }
-    }
-    rhs.value = value;
-    throw std::invalid_argument{"Acceleration: Either stream ended, or none of the known\
-    extensions match the specified one."};
+Angle &Angle::operator+=(const Angle &rhs) {
+    angle_radians += rhs.angle_radians;
+    return *this;
 }
 
-Acceleration operator/ (const Speed & s, const Duration & d) {
-    double durationValue = d / Duration::SECOND;
-    double speedValue = s / (1 * Length::METER / Duration::SECOND);
+Angle &Angle::operator-=(const Angle &rhs) {
+    angle_radians -= rhs.angle_radians;
+    return *this;
+}
 
-    if (durationValue == 0.0 || speedValue == 0.0) {
-        return Acceleration{0.0};
-    }
-    return Acceleration{ speedValue / durationValue };  
+Angle &Angle::operator*=(const double &rhs) {
+    angle_radians *= rhs;
+    return *this;
+}
+
+Angle &Angle::operator/=(const double &rhs) {
+    angle_radians /= rhs;
+    return *this;
+}
+
+bool Angle::operator<(const Angle &rhs) const {
+    return angle_radians < rhs.angle_radians;
+}
+
+bool Angle::operator>(const Angle &rhs) const {
+    return angle_radians > rhs.angle_radians;
+}
+
+Angle Angle::operator+(const Angle &rhs) const {
+    Angle result{*this};
+    result += rhs;
+    return result;
+}
+
+Angle Angle::operator-(const Angle &rhs) const {
+    Angle result{*this};
+    result -= rhs;
+    return result;
+}
+
+Angle Angle::operator*(const double &rhs) const {
+    Angle result{*this};
+    result *= rhs;
+    return result;
+}
+
+Angle Angle::operator/(const double &rhs) const {
+    Angle result{*this};
+    result /= rhs;
+    return result;
+}
+
+double Angle::operator/(const Angle &rhs) const {
+
+    return angle_radians / rhs.angle_radians;
+}
+
+std::ostream &operator<<(std::ostream &lhs, Angle &rhs) {
+    return (lhs << rhs.angle_radians << " rad");
+}
+
+double Angle::get_angle() {
+    return angle_radians;
+}
+
+Angle operator*(const double &lhs, const Angle &rhs) {
+    return Angle{rhs} *= lhs;
 }
