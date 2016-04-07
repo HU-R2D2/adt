@@ -45,53 +45,54 @@ Acceleration::Acceleration():ADT_Base<Acceleration>(0.0){}
 Acceleration::Acceleration(double value):ADT_Base<Acceleration>(value){}
 
 std::ostream & operator <<(std::ostream & lhs, const Acceleration & rhs) {
-    lhs << "acceleration( " << rhs.value << " m/sec )";
+    lhs << rhs.value << "m/s/s";
     return lhs;
 }
 
 
 std::istream & operator >>(std::istream & lhs, Acceleration & rhs) {
-// Make sure the data that is being decoded is an acceleration.
-    std::string prefix;
-    lhs >> std::ws >> prefix;
-    if (prefix != "acceleration") {
-        throw std::invalid_argument{"Expecting prefix \"acceleration\","
-            "got something else."};
-    }
-    char temp;
-    lhs >> std::ws >> temp;
-    if (temp != '(') {
-        throw std::invalid_argument{"No opening brace encountered"};
-    }
-
-    // To guarantee the box remains unchanged when an error occurs,
-    // a temporary storage is needed for the values.
-    // If not, throw an exception or something along those lines.
-    double acceleration;
-
-    // The different values are separated by certain characters.
-    // As they require multiple similar steps, this small lambda is defined.
-    auto ReadComponent = [](std::istream & lhs, char expectedSeperator) {
-        double value;
-        char separator;
-        lhs >> value >> separator;
-        if(separator != expectedSeperator){
-            std::cout << "sep: " << separator << std::endl;
-            throw std::runtime_error{"Wrong or missing seperator."};
-        }
-        return value;
-    };
-
-    acceleration = ReadComponent(lhs, 'm');
-
+   double value;
+    std::string suffix;
+    // Read the value, and remove any trailing whitespace.
+    lhs >> value >> std::ws;
     if (!lhs) {
-        throw std::invalid_argument{"Acceleration wasn't read in its entirety"
-            " when end of stream was reached. "};
+        throw std::invalid_argument{"Acceleration: Reached end of stream before\
+        fully reading a length."};
     }
-
-    rhs.value = acceleration;
-
-    return lhs;
+    // Construct the metric suffix.
+    while(1) {
+        char temp;
+        // The end of the stream might coincidence with the end of the metric specifier.
+        // As such do not throw an exception but test the current stream.
+        if (lhs >> temp) {
+            // A suffix for metric values only consist out of alphabetic characters;
+            // anything else could indicate the end of this suffix, and should be put back.
+            if (!isdigit(temp)) {
+                suffix += temp;
+            } else {
+                // That character is not supposed to be used by this stream;
+                // put it back, as some other stream might rely on it.
+                lhs.putback(temp);
+                break;
+            }
+        } else {
+            // No point in reading from an empty or corrupt stream.
+            break;
+        }
+    }
+    // Specifies all available suffixes, and which value corresponds to it.
+    const struct {std::string suffix; const double factor;} possible_suffixes[] = {
+        {"m/s/s", 1},
+    };
+    for (const auto & possibility : possible_suffixes) {
+       if (suffix == possibility.suffix) {
+           rhs.value = value * possibility.factor;
+           return lhs;
+       }
+    }
+    rhs.value = value;
+    throw std::runtime_error{"Acceleration: Either stream ended, or none of the known\
+    extensions match the specified one."};
 }
 
 Acceleration operator/ (const Speed & s, const Duration & d) {

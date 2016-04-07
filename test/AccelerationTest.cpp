@@ -188,7 +188,7 @@ TEST(Acceleration, OutputStream)
     std::string output;
     std::getline(stream, output);
 
-    EXPECT_EQ("acceleration( 2.5 m/sec )", output);
+    EXPECT_EQ("2.5m/s/s", output);
     EXPECT_EQ(&stream, &(stream << accel)) << "Wrong stream is returned.";
     
 }
@@ -202,7 +202,7 @@ TEST(Acceleration, InputStream)
     Acceleration accel = speed / duration; //2.5 m/s
 
     // Check whether the coordinate is read in correct form from the stream.
-    stream << "acceleration ( 2.5m/s )";
+    stream << "2.5m/s/s";
     stream >> accel;
 
     ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
