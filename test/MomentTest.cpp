@@ -33,6 +33,7 @@
 #include <ctime> // For time test
 #include <stdint.h>
 #include <iostream>
+#include "../source/include/ADTException.hpp"
 using namespace std;
 //using namespace adt;
 
@@ -149,8 +150,8 @@ TEST(Moment, ExceptionSafety)	{
 	try{
 	  Moment m3 = test_clock.getMoment(d);
 	  EXPECT_NE( m3.get_time(), d) << "Not negative";
-	}catch(...) {
-	  //cout << "Error thrown and handled, throw working properly" << endl;
+	}catch(ADTException e) {
+	  cout << e.what() << endl;
 	}
 	Moment m1 = test_clock.getMoment(0);
 	Moment m2 = test_clock.getMoment(0);

@@ -33,6 +33,7 @@
 
 #include <assert.h> 
 #include "Duration.hpp"
+#include "ADTException.hpp"
 #include <iostream>
 #include <stdlib.h> 
 #include <math.h>
@@ -43,16 +44,17 @@ using namespace std;
 //! @author Ferdi Stoeltie 1665045
 //! @brief Created specifically for the Moment class, it is meant as it's exception.
 //! @date 05-04-2016
-class MomentException : public exception
+class MomentException : public ADTException
 {
 public:
-	MomentException(string error) : error{error} {
+	MomentException(string error, string class_name = "Moment") : ADTException{error, class_name} {
 	}
-	virtual const char* what() const throw()
+protected:
+	/*virtual const char* what() const throw()
 	{
 		return error.c_str();
-	}
-	string error;
+	}*/
+	//string error;
 };
 class Duration;
 //!	@author 		Ferdi Stoeltie 1665045
@@ -68,8 +70,6 @@ public:
 	//!	@brief Public default constructor with time 0. A filled Moment can be obtained by the Clock
 	Moment(); // Public default ctor
 	// Creates a moment out of a given amount of seconds
-
-	
 	// Test constructor for tests only!
 //public:
 	/// assignment operator for a moment
