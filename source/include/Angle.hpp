@@ -52,9 +52,9 @@ private:
     //!@param angle_radians The Angle in radians
     Angle(double angle_radians);
 
-    //!@brief value in Radians of one full angle
+    //!@brief value in Radians of one full circle
     static constexpr double full_circle = M_PI *
-                                          2.0; /* Angle holds max of 1 circle, multiple angles are meaningless */
+                                          2.0;
 
 public:
 
@@ -64,12 +64,15 @@ public:
     //!@param rhs Value to be copied into this
     Angle &operator=(const Angle &rhs);
 
-    //!@brief Add the angle_radians value on the right hand to this and returns the resulting Angle
+    //!@brief Add the angle_radians value on the right hand to this
+    //!@brief and returns the resulting Angle
     //!@param rhs Angle of which the angle_radians value has to be added to this
     Angle &operator+=(const Angle &rhs);
 
-    //!@brief Subtracts the angle_radians value on the right hand from this and returns the resulting Angle
-    //!@param rhs Angle of which the angle_radians value has to be substracted from this
+    //!@brief Subtracts the angle_radians value on the right hand from this and 
+    //!@brief returns the resulting Angle
+    //!@param rhs Angle of which the angle_radians value has to be substracted 
+    //!@brief from this
     Angle &operator-=(const Angle &rhs);
 
     //!@brief Multplies the righthand Double with this' angle_radians value
@@ -80,20 +83,25 @@ public:
     //!@param rhs The Angle to divide this with
     Angle &operator/=(const double &rhs);
 
-    //!@brief compares two Angles to each other and return a boolean (true if 1st greater than 2nd)
+    //!@brief compares two Angles to each other and return a boolean 
+    //!@brief (true if 1st greater than 2nd)
     //!@param rhs The Angle that is being compared to the other Angle
     bool operator<(const Angle &rhs) const;
 
-    //!@brief compares two Angles to each other and return a boolean (true if 1st smaller  than 2nd)
+    //!@brief compares two Angles to each other and return a boolean 
+    //!@brief (true if 1st smaller  than 2nd)
     //!@param rhs The Angle that is being compared to the other Angle
     bool operator>(const Angle &rhs) const;
 
-    //!@brief add the Angle in Radians value on the right hand to this and returns a Angle
+    //!@brief add the Angle in Radians value on the right hand to this 
+    //!@brief and returns an Angle
     //!@param rhs Angle of which the angle_radians value has to be added to this
     Angle operator+(const Angle &rhs) const;
 
-    //!@brief subtracts the angle_radians value on the right hand from this and returns the a Angle
-    //!@param rhs Angle of which the angle_radians value has to be substracted from this
+    //!@brief subtracts the angle_radians value on the right hand from this and 
+    //!@brief returns the Angle
+    //!@param rhs Angle of which the angle_radians value has to be 
+    //!@brief substracted from this
     Angle operator-(const Angle &rhs) const;
 
     //!@brief multiplies the Angle by a number and returns a Angle
