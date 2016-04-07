@@ -81,7 +81,7 @@ Coordinate Coordinate::operator-(const Translation &rhs) const {
 }
 
 Translation Coordinate::operator-(const Coordinate &rhs) const {
-    return Translation{this->x - rhs.x, this->y - rhs.y, this->z - rhs.z};
+    return Translation{rhs.x - x, rhs.y - y, rhs.z - z};
 }
 
 std::ostream &operator<<(std::ostream &lhs, const Coordinate &rhs) {
