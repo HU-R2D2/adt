@@ -91,7 +91,7 @@ std::istream & operator >>(std::istream & lhs, Acceleration & rhs) {
        }
     }
     rhs.value = value;
-    throw std::runtime_error{"Acceleration: Either stream ended, or none of the known\
+    throw std::invalid_argument{"Acceleration: Either stream ended, or none of the known\
     extensions match the specified one."};
 }
 
