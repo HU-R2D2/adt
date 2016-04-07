@@ -45,21 +45,6 @@ class Translation;
 
 class Box;
 
-//! @class CoordinateException
-//! @brief Specialization for std::runtime_error which indicates coordinate
-//! experienced something unexpected.
-class CoordinateException final : public std::runtime_error {
-public:
-    //! @brief
-    //!
-    //! @param message Message indicating what went wrong.
-    explicit CoordinateException(const char *message);
-    //! @brief
-    //!
-    //! @param message Message indicating what went wrong.
-    explicit CoordinateException(const std::string& message);
-};
-
 //! @class Coordinate
 //! @brief A location in space, specified as an offset to an arbitrary origin.
 //!
@@ -156,7 +141,7 @@ public:
     //! @param lhs Stream from which to read data
     //! @param rhs Reference to an uninitialized coordinate to overwrite.
     //! @return Reference to the stream passed in by lhs.
-    //! @throw CoordinateException Indicates a Coordinate could not be read
+    //! @throw std::invalid_argument Indicates a Coordinate could not be read
     //! from the given input stream due to it being in an incorrect format.
     //! The values in the supplied coordinate are not modified when an exception is thrown.
     //! @see operator<<(std::ostream &, coordinate &)
