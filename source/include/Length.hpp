@@ -122,7 +122,6 @@ class Length: public ADT_Base<Length>{
 
         static const Length METER;
         static const Length CENTIMETER;
-    private:
 };
 
 #endif
