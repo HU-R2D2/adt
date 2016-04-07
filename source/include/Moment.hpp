@@ -28,14 +28,16 @@
 // LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
 // OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // ++--++
+#ifndef _MOMENT_HPP
+#define _MOMENT_HPP
+
 #include <assert.h> 
 #include "Duration.hpp"
 #include <iostream>
 #include <stdlib.h> 
 #include <math.h>
 #include <stdint.h>
-#ifndef _MOMENT_HPP
-#define _MOMENT_HPP
+
 using namespace std;
 
 //! @author Ferdi Stoeltie 1665045
@@ -146,7 +148,4 @@ private:
 	
 	double moment = 0; // Variable that holds this moment's time
 };
-// Dummy for test of Moment, cannot be removed because of tests. Should be removed when added to the real clock
-#include <ctime>
-
 #endif 
