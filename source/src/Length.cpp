@@ -94,5 +94,5 @@ std::istream& operator>>( std::istream& is, Length& rhs) {
             return is;
         }
     }
-   throw std::runtime_error{"Length: Either stream ended, or none of the known extensions match the specified one."};
+    throw std::runtime_error{"Length: Either stream ended, or none of the known extensions match the specified one."};
 }

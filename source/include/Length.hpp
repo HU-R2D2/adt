@@ -44,8 +44,14 @@
 //!             represented by a single value. 
 //!             Length stands on its own, this means it has no such thing as
 //!             a zero point or a direction.
-//!             The only attribute Length has, is the Length itself.
+//!             The only attribute Length has, is the Length itself
+//!             To create a length, not only a double must be given,
+//!             but also the unit of it (METER or CENTIMETER).
 //!
+//!             For example:
+//!             Length l(5 * Length::METER)
+//!             This gives a Length of 5m.
+//!             To get a double again, simply divide by the unit.
 
 #ifndef _LENGTH_HPP
 #define _LENGTH_HPP
