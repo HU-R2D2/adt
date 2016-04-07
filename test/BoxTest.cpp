@@ -240,30 +240,13 @@ TEST (Box, Ostream) {
 }
 
 TEST(Box, Istream) {
-    /*
     std::stringstream stream{};
-    Coordinate bl = Coordinate::origin + Translation{};
-    Coordinate tr = Coordinate::origin + 
-        Translation{
-            50.0 * Length::METER, 
-            50.0 * Length::METER, 
-            50.0 * Length::METER
-        };
-
-    Box box (bl, tr);
-
-    Box boxCopy (
-        Coordinate::origin, 
-        Coordinate(
-            100.0 * Length::METER,
-            100.0 * Length::METER,
-            100.0 * Length::METER
-        )
-    );
+    Box box;
 
     // Check whether the coordinate is read in correct form from the stream.
-    stream << "box ( coordinate ( 0m , 0m , 0m )" <<
-        " coordinate ( 100m , 100m , 100m ) )";
+    stream << "box ( coordinate ( 0m, 0m, 0m )" <<
+        " coordinate ( 100m, 100m, 100m ) )";
+
     stream >> box;
 
     ASSERT_DOUBLE_EQ(
@@ -291,7 +274,7 @@ TEST(Box, Istream) {
         box.get_top_right().get_z() / Length::METER, 
         100.0
     );
-    */
+    
 }
 
 

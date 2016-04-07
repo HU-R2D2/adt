@@ -202,6 +202,7 @@ std::ostream & operator <<(std::ostream & lhs, const Box & rhs) {
 std::istream & operator >>(std::istream & lhs, Box & rhs ) {
     // Make sure the data that is being decoded is a Box.
     std::string prefix;
+
     lhs >> std::ws >> prefix;
 
     if (prefix != "box") {
@@ -213,27 +214,12 @@ std::istream & operator >>(std::istream & lhs, Box & rhs ) {
     if (temp != '(') {
         throw std::runtime_error{"No opening brace encountered"};
      }
-
-    // To guarantee the box remains unchanged when an error occurs,
-    // a temporary storage is needed for the values.
-    // If not, throw an exception or something along those lines.
+     
     Coordinate bottomLeft;
     Coordinate topRight;
-
-    // The different values are separated by certain characters.
-    // As they require multiple similar steps, this small lambda is defined.
-    auto ReadComponent = [](std::istream & lhs, char expectedSeperator) {
-        Coordinate value;
-        char separator;
-        lhs >> value >> separator;
-        if(separator != expectedSeperator){
-            throw std::runtime_error{"Wrong or missing seperator. "};
-        }
-        return value;
-    };
-
-    bottomLeft = ReadComponent(lhs, ' ');
-    topRight = ReadComponent(lhs, ' ');
+   
+    lhs >> bottomLeft;
+    lhs >> topRight;
 
     if (!lhs) {
         throw std::runtime_error{"Coordinate wasn't read in its entirety when"
