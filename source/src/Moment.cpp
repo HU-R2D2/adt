@@ -49,6 +49,7 @@ Moment Moment::operator+ ( const Duration & rhs ) const  {
    // Return new Moment that is the result of adding a given Duration
    // Old Moment is not modified
    // If addition results in < 0, return 0
+   double saved_result;
    Moment rMoment(0);
    if( (saved_result = (this->value + rhs.get_seconds()) ) < 0)  {
       rMoment.value = 0;
