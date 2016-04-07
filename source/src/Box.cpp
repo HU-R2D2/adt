@@ -214,10 +214,9 @@ std::istream & operator >>(std::istream & lhs, Box & rhs ) {
     if (temp != '(') {
         throw std::runtime_error{"No opening brace encountered"};
      }
-.
+     
     Coordinate bottomLeft;
     Coordinate topRight;
-
    
     lhs >> bottomLeft;
     lhs >> topRight;
