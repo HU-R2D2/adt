@@ -36,7 +36,6 @@
 #ifndef _ADT_BASE_HPP
 #define _ADT_BASE_HPP
 
-
 class Speed;
 
 template <class T> class ADT_Base

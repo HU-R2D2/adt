@@ -62,8 +62,8 @@ TEST(Moment,  Constructors) {
    try{
       Moment m3 = test_clock.getMoment(d);
       EXPECT_NE( m3.get_time(), d) << "Not negative";
-   }catch(...) {
-      //cout << "Error thrown and handled, throw working properly" << endl;
+   }catch(MomentException e) {
+      cout << e.what() << endl;
    }
 }
 TEST(Moment, AssignmentOperator)  {
@@ -134,44 +134,44 @@ TEST(Moment,  StreamOperators) {
    ASSERT_EQ(m1.get_time(), firstDouble) << "First outputstream for Moment is incorrect";
    ASSERT_EQ(m2.get_time(), secondDouble) << "First outputstream for Moment is incorrect";
 }
-TEST(Moment, RelationalOperators)	{
-	Moment m1 = test_clock.getMoment(500);
-	Moment m2 = test_clock.getMoment(1000);
-	ASSERT_EQ(m2 > m1, true) << "Greater than Comparison failed, should return true but did not";
-	ASSERT_EQ(m1 > m2, false) << "Greater than Comparison failed, should return treu but did not";
-	
-	ASSERT_EQ(m1 < m2, true) << "Smaller than Comparison failed, should return true but did not";
-	ASSERT_EQ(m2 < m1, false) << "Smaller than Comparison failed, should return false but did not";
+TEST(Moment, RelationalOperators)   {
+   Moment m1 = test_clock.getMoment(500);
+   Moment m2 = test_clock.getMoment(1000);
+   ASSERT_EQ(m2 > m1, true) << "Greater than Comparison failed, should return true but did not";
+   ASSERT_EQ(m1 > m2, false) << "Greater than Comparison failed, should return false but did not";
+   
+   ASSERT_EQ(m1 < m2, true) << "Smaller than Comparison failed, should return true but did not";
+   ASSERT_EQ(m2 < m1, false) << "Smaller than Comparison failed, should return false but did not";
 }
-TEST(Moment, ExceptionSafety)	{
-	
-	double d = -10000;
-	try{
-	  Moment m3 = test_clock.getMoment(d);
-	  EXPECT_NE( m3.get_time(), d) << "Not negative";
-	}catch(...) {
-	  //cout << "Error thrown and handled, throw working properly" << endl;
-	}
-	Moment m1 = test_clock.getMoment(0);
-	Moment m2 = test_clock.getMoment(0);
-	stringstream ss;
+TEST(Moment, ExceptionSafety) {
+   
+   double d = -10000;
+   try{
+     Moment m3 = test_clock.getMoment(d);
+     EXPECT_NE( m3.get_time(), d) << "Not negative";
+   }catch(...) {
+     //cout << "Error thrown and handled, throw working properly" << endl;
+   }
+   Moment m1 = test_clock.getMoment(0);
+   Moment m2 = test_clock.getMoment(0);
+   stringstream ss;
 
-	ss.str("test1 test2");
-	try{
-	   ss >> m1 >> m2;
-	   ASSERT_EQ(m1.get_time(), 500) << "First inputstream for Moment is incorrect";
-	   ASSERT_EQ(m2.get_time(), 1000) << "Second inputstream for Moment is incorrect";
+   ss.str("test1 test2");
+   try{
+      ss >> m1 >> m2;
+      ASSERT_EQ(m1.get_time(), 500) << "First inputstream for Moment is incorrect";
+      ASSERT_EQ(m2.get_time(), 1000) << "Second inputstream for Moment is incorrect";
 
-	   stringstream ss2;
-	   ss2 << m1 << " " << m2;
+      stringstream ss2;
+      ss2 << m1 << " " << m2;
 
-	   double firstDouble, secondDouble;
-	   ss2 >> firstDouble >> secondDouble;
+      double firstDouble, secondDouble;
+      ss2 >> firstDouble >> secondDouble;
 
-	   ASSERT_EQ(m1.get_time(), firstDouble) << "First outputstream for Moment is incorrect";
-	   ASSERT_EQ(m2.get_time(), secondDouble) << "First outputstream for Moment is incorrect";
-	}catch(...){
-	   
-	}
+      ASSERT_EQ(m1.get_time(), firstDouble) << "First outputstream for Moment is incorrect";
+      ASSERT_EQ(m2.get_time(), secondDouble) << "First outputstream for Moment is incorrect";
+   }catch(...){
+      
+   }
    
 }
