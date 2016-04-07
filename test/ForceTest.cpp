@@ -79,15 +79,15 @@ TEST(Force, Add){
 	Force c = 0 * Force::NEWTON;
 	Force d = -10 * Force::NEWTON;
 	a = a + c;
-	EXPECT_DOUBLE_EQ(a/(Force::NEWTON), 3) << "added zero to a Force";
+	EXPECT_DOUBLE_EQ(a/(Force::NEWTON), 3) << "zero + a Force";
 	a = a + b;
-	EXPECT_DOUBLE_EQ(a/(Force::NEWTON), 9) << "added positive Force to positive Force";
+	EXPECT_DOUBLE_EQ(a/(Force::NEWTON), 9) << "positive + positive";
 	a = a + d;
-	EXPECT_DOUBLE_EQ(a/(Force::NEWTON), -1) << "added negative Force to positive Force";
+	EXPECT_DOUBLE_EQ(a/(Force::NEWTON), -1) << "negative + positive";
 	a = a + d;
-	EXPECT_DOUBLE_EQ(a/(Force::NEWTON), -11) << "added negative Force to negative Force";
+	EXPECT_DOUBLE_EQ(a/(Force::NEWTON), -11) << "negative + negative";
 	a = a + b;
-	EXPECT_DOUBLE_EQ(a/(Force::NEWTON), -5) << "added positive Force to negative Force";
+	EXPECT_DOUBLE_EQ(a/(Force::NEWTON), -5) << "negative + negative";
 }
 
 
@@ -97,7 +97,6 @@ TEST(Force, AddAssign){
 	Force b = 5 * Force::NEWTON;
 	a += b;
 	EXPECT_DOUBLE_EQ(a/(Force::NEWTON), 11) << "AddAssign Force"; 
-	// no more other test because itern it uses add and assign operator so if you test them properly it isn't nessecarly here.
 }
 
 //Subtract
@@ -107,13 +106,13 @@ TEST(Force, Subtract){
 	Force c = 0 * Force::NEWTON;
 	Force d = -10* Force::NEWTON;
 	a = a - c;
-	EXPECT_DOUBLE_EQ(a/(Force::NEWTON), 3) << "substracted zero form a Force";
+	EXPECT_DOUBLE_EQ(a/(Force::NEWTON), 3) << "positive - zero";
 	a = a - b;
-	EXPECT_DOUBLE_EQ(a/(Force::NEWTON), -3) << "substracted positive Force from positive Force";
+	EXPECT_DOUBLE_EQ(a/(Force::NEWTON), -3) << "positive - positive";
 	a = a - d;
-	EXPECT_DOUBLE_EQ(a/(Force::NEWTON), 7) << "substracted negative Force from negative Force";
+	EXPECT_DOUBLE_EQ(a/(Force::NEWTON), 7) << "negative - negative";
 	a = a - d;
-	EXPECT_DOUBLE_EQ(a/(Force::NEWTON), 17) << "substracted negative Force from positive Force";
+	EXPECT_DOUBLE_EQ(a/(Force::NEWTON), 17) << "negative - positive";
 }
 
 
@@ -123,7 +122,7 @@ TEST(Force, SubtractAssign){
 	Force b = 5 * Force::NEWTON;
 	a -= b;
 	EXPECT_DOUBLE_EQ(a/(Force::NEWTON), 1) << "SubtractAssign Force"; 
-	// no more other test because itern it uses subtract and assign operators so if you test them properly it isn't nessecarly here.
+	
 }
 
 
@@ -147,14 +146,14 @@ TEST(Force,MultiplyDouble){
 	EXPECT_DOUBLE_EQ(a/(Force::NEWTON), 0) << "Multiply by zero";
 	a = 8 * Force::NEWTON;
 	a = pos * a;
-	EXPECT_DOUBLE_EQ(a/(Force::NEWTON),16) << "Multiply positive by positive rhs";
+	EXPECT_DOUBLE_EQ(a/(Force::NEWTON),16) << "positive * positive rhs";
 	a = -8 * Force::NEWTON;
 	a = pos * a;
-	EXPECT_DOUBLE_EQ(a/(Force::NEWTON),-16) << "Multiply negative by positive rhs";
+	EXPECT_DOUBLE_EQ(a/(Force::NEWTON),-16) << "negative * positive rhs";
 	a = neg * a;
-	EXPECT_DOUBLE_EQ(a/(Force::NEWTON),32) << "Multiply negative by negative rhs";
+	EXPECT_DOUBLE_EQ(a/(Force::NEWTON),32) << "negative * negative rhs";
 	a = neg * a;
-	EXPECT_DOUBLE_EQ(a/(Force::NEWTON),-64) << "Multiply positive by negative rhs";
+	EXPECT_DOUBLE_EQ(a/(Force::NEWTON),-64) << "positive * negative rhs";
 	a = z * a;
 	EXPECT_DOUBLE_EQ(a/(Force::NEWTON), 0) << "Multiply by zero rhs";
 }
@@ -166,7 +165,7 @@ TEST(Force, MultiplyAssignDouble){
 	double d = 7;
 	a = a * d;
 	EXPECT_DOUBLE_EQ(a/(Force::NEWTON), 42) << "MultiplyAssign Force"; 
-	// no more other test because itern it uses multiply and assign operators so if you test them properly it isn't nessecarly here.
+	
 }
 
 TEST(Force, WriteTo){

@@ -29,6 +29,7 @@
 // OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // ++--++
 #include "../include/Weight.hpp"
+#include <stdexcept>
 
 //constants
 const Weight Weight::KILOGRAM(1);

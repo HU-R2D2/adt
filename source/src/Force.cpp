@@ -52,11 +52,14 @@ std::istream& operator>>(std::istream & is, Force & rhs){
    // Construct the metric suffix.
    while(1) {
       char temp;
-      // The end of the stream might coincidence with the end of the metric specifier.
+      // The end of the stream might coincidence with the end of 
+      //the metric specifier.
       // As such do not throw an exception but test the current stream.
       if (is >> temp) {
-         // A suffix for metric values only consist out of alphabetic characters;
-         // anything else could indicate the end of this suffix, and should be put back.
+         // A suffix for metric values only consist out of alphabetic 
+          //characters;
+         // anything else could indicate the end of this suffix
+         // and should be put back.
          if (isalpha(temp)) {
             suffix += temp;
          } else {
@@ -89,6 +92,5 @@ Force operator* ( const Weight & lhs, const Acceleration & rhs){
   Speed one = 1 * Length::METER/Duration::SECOND;
   Acceleration ac = one/Duration::SECOND;
   double a = rhs/ac;
-  //std::cout << "created with force with double: " << w << " * " << a << ": " << w * a << std::endl;
   return Force{w * a};
 }

@@ -38,51 +38,54 @@
 #ifndef _WEIGHT_HPP
 #define _WEIGHT_HPP
 
-#include "gtest/gtest.h"
 #include "ADT_Base.hpp"
 
 #include <iostream> 
 
 class Weight : public ADT_Base<Weight>{
-	protected:
-		//! @fn		Weight::Weight(double l)
-		//!
-		//! @brief	Constructor of a Weight
-		//!
-		//! @param	Weight the 
-		Weight(double value);
+protected:
+    //! @fn     Weight::Weight(double l)
+    //!
+    //! @brief  Constructor of a Weight
+    //!
+    //! @param	value the weight in KG
+    Weight(double value);
 
-	public:
-		friend ADT_Base<Weight>;
-		//! @fn 	Weight::Weight()
-		//!
-		//! @brief 	Defaut constructor of Weight
-		Weight();
+public:
+    friend ADT_Base<Weight>;
+    //! @fn 	Weight::Weight()
+    //!
+    //! @brief 	Defaut constructor of Weight
+    Weight();
 
-		//! @fn
-		//!
-		//! @brief	appends a Weight to an ostream and returns an ostream
-		//!
-		//! @param	rhs 		the right hand side to compare 
-		friend std::ostream& operator<< (std:: ostream& os, const Weight& rhs);
+    //! @fn     std::ostream operator<<(std::ostream& os, const Weight& rhs)
+    //!
+    //! @brief Appends a Weight to an std::ostream and returns the ostream
+    //!
+    //! @param os the std::ostream to append to
+    //! @param rhs Object to append
+    //! @return std::ostream
+    friend std::ostream& operator<< (std:: ostream& os, const Weight& rhs);
 
-		//! @fn		
-		//!
-		//! @brief	adds an istream to a Weight
-		//!
-		//! @param
-		friend std::istream& operator>>(std::istream& is, Weight& rhs);
+    //! @fn    std::istream operator>>(std::istream& is, Weight& rhs)
+    //!
+    //! @brief Reads a Weight from an std::istream and returns the istream
+    //!
+    //! @param os the std::istream to read it from;
+    //! @param rhs Object to read
+    //! @return std::istream
+    friend std::istream& operator>>(std::istream& is, Weight& rhs);
 
-		//! @fn		
-		//!
-		//! @brief	multiply a Weight by another Weight and returns a Weight
-		//!
-		//! @param
-		friend Weight operator* (double n, const Weight& rhs);
+    //! @fn		Weight operator*(double n, const Weight & rhs)
+    //!
+    //! @brief	multiply a Weight bu a double and returns a Weight
+    //!
+    //! @param  n a double
+    //! @param  rhs the Weight that is multiplied
+    //! @return The calcukated Weight
+    friend Weight operator* (double n, const Weight& rhs);
 
-		FRIEND_TEST(Weight, doubleConstructor);
-		static const Weight KILOGRAM;
-		static const Weight GRAM;
+    static const Weight KILOGRAM;
+    static const Weight GRAM;
 };
-
 #endif
