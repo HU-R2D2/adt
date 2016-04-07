@@ -37,125 +37,125 @@
 #include "../include/Translation.hpp"
 Translation::Translation():
     x(0),
-	y(0),
-	z(0)
+    y(0),
+    z(0)
 {}
 
 Translation::Translation(Length x, Length y, Length z) :
-	x(x),
-	y(y),
-	z(z)
+    x(x),
+    y(y),
+    z(z)
 {}
 
 Length Translation::get_x() const {
-	return x;
+    return x;
 }
 
 Length Translation::get_y() const {
-	return y;
+    return y;
 }
 
 Length Translation::get_z() const {
-	return z;
+    return z;
 }
 
 Length Translation::get_length() const {
-	Length length;
-	double tempx = x / Length::METER;
-	double tempy = y / Length::METER;
-	double tempz = z / Length::METER;
-	length = sqrt((tempx * tempx)+(tempy * tempy)+(tempz * tempz)) * Length::METER;
-	return length;
+    Length length;
+    double tempx = x / Length::METER;
+    double tempy = y / Length::METER;
+    double tempz = z / Length::METER;
+    length = sqrt((tempx * tempx)+(tempy * tempy)+(tempz * tempz)) * Length::METER;
+    return length;
 }
 
 Translation& Translation::operator= (const Translation& rhs){
-	x = rhs.x;
-	y = rhs.y;
-	z = rhs.z;
-	return *this;
+    x = rhs.x;
+    y = rhs.y;
+    z = rhs.z;
+    return *this;
 }
 
 Translation Translation::operator+ (const Translation& rhs) const {
-	Translation temp(*this);
-	temp.x += rhs.x;
-	temp.y += rhs.y;
-	temp.z += rhs.z;
-	return temp;
+    Translation temp(*this);
+    temp.x += rhs.x;
+    temp.y += rhs.y;
+    temp.z += rhs.z;
+    return temp;
 }
 
 Translation Translation::operator- (const Translation& rhs) const{
-	Translation temp(*this);
-	temp.x -= rhs.x;
-	temp.y -= rhs.y;
-	temp.z -= rhs.z;
-	return temp;
+    Translation temp(*this);
+    temp.x -= rhs.x;
+    temp.y -= rhs.y;
+    temp.z -= rhs.z;
+    return temp;
 }
 
 Translation Translation::operator* (double number) const{
-	Translation temp(*this);
-	temp.x = temp.x * number;
-	temp.y = temp.y * number;
-	temp.z = temp.z * number;
-	return temp;
+    Translation temp(*this);
+    temp.x = temp.x * number;
+    temp.y = temp.y * number;
+    temp.z = temp.z * number;
+    return temp;
 }
 
 Translation operator* (double number, const Translation& rhs) {
-	Translation temp(rhs);
-	temp.x = number * temp.x;
-	temp.y = number * temp.y;
-	temp.z = number * temp.z;
-	return temp;
+    Translation temp(rhs);
+    temp.x = number * temp.x;
+    temp.y = number * temp.y;
+    temp.z = number * temp.z;
+    return temp;
 }
 		
 Translation Translation::operator/ (double number) const{
-	Translation temp(*this);
-	if(number == 0){
-		return temp;
-	}
-	temp.x = temp.x / number;
-	temp.y = temp.y / number;
-	temp.z = temp.z / number;
-	return temp;
+    Translation temp(*this);
+    if(number == 0){
+        return temp;
+    }
+    temp.x = temp.x / number;
+    temp.y = temp.y / number;
+    temp.z = temp.z / number;
+    return temp;
 }
 
 Translation operator/ (double number, const Translation& rhs) {
-	Translation temp(rhs);
-	double tx = temp.x / Length::METER;
-	double ty = temp.y / Length::METER;
-	double tz = temp.z / Length::METER;
-	if((tx != 0) && (ty != 0) && (tz != 0)){
-		temp.x = number * Length::METER / tx;
-		temp.y = number * Length::METER / ty;
-		temp.z = number * Length::METER / tz;
-	}
-	return temp;
+    Translation temp(rhs);
+    double tx = temp.x / Length::METER;
+    double ty = temp.y / Length::METER;
+    double tz = temp.z / Length::METER;
+    if((tx != 0) && (ty != 0) && (tz != 0)){
+        temp.x = number * Length::METER / tx;
+        temp.y = number * Length::METER / ty;
+        temp.z = number * Length::METER / tz;
+    }
+    return temp;
 }
 	
 Translation& Translation::operator+= (const Translation& rhs){
-	this->x += rhs.x;
-	this->y += rhs.y;
-	this->z += rhs.z;
-	return *this;
+    this->x += rhs.x;
+    this->y += rhs.y;
+    this->z += rhs.z;
+    return *this;
 }
 	
 Translation& Translation::operator-= (const Translation& rhs) {
-	x -= rhs.x;
-	y -= rhs.y;
-	z -= rhs.z;
-	return *this;
+    x -= rhs.x;
+    y -= rhs.y;
+    z -= rhs.z;
+    return *this;
 }
 		
 bool Translation::operator> (const Translation& rhs) const {
-	return get_length() > rhs.get_length();
+    return get_length() > rhs.get_length();
 }
 		
 bool Translation::operator< (const Translation& rhs) const {
-	return get_length() < rhs.get_length();
+    return get_length() < rhs.get_length();
 }
 		
 std::ostream& operator<< (std::ostream& lhs, Translation& rhs) {
-	lhs << "(" << rhs.get_x() << ", " << rhs.get_y() << ", " << rhs.get_z() << ")";
-	return lhs;
+    lhs << "(" << rhs.get_x() << ", " << rhs.get_y() << ", " << rhs.get_z() << ")";
+    return lhs;
 }
 
 std::istream & operator >>(std::istream & lhs, Translation & rhs) {
@@ -188,7 +188,7 @@ std::istream & operator >>(std::istream & lhs, Translation & rhs) {
    z = ReadComponent(lhs, ')');
 
    if (!lhs) {
-      throw std::invalid_argument{
+      throw std::invalid_argument {
           "Translation wasn't read in its entirety when end of stream was reached."
           };
    }
