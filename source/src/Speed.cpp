@@ -76,6 +76,6 @@ std::istream& operator>>(std::istream & is, Speed & rhs){
             return is;      
         }
     }
-    throw std::invalid_argument{"Speed: Either stream ended, or none of the 
+    throw std::invalid_argument{"Speed: Either stream ended, or none of the \
     known extensions match the specified one."};
 }

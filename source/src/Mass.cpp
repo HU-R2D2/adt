@@ -53,8 +53,8 @@ std::istream& operator>>(std::istream& is, Mass& rhs){
     std::string suffix;
     is >> value >> std::ws;
     if (!is) {
-        throw std::runtime_error{"Lenght: Reached end of stream 
-            before fully reading a length."};
+        throw std::invalid_argument{"Lenght: Reached end of stream before \
+        fully reading a length."};
     }
     while(1) {
         char temp;
@@ -79,7 +79,7 @@ std::istream& operator>>(std::istream& is, Mass& rhs){
             return is;
         }
     }
-    throw std::runtime_erro{"Length: Either stream ended, or none of the 
-     known extensions match the specified one."};
+    throw std::invalid_argument{"Length: Either stream ended, or none of the \
+    known extensions match the specified one."};
 }
 

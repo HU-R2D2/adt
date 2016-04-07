@@ -65,7 +65,7 @@ public:
         return *static_cast<T*>(this);
     }
 
-    //! @fn		ADT_Base::operator+(const T& rhs)
+    //! @fn		ADT_Base::operator+(const T& rhs) const
     //!
     //! @brief	Add operator of a T
     //!
@@ -84,7 +84,7 @@ public:
         return *static_cast<T*>(this);
     }
 
-    //! @fn		ADT_Base::operator-(const T& rhs)
+    //! @fn		ADT_Base::operator-(const T& rhs) const
     //!
     //! @brief	substract operator of a T
     //!

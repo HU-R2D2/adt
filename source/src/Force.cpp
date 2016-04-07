@@ -47,7 +47,8 @@ std::istream& operator>>(std::istream & is, Force & rhs){
    // Read the value, and remove any trailing whitespace.
    is >> value >> std::ws;
    if (!is) {
-      throw std::runtime_error{"Force: Reached end of stream before fully reading a Force."};
+      throw std::runtime_error{"Force: Reached end of stream before fully \
+      reading a Force."};
    }
    // Construct the metric suffix.
    while(1) {
@@ -84,8 +85,8 @@ std::istream& operator>>(std::istream & is, Force & rhs){
          return is;
       }
    }
-   throw std::invalid_argument{"Force: Either stream ended, or none of the 
-    known extensions match the specified one."};
+   throw std::invalid_argument{"Force: Either stream ended, or none of the \
+   known extensions match the specified one."};
 }
 
 Force operator* ( const Mass & lhs, const Acceleration & rhs){

@@ -1,5 +1,5 @@
 // ++--++
-// @file <Weighttest.cpp>
+// @file <Masstest.cpp>
 // @date Created: <5-3-16>
 // @version <0.0.1>
 //
