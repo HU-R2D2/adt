@@ -138,7 +138,7 @@ TEST(Moment, RelationalOperators)   {
    Moment m1 = test_clock.getMoment(500);
    Moment m2 = test_clock.getMoment(1000);
    ASSERT_EQ(m2 > m1, true) << "Greater than Comparison failed, should return true but did not";
-   ASSERT_EQ(m1 > m2, false) << "Greater than Comparison failed, should return treu but did not";
+   ASSERT_EQ(m1 > m2, false) << "Greater than Comparison failed, should return false but did not";
    
    ASSERT_EQ(m1 < m2, true) << "Smaller than Comparison failed, should return true but did not";
    ASSERT_EQ(m2 < m1, false) << "Smaller than Comparison failed, should return false but did not";

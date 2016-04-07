@@ -31,8 +31,10 @@
 #ifndef _MOMENT_HPP
 #define _MOMENT_HPP
 
-#include <assert.h> 
+
+#include "ADT_Base.hpp"
 #include "Duration.hpp"
+#include <assert.h> 
 #include <iostream>
 #include <stdlib.h> 
 #include <math.h>
@@ -61,7 +63,8 @@ class Duration;
 //!   @brief         This class provides a timestamp of a moment in time. 
 //!                  Due to its use in R2D2 (as of yet), 
 //!                  a Moment object can only be created by the Clock.
-class Moment{
+class Moment : public ADT_Base<Moment>{
+friend ADT_Base<Moment>;
 friend class Clock;
 // Testing only! remove when moment is merged with clock.
 friend class test_Clock; 
@@ -113,20 +116,6 @@ public:
    //!   @warning Only accepts Durations with positive values
    Moment& operator-= (const Duration& refDuration);
    
-   //! @brief Compares whether Moment m1 is smaller than Moment m2, 
-   //!      and returns the result of this comparison as a boolean
-   //! @param [in] m1 The Left hand Moment
-   //! @param [in] m2 The Right hand Moment
-   //! @return True if m1 is greater than m2, else false
-   friend bool operator>(const Moment& m1, const Moment& m2);
-   
-   //! @brief Compares whether Moment m1 is smaller than Moment m2, 
-   //!      and returns the result of this comparison as a boolean
-   //! @param [in] m1 The Left hand Moment
-   //! @param [in] m2 The Right hand Moment
-   //! @return True if m1 is smaller than m2, else false
-   friend bool operator<(const Moment& m1, const Moment& m2);
-   
    //!   @brief Reads Moment into given ostream
    //!   @param [in] lhs The ostream to which should be written
    //!   @param [in] The Moment that contains the data
@@ -149,7 +138,5 @@ private:
    //!   @param time Time that will be stored within moment
    //! @exception <MomentException> Thrown when a time is given < 0
    Moment(double time) throw (MomentException); // must be private
-   
-   double moment = 0.0; // Variable that holds this moment's time
 };
 #endif 

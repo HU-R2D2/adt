@@ -32,22 +32,22 @@
 
 Moment::Moment( ) {
 }
-Moment::Moment(double moment) throw (MomentException) : moment{moment}  {
-   if(this->moment < 0)
+Moment::Moment(double value) throw (MomentException) :  ADT_Base{value} {
+   if(this->value < 0)
       throw MomentException("Moment exception");
 }
 Moment& Moment::operator= (const Moment& m)  {
    if(&m == this) {
       return *this;
    }
-    this->moment = m.moment;
+    this->value = m.value;
     return *this;
 }
 Moment Moment::operator+ ( const Duration & rhs ) const  {
    // Return new Moment that is the result of adding a given Duration
    // Old Moment is not modified
    Moment rMoment(0);
-   rMoment.moment = this->moment + rhs.get_seconds();
+   rMoment.value = this->value + rhs.get_seconds();
    return rMoment;
 }
 Moment Moment::operator- ( const Duration & rhs ) const  {
@@ -57,20 +57,20 @@ Moment Moment::operator- ( const Duration & rhs ) const  {
    assert(rhs.get_seconds() > 0);
    double saved_result;
    Moment rMoment(0);
-   if( (saved_result = (this->moment - rhs.get_seconds()) ) < 0)  {
-      rMoment.moment = 0;
+   if( (saved_result = (this->value - rhs.get_seconds()) ) < 0)  {
+      rMoment.value = 0;
       return rMoment;
    }
-   rMoment.moment = saved_result;
+   rMoment.value = saved_result;
    return rMoment;
 }
 Duration Moment::operator- (const Moment & rhs) const {
    // Return new Duration that is the result of subtracting a given Moment
    // Old Moment not modified
    // If Subtracting results in a time smaller than 0, return Duration of 0
-   assert(rhs.moment > 0);
+   assert(rhs.value > 0);
    double saved_result;
-   if( (saved_result = (this->moment - rhs.moment) ) < 0)   {
+   if( (saved_result = (this->value - rhs.value) ) < 0)   {
       return (0 * Duration::SECOND);
    }
    return (saved_result * Duration::SECOND);
@@ -78,22 +78,22 @@ Duration Moment::operator- (const Moment & rhs) const {
 
 Moment& Moment::operator+= (const Duration & rhs)  {
    //Does not change Duration
-   this->moment += rhs.get_seconds();
+   this->value += rhs.get_seconds();
    return *this;
 }
 
 Moment& Moment::operator-= (const Duration & rhs)  {
    //Does not change Duration
-   this->moment -= rhs.get_seconds();
+   this->value -= rhs.get_seconds();
    return *this;
 }
 
 double Moment::get_time() const  {
-   return this->moment;
+   return this->value;
 }
 
 ostream& operator<< (ostream & lhs, const Moment &rhs)   {
-   lhs << rhs.moment;
+   lhs << rhs.value;
    return lhs;
 }
 
@@ -103,18 +103,6 @@ istream& operator>> (istream & lhs, Moment & rhs)  {
    if(read_error <= -1) {
       throw MomentException("Moment Exception");
    }
-   rhs.moment = read_error;
+   rhs.value = read_error;
    return lhs;
-}
-bool operator>(const Moment& m1, const Moment& m2) {
-   if (m1.get_time() > m2.get_time())  {
-      return true;
-   }
-   return false;
-}
-bool operator<(const Moment& m1, const Moment& m2) {
-   if (m1.get_time() < m2.get_time())  {
-      return true;
-   }
-   return false;
 }
