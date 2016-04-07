@@ -40,8 +40,6 @@
 
 #include <iostream>
 
-#define 
-
 class Angle {
 private:
 
@@ -109,15 +107,15 @@ public:
     //!@brief substracted from this
     Angle operator-(const Angle &rhs) const;
 
-    //!@brief multiplies the Angle by a number and returns a Angle
+    //!@brief multiplies the Angle by a number and returns an Angle
     //!@param rhs The number by which the Angle will be multiplied
     Angle operator*(const double &rhs) const;
 
-    //!@brief divides the Angle by a number and return a Angle
+    //!@brief divides the Angle by a number and return an Angle
     //!@param rhs The number by which the Angle will be divided
     friend Angle operator*(const double &lhs, const Angle &rhs);
 
-    //!@brief divides the Angle by a number and return a Angle
+    //!@brief divides the Angle by a number and return an Angle
     //!@param rhs The number by which the Angle will be divided
     Angle operator/(const double &rhs) const;
 
@@ -125,7 +123,7 @@ public:
     //!@param Angle to divide this by
     double operator/(const Angle &rhs) const;
 
-    //!@brief Output operator of a Angle
+    //!@brief Output operator of an Angle
     //!@param lhs The ostream that will be appended
     //!@param rhs The Angle that will be added to the ostream
     friend std::ostream &operator<<(std::ostream &lhs, Angle &rhs);
