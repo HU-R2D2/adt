@@ -66,25 +66,25 @@ Attitude::Attitude &operator=( const Attitude &rhs ){
     z = rhs.z;
     return *this;
 }
-Attitude::Attitude &operator+=( const relative_direction &rhs ){
+Attitude::Attitude &operator+=( const Delta_Attitude &rhs ){
     Attitude temp{ *this };
     temp.x += rhs.x;
     temp.y += rhs.y;
     temp.z += rhs.z;
     return temp;
 }
-Attitude::Attitude &operator+( const relative_direction &rhs ){
+Attitude::Attitude &operator+( const Delta_Attitude &rhs ){
     this+=rhs;
     return this*;
 }
-Attitude::Attitude &operator-=( const relative_direction &rhs ){
+Attitude::Attitude &operator-=( const Delta_Attitude &rhs ){
     Attitude temp{ *this };
     temp.x -= rhs.x;
     temp.y -= rhs.y;
     temp.z -= rhs.z;
     return temp;
 }
-Attitude::Attitude &operator-( const relative_direction &rhs ){
+Attitude::Attitude &operator-( const Delta_Attitude &rhs ){
     this-=rhs;
     return this*;
 }
