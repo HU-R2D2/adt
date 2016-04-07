@@ -69,7 +69,8 @@ class Attitude{
         Attitude &operator=( const Attitude &rhs );
 
 
-        Delta_Attitude &operator-=( const Attitude &rhs);
+
+        Delta_Attitude &operator-( const Attitude &rhs);
 
         //!@brief
         //!@param

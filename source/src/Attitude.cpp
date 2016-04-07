@@ -88,10 +88,11 @@ Attitude::Attitude &operator-( const relative_direction &rhs ){
     this-=rhs;
     return this*;
 }
-translation operator*( const Length &rhs ){
+Delta_Attitude::Delta
+Translation operator*( const Length &rhs ){
     return translation { x * rhs, y * rhs, z * rhs };
 }
-translation operator/( const Length &rhs ){
+Translation operator/( const Length &rhs ){
     return translation { x / rhs, y / rhs, z / rhs };
 }
 friend std::ostream &operator<<( std::ostream lhs& ,const Attitude &rhs ){
