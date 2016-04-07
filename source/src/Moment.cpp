@@ -29,18 +29,12 @@
 // OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // ++--++
 #include "../include/Moment.hpp"
-//#include "../include/Duration.hpp"
-//namespace adt	{
 
 Moment::Moment( )	{
-	//time_t t = time(0);
-	//seconds = t;
 }
 Moment::Moment(double moment) throw (MomentException) : moment{moment} 	{
-	//time_t t = time(0);
 	if(this->moment < 0)
 		throw MomentException("Moment smaller than 0, constructor called wrongly");
-	//this->seconds = seconds;
 }
 Moment& Moment::operator= (const Moment& m)	{
 	if(&m == this)
@@ -115,13 +109,15 @@ istream& operator>> (istream & lhs, Moment & rhs)	{
 	return lhs;
 }
 bool operator>(const Moment& m1, const Moment& m2)	{
-	if (m1.get_time() > m2.get_time())
+	if (m1.get_time() > m2.get_time())	{
 		return true;
+	}
+		
 	return false;
 }
 bool operator<(const Moment& m1, const Moment& m2)	{
-	if (m1.get_time() < m2.get_time())
+	if (m1.get_time() < m2.get_time())	{
 		return true;
+	}
 	return false;
 }
-//};
