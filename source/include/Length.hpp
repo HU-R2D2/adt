@@ -53,7 +53,6 @@
 
 #ifndef _LENGTH_HPP
 #define _LENGTH_HPP
-#include "gtest/gtest.h"
 #include "Acceleration.hpp"
 #include "Duration.hpp"
 #include "ADT_Base.hpp"
