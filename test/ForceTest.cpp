@@ -49,9 +49,11 @@ TEST(Force, Assign){
 
 
 TEST(Force, Divide){
+	Force d = 5 * Mass::KILOGRAM * (1 * Length::METER/Duration::SECOND/Duration::SECOND);
 	Force a = 4 * Force::NEWTON;
 	Force b = 8 * Force::NEWTON;
 	Force c = -16 * Force::NEWTON;
+	ASSERT_DOUBLE_EQ(d/Force::NEWTON, 5);
 	ASSERT_DOUBLE_EQ(b/a, 2) << "Divide positive by positive";
 	ASSERT_DOUBLE_EQ(c/b, -2) << "Divide negative by positive";
 }
