@@ -206,13 +206,13 @@ std::istream & operator >>(std::istream & lhs, Box & rhs ) {
     lhs >> std::ws >> prefix;
 
     if (prefix != "box") {
-        throw std::runtime_error{"Expecting prefix \"box\","
+        throw std::invalid_argument{"Expecting prefix \"box\","
             " got something else."};
     }
     char temp;
     lhs >> std::ws >> temp;
     if (temp != '(') {
-        throw std::runtime_error{"No opening brace encountered"};
+        throw std::invalid_argument{"No opening brace encountered"};
      }
      
     Coordinate bottomLeft;
@@ -222,7 +222,7 @@ std::istream & operator >>(std::istream & lhs, Box & rhs ) {
     lhs >> topRight;
 
     if (!lhs) {
-        throw std::runtime_error{"Coordinate wasn't read in its entirety when"
+        throw std::invalid_argument{"Coordinate wasn't read in its entirety when"
             " end of stream was reached. "};
     }
 
