@@ -1,14 +1,22 @@
-// ++--++
-// @file <filename>
-// @date Created: <5-3-16>
-// @version <1.0.0>
+////
+//  ██████╗  ██████╗ ██████╗  ██████╗ ██████╗ ███████╗███████╗ ██████╗██╗   ██╗███████╗
+//  ██╔══██╗██╔═══██╗██╔══██╗██╔═══██╗██╔══██╗██╔════╝██╔════╝██╔════╝██║   ██║██╔════╝
+//  ██████╔╝██║   ██║██████╔╝██║   ██║██████╔╝█████╗  ███████╗██║     ██║   ██║█████╗  
+//  ██╔══██╗██║   ██║██╔══██╗██║   ██║██╔══██╗██╔══╝  ╚════██║██║     ██║   ██║██╔══╝  
+//  ██║  ██║╚██████╔╝██████╔╝╚██████╔╝██║  ██║███████╗███████║╚██████╗╚██████╔╝███████╗
+//  ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝
+//                                                                                                                                          
 //
-// @author <full name>
+// @file AccelerationTest.cpp
+// @date Created: 18-03-2016
+// @version 1.0
+//
+// @author Stephan Vivie
 //
 // @section LICENSE
 // License: newBSD
 //
-// Copyright � 2016, HU University of Applied Sciences Utrecht.
+// Copyright © 2016, HU University of Applied Sciences Utrecht.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -26,7 +34,8 @@
 // HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
 // LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
 // OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-// ++--++
+////
+
 #include "../source/include/Length.hpp"
 #include "../source/include/Acceleration.hpp"
 
@@ -40,163 +49,163 @@ static Acceleration oneMA = oneMS / oneSec; // Acceleration: one meter per secon
 
 TEST(Acceleration, DefaultConstructor)
 {
-	Acceleration accel;
-	ASSERT_DOUBLE_EQ(0.0, accel / oneMA);
+    Acceleration accel;
+    ASSERT_DOUBLE_EQ(0.0, accel / oneMA);
 }
 
 TEST(Acceleration, Assign)
 {
-	Speed speed = 5 * Length::METER / Duration::SECOND;
-	Duration duration = 2 * Duration::SECOND;
+    Speed speed = 5.0 * Length::METER / Duration::SECOND;
+    Duration duration = 2.0 * Duration::SECOND;
 
-	Acceleration accel = speed / duration;
-	ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
+    Acceleration accel = speed / duration;
+    ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
 
 }
 
 TEST(Acceleration, MultiplyDouble)
 {
-	Speed speed = (5 * Length::METER) / Duration::SECOND;
-	Duration duration = 2 * Duration::SECOND;
-	Acceleration accel = speed / duration; // 2.5 m/s
+    Speed speed = (5.0 * Length::METER) / Duration::SECOND;
+    Duration duration = 2.0 * Duration::SECOND;
+    Acceleration accel = speed / duration; // 2.5 m/s
 
-	// multiply by 10
-	accel = accel * 10.0; // 25 m/s
-	ASSERT_DOUBLE_EQ(25.0, accel / oneMA);
+    // multiply by 10
+    accel = accel * 10.0; // 25 m/s
+    ASSERT_DOUBLE_EQ(25.0, accel / oneMA);
 
-	// multiply by 1
-	accel = accel * 1.0;
-	ASSERT_DOUBLE_EQ(25.0, accel / oneMA);
+    // multiply by 1
+    accel = accel * 1.0;
+    ASSERT_DOUBLE_EQ(25.0, accel / oneMA);
 
-	// multiply by 0
-	accel = accel * 0.0;
-	ASSERT_DOUBLE_EQ(0.0, accel / oneMA);
+    // multiply by 0
+    accel = accel * 0.0;
+    ASSERT_DOUBLE_EQ(0.0, accel / oneMA);
 
-	
+    
 }
 
 TEST(Acceleration, MultiplyDoubleAssign)
 {
-	Speed speed = (5 * Length::METER) / Duration::SECOND;
-	Duration duration = 2 * Duration::SECOND;
-	Acceleration accel = speed / duration; // 2.5 m/s
+    Speed speed = (5.0 * Length::METER) / Duration::SECOND;
+    Duration duration = 2.0 * Duration::SECOND;
+    Acceleration accel = speed / duration; // 2.5 m/s
 
-	ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
+    ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
 
-	// multiply by 10
-	accel *= 10.0;
-	ASSERT_DOUBLE_EQ(25.0, accel / oneMA);
+    // multiply by 10
+    accel *= 10.0;
+    ASSERT_DOUBLE_EQ(25.0, accel / oneMA);
 
-	// multiply by 1
-	accel *= 1.0;
-	ASSERT_DOUBLE_EQ(25.0, accel / oneMA);
+    // multiply by 1
+    accel *= 1.0;
+    ASSERT_DOUBLE_EQ(25.0, accel / oneMA);
 
-	// multiply by 0
-	accel *= 0.0;
-	ASSERT_DOUBLE_EQ(0.0, accel / oneMA);
+    // multiply by 0
+    accel *= 0.0;
+    ASSERT_DOUBLE_EQ(0.0, accel / oneMA);
 
 }
 
 TEST(Acceleration, DivideDouble)
 {
-	Speed speed = (50 * Length::METER) / Duration::SECOND;
-	Duration duration = 2 * Duration::SECOND;
-	Acceleration accel = speed / duration; //25 m/s
+    Speed speed = (50.0 * Length::METER) / Duration::SECOND;
+    Duration duration = 2.0 * Duration::SECOND;
+    Acceleration accel = speed / duration; //25 m/s
 
-	// divide by 10
-	accel = accel / 10.0;
-	ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
+    // divide by 10
+    accel = accel / 10.0;
+    ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
 
-	// divide by 1
-	accel = accel / 1.0;
-	ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
+    // divide by 1
+    accel = accel / 1.0;
+    ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
 
-	// divide by 0
-	accel = accel / 0.0;
-	ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
+    // divide by 0
+    accel = accel / 0.0;
+    ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
 
 }
 
 TEST(Acceleration, DivideDoubleAssign)
 {
-	Speed speed = (50 * Length::METER) / Duration::SECOND;
-	Duration duration = 2 * Duration::SECOND;
-	Acceleration accel = speed / duration; //2.5 m/s
+    Speed speed = (50.0* Length::METER) / Duration::SECOND;
+    Duration duration = 2.0 * Duration::SECOND;
+    Acceleration accel = speed / duration; //2.5 m/s
 
-	ASSERT_DOUBLE_EQ(25.0, accel / oneMA);
+    ASSERT_DOUBLE_EQ(25.0, accel / oneMA);
 
-	// dividee by 10
-	accel /= 10;
-	ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
+    // dividee by 10
+    accel /= 10.0;
+    ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
 
-	// divide by 0
-	accel /= 0.0;
-	ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
+    // divide by 0
+    accel /= 0.0;
+    ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
 
-	// divide by 1
-	accel /= 1.0;
-	ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
+    // divide by 1
+    accel /= 1.0;
+    ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
 }
 
 TEST(Acceleration, GreaterThan)
 {
-	Speed speed = (5.0 * Length::METER) / Duration::SECOND;
-	Duration duration = 2.0 * Duration::SECOND;
-	Acceleration accel = speed / duration; //2.5 m/s
+    Speed speed = (5.0 * Length::METER) / Duration::SECOND;
+    Duration duration = 2.0 * Duration::SECOND;
+    Acceleration accel = speed / duration; //2.5 m/s
 
-	Speed fasterSpeed = (50.0 * Length::METER) / Duration::SECOND;
-	Acceleration fasterAccel = fasterSpeed / duration; //25 m/s
+    Speed fasterSpeed = (50.0 * Length::METER) / Duration::SECOND;
+    Acceleration fasterAccel = fasterSpeed / duration; //25 m/s
 
-	ASSERT_TRUE(fasterAccel > accel);
-	ASSERT_FALSE(accel > fasterAccel);
+    ASSERT_TRUE(fasterAccel > accel);
+    ASSERT_FALSE(accel > fasterAccel);
 
-	
+    
 
 }
 
 TEST(Acceleration, LessThan)
 {
-	Speed speed = (5.0 * Length::METER) / Duration::SECOND;
-	Duration duration = 2.0 * Duration::SECOND;
-	Acceleration accel = speed / duration; //2.5 m/s
+    Speed speed = (5.0 * Length::METER) / Duration::SECOND;
+    Duration duration = 2.0 * Duration::SECOND;
+    Acceleration accel = speed / duration; //2.5 m/s
 
-	Speed fasterSpeed = (50.0 * Length::METER) / Duration::SECOND;
-	Acceleration fasterAccel = fasterSpeed / duration; //25 m/s
+    Speed fasterSpeed = (50.0 * Length::METER) / Duration::SECOND;
+    Acceleration fasterAccel = fasterSpeed / duration; //25 m/s
 
-	ASSERT_TRUE(accel < fasterAccel);
-	ASSERT_FALSE(fasterAccel < accel);
+    ASSERT_TRUE(accel < fasterAccel);
+    ASSERT_FALSE(fasterAccel < accel);
 }
 
 
 TEST(Acceleration, OutputStream)
 {
-	std::stringstream stream{};
-	Speed speed = (5.0 * Length::METER) / Duration::SECOND;
-	Duration duration = 2.0 * Duration::SECOND;
-	Acceleration accel = speed / duration; //2.5 m/s
-	stream << accel << std::endl;
+    std::stringstream stream{};
+    Speed speed = (5.0 * Length::METER) / Duration::SECOND;
+    Duration duration = 2.0 * Duration::SECOND;
+    Acceleration accel = speed / duration; //2.5 m/s
+    stream << accel << std::endl;
 
-	std::string output;
-	std::getline(stream, output);
+    std::string output;
+    std::getline(stream, output);
 
-	EXPECT_EQ("acceleration( 2.5 m/sec )", output);
-	EXPECT_EQ(&stream, &(stream << accel)) << "Wrong stream is returned.";
-	
+    EXPECT_EQ("2.5m/s/s", output);
+    EXPECT_EQ(&stream, &(stream << accel)) << "Wrong stream is returned.";
+    
 }
 
 
 TEST(Acceleration, InputStream)
 {
-	std::stringstream stream{};
-	Speed speed = (5.0 * Length::METER) / Duration::SECOND;
-	Duration duration = 2.0 * Duration::SECOND;
-	Acceleration accel = speed / duration; //2.5 m/s
+    std::stringstream stream{};
+    Speed speed = (5.0 * Length::METER) / Duration::SECOND;
+    Duration duration = 2.0 * Duration::SECOND;
+    Acceleration accel = speed / duration; //2.5 m/s
 
-	// Check whether the coordinate is read in correct form from the stream.
-	stream << "acceleration ( 2.5m/s )";
-	stream >> accel;
+    // Check whether the coordinate is read in correct form from the stream.
+    stream << "2.5m/s/s";
+    stream >> accel;
 
-	ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
+    ASSERT_DOUBLE_EQ(2.5, accel / oneMA);
 
 }
 

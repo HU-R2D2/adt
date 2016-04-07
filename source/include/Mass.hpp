@@ -1,6 +1,6 @@
 // ++--++
 // Roborescue
-// @file <Weight.hpp>
+// @file <Mass.hpp>
 // @date Created: <5-3-16>
 // @version <0.0.1>
 //
@@ -32,57 +32,61 @@
 //! @author		Job Verhaar
 //! @date 		04-04-16
 //! @version 	0.1
-//! @brief		Weight is a .....
+//! @brief		Mass is a abstract data type to represent the KG.
 //!
 
-#ifndef _WEIGHT_HPP
-#define _WEIGHT_HPP
+#ifndef _Mass_HPP
+#define _Mass_HPP
 
-#include "gtest/gtest.h"
 #include "ADT_Base.hpp"
 
 #include <iostream> 
 
-class Weight : public ADT_Base<Weight>{
-	protected:
-		//! @fn		Weight::Weight(double l)
-		//!
-		//! @brief	Constructor of a Weight
-		//!
-		//! @param	Weight the 
-		Weight(double value);
+class Mass : public ADT_Base<Mass>{
+protected:
+    //! @fn     Mass::Mass(double l)
+    //!
+    //! @brief  Constructor of a Mass
+    //!
+    //! @param	value the Mass in KG
+    Mass(double value);
 
-	public:
-		friend ADT_Base<Weight>;
-		//! @fn 	Weight::Weight()
-		//!
-		//! @brief 	Defaut constructor of Weight
-		Weight();
+public:
+    friend ADT_Base<Mass>;
+    //! @fn 	Mass::Mass()
+    //!
+    //! @brief 	Defaut constructor of Mass
+    Mass();
 
-		//! @fn
-		//!
-		//! @brief	appends a Weight to an ostream and returns an ostream
-		//!
-		//! @param	rhs 		the right hand side to compare 
-		friend std::ostream& operator<< (std:: ostream& os, const Weight& rhs);
+    //! @fn     std::ostream operator<<(std::ostream& os, const Mass& rhs)
+    //!
+    //! @brief Appends a Mass to an std::ostream and returns the ostream
+    //!
+    //! @param os the std::ostream to append to
+    //! @param rhs Object to append
+    //! @return std::ostream
+    friend std::ostream& operator<< (std:: ostream& os, const Mass& rhs);
 
-		//! @fn		
-		//!
-		//! @brief	adds an istream to a Weight
-		//!
-		//! @param
-		friend std::istream& operator>>(std::istream& is, Weight& rhs);
+    //! @fn    std::istream operator>>(std::istream& is, Mass& rhs)
+    //!
+    //! @brief Reads a Mass from an std::istream and returns the istream
+    //!
+    //! @param os the std::istream to read it from;
+    //! @param rhs Object to read
+    //! @return std::istream
+    friend std::istream& operator>>(std::istream& is, Mass& rhs);
 
-		//! @fn		
-		//!
-		//! @brief	multiply a Weight by another Weight and returns a Weight
-		//!
-		//! @param
-		friend Weight operator* (double n, const Weight& rhs);
+    //! @fn		Mass operator*(double n, const Mass & rhs)
+    //!
+    //! @brief	multiply a Mass bu a double and returns a Mass
+    //!
+    //! @param  n a double
+    //! @param  rhs the Mass that is multiplied
+    //! @return The calcukated Mass
+    friend Mass operator* (double n, const Mass& rhs);
 
-		FRIEND_TEST(Weight, doubleConstructor);
-		static const Weight KILOGRAM;
-		static const Weight GRAM;
+    //! Statics for forcing using the right SI-value
+    static const Mass KILOGRAM;
+    static const Mass GRAM;
 };
-
 #endif

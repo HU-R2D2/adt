@@ -47,16 +47,20 @@ std::istream& operator>>(std::istream & is, Force & rhs){
    // Read the value, and remove any trailing whitespace.
    is >> value >> std::ws;
    if (!is) {
-      throw std::runtime_error{"Force: Reached end of stream before fully reading a Force."};
+      throw std::runtime_error{"Force: Reached end of stream before fully \
+      reading a Force."};
    }
    // Construct the metric suffix.
    while(1) {
       char temp;
-      // The end of the stream might coincidence with the end of the metric specifier.
+      // The end of the stream might coincidence with the end of 
+      //the metric specifier.
       // As such do not throw an exception but test the current stream.
       if (is >> temp) {
-         // A suffix for metric values only consist out of alphabetic characters;
-         // anything else could indicate the end of this suffix, and should be put back.
+         // A suffix for metric values only consist out of alphabetic 
+          //characters;
+         // anything else could indicate the end of this suffix
+         // and should be put back.
          if (isalpha(temp)) {
             suffix += temp;
          } else {
@@ -71,7 +75,8 @@ std::istream& operator>>(std::istream & is, Force & rhs){
       }
    }
    // Specifies all available suffixes, and which value corresponds to it.
-   const struct {std::string suffix; const Force & factor;} possible_suffixes[] = {
+   const struct {std::string suffix; 
+     const Force & factor;} possible_suffixes[] = {
          {"N", Force::NEWTON}
    };
    for (const auto & possibility : possible_suffixes) {
@@ -80,15 +85,14 @@ std::istream& operator>>(std::istream & is, Force & rhs){
          return is;
       }
    }
-   throw std::runtime_error{"Length: Either stream ended, or none of the known extensions match the specified one."};
+   throw std::invalid_argument{"Force: Either stream ended, or none of the \
+   known extensions match the specified one."};
 }
 
-
-Force operator* ( const Weight & lhs, const Acceleration & rhs){
-  double w = lhs/Weight::KILOGRAM;
+Force operator* ( const Mass & lhs, const Acceleration & rhs){
+  double w = lhs/Mass::KILOGRAM;
   Speed one = 1 * Length::METER/Duration::SECOND;
   Acceleration ac = one/Duration::SECOND;
   double a = rhs/ac;
-  //std::cout << "created with force with double: " << w << " * " << a << ": " << w * a << std::endl;
   return Force{w * a};
 }
