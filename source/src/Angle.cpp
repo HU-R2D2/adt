@@ -41,84 +41,83 @@
 
 
 const Angle Angle::rad{1};
-const Angle Angle::deg{ M_PI / 180};
+const Angle Angle::deg{M_PI / 180};
 
-Angle::Angle() : angle_radians{ 0.0 } {}
-Angle::Angle( double angle_radians ) : angle_radians { fmod(angle_radians, full_circle) } {}
+Angle::Angle() : angle_radians{0.0} { }
 
-//static constexpr rad Angle( 1.0 );
-//static constexpr deg Angle( 180.0/M_PI );
+Angle::Angle(double angle_radians) : angle_radians{
+        fmod(angle_radians, full_circle)} { }
 
-Angle & Angle::operator=( const Angle& rhs ){
-	angle_radians = rhs.angle_radians;
-	return *this;
+Angle &Angle::operator=(const Angle &rhs) {
+    angle_radians = rhs.angle_radians;
+    return *this;
 }
 
-Angle & Angle::operator+=( const Angle& rhs ){
-	angle_radians += rhs.angle_radians;
-	return *this;
+Angle &Angle::operator+=(const Angle &rhs) {
+    angle_radians += rhs.angle_radians;
+    return *this;
 }
 
-Angle & Angle::operator-=( const Angle& rhs ){
-	angle_radians -= rhs.angle_radians;
-	return *this;
-}	
-
-Angle & Angle::operator*=( const double& rhs ){
-	angle_radians *= rhs;
-	return *this;	
+Angle &Angle::operator-=(const Angle &rhs) {
+    angle_radians -= rhs.angle_radians;
+    return *this;
 }
 
-Angle & Angle::operator/=( const double& rhs ){
-	angle_radians /= rhs;
-	return *this;
+Angle &Angle::operator*=(const double &rhs) {
+    angle_radians *= rhs;
+    return *this;
 }
 
-bool Angle::operator<( const Angle& rhs )const{
-	return angle_radians < rhs.angle_radians;
+Angle &Angle::operator/=(const double &rhs) {
+    angle_radians /= rhs;
+    return *this;
 }
 
-bool Angle::operator>( const Angle& rhs )const{
-	return angle_radians > rhs.angle_radians;
+bool Angle::operator<(const Angle &rhs) const {
+    return angle_radians < rhs.angle_radians;
 }
 
-Angle Angle::operator+( const Angle& rhs )const{
-	Angle result{ *this };
-	result += rhs;
-	return result;
+bool Angle::operator>(const Angle &rhs) const {
+    return angle_radians > rhs.angle_radians;
 }
 
-Angle Angle::operator-( const Angle& rhs )const{
-	Angle result{ *this };
-	result -= rhs;
-	return result;
+Angle Angle::operator+(const Angle &rhs) const {
+    Angle result{*this};
+    result += rhs;
+    return result;
 }
 
-Angle Angle::operator*( const double& rhs)const{
-	Angle result{ *this };
-	result *= rhs;
-	return result;
+Angle Angle::operator-(const Angle &rhs) const {
+    Angle result{*this};
+    result -= rhs;
+    return result;
 }
 
-Angle Angle::operator/( const double& rhs )const{
-	Angle result{ *this };
-	result /= rhs;
-	return result;
+Angle Angle::operator*(const double &rhs) const {
+    Angle result{*this};
+    result *= rhs;
+    return result;
 }
 
-double Angle::operator/(const Angle& rhs)const {
-
-	return angle_radians / rhs.angle_radians;
+Angle Angle::operator/(const double &rhs) const {
+    Angle result{*this};
+    result /= rhs;
+    return result;
 }
 
-std::ostream & operator<<( std::ostream& lhs, Angle& rhs ){
-	return (lhs<< rhs.angle_radians << " rad");
+double Angle::operator/(const Angle &rhs) const {
+
+    return angle_radians / rhs.angle_radians;
 }
 
-double Angle::get_angle(){
-	return angle_radians;
+std::ostream &operator<<(std::ostream &lhs, Angle &rhs) {
+    return (lhs << rhs.angle_radians << " rad");
+}
+
+double Angle::get_angle() {
+    return angle_radians;
 }
 
 Angle operator*(const double &lhs, const Angle &rhs) {
-	return Angle{rhs} *= lhs;
+    return Angle{rhs} *= lhs;
 }

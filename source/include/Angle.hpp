@@ -42,76 +42,81 @@
 
 #define M_PI 3.14159265358979323846
 
-class Angle{
-	private:
+class Angle {
+private:
 
-		double angle_radians;
+    double angle_radians;
 
-		//!@brief Creates an Angle from a double
-		//!@brief Anything larger than one circle (2pi) is modulo'd with 2pi
-		//!@param angle_radians The Angle in radians
-		Angle( double angle_radians);
+    //!@brief Creates an Angle from a double
+    //!@brief Anything larger than one circle (2pi) is modulo'd with 2pi
+    //!@param angle_radians The Angle in radians
+    Angle(double angle_radians);
 
-		//!@brief value in Radians of one full angle
-		static constexpr double full_circle =  M_PI* 2.0; /* Angle holds max of 1 circle, multiple angles are meaningless */
+    //!@brief value in Radians of one full angle
+    static constexpr double full_circle = M_PI *
+                                          2.0; /* Angle holds max of 1 circle, multiple angles are meaningless */
 
-	public:
+public:
 
-		Angle();
+    Angle();
 
-		//!@brief Copies the righthand value into this and returns a reference to this
-		//!@param rhs Value to be copied into this
-		Angle & operator= (const Angle& rhs);
+    //!@brief Copies the righthand value into this and returns a reference to this
+    //!@param rhs Value to be copied into this
+    Angle &operator=(const Angle &rhs);
 
-		//!@brief Add the angle_radians value on the right hand to this and returns the resulting Angle
-		//!@param rhs Angle of which the angle_radians value has to be added to this
-		Angle& operator+= (const Angle& rhs);
+    //!@brief Add the angle_radians value on the right hand to this and returns the resulting Angle
+    //!@param rhs Angle of which the angle_radians value has to be added to this
+    Angle &operator+=(const Angle &rhs);
 
-		//!@brief Subtracts the angle_radians value on the right hand from this and returns the resulting Angle
-		//!@param rhs Angle of which the angle_radians value has to be substracted from this
-		Angle & operator-=( const Angle& rhs );
+    //!@brief Subtracts the angle_radians value on the right hand from this and returns the resulting Angle
+    //!@param rhs Angle of which the angle_radians value has to be substracted from this
+    Angle &operator-=(const Angle &rhs);
 
-		//!@brief Multplies the righthand Double with this' angle_radians value
-		//!@param rhs Double to multiply this with
-		Angle & operator*=( const double& rhs );
+    //!@brief Multplies the righthand Double with this' angle_radians value
+    //!@param rhs Double to multiply this with
+    Angle &operator*=(const double &rhs);
 
-		//!@brief Divides this by the righthand Double
-		//!@param rhs The Angle to divide this with
-		Angle & operator/=( const double& rhs );
+    //!@brief Divides this by the righthand Double
+    //!@param rhs The Angle to divide this with
+    Angle &operator/=(const double &rhs);
 
-		//!@brief compares two Angles to each other and return a boolean (true if 1st greater than 2nd)
-		//!@param rhs The Angle that is being compared to the other Angle
-		bool operator<( const Angle& rhs )const;
+    //!@brief compares two Angles to each other and return a boolean (true if 1st greater than 2nd)
+    //!@param rhs The Angle that is being compared to the other Angle
+    bool operator<(const Angle &rhs) const;
 
-		//!@brief compares two Angles to each other and return a boolean (true if 1st smaller  than 2nd)
-		//!@param rhs The Angle that is being compared to the other Angle
-		bool operator>( const Angle& rhs )const;
+    //!@brief compares two Angles to each other and return a boolean (true if 1st smaller  than 2nd)
+    //!@param rhs The Angle that is being compared to the other Angle
+    bool operator>(const Angle &rhs) const;
 
-		//!@brief add the Angle in Radians value on the right hand to this and returns a Angle
-		//!@param rhs Angle of which the angle_radians value has to be added to this
-		Angle operator+( const Angle& rhs )const;
+    //!@brief add the Angle in Radians value on the right hand to this and returns a Angle
+    //!@param rhs Angle of which the angle_radians value has to be added to this
+    Angle operator+(const Angle &rhs) const;
 
-		//!@brief subtracts the angle_radians value on the right hand from this and returns the a Angle
-		//!@param rhs Angle of which the angle_radians value has to be substracted from this
-		Angle operator-( const Angle& rhs )const;
+    //!@brief subtracts the angle_radians value on the right hand from this and returns the a Angle
+    //!@param rhs Angle of which the angle_radians value has to be substracted from this
+    Angle operator-(const Angle &rhs) const;
 
-		//!@brief multiplies the Angle by a number and returns a Angle
-		//!@param rhs The number by which the Angle will be multiplied
-		Angle operator*( const double& rhs)const;
+    //!@brief multiplies the Angle by a number and returns a Angle
+    //!@param rhs The number by which the Angle will be multiplied
+    Angle operator*(const double &rhs) const;
 
-		friend Angle operator*(const double& lhs, const Angle& rhs);
-		//!@brief divides the Angle by a number and return a Angle
-		//!@param rhs The number by which the Angle will be divided
-		Angle operator/( const double& rhs )const;
-		double operator/(const Angle& rhs) const;
+    friend Angle operator*(const double &lhs, const Angle &rhs);
 
-		//!@brief Output operator of a Angle
-		//!@param lhs The ostream that will be appended
-		//!@param rhs The Angle that will be added to the ostream
-		friend std::ostream & operator<<( std::ostream& lhs, Angle& rhs );
+    //!@brief divides the Angle by a number and return a Angle
+    //!@param rhs The number by which the Angle will be divided
+    Angle operator/(const double &rhs) const;
 
-		double get_angle();
-		static const Angle rad;
-		static const Angle deg;
+    double operator/(const Angle &rhs) const;
+
+    //!@brief Output operator of a Angle
+    //!@param lhs The ostream that will be appended
+    //!@param rhs The Angle that will be added to the ostream
+    friend std::ostream &operator<<(std::ostream &lhs, Angle &rhs);
+
+    double get_angle();
+
+    static const Angle rad;
+    static const Angle deg;
 };
+
 #endif
