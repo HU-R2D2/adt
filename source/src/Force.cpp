@@ -47,7 +47,7 @@ std::istream& operator>>(std::istream & is, Force & rhs){
    // Read the value, and remove any trailing whitespace.
    is >> value >> std::ws;
    if (!is) {
-      throw std::runtime_error{"Force: Reached end of stream before fully \
+      throw std::invalid_argument{"Force: Reached end of stream before fully \
       reading a Force."};
    }
    // Construct the metric suffix.
