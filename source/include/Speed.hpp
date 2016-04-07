@@ -1,10 +1,3 @@
-//  ???????  ??????? ???????  ??????? ??????? ???????????????? ??????????   ???????????
-//  ?????????????????????????????????????????????????????????????????????   ???????????
-//  ???????????   ??????????????   ?????????????????  ???????????     ???   ?????????
-//  ???????????   ??????????????   ?????????????????  ???????????     ???   ?????????
-//  ???  ????????????????????????????????  ????????????????????????????????????????????
-//  ???  ??? ??????? ???????  ??????? ???  ??????????????????? ??????? ??????? ????????
-//
 // Roborescue
 //
 // @file Speed.hpp
@@ -38,8 +31,6 @@
 
 #ifndef  _SPEED_HPP
 #define _SPEED_HPP
-
-//#include "Length.hpp"
 #include <iostream>
 #include "Duration.hpp"
 #include "Length.hpp"
@@ -47,68 +38,73 @@
 class Acceleration;
 
 class Speed : public ADT_Base<Speed>{
-
-
 protected:
-	
-	//! Constructor for speed
-	/*!
-		\param val the value for speed in m\s
-	*/
-	Speed(double value);
-	//double value;
+    //! @fn 	Speed::Speed(double value)
+    //!
+    //! @brief	Constuctor of a Speed
+    //!
+    //! @param	value the speed value in m\s
+    Speed(double value);
 public:
-  friend ADT_Base<Speed>;
-	//! Default constructor of a speed
-	Speed();
-  
-  //! Multiplies a speed by a double
-  /*!
-    \param n a double.
-    \param rhs a Speed.
-    \return the calculated speed.
-  */
-  friend Speed operator* ( double n, const Speed & rhs );
-  
-	//! Appends a speed to an std::ostream and returns the ostream
-  /*!
-    \param os the std::ostream to append to
-    \param rhs Object to append
-    \return std::ostream
-  */
-	friend std::ostream& operator<<(std::ostream & os, const Speed &rhs);
-	//! Reads a speed from an std::istream and returns the istream
-  /*!
-    \param os the std::istream to read it from;
-    \param rhs Object to read
-    \return std::istream
-  */
-	friend std::istream& operator>>(std::istream & is, Speed & rhs);
+    friend ADT_Base<Speed>;
+    //! @fn 	Speed::Speed()
+    //!
+    //! @brief	Default constructor of Speed
+    Speed();
 
-  //! Divides a Length by a duration.
-    /*!
-      \param l the length
-      \param d the duration
-      \return the calculated speed.
-  */
-	friend Speed operator/ ( const Length & l, const Duration & d);
+    //! @fn 	Speed operator* (double n, const Speed& rhs)
+    //!
+    //! @brief 	Multiplies a double by a Speed and returns a Speed
+    //! 
+    //! @param	n 		a double
+    //! @param	rhs 	the Speed that needs to be multiplied
+    //! @return Speed 	the result of the multiplication
+    friend Speed operator* ( double n, const Speed & rhs );
 
-  //! Multiplies a speed by a duration.
-    /*!
-      \param rhs a Duration.
-      \return the calculated length in meters.
-    */
-  Length operator*(const Duration & rhs) const;
+    //! @fn 	std::ostream operator<<(std::ostream& os, const Speed& rhs)
+    //! 
+    //! @brief	appends a Speed to an ostream and returns an ostream
+    //!
+    //! @param	os 		the outputstream
+    //! @param 	rhs 	the Speed that needs to be added to the outputstream
+    //! @return ostream the ostream with the appended Speed
+    friend std::ostream& operator<<(std::ostream & os, const Speed &rhs);
 
-  //! Multiplies a speed by a duration.
-    /*!
-      \param lhs a Duration.
-      \param rhs a Speed.
-      \return the calculated length in meters.
-    */
-  friend Length operator*(const Duration & lhs, const Speed & rhs);
+    //! @fn 	std::istream operator>>(std::istream& is, Speed & rhs)
+    //!
+    //! @brief	Reads a speed from an inputstream
+    //! 
+    //! @param	is 		the inputstream where the Speed is read from
+    //! @param	rhs 	the Speed where the readed value is stored in
+    //! @return istream the istream without the readed Speed    
+    friend std::istream& operator>>(std::istream & is, Speed & rhs);
+
+    //! @fn 	Speed operator/(const Length & l, const Duration & d)
+    //!
+    //!	@brief	Divides a length by a duration and returns the calculated Speed
+    //!
+    //! @param	l 		the Length that is divided by a Duration
+    //! @param	d 		the Duration that divides the Length
+    //! @return Speed 	the calculated Speed in m/s
+    friend Speed operator/ ( const Length & l, const Duration & d);
+
+    //! @fn 	Length Speed::operator*(const Duration & d)
+    //!
+    //!	@brief	Multiplies a Speed by a duration and returns the calculated Length
+    //!
+    //! @param	rhs		the Duration that is multiplied by a Speed
+    //! @return Length 	the calculated Length in m
+    Length operator*(const Duration & rhs) const;
+
+    //! @fn 	Length operator*(const Duration & lhs, const Speed & rhs)
+    //!
+    //!	@brief	Multiplies a Speed by a duration and returns the calculated Length
+    //!
+    //! @param	lhs		the Duration that is multiplied by a Speed
+    //! @param 	rhs 	the Speed that is multiplied by a Duration
+    //! @return Length 	the calculated Length in m
+    friend Length operator*(const Duration & lhs, const Speed & rhs);
 };
 
 Speed operator/ ( const Length & l, const Duration & d);
 #endif
-

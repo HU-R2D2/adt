@@ -1,14 +1,13 @@
 // ++--++
-// @file <filename>
+// @file <ADT_Base.hpp>
 // @date Created: <5-3-16>
-// @version <0.0.0>
+// @version <0.0.1>
 //
-// @author <full name>
 //
 // @section LICENSE
 // License: newBSD
 //
-// Copyright © 2016, HU University of Applied Sciences Utrecht.
+// Copyright Â© 2016, HU University of Applied Sciences Utrecht.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -31,7 +30,7 @@
 //! @author		Job Verhaar
 //! @date 		05-04-16
 //! @version 	0.1
-//! @brief		
+//! @brief		Base class for standard ADT classes with one value
 //!
 
 #ifndef _ADT_BASE_HPP
@@ -43,139 +42,152 @@ class Speed;
 template <class T> class ADT_Base
 {
 protected:
-	double value;
-	ADT_Base(double value):value{value}{}
+    double value;
+    //! @fn     ADT_Base::ADT_Base(double)
+    //! 
+    //! @brief  Constructor of a Weight
+    //!
+    //! @param  value the value to assign
+    ADT_Base(double value):value{value}{}
 public:
-	ADT_Base():value{0.0}{}
-	T& operator= (const T& rhs){
-		value = rhs.value;
-		return *static_cast<T*>(this);
-	}
-	
-	//! @fn		T::T(const T& rhs)
-	//!
-	//! @brief	Add operator of a T
-	//!
-	//! @param	number the number to add to the T
-	T operator+ (const T& rhs) const{
-		return T{value + rhs.value};
-	} 
+    //! @fn      ADT_Base::ADT_Base()
+    //!
+    //! @brief   Default constructor
+    ADT_Base():value{0.0}{}
 
-	//! @fn	T::T(const T& rhs)
-	//!
-	//! @brief	Add assign operator of a T
-	//!
-	//! @param	number the number to add to the T 
+    //! @fn     T& ADT_Base::operator=(cost T& rhs)
+    //! 
+    //! @brief  Assignment operator for a T
+    //!
+    //! @param  T the T that is assigned to the other
+    T& operator= (const T& rhs){
+        value = rhs.value;
+        return *static_cast<T*>(this);
+    }
 
-	T& operator+= (const T& rhs){
-		value += rhs.value;
-  		return *static_cast<T*>(this);
-	}
-	
-	//! @fn		T::T(const T& rhs)
-	//!
-	//! @brief	substract operator of a T
-	//!
-	//! @param	number the number to subtrackt from the T
-	T operator- (const T& rhs) const{
-		return T{value - rhs.value};
-	}
-	
-	//! @fn		T::T(const T& rhs)
-	//!
-	//! @brief	subtract assign operator of a T
-	//!
-	//! @param	number 		the number to subtract from the T
-	T& operator-= ( const T& rhs){
-		value -= rhs.value;
-  		return *static_cast<T*>(this);
-	}
+    //! @fn		ADT_Base::operator+(const T& rhs)
+    //!
+    //! @brief	Add operator of a T
+    //!
+    //! @param	number the number to add to the T
+    T operator+ (const T& rhs) const{
+        return T{value + rhs.value};
+    } 
 
-	//! @fn		T::T(const T& rhs)
-	//!
-	//! @brief	multiply operator of a T
-	//!
-	//! @param	number the number to multyply the T by
-	T operator* (double number) const{
-		return T{value * number};
-	}
+    //! @fn	    ADT_Base::operator+=(const T& rhs)
+    //!
+    //! @brief	Add assign operator of a T
+    //!
+    //! @param	number the number to add to the T 
+    T& operator+= (const T& rhs){
+        value += rhs.value;
+        return *static_cast<T*>(this);
+    }
 
-	//! @fn		T::T(const T& rhs)
-	//!
-	//! @brief	multiply operator of a T
-	//!
-	//! @param	number the number to multyply the T by
-	T operator*= (double number){
-		value *= number;
-		return *static_cast<T*>(this);
-	}
-	
-	//! @fn 	T::T(const T& rhs)
-	//!
-	//! @brief	division operator of a T
-	//!
-	//! @param	number the number to devide the T by
-	T operator/ (double number) const{
-		if(number != 0){
-    		return T{value / number};
-  		}
-  		return T{value};
-	}
+    //! @fn		ADT_Base::operator-(const T& rhs)
+    //!
+    //! @brief	substract operator of a T
+    //!
+    //! @param	number the number to subtrackt from the T
+    T operator- (const T& rhs) const{
+        return T{value - rhs.value};
+    }
 
-	//! @fn 	T::T(const T& rhs)
-	//!
-	//! @brief	division operator of a T
-	//!
-	//! @param	number the number to devide the T by
-	T operator/= (double number){
-		if(number != 0){
-    		value /= number;
-  		} 
-  		return *static_cast<T*>(this);
-	}
-	
-	//! @fn 	T::T(const T& rhs)
-	//!
-	//! @brief	division operator of a T
-	//!
-	//! @param	number the number to devide the T by
-	double operator/ (const T & rhs) const{
-		if(rhs.value != 0){
-			return value / rhs.value;
-		}
-		return value;
-	}
+    //! @fn		ADT_Base::operator-=(const T& rhs)
+    //!
+    //! @brief	subtract assign operator of a T
+    //!
+    //! @param	number 		the number to subtract from the T
+    T& operator-= ( const T& rhs){
+        value -= rhs.value;
+        return *static_cast<T*>(this);
+    }
 
-	//! Multiplies a speed by a double
-    /*!
-      \param n a double.
-      \param rhs a Speed.
-      \return the calculated speed.
-    */
+    //! @fn		ADT_Base::operator*(double number)
+    //!
+    //! @brief	multiply operator of a T
+    //!
+    //! @param	number the number to multyply the T by
+    T operator* (double number) const{
+        return T{value * number};
+    }
 
-	friend T operator * (double n, const T & rhs){
-		return T{n * rhs.value};
-	}
-	
-	
-	//! @fn		T::T(const T& rhs)
-	//!
-	//! @brief	greater then operator of a T
-	//!
-	//! @param	rhs 		the right hand side to compare 
-	bool operator> (const T& rhs) const{
-		return value > rhs.value;
-	}
+    //! @fn		ADT_Base::operator*=(double number)
+    //!
+    //! @brief	multiply operator of a T
+    //!
+    //! @param	number the number to multyply the T by
+    T operator*= (double number){
+        value *= number;
+        return *static_cast<T*>(this);
+    }
 
-	//! @fn		T::T(const T& rhs)
-	//!
-	//! @brief	smaller then operator of a T
-	//!
-	//! @param	rhs 		the right hand side to compare 
-	bool operator< (const T& rhs) const{
-		return value < rhs.value;
-	}
-	
+    //! @fn 	ADT_Base::operator/(double number)
+    //!
+    //! @brief	division operator of a T
+    //!
+    //! @param	number the number to devide the T by
+    T operator/ (double number) const{
+        if(number != 0){
+        return T{value / number};
+        }
+        return T{value};
+    }
+
+    //! @fn 	ADT_Base::operator/=(const T& rhs)
+    //!
+    //! @brief	division operator of a T
+    //!
+    //! @param	number the number to devide the T by
+    T operator/= (double number){
+        if(number != 0){
+            value /= number;
+        } 
+        return *static_cast<T*>(this);
+    }
+
+    //! @fn 	ADT_Base::operator/(const T& rhs)
+    //!
+    //! @brief	division operator of a T
+    //!
+    //! @param	number the number to devide the T by
+    double operator/ (const T & rhs) const{
+        if(rhs.value != 0){
+            return value / rhs.value;
+        }
+        return value;
+    }
+
+    //! @fn     T operator *(double n, const T& rhs)
+    //!
+    //! @brief  Multiplies a T by a double
+    //!
+    //! @param n a double.
+    //! @param rhs a T.
+    //! @return the calculated T.
+    friend T operator * (double n, const T & rhs){
+        return T{n * rhs.value};
+    }
+
+
+    //! @fn		T::T(const T& rhs)
+    //!
+    //! @brief	greater then operator of a T
+    //!
+    //! @param	rhs 		the right hand side to compare 
+    bool operator> (const T& rhs) const{
+        return value > rhs.value;
+    }
+
+    //! @fn		T::T(const T& rhs)
+    //!
+    //! @brief	smaller then operator of a T
+    //!
+    //! @param	rhs 		the right hand side to compare 
+    bool operator< (const T& rhs) const{
+        return value < rhs.value;
+    }
+
 };
 
 #endif

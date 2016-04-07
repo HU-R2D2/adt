@@ -148,13 +148,5 @@ private:
 };
 // Dummy for test of Moment, cannot be removed because of tests. Should be removed when added to the real clock
 #include <ctime>
-class test_Clock{
-public:
-	Moment getMoment()	{
-		return Moment(time(0));
-	}
-	Moment getMoment(double time)	{
-		return Moment(time);
-	}
-};
+
 #endif 
