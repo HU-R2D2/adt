@@ -86,12 +86,13 @@ class Length: public ADT_Base<Length>{
         //!
         //! @brief  appends a Length to an ostream and returns an ostream
         //!
-        //! @param  os The stream to which to write the string representation of the length
+        //! @param  os  The stream to which to write the string representation
+        //!             of the length
         //! @param  rhs Reference to the object to write to the outputstream
         //! @return	ostream Reference to the stream passed in by os
         friend std::ostream& operator<< (std:: ostream& os, const Length& rhs);
 
-        //! @fn     std::istream& Length::operator>>(std::istream& is, Length& rhs)
+        //! @fn  std::istream& Length::operator>>(std::istream& is,Length& rhs)
         //!
         //! @brief  adds an istream to a Length
         //!
