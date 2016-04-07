@@ -59,12 +59,12 @@ std::istream & operator>>(std::istream & lhs, Duration & rhs) {
     double seconds;
     lhs >> std::ws >> prefix;
     if (prefix != "Duration") {
-        throw std::runtime_error{
+        throw std::invalid_argument{
             "Expecting prefix \"duration\", got something else."};
     }
     lhs >> seconds;
     if (!lhs) {
-        throw std::runtime_error{
+        throw std::invalid_argument{
             "Duration wasn't read in its entirety when end of stream was reached."};
     }
     rhs.value = seconds;

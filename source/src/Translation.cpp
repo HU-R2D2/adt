@@ -162,14 +162,14 @@ std::istream & operator >>(std::istream & lhs, Translation & rhs) {
    std::string prefix;
    lhs >> std::ws >> prefix;
    if (prefix != "Translation") {
-      throw std::runtime_error{
+      throw std::invalid_argument{
           "Expecting prefix\"Translation\",got something else(" + prefix + ")."
           };
    }
    char temp;
    lhs >> std::ws >> temp;
    if (temp != '(') {
-      throw std::runtime_error{"No opening brace encountered"};
+      throw std::invalid_argument{"No opening brace encountered"};
    }
 
    Length x, y, z;
@@ -179,7 +179,7 @@ std::istream & operator >>(std::istream & lhs, Translation & rhs) {
       char separator;
       lhs >> value >> separator;
       if(separator != expectedSeperator){
-         throw std::runtime_error{"Wrong or missing seperator."};
+         throw std::invalid_argument{"Wrong or missing seperator."};
       }
       return value;
    };
@@ -188,7 +188,7 @@ std::istream & operator >>(std::istream & lhs, Translation & rhs) {
    z = ReadComponent(lhs, ')');
 
    if (!lhs) {
-      throw std::runtime_error{
+      throw std::invalid_argument{
           "Translation wasn't read in its entirety when end of stream was reached."
           };
    }
