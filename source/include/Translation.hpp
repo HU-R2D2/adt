@@ -110,21 +110,25 @@ class Translation {
                  
         Translation& operator= (const Translation& rhs);
 		
-        //! @fn     Translation Translation::operator+ (const Translation& rhs) const
+        //! @fn Translation Translation::operator+(const Translation& rhs) const
         //!
         //! @brief  Add operator of a Translation
         //!
-        //! @param  rhs     The right hand sight Translation, this one is being added to another Translation
-        //! @return	Translation	The Translation on which the add operator was called
+        //! @param  rhs     The right hand sight Translation, this one is being
+        //!                 added to another Translation
+        //! @return	Translation	The Translation on which the add operator
+        //!                     was called
                  
         Translation operator+ (const Translation& rhs) const;
 		
-        //! @fn     Translation Translation::operator- (const Translation& rhs) const
+        //! @fn Translation Translation::operator-(const Translation& rhs) const
         //!
         //! @brief  Substract operator of a Translation
         //!
-        //! @param  rhs     The right hand sight Translation, this one is being substracted from another Translation
-        //! @return	Translation	The Translation on which the substract operator was called
+        //! @param  rhs     The right hand sight Translation, this one is being
+        //!                 substracted from another Translation
+        //! @return	Translation	The Translation on which the substract operator
+        //!                     was called
                  
         Translation operator- (const Translation& rhs) const;
 		
@@ -132,26 +136,33 @@ class Translation {
         //!
         //! @brief  Multiply operator of a Translation
         //!
-        //! @param  number  The number by which the Translation is being multiplied
-        //! @return	Translation	The Translation on which the multiply operator was called
+        //! @param  number  The number by which the Translation is being
+        //!                 multiplied
+        //! @return	Translation	The Translation on which the multiply 
+        //!                     operator was called
                  
         Translation operator * (double number) const;
 		
-        //! @fn     Translation Translation::operator* (double number, const Translation& rhs)
+        //! @fn     Translation Translation::operator* (double number
+        //!         const Translation& rhs)
         //!
         //! @brief  Multiply operator of a Translation
         //!
-        //! @param  number  The number by which the Translation is being multiplied
-        //! @return	Translation	The Translation on which the multiply operator was called
+        //! @param  number  The number by which the Translation is
+        //!                 being multiplied
+        //! @return	Translation	The Translation on which the multiply operator
+        //!                     was called
                 
         friend Translation operator* (double number, const Translation& rhs);
                 
-        //! @fn     Translation Translation::operator/ (double number, const Translation& rhs)
+        //! @fn     Translation Translation::operator/ (double number,
+        //!         const Translation& rhs)
         //!
         //! @brief  Division operator of a Translation
         //!
         //! @param  number  The number by which the Translation is being divided
-        //! @return	Translation	The Translation on which the division operator was called
+        //! @return	Translation	The Translation on which the division 
+        //!                     operator was called
                  
         friend Translation operator/ (double number, const Translation& rhs);
 		
@@ -159,26 +170,31 @@ class Translation {
         //!
         //! @brief  Division operator of a Translation
         //!
-        //! @param  number  The number by which the Translation is being divided
-        //! @return	Translation	The Translation on which the division operator was called
+        //! @param  number The number by which the Translation is being divided
+        //! @return	Translation	The Translation on which the division 
+        //!                     operator was called
                  
         Translation operator/ (double number) const;
                 
-        //! @fn     Translation& Translation::operator+= (const Translation& rhs)
+        //! @fn    Translation& Translation::operator+=(const Translation& rhs)
         //!
         //! @brief  AddAssign operator of a Translation
         //!
-        //! @param  rhs     The right hand sight Translation, this one is being added to another Translation
-        //! @return	Translation& Reference to the Translation on which the addAssignment operator was called
+        //! @param  rhs     The right hand sight Translation, this one is being
+        //!                 added to another Translation
+        //! @return	Translation& Reference to the Translation on which the
+        //!                      addAssignment operator was called
                     
         Translation& operator+= (const Translation& rhs);
 		
-        //! @fn     Translation& Translation::operator-= (const Translation& rhs)
+        //! @fn    Translation& Translation::operator-=(const Translation& rhs)
         //!
         //! @brief  SubstractAssign operator of a Translation
         //!
-        //! @param  rhs	    The right hand sight Translation, this one is being substracted from another Translation
-        //! @return	Translation& Reference to the Translation on which the substractAssignment operator was called
+        //! @param  rhs	    The right hand sight Translation, this one is being
+        //!                 substracted from another Translation
+        //! @return	Translation& Reference to the Translation on which the
+        //!                      substractAssignment operator was called
                     
         Translation& operator-= (const Translation& rhs);
                 
@@ -186,7 +202,8 @@ class Translation {
         //!
         //! @brief  GreaterThan operator of a Translation
         //!
-        //! @param  rhs     The right hand sight Translation, this one will be compared to another Translation
+        //! @param  rhs     The right hand sight Translation, this one will be
+        //!                 compared to another Translation
         //! @return	bool    True if length is greater, False if not
                  
         bool operator> (const Translation& rhs) const;
@@ -195,33 +212,40 @@ class Translation {
         //!
         //! @brief  LessThan operator of a Translation
         //!
-        //! @param  rhs     The right hand sight Translation, this one will be compared to another Translation
+        //! @param  rhs     The right hand sight Translation, this one will be
+        //!                 compared to another Translation
         //! @return	bool    True if length is smaller, False if not
                  
         bool operator< (const Translation& rhs) const;
                 
-        //! @fn     std::ostream& Translation::operator<< (std::ostream& lhs, const Translation& rhs) const
+        //! @fn     std::ostream& Translation::operator<< (std::ostream& lhs,
+        //!                       const Translation& rhs) const
         //!
         //! @brief  Output operator of a Translation
         //!
-        //! @param  lhs     The left hand sight ostream, to this ostream the Translation will be added
-        //! @param  rhs     The right hand sight Translation, this one will be added to the lhs ostream
+        //! @param  lhs     The left hand sight ostream, to this ostream the
+        //!                 Translation will be added
+        //! @param  rhs     The right hand sight Translation, this one will
+        //!                 be added to the lhs ostream
         //! @return	ostream& Reference to the tweaked lhs ostream
                  
         friend std::ostream& operator<< (std::ostream& lhs, Translation& rhs);
 
-        //! @fn     Translation& Translation::operator>>(std::istream& lhs, Translation& rhs)
+        //! @fn     Translation&    Translation::operator>>(std::istream& lhs,
+        //!                         Translation& rhs)
         //!
         //! @brief  Input operator of a Translation
         //!
-        //! @param  lhs     The istream, from this istream the Translation will be adapted
-        //! @param  rhs     The right hand sight Translation, this one will be adapted by the lhs istream
-        //! @return	Translation& Reference to rhs Translation which is adapted by information from the lhs
-                 
+        //! @param  lhs     The istream, from this istream the Translation
+        //!                 will be adapted
+        //! @param  rhs     The right hand sight Translation, this one will
+        //!                 be adapted by the lhs istream
+        //! @return	Translation& Reference to rhs Translation which is adapted
+        //!                      by information from the lhs
+               
         friend std::istream& operator>>(std::istream& lhs, Translation& rhs);
                 
     private:
             Length x,y,z;
 };
-
 #endif
