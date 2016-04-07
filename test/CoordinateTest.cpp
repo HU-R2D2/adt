@@ -182,7 +182,7 @@ TEST(Coordinate, ReadFrom) {
             stream >> coord;
             FAIL() << "Parsing \"" << failure <<
                    "\" to a coordinate should not be possible." << std::endl;
-        } catch (CoordinateException &e) {
+        } catch (std::invalid_argument &e) {
             // Behaves as expected.
             ASSERT_DOUBLE_EQ(15, coord.get_x() /
                                  Length::METER) << "X value was modified despite the promise";

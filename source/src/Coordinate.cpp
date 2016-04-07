@@ -39,16 +39,6 @@
 #include <string>
 #include <stdexcept>
 
-CoordinateException::CoordinateException(const char *message)
-        : std::runtime_error{message} {
-    // No need for anything in the body.
-}
-
-CoordinateException::CoordinateException(const std::string &message)
-        : std::runtime_error{message} {
-    // No need for anything in the body.
-}
-
 const Coordinate Coordinate::origin(
         0.0 * Length::METER, 0.0 * Length::METER, 0.0 * Length::METER);
 
@@ -104,14 +94,14 @@ std::istream &operator>>(std::istream &lhs, Coordinate &rhs) {
     std::string prefix;
     lhs >> std::ws >> prefix;
     if (prefix != "coordinate") {
-        throw CoordinateException{
+        throw std::invalid_argument{
                 "Expecting prefix \"coordinate\", got something else (" +
                 prefix + ")."};
     }
     char temp;
     lhs >> std::ws >> temp;
     if (temp != '(') {
-        throw CoordinateException{"No opening brace encountered"};
+        throw std::invalid_argument{"No opening brace encountered"};
     }
 
     // To guarantee the coordinate remains unchanged when an error occurs,
@@ -126,7 +116,7 @@ std::istream &operator>>(std::istream &lhs, Coordinate &rhs) {
         char separator;
         lhs >> value >> separator;
         if (separator != expectedSeperator) {
-            throw CoordinateException{"Wrong or missing seperator."};
+            throw std::invalid_argument{"Wrong or missing seperator."};
         }
         return value;
     };
@@ -135,7 +125,7 @@ std::istream &operator>>(std::istream &lhs, Coordinate &rhs) {
     z = ReadComponent(lhs, ')');
 
     if (!lhs) {
-        throw CoordinateException{
+        throw std::invalid_argument{
                 "Coordinate wasn't read in its entirety when end of stream was reached."};
     }
 
