@@ -33,8 +33,10 @@
 Moment::Moment( ) {
 }
 Moment::Moment(double value) throw (MomentException) :  ADT_Base{value} {
-   if(this->value < 0)
+   if(this->value < 0)  {
       throw MomentException("Moment exception");
+   }
+      
 }
 Moment& Moment::operator= (const Moment& m)  {
    if(&m == this) {
