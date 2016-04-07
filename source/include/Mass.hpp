@@ -32,7 +32,7 @@
 //! @author		Job Verhaar
 //! @date 		04-04-16
 //! @version 	0.1
-//! @brief		Mass is a .....
+//! @brief		Mass is a abstract data type to represent the KG.
 //!
 
 #ifndef _Mass_HPP
@@ -85,6 +85,7 @@ public:
     //! @return The calcukated Mass
     friend Mass operator* (double n, const Mass& rhs);
 
+    //! Statics for forcing using the right SI-value
     static const Mass KILOGRAM;
     static const Mass GRAM;
 };

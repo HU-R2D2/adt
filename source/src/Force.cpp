@@ -74,7 +74,8 @@ std::istream& operator>>(std::istream & is, Force & rhs){
       }
    }
    // Specifies all available suffixes, and which value corresponds to it.
-   const struct {std::string suffix; const Force & factor;} possible_suffixes[] = {
+   const struct {std::string suffix; 
+     const Force & factor;} possible_suffixes[] = {
          {"N", Force::NEWTON}
    };
    for (const auto & possibility : possible_suffixes) {
@@ -83,7 +84,8 @@ std::istream& operator>>(std::istream & is, Force & rhs){
          return is;
       }
    }
-   throw std::runtime_error{"Length: Either stream ended, or none of the known extensions match the specified one."};
+   throw std::invalid_argument{"Force: Either stream ended, or none of the 
+    known extensions match the specified one."};
 }
 
 Force operator* ( const Mass & lhs, const Acceleration & rhs){
