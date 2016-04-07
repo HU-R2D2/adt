@@ -55,13 +55,13 @@ std::istream & operator >>(std::istream & lhs, Acceleration & rhs) {
     std::string prefix;
     lhs >> std::ws >> prefix;
     if (prefix != "acceleration") {
-        throw std::runtime_error{"Expecting prefix \"acceleration\","
+        throw std::invalid_argument{"Expecting prefix \"acceleration\","
             "got something else."};
     }
     char temp;
     lhs >> std::ws >> temp;
     if (temp != '(') {
-        throw std::runtime_error{"No opening brace encountered"};
+        throw std::invalid_argument{"No opening brace encountered"};
     }
 
     // To guarantee the box remains unchanged when an error occurs,
@@ -85,7 +85,7 @@ std::istream & operator >>(std::istream & lhs, Acceleration & rhs) {
     acceleration = ReadComponent(lhs, 'm');
 
     if (!lhs) {
-        throw std::runtime_error{"Acceleration wasn't read in its entirety"
+        throw std::invalid_argument{"Acceleration wasn't read in its entirety"
             " when end of stream was reached. "};
     }
 
