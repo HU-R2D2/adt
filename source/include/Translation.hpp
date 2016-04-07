@@ -1,3 +1,32 @@
+// ++--++
+// @file <filename>
+// @date Created: <5-3-16>
+// @version <0.0.0>
+//
+// @author <full name>
+//
+// @section LICENSE
+// License: newBSD
+//
+// Copyright © 2016, HU University of Applied Sciences Utrecht.
+// All rights reserved.
+//
+// Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+// - Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+// - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+// - Neither the name of the HU University of Applied Sciences Utrecht nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE HU UNIVERSITY OF APPLIED SCIENCES UTRECHT
+// BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+// GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+// HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+// LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+// OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+// ++--++
 //!
 //! @author		Remco Nijkamp
 //! @date 		14-03-16
@@ -17,6 +46,7 @@ class Coordinate;
 
 class Translation {
 	friend class Coordinate;
+	friend class Box;
 	public:
 		//! @fn 		Translation::Translation()
 		//!
@@ -65,32 +95,6 @@ class Translation {
 		 //! @return	Length		The absolute Length of the Translation
 		 
 		Length get_length() const;
-		
-		
-		 //! @fn		void Translation::set_x(Length x)
-		 //!
-		 //! @brief		Sets the x Length value of the Translation to the given value
-		 //!
-		 //! @param		x			The x Lengthof the Translation
-		 
-		void set_x(Length x);
-		
-		 //! @fn		void Translation::set_y(Length y)
-		 //!
-		 //! @brief		Sets the y Length value of the Translation to the given value
-		 //!
-		 //! @param		y			The y Length of the Translation
-		 
-		void set_y(Length y);
-		
-		 //! @fn		void Translation::set_z(Length z)
-		 //!
-		 //! @brief		Sets the z Length value of the Translation to the given value
-		 //!
-		 //! @param		z			The z Length of the Translation
-		 
-		void set_z(Length z);
-	
 		
 		 //! @fn		Translation& Translation::operator= (const Translation& rhs)
 		 //!
@@ -191,29 +195,28 @@ class Translation {
 		 
 		bool operator< (const Translation& rhs) const;
 		
+		 //! @fn		std::ostream& Translation::operator<< (std::ostream& lhs, const Translation& rhs) const
+		 //!
+		 //! @brief		Output operator of a Translation
+		 //!
+		 //! @param		lhs			The left hand sight ostream, to this ostream the Translation will be added
+		 //! @param		rhs			The right hand sight Translation, this one will be added to the lhs ostream
+		 //! @return	ostream&	Reference to the tweaked lhs ostream
+		 
+		friend std::ostream& operator<< (std::ostream& lhs, Translation& rhs);
+
+		 //! @fn		Translation& Translation::operator>>(std::istream& lhs, Translation& rhs)
+		 //!
+		 //! @brief		Input operator of a Translation
+		 //!
+		 //! @param		lhs			The istream, from this istream the Translation will be adapted
+		 //! @param		rhs			The right hand sight Translation, this one will be adapted by the lhs istream
+		 //! @return	Translation&	Reference to rhs Translation which is adapted by information from the lhs
+		 
+		friend std::istream& operator>>(std::istream& lhs, Translation& rhs);
+		
 	private:
 		Length x,y,z;
 };
-
-
- //! @fn		std::ostream& Translation::operator<< (std::ostream& lhs, const Translation& rhs) const
- //!
- //! @brief		Output operator of a Translation
- //!
- //! @param		lhs			The left hand sight ostream, to this ostream the Translation will be added
- //! @param		rhs			The right hand sight Translation, this one will be added to the lhs ostream
- //! @return	ostream&	Reference to the tweaked lhs ostream
- 
-std::ostream& operator<< (std::ostream& lhs, Translation& rhs);
-
- //! @fn		Translation& Translation::operator>>(std::istream& lhs, Translation& rhs)
- //!
- //! @brief		Input operator of a Translation
- //!
- //! @param		input		The istream, from this istream the Translation will be adapted
- //! @param		rhs			The right hand sight Translation, this one will be adapted by the lhs istream
- //! @return	Translation&	Reference to rhs Translation which is adapted by information from the lhs
- 
-Translation& operator>>(std::istream& input, Translation& rhs);
 
 #endif
