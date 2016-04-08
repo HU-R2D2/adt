@@ -36,7 +36,7 @@
 // OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ////
 
-#include "Attitude.hpp"
+#include "Delta_Attitude.hpp"
 
 
 Delta_Attitude( double x, double y, double z ){
@@ -56,13 +56,26 @@ Delta_Attitude &Delta_Attitude::operator=( const Delta_Attitude &rhs ){
 
 Delta_Attitude &Delta_Attitude::operator+=( const Delta_Attitude &rhs ){
     Delta_Attitude temp{ this* };
+    temp.x += rhs.x;
+    temp.y += rhs.y;
+    temp.z += rhs.z;
+    return temp
+}
+
+Delta_Attitude &Delta_Attitude::operator-=( const Delta_Attitude &rhs ){
+    Delta_Attitude temp{ this* };
+    temp.x -= rhs.x;
+    temp.y -= rhs.y;
+    temp.z -= rhs.z;
+    return temp
+}
+
+Delta_Attitude &Delta_Attitude::operator*=( const double &rhs ){
 
 }
-Delta_Attitude &Delta_Attitude::operator-=( const Delta_Attitude &rhs )
-Delta_Attitude &Delta_Attitude::operator*=( const Length &rhs )
 Delta_Attitide &Delta_Attitude::operator/=( const double &rhs )
-Delta_Attitude Delta_Attitude::operator*( const Length &rhs )
-double Delta_Attitude::operator/( const Length &rhs)
+Delta_Attitude Delta_Attitude::operator*( const double &rhs )
+double Delta_Attitude::operator/( const double &rhs)
 Delta_Attitude Delta_Attitude::operator/( const double &rhs )
 Delta_Attitude Delta_Attitude::operator+( const Delta_Attitude &rhs )
 Delta_Attitude Delta_Attitude::operator-( const Delta_Attitude &rhs )

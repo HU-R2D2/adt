@@ -44,19 +44,19 @@
 #include "Angle.hpp"
 #include "Delta_Attitude.hpp"
 
-#define M_PI 3.14159265358979323846
-
 class Attitude{
     private:
+
+        constexpr double M_PI = 3.14159265358979323846;
 
         //! using x = pitch, y = yaw, z = roll
         double x,y,z;
 
         //! positive value describing possible deviation from middle in either direction
-        const double angle_amp = M_PI;
+        constexpr double angle_amp = M_PI;
 
         //! set to 0 to have the values range from -pi to pi, or to pi to have them range from 0 to 2 * pi
-        const double middle_angle = M_PI;
+        constexpr double middle_angle = M_PI;
 
     public:
         //!@brief 
