@@ -37,7 +37,7 @@
 #include "gtest/gtest.h"
 #include "../source/include/Duration.hpp"
 #include <iostream>
-
+using namespace r2d2;
 TEST(Duration, DefaultConstructor) {
     Duration a;
     ASSERT_DOUBLE_EQ(a.get_seconds() , 0.0) << "seconds";

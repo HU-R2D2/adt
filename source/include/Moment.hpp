@@ -46,6 +46,7 @@ using namespace std;
 //! @brief Created specifically for the Moment class, 
 //!      it is meant as it's exception.
 //! @date 05-04-2016
+namespace r2d2{
 class MomentException : public invalid_argument
 {
 public:
@@ -139,4 +140,5 @@ private:
    //! @exception <MomentException> Thrown when a time is given < 0
    Moment(double time) throw (MomentException); // must be private
 };
+}
 #endif 

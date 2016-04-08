@@ -35,6 +35,7 @@
 //! OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF 
 //! THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "../include/Translation.hpp"
+namespace r2d2{
 Translation::Translation():
     x(0),
     y(0),
@@ -196,4 +197,5 @@ std::istream & operator >>(std::istream & lhs, Translation & rhs) {
    rhs.y = y;
    rhs.z = z;
    return lhs;
+}
 }

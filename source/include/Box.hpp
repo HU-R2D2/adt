@@ -43,6 +43,7 @@
 #include "Translation.hpp"
 #include <iostream>
 
+namespace r2d2{
 //! @class Box
 //! @brief          A 3D rectangular box in space, which is aligned to 3 axises.
 class Box final {
@@ -136,6 +137,6 @@ private:
     Coordinate topRight;
     friend class Translation;
 };
-
+}
 #endif  // _BOX_HPP
 

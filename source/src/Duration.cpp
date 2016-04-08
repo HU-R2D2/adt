@@ -37,6 +37,7 @@
 #include "../include/Duration.hpp"
 #include <stdexcept>
 
+namespace r2d2{
 const Duration Duration::SECOND(1.0);
 const Duration Duration::MILLISECOND(1.0/1000.0);
 const Duration Duration::MINUTE(60.0);
@@ -73,4 +74,5 @@ std::istream & operator>>(std::istream & lhs, Duration & rhs) {
 
 double Duration::get_seconds() const {
     return value;
+}
 }

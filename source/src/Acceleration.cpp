@@ -39,7 +39,7 @@
 #include "../include/Acceleration.hpp"
 
 #include <iostream>
-
+namespace r2d2{
 Acceleration::Acceleration():ADT_Base<Acceleration>(0.0){}
 
 Acceleration::Acceleration(double value):ADT_Base<Acceleration>(value){}
@@ -103,4 +103,5 @@ Acceleration operator/ (const Speed & s, const Duration & d) {
         return Acceleration{0.0};
     }
     return Acceleration{ speedValue / durationValue };  
+}
 }

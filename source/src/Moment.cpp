@@ -30,6 +30,7 @@
 // ++--++
 #include "../include/Moment.hpp"
 
+namespace r2d2{
 Moment::Moment( ) {
 }
 Moment::Moment(double value) throw (MomentException) :  ADT_Base{value} {
@@ -110,4 +111,5 @@ istream& operator>> (istream & lhs, Moment & rhs)  {
    }
    rhs.value = read_error;
    return lhs;
+}
 }
