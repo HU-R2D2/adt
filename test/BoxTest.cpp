@@ -40,6 +40,8 @@
 #include "gtest/gtest.h"
 #include <iostream>
 
+using namespace r2d2;
+
 TEST(Box, Constructor)
 {
     Coordinate bl = Coordinate::origin;

@@ -35,11 +35,12 @@
 #include <iostream>
 using namespace std;
 //using namespace adt;
-
+using namespace r2d2;
 /**
    Moment Tests
 
 */
+namespace r2d2{
 class test_Clock{
 public:
    Moment getMoment()   {
@@ -49,6 +50,7 @@ public:
       return Moment(time);
    }
 };
+}
 test_Clock test_clock;
 TEST(Moment,  Constructors) {
    Moment m1;

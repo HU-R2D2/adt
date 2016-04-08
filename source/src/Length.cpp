@@ -38,6 +38,7 @@
 #include "../include/Length.hpp"
 #include <stdexcept>
 
+namespace r2d2{
 const Length Length::METER(1.0);
 const Length Length::CENTIMETER(1.0/100.0);
 
@@ -94,4 +95,5 @@ std::istream& operator>>( std::istream& is, Length& rhs) {
         }
     }
     throw std::invalid_argument{"Length: Either stream ended, or none of the known extensions match the specified one."};
+}
 }

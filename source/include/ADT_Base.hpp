@@ -36,8 +36,8 @@
 #ifndef _ADT_BASE_HPP
 #define _ADT_BASE_HPP
 
-class Speed;
 
+namespace r2d2{
 template <class T> class ADT_Base
 {
 protected:
@@ -188,5 +188,5 @@ public:
     }
 
 };
-
+}
 #endif

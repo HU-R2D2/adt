@@ -40,6 +40,7 @@
 
 #include <iostream>
 
+namespace r2d2{
 class Angle {
 private:
 
@@ -143,5 +144,5 @@ public:
     static const Angle rad;
     static const Angle deg;
 };
-
+}
 #endif

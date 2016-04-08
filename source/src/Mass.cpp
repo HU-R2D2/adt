@@ -31,6 +31,7 @@
 #include "../include/Mass.hpp"
 #include <stdexcept>
 
+namespace r2d2{
 //constants
 const Mass Mass::KILOGRAM(1);
 const Mass Mass::GRAM(1/1000);
@@ -82,4 +83,4 @@ std::istream& operator>>(std::istream& is, Mass& rhs){
     throw std::invalid_argument{"Length: Either stream ended, or none of the \
     known extensions match the specified one."};
 }
-
+}

@@ -30,6 +30,7 @@
 ////
 #include "../include/Speed.hpp"
 // Constructors
+namespace r2d2{
 Speed::Speed(double value): ADT_Base<Speed>(value){}
 
 // Operators
@@ -78,4 +79,5 @@ std::istream& operator>>(std::istream & is, Speed & rhs){
     }
     throw std::invalid_argument{"Speed: Either stream ended, or none of the \
     known extensions match the specified one."};
+}
 }

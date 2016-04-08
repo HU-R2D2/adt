@@ -39,7 +39,7 @@
 #include "../include/Angle.hpp"
 #include <math.h>
 
-
+namespace r2d2{
 const Angle Angle::rad{1};
 const Angle Angle::deg{M_PI / 180};
 
@@ -120,4 +120,5 @@ double Angle::get_angle() {
 
 Angle operator*(const double &lhs, const Angle &rhs) {
     return Angle{rhs} *= lhs;
+}
 }

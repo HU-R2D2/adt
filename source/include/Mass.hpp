@@ -41,7 +41,8 @@
 #include "ADT_Base.hpp"
 
 #include <iostream> 
-
+ 
+namespace r2d2{
 class Mass : public ADT_Base<Mass>{
 protected:
     //! @fn     Mass::Mass(double l)
@@ -89,4 +90,5 @@ public:
     static const Mass KILOGRAM;
     static const Mass GRAM;
 };
+}
 #endif

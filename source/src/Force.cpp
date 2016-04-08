@@ -30,6 +30,7 @@
 // ++--++
 #include "../include/Force.hpp"
 
+namespace r2d2{
 const Force Force::NEWTON(1);
 Force::Force(double value):ADT_Base<Force>(value){
 }
@@ -95,4 +96,5 @@ Force operator* ( const Mass & lhs, const Acceleration & rhs){
   Acceleration ac = one/Duration::SECOND;
   double a = rhs/ac;
   return Force{w * a};
+}
 }

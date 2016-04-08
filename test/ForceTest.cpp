@@ -38,7 +38,7 @@
 //static const Force Force::NEWTON = 1 * Weight::KILOGRAM * ac;
 //Assign
 
-
+using namespace r2d2;
 TEST(Force, Assign){
 	Force a = 5 * Force::NEWTON;
 	ASSERT_DOUBLE_EQ(a/(Force::NEWTON), 5) << "Force created";
