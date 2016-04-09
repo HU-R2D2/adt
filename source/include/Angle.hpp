@@ -1,11 +1,11 @@
 ////
 //  ██████╗  ██████╗ ██████╗  ██████╗ ██████╗ ███████╗███████╗ ██████╗██╗   ██╗███████╗
 //  ██╔══██╗██╔═══██╗██╔══██╗██╔═══██╗██╔══██╗██╔════╝██╔════╝██╔════╝██║   ██║██╔════╝
-//  ██████╔╝██║   ██║██████╔╝██║   ██║██████╔╝█████╗  ███████╗██║     ██║   ██║█████╗  
-//  ██╔══██╗██║   ██║██╔══██╗██║   ██║██╔══██╗██╔══╝  ╚════██║██║     ██║   ██║██╔══╝  
+//  ██████╔╝██║   ██║██████╔╝██║   ██║██████╔╝█████╗  ███████╗██║     ██║   ██║█████╗
+//  ██╔══██╗██║   ██║██╔══██╗██║   ██║██╔══██╗██╔══╝  ╚════██║██║     ██║   ██║██╔══╝
 //  ██║  ██║╚██████╔╝██████╔╝╚██████╔╝██║  ██║███████╗███████║╚██████╗╚██████╔╝███████╗
 //  ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝
-//                                                                                     
+//
 //
 // @file Angle.hpp
 // @date Created: 29-03-16
@@ -72,9 +72,9 @@ namespace r2d2{
         //!@param rhs Angle of which the angle_radians value has to be added to this
         Angle &operator+=(const Angle &rhs);
 
-        //!@brief Subtracts the angle_radians value on the right hand from this and 
+        //!@brief Subtracts the angle_radians value on the right hand from this and
         //!@brief returns the resulting Angle
-        //!@param rhs Angle of which the angle_radians value has to be substracted 
+        //!@param rhs Angle of which the angle_radians value has to be substracted
         //!@brief from this
         Angle &operator-=(const Angle &rhs);
 
@@ -86,24 +86,24 @@ namespace r2d2{
         //!@param rhs The Angle to divide this with
         Angle &operator/=(const double &rhs);
 
-        //!@brief compares two Angles to each other and return a boolean 
+        //!@brief compares two Angles to each other and return a boolean
         //!@brief (true if 1st greater than 2nd)
         //!@param rhs The Angle that is being compared to the other Angle
         bool operator<(const Angle &rhs) const;
 
-        //!@brief compares two Angles to each other and return a boolean 
+        //!@brief compares two Angles to each other and return a boolean
         //!@brief (true if 1st smaller  than 2nd)
         //!@param rhs The Angle that is being compared to the other Angle
         bool operator>(const Angle &rhs) const;
 
-        //!@brief add the Angle in Radians value on the right hand to this 
+        //!@brief add the Angle in Radians value on the right hand to this
         //!@brief and returns an Angle
         //!@param rhs Angle of which the angle_radians value has to be added to this
         Angle operator+(const Angle &rhs) const;
 
-        //!@brief subtracts the angle_radians value on the right hand from this and 
+        //!@brief subtracts the angle_radians value on the right hand from this and
         //!@brief returns the Angle
-        //!@param rhs Angle of which the angle_radians value has to be 
+        //!@param rhs Angle of which the angle_radians value has to be
         //!@brief substracted from this
         Angle operator-(const Angle &rhs) const;
 
@@ -128,7 +128,7 @@ namespace r2d2{
         //!@param rhs The Angle that will be added to the ostream
         friend std::ostream &operator<<(std::ostream &lhs, const Angle &rhs);
 
-        //!@brief Getter for Angle, returns a double containing the angle value in 
+        //!@brief Getter for Angle, returns a double containing the angle value in
         //!@brief radians
         double get_angle();
 
@@ -136,7 +136,7 @@ namespace r2d2{
         //!@brief A radian and a degree constant to convert a double in radians
         //!@brief respectively degrees to an Angle object in radians
         //!@brief Example usages:
-        //!@brief create an Angle of 180 degrees: 
+        //!@brief create an Angle of 180 degrees:
         //!@brief Angle 180_degrees = 180.0 * Angle::deg
         //!@brief create an Angle of PI radians:
         //!@brief Angle pi_radians = PI * Angle::rad
