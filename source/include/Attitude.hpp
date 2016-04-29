@@ -1,15 +1,15 @@
 ////
 //  ██████╗  ██████╗ ██████╗  ██████╗ ██████╗ ███████╗███████╗ ██████╗██╗   ██╗███████╗
 //  ██╔══██╗██╔═══██╗██╔══██╗██╔═══██╗██╔══██╗██╔════╝██╔════╝██╔════╝██║   ██║██╔════╝
-//  ██████╔╝██║   ██║██████╔╝██║   ██║██████╔╝█████╗  ███████╗██║     ██║   ██║█████╗
-//  ██╔══██╗██║   ██║██╔══██╗██║   ██║██╔══██╗██╔══╝  ╚════██║██║     ██║   ██║██╔══╝
+//  ██████╔╝██║   ██║██████╔╝██║   ██║██████╔╝█████╗  ███████╗██║     ██║   ██║█████╗  
+//  ██╔══██╗██║   ██║██╔══██╗██║   ██║██╔══██╗██╔══╝  ╚════██║██║     ██║   ██║██╔══╝  
 //  ██║  ██║╚██████╔╝██████╔╝╚██████╔╝██║  ██║███████╗███████║╚██████╗╚██████╔╝███████╗
 //  ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝
+//                                                                                     
 //
-//
-// @file Angle.cpp
-// @date Created: 29-03-16
-// @version 2.1.0
+// @file Attitude.hpp
+// @date Created: 06-04-16
+// @version 1.0.0
 //
 // @author Casper Wolf
 //
@@ -35,92 +35,69 @@
 // LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
 // OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ////
+#ifndef ATTITUDE_HPP
+#define ATTITUDE_HPP
 
-#include "../include/Angle.hpp"
+#include "../include/Delta_Attitude.hpp"
+#include <iostream>
 
 namespace r2d2{
+class Attitude{
+    private:
+        //constexpr double M_PI = 3.14159265358979323846;
 
-    const double Angle::full_circle = M_PI * 2.0;
-    const Angle Angle::rad{1.0};
-    const Angle Angle::deg{M_PI / 180.0};
+        //! using x = pitch, y = yaw, z = roll
+        double x,y,z;
 
-    Angle::Angle() : angle_radians{0.0} { }
+        //! positive value describing possible deviation from middle in either direction
+        const double angle_amp {M_PI};
 
-    Angle::Angle(double angle_radians) : angle_radians{
-        fmod(angle_radians, full_circle) } {}
+        //! set to 0 to have the values range from -pi to pi, or to pi to have them range from 0 to 2 * pi
+        const double middle_angle {M_PI};
 
-    Angle &Angle::operator=(const Angle &rhs) {
-        angle_radians = rhs.angle_radians;
-        return *this;
-    }
+    public:
+        //!@brief 
+        //!@param 
+        Attitude(double x, double y, double z);
 
-    Angle &Angle::operator+=(const Angle &rhs) {
-        angle_radians += rhs.angle_radians;
-        return *this;
-    }
+        //!@brief 
+        //!@param 
+        Attitude(Angle x, Angle y);
 
-    Angle &Angle::operator-=(const Angle &rhs) {
-        angle_radians -= rhs.angle_radians;
-        return *this;
-    }
+        //!@brief Assignment operator for an Attitude
+        //!@param rhs Value to be copied into this Attitude
+        Attitude &operator=(const Attitude &rhs);
 
-    Angle &Angle::operator*=(const double &rhs) {
-        angle_radians *= rhs;
-        return *this;
-    }
+        Delta_Attitude &operator-(const Attitude &rhs);
 
-    Angle &Angle::operator/=(const double &rhs) {
-        angle_radians /= rhs;
-        return *this;
-    }
+        //!@brief Adds a Delta Attitude to this Attitude and returns this Attitude
+        //!@param
+        //!@return Attitude returns the changed Attitude
+        Attitude& operator+=(const Delta_Attitude &rhs);
 
-    bool Angle::operator<(const Angle &rhs) const {
-        return angle_radians < rhs.angle_radians;
-    }
+        //!@brief
+        //!@param
+        Attitude &operator+(const Delta_Attitude &rhs);
 
-    bool Angle::operator>(const Angle &rhs) const {
-        return angle_radians > rhs.angle_radians;
-    }
+        //!@brief
+        //!@param
+        Attitude &operator-=(const Delta_Attitude &rhs);
 
-    Angle Angle::operator+(const Angle &rhs) const {
-        Angle result{*this};
-        result += rhs;
-        return result;
-    }
+        //!@brief
+        //!@param
+        Attitude &operator-(const Delta_Attitude &rhs);
 
-    Angle Angle::operator-(const Angle &rhs) const {
-        Angle result{*this};
-        result -= rhs;
-        return result;
-    }
+        //!@brief
+        //!@param
+        Translation operator*(const Length &rhs);
 
-    Angle Angle::operator*(const double &rhs) const {
-        Angle result{*this};
-        result *= rhs;
-        return result;
-    }
+        //!@brief
+        //!@param
+        Translation operator/(const Length &rhs);
 
-    Angle Angle::operator/(const double &rhs) const {
-        Angle result{*this};
-        result /= rhs;
-        return result;
-    }
-
-    double Angle::operator/(const Angle &rhs) const {
-
-        return angle_radians / rhs.angle_radians;
-    }
-
-    std::ostream &operator<<(std::ostream &lhs, const Angle &rhs) {
-        return (lhs << rhs.angle_radians << " rad");
-    }
-
-    double Angle::get_angle() {
-        return angle_radians;
-    }
-
-    Angle operator*(const double &lhs, const Angle &rhs) {
-        return Angle{rhs} *= lhs;
-    }
-
+        //!@brief
+        //!@param
+        friend std::ostream &operator<<(std::ostream &lhs ,const Attitude &rhs);
+};
 }
+#endif
