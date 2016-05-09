@@ -39,15 +39,10 @@
 #include "../include/Angle.hpp"
 
 namespace r2d2{
-<<<<<<< HEAD
 
     const double Angle::full_circle = M_PI * 2.0;
     const Angle Angle::rad{1.0};
     const Angle Angle::deg{M_PI / 180.0};
-=======
-const Angle Angle::rad{1};
-const Angle Angle::deg{M_PI / 180};
->>>>>>> master
 
     Angle::Angle() : angle_radians{0.0} { }
 
@@ -112,7 +107,6 @@ const Angle Angle::deg{M_PI / 180};
     }
 
     double Angle::operator/(const Angle &rhs) const {
-
         return angle_radians / rhs.angle_radians;
     }
 
@@ -128,5 +122,4 @@ const Angle Angle::deg{M_PI / 180};
         return Angle{rhs} *= lhs;
     }
 
-}
 }

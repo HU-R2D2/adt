@@ -43,11 +43,8 @@
 #include <iostream>
 
 using namespace r2d2;
-<<<<<<< HEAD
-=======
 
 double pi = 3.14159265358979323846;
->>>>>>> master
 
 TEST(AngleConstructor, Default){
 	Angle a;
