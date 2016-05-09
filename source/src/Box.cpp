@@ -38,6 +38,7 @@
 
 #include "../include/Box.hpp"
 
+namespace r2d2{
 Box::Box(Coordinate lhs, Coordinate rhs) {
     if(lhs.x < rhs.x){
         bottomLeft.x = lhs.x;
@@ -229,4 +230,5 @@ std::istream & operator >>(std::istream & lhs, Box & rhs ) {
     rhs.bottomLeft = bottomLeft;
     rhs.topRight = topRight;
     return lhs;
+}
 }

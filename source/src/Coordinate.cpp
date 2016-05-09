@@ -38,7 +38,7 @@
 #include "../include/Translation.hpp"
 #include <string>
 #include <stdexcept>
-
+namespace r2d2{
 const Coordinate Coordinate::origin(
         0.0 * Length::METER, 0.0 * Length::METER, 0.0 * Length::METER);
 
@@ -146,4 +146,5 @@ const Length &Coordinate::get_y() const {
 
 const Length &Coordinate::get_z() const {
     return z;
+}
 }

@@ -42,6 +42,7 @@
 #include <iostream>
 #include <math.h>
 
+namespace r2d2{
 class Coordinate;
 
 //! @brief      Translation is a 3-vector with an x, y and z value.
@@ -248,4 +249,5 @@ class Translation {
     private:
             Length x,y,z;
 };
+}
 #endif

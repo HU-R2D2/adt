@@ -37,7 +37,7 @@
 #include "gtest/gtest.h"
 #include "../source/include/Length.hpp"
 #include <iostream>
-
+using namespace r2d2;
 // constructors:
 TEST(Length, DefaultConstructor) {
     Length a;

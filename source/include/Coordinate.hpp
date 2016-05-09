@@ -41,9 +41,11 @@
 #include "Length.hpp"
 
 // Forward declaration.
+namespace r2d2{
 class Translation;
 
 class Box;
+
 
 //! @class Coordinate
 //! @brief A location in space, specified as an offset to an arbitrary origin.
@@ -163,5 +165,5 @@ public:
     //! @return Reference to the difference between this and the origin's Z-position.
     const Length &get_z() const;
 };
-
+}
 #endif // COORDINATE_HPP

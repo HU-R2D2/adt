@@ -40,6 +40,7 @@
 #include "Acceleration.hpp"
 #include <iostream>
 
+namespace r2d2{
 class Force : public ADT_Base<Force>
 {
 protected:
@@ -95,5 +96,5 @@ public:
     static const Force NEWTON;
 };
 Force operator* ( const Mass & lhs, const Acceleration & rhs);
-
+}
 #endif

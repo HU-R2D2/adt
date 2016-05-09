@@ -43,6 +43,7 @@
 
 #include "gtest/gtest.h"
 
+using namespace r2d2;
 static Duration oneSec = 1.0 * Duration::SECOND; // one second
 static Speed oneMS = (1.0 * Length::METER) / oneSec; // Speed: one meter er second
 static Acceleration oneMA = oneMS / oneSec; // Acceleration: one meter per second 

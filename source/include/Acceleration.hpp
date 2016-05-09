@@ -48,6 +48,7 @@
 
 #include <iostream>
 
+namespace r2d2{
 class Force;
 class Acceleration : public ADT_Base<Acceleration> {
 protected: 
@@ -89,5 +90,6 @@ public:
 
 };
 Acceleration operator/( const Speed & s, const Duration &d);
+}
 #endif
 
