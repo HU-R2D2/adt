@@ -48,7 +48,6 @@ class Attitude{
 
         //! using x = pitch, y = yaw, z = roll
         Angle x,y,z;
-        //double x, y, z;
 
         //! positive value describing possible deviation from middle in either direction
         const double angle_amp {M_PI};
@@ -59,11 +58,11 @@ class Attitude{
     public:
         //!@brief 
         //!@param 
-        Attitude(Angle x, Angle y, Angle z);
-
-        /*//!@brief 
-        //!@param 
-        Attitude(Angle x, Angle y); */
+        Attitude(Angle pitch, Angle yaw, Angle roll);
+        
+        Angle get_x() const;
+        Angle get_y() const;
+        Angle get_z() const;
 
         //!@brief Assignment operator for an Attitude
         //!@param rhs Value to be copied into this Attitude
@@ -71,35 +70,19 @@ class Attitude{
         
         //!@brief
         //!@param
-        Delta_Attitude operator+(const Attitude &rhs);
+        Delta_Attitude operator+(const Attitude &rhs) const;
         
         //!@brief
         //!@param
-        Delta_Attitude operator-(const Attitude &rhs);
-        
-        
-        
-        
-        //======================================================================================== ???????????
-        //!@brief
-        //!@param
-        Delta_Attitude& operator+=(const Attitude &rhs);
+        Delta_Attitude operator-(const Attitude &rhs) const;
         
         //!@brief
         //!@param
-        Delta_Attitude& operator-=(const Attitude &rhs);
-        
-        //======================================================================================== ???????????
-        
-        
+        Attitude operator+(const Delta_Attitude &rhs) const;
         
         //!@brief
         //!@param
-        Attitude operator+(const Delta_Attitude &rhs);
-        
-        //!@brief
-        //!@param
-        Attitude operator-(const Delta_Attitude &rhs);
+        Attitude operator-(const Delta_Attitude &rhs) const;
 
         //!@brief Adds a Delta Attitude to this Attitude and returns this Attitude
         //!@param
@@ -109,16 +92,6 @@ class Attitude{
         //!@brief
         //!@param
         Attitude& operator-=(const Delta_Attitude &rhs);
-        
-        
-
-        //!@brief
-        //!@param
-        //Attitude operator*(double x, double y, double z);
-
-        //!@brief
-        //!@param
-        //Attitude operator/(double x, double y, double z);
 
         //!@brief
         //!@param

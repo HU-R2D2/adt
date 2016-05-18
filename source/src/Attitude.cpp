@@ -37,34 +37,36 @@
 
 #include "../include/Attitude.hpp"
 namespace r2d2{
-/*Attitude::Attitude(double x, double y, double z){
-    double xlen = std::sqrt(std::pow(x,2.0) + std::pow(z,2.0)); // length of 2D vector <x,z> using Pythage 
-    double vector_length = std::sqrt(std::pow(xlen,2.0) + std::pow(y,2.0)); // length of 3D vector <x,y,z> using length of <x,z> and height y
-    this->x = x/vector_length;
-    this->y = y/vector_length;
-    this->z = z/vector_length;
-} */
-/*
-Attitude::Attitude( Angle X, Angle Y, Angle Z){
-    double pitch = X.get_angle();
-    double yaw = Y.get_angle();
+Attitude::Attitude(Angle pitch, Angle yaw, Angle roll){
+    //Angle yaw = Y.get_angle();
     
-    double normAngle = pitch%(M_PI/2.0); // 1/4 circle
-    double tempx = (pitch > middle_angle) ? 
-        -std::sin(normAngle) : std::sin(normAngle); // pitch
+    //double normAngle = pitch%(M_PI/2.0); // 1/4 circle
+    //double tempx = (pitch > middle_angle) ? 
+    //    -std::sin(normAngle) : std::sin(normAngle); // pitch
         
-    double tempy = (yaw > middle_angle) ?
-         -std::sin(yaw) : std::sin(yaw); // yaw
+    //double tempy = (yaw > middle_angle) ?
+    //     -std::sin(yaw) : std::sin(yaw); // yaw
          
-    double tempz = (pitch < middle_angle - (angle_amp/2.0) &&
-         pitch > middle_angle + (angle_amp/2.0)) ? 
-         -std::cos(normAngle) : std::cos(normAngle); // roll
+    //double tempz = (pitch < middle_angle - (angle_amp/2.0) &&
+    //     pitch > middle_angle + (angle_amp/2.0)) ? 
+    //     -std::cos(normAngle) : std::cos(normAngle); // roll
          
-    this->x = tempx;
-    this->y = tempy;
-    this->z = tempz;
+    x = pitch;
+    y = yaw;
+    z = roll;
 }
-*/
+
+Angle Attitude::get_x() const {
+    return x;
+}
+
+Angle Attitude::get_y() const {
+    return y;
+}
+
+Angle Attitude::get_z() const {
+    return z;
+}
 
 Attitude& Attitude::operator=(const Attitude& rhs){
     x = rhs.x;
@@ -73,23 +75,17 @@ Attitude& Attitude::operator=(const Attitude& rhs){
     return *this;
 }
 
-Delta_Attitude Attitude::operator+(const Attitude& rhs){
+Delta_Attitude Attitude::operator+(const Attitude& rhs) const{
     Delta_Attitude delta{x + rhs.x, y + rhs.y, z + rhs.z};
     return delta;
 }
 
-Delta_Attitude Attitude::operator-(const Attitude& rhs){
+Delta_Attitude Attitude::operator-(const Attitude& rhs) const{
     Delta_Attitude delta{x - rhs.x, y - rhs.y, z - rhs.z};
     return delta;
 }
-/*        
-Delta_Attitude& Attitude::operator+=(const Attitude& rhs);
-        
 
-Delta_Attitude& Attitude::operator-=(const Attitude& rhs);
-*/
-
-Attitude Attitude::operator+(const Delta_Attitude& rhs){
+Attitude Attitude::operator+(const Delta_Attitude& rhs) const{
     Attitude temp{*this};
     temp.x += rhs.get_x();
     temp.y += rhs.get_y();
@@ -97,7 +93,7 @@ Attitude Attitude::operator+(const Delta_Attitude& rhs){
     return temp;
 }
 
-Attitude Attitude::operator-(const Delta_Attitude& rhs){
+Attitude Attitude::operator-(const Delta_Attitude& rhs) const{
     Attitude temp{*this};
     temp.x -= rhs.get_x();
     temp.y -= rhs.get_y();
