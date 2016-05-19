@@ -116,6 +116,6 @@ Attitude& Attitude::operator-=(const Delta_Attitude& rhs){
 }
 
 std::ostream& operator<<(std::ostream& lhs,const Attitude& rhs){
-    return lhs << "x: " << rhs.x << ", y:" << rhs.y << ", z: " << rhs.z;
+    return lhs << "x: " << rhs.x << ", y: " << rhs.y << ", z: " << rhs.z;
 }
 }
