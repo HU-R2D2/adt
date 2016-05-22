@@ -77,7 +77,7 @@ Delta_Attitude& Delta_Attitude::operator=( const Delta_Attitude &rhs ){
     return *this;
 }
 
-Delta_Attitude Delta_Attitude::operator+(const Delta_Attitude &rhs){
+Delta_Attitude Delta_Attitude::operator+(const Delta_Attitude &rhs) const{
     Delta_Attitude temp{*this};
     temp.x += rhs.x;
     temp.y += rhs.y;
@@ -85,7 +85,7 @@ Delta_Attitude Delta_Attitude::operator+(const Delta_Attitude &rhs){
     return temp;
 }
 
-Delta_Attitude Delta_Attitude::operator-(const Delta_Attitude &rhs){
+Delta_Attitude Delta_Attitude::operator-(const Delta_Attitude &rhs) const{
     Delta_Attitude temp{*this};
     temp.x -= rhs.x;
     temp.y -= rhs.y;

@@ -62,7 +62,7 @@ class Attitude{
         Attitude();
     
         //! @fn     Attitude::Attitude(Angle pitch, Angle yaw, Angle roll)
-        //! @brief  Constructor of a Attitude
+        //! @brief  Constructor of an Attitude
         //! @param  pitch   The X Angle aka pitch of the Attitude
         //! @param  yaw	    The Y Angle aka yaw of the Attitude
         //! @param  roll	The Z Angle aka roll of the Attitude
