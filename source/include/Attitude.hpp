@@ -56,6 +56,8 @@ class Attitude{
         const double middle_angle {M_PI};
 
     public:
+        Attitude();
+    
         //!@brief 
         //!@param 
         Attitude(Angle pitch, Angle yaw, Angle roll);

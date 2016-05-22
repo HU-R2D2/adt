@@ -46,6 +46,18 @@ Delta_Attitude::Delta_Attitude(double x, double y, double z){
 }
 */
 
+Delta_Attitude::Delta_Attitude() {
+    x = Angle();
+    y = Angle();
+    z = Angle();
+}
+
+Delta_Attitude::Delta_Attitude(Angle x, Angle y, Angle z){
+    this->x = x;
+    this->y = y;
+    this->z = z;
+}
+
 Angle Delta_Attitude::get_x() const {
     return x;
 }
@@ -56,12 +68,6 @@ Angle Delta_Attitude::get_y() const {
 
 Angle Delta_Attitude::get_z() const {
     return z;
-}
-
-Delta_Attitude::Delta_Attitude(Angle x, Angle y, Angle z){
-    this->x = x;
-    this->y = y;
-    this->z = z;
 }
 
 Delta_Attitude& Delta_Attitude::operator=( const Delta_Attitude &rhs ){
@@ -102,17 +108,6 @@ Delta_Attitude& Delta_Attitude::operator-=( const Delta_Attitude &rhs ){
 }
 
 std::ostream& operator<<(std::ostream& lhs, const Delta_Attitude& rhs){
-    return lhs << "x: " << rhs.x << ", y:" << rhs.y << ", z: " << rhs.z;
+    return lhs << "x: " << rhs.x << ", y: " << rhs.y << ", z: " << rhs.z;
 }
 }
-/*
-Delta_Attitude &Delta_Attitude::operator*=( const double &rhs ){
-
-}
-Delta_Attitide &Delta_Attitude::operator/=( const double &rhs )
-Delta_Attitude Delta_Attitude::operator*( const double &rhs )
-double Delta_Attitude::operator/( const double &rhs)
-Delta_Attitude Delta_Attitude::operator/( const double &rhs )
-Delta_Attitude Delta_Attitude::operator+( const Delta_Attitude &rhs )
-Delta_Attitude Delta_Attitude::operator-( const Delta_Attitude &rhs )
-*/

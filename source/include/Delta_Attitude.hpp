@@ -46,9 +46,7 @@ class Delta_Attitude{
 	private:
 		Angle x,y,z;
 	public:
-		//Delta_Attitude(double x, double y, double z);
-
-		Delta_Attitude(Angle x, Angle y);
+        Delta_Attitude();
         Delta_Attitude(Angle x, Angle y, Angle z);
 		
         Angle get_x() const;
@@ -61,10 +59,9 @@ class Delta_Attitude{
 		Delta_Attitude& operator+=( const Delta_Attitude& rhs );
 		Delta_Attitude& operator-=( const Delta_Attitude& rhs );
         
-		//Delta_Attitude& operator/=(const double& rhs);
-            //Relative_Translation operator*(const Length& rhs); Add to rel. trans?
-            //double operator/(const Length& rhs);
-		//Delta_Attitude operator/(const double& rhs);
+        //Delta_Attitude operator*(const double& rhs);
+        //double operator/(const double& rhs);
+        //Delta_Attitude operator/(const double& rhs);
 		friend std::ostream &operator<<(std::ostream& lhs, const Delta_Attitude& rhs);
 };
 }
