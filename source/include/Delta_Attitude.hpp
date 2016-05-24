@@ -60,17 +60,17 @@ class Delta_Attitude{
         //! @fn     Angle Delta_Attitude::get_x()
         //! @brief  Gets the x Angle(pitch) of the Delta_Attitude and returns it
         //! @return	Angle	The x Angle aka pitch of the Delta_Attitude
-        Angle get_x() const;
+        Angle get_pitch() const;
         
         //! @fn     Angle Delta_Attitude::get_y()
         //! @brief  Gets the y Angle(pitch) of the Delta_Attitude and returns it
         //! @return	Angle	The y Angle aka pitch of the Delta_Attitude
-        Angle get_y() const;
+        Angle get_yaw() const;
         
         //! @fn     Angle Delta_Attitude::get_z()
         //! @brief  Gets the z Angle(pitch) of the Delta_Attitude and returns it
         //! @return	Angle	The z Angle aka pitch of the Delta_Attitude
-        Angle get_z() const;
+        Angle get_roll() const;
         
         //! @fn     Delta_Attitude& Delta_Attitude::operator=
         //!         (const Delta_Attitude& rhs)

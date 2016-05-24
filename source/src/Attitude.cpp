@@ -60,15 +60,15 @@ Attitude::Attitude(Angle pitch, Angle yaw, Angle roll){
     z = roll;
 }
 
-Angle Attitude::get_x() const {
+Angle Attitude::get_pitch() const {
     return x;
 }
 
-Angle Attitude::get_y() const {
+Angle Attitude::get_yaw() const {
     return y;
 }
 
-Angle Attitude::get_z() const {
+Angle Attitude::get_roll() const {
     return z;
 }
 

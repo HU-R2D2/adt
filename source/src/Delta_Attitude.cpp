@@ -58,15 +58,15 @@ Delta_Attitude::Delta_Attitude(Angle x, Angle y, Angle z){
     this->z = z;
 }
 
-Angle Delta_Attitude::get_x() const {
+Angle Delta_Attitude::get_pitch() const {
     return x;
 }
 
-Angle Delta_Attitude::get_y() const {
+Angle Delta_Attitude::get_yaw() const {
     return y;
 }
 
-Angle Delta_Attitude::get_z() const {
+Angle Delta_Attitude::get_roll() const {
     return z;
 }
 
