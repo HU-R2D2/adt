@@ -91,31 +91,31 @@ Delta_Attitude Attitude::operator-(const Attitude& rhs) const{
 
 Attitude Attitude::operator+(const Delta_Attitude& rhs) const{
     Attitude temp{*this};
-    temp.x += rhs.get_x();
-    temp.y += rhs.get_y();
-    temp.z += rhs.get_z();
+    temp.x += rhs.get_pitch();
+    temp.y += rhs.get_yaw();
+    temp.z += rhs.get_roll();
     return temp;
 }
 
 Attitude Attitude::operator-(const Delta_Attitude& rhs) const{
     Attitude temp{*this};
-    temp.x -= rhs.get_x();
-    temp.y -= rhs.get_y();
-    temp.z -= rhs.get_z();
+    temp.x -= rhs.get_pitch();
+    temp.y -= rhs.get_yaw();
+    temp.z -= rhs.get_roll();
     return temp;
 }
 
 Attitude& Attitude::operator+=(const Delta_Attitude& rhs){
-    x += rhs.get_x();
-    y += rhs.get_y();
-    z += rhs.get_z();
+    x += rhs.get_pitch();
+    y += rhs.get_yaw();
+    z += rhs.get_roll();
     return *this;
 }
 
 Attitude& Attitude::operator-=(const Delta_Attitude& rhs){
-    x -= rhs.get_x();
-    y -= rhs.get_y();
-    z -= rhs.get_z();
+    x -= rhs.get_pitch();
+    y -= rhs.get_yaw();
+    z -= rhs.get_roll();
     return *this;
 }
 
