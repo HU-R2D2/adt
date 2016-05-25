@@ -111,10 +111,6 @@ class Delta_Attitude{
         //!                   SubtractAssign operator was called
 		Delta_Attitude& operator-=(const Delta_Attitude& rhs);
         
-        //Delta_Attitude operator*(const double& rhs);
-        //double operator/(const double& rhs);
-        //Delta_Attitude operator/(const double& rhs);
-        
         //! @fn     std::ostream& Delta_Attitude::operator<<(std::ostream& lhs,
         //!                       const Attitude& rhs)
         //! @brief  Output operator of a Delta_Attitude

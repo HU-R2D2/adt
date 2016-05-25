@@ -36,16 +36,7 @@
 //! THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "../include/Delta_Attitude.hpp"
-namespace r2d2{ /*
-Delta_Attitude::Delta_Attitude(double x, double y, double z){
-    double xlen = std::sqrt(std::pow(x,2.0) + std::pow(z,2.0)); // length of 2D vector <x,z> using Pythage 
-    double vector_length = std::sqrt(std::pow(xlen,2.0) + std::pow(y,2.0)); // length of 3D vector <x,y,z> using length of <x,z> and height y
-    x{ x/vector_length };
-    y{ y/vector_length };
-    z{ z/vector_length };
-}
-*/
-
+namespace r2d2{
 Delta_Attitude::Delta_Attitude() {
     x = Angle();
     y = Angle();

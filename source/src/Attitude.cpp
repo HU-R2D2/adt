@@ -43,18 +43,7 @@ Attitude::Attitude() {
     z = Angle();
 }
     
-Attitude::Attitude(Angle pitch, Angle yaw, Angle roll){
-    /*
-    Angle yaw = Y.get_angle();
-    double normAngle = pitch%(M_PI/2.0); // 1/4 circle
-    double tempx = (pitch > middle_angle) ? 
-        -std::sin(normAngle) : std::sin(normAngle); // pitch   
-    double tempy = (yaw > middle_angle) ?
-         -std::sin(yaw) : std::sin(yaw); // yaw    
-    double tempz = (pitch < middle_angle - (angle_amp/2.0) &&
-         pitch > middle_angle + (angle_amp/2.0)) ? 
-         -std::cos(normAngle) : std::cos(normAngle); // roll
-    */     
+Attitude::Attitude(Angle pitch, Angle yaw, Angle roll){    
     x = pitch;
     y = yaw;
     z = roll;
