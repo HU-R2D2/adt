@@ -107,7 +107,6 @@ namespace r2d2{
     }
 
     double Angle::operator/(const Angle &rhs) const {
-
         return angle_radians / rhs.angle_radians;
     }
 

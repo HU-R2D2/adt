@@ -132,7 +132,6 @@ namespace r2d2{
         //!@brief radians
         double get_angle();
 
-
         //!@brief A radian and a degree constant to convert a double in radians
         //!@brief respectively degrees to an Angle object in radians
         //!@brief Example usages:
