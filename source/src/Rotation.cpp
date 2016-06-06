@@ -1,5 +1,5 @@
 //! Roborescue
-//! @file <Delta_Attitude.cpp>
+//! @file <Rotation.cpp>
 //! @date Created: <7-4-16>
 //! @version <0.5.0>
 //!
@@ -35,70 +35,70 @@
 //! OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF 
 //! THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "../include/Delta_Attitude.hpp"
+#include "../include/Rotation.hpp"
 namespace r2d2{
-Delta_Attitude::Delta_Attitude() {
+Rotation::Rotation() {
     x = Angle();
     y = Angle();
     z = Angle();
 }
 
-Delta_Attitude::Delta_Attitude(Angle x, Angle y, Angle z){
+Rotation::Rotation(Angle x, Angle y, Angle z){
     this->x = x;
     this->y = y;
     this->z = z;
 }
 
-Angle Delta_Attitude::get_pitch() const {
+Angle Rotation::get_pitch() const {
     return x;
 }
 
-Angle Delta_Attitude::get_yaw() const {
+Angle Rotation::get_yaw() const {
     return y;
 }
 
-Angle Delta_Attitude::get_roll() const {
+Angle Rotation::get_roll() const {
     return z;
 }
 
-Delta_Attitude& Delta_Attitude::operator=( const Delta_Attitude &rhs ){
+Rotation& Rotation::operator=( const Rotation &rhs ){
     x = rhs.x;
     y = rhs.y;
     z = rhs.z;
     return *this;
 }
 
-Delta_Attitude Delta_Attitude::operator+(const Delta_Attitude &rhs) const{
-    Delta_Attitude temp{*this};
+Rotation Rotation::operator+(const Rotation &rhs) const{
+    Rotation temp{*this};
     temp.x += rhs.x;
     temp.y += rhs.y;
     temp.z += rhs.z;
     return temp;
 }
 
-Delta_Attitude Delta_Attitude::operator-(const Delta_Attitude &rhs) const{
-    Delta_Attitude temp{*this};
+Rotation Rotation::operator-(const Rotation &rhs) const{
+    Rotation temp{*this};
     temp.x -= rhs.x;
     temp.y -= rhs.y;
     temp.z -= rhs.z;
     return temp;
 }
 
-Delta_Attitude& Delta_Attitude::operator+=(const Delta_Attitude &rhs){
+Rotation& Rotation::operator+=(const Rotation &rhs){
     x += rhs.x;
     y += rhs.y;
     z += rhs.z;
     return *this;
 }
 
-Delta_Attitude& Delta_Attitude::operator-=( const Delta_Attitude &rhs ){
+Rotation& Rotation::operator-=( const Rotation &rhs ){
     x -= rhs.x;
     y -= rhs.y;
     z -= rhs.z;
     return *this;
 }
 
-std::ostream& operator<<(std::ostream& lhs, const Delta_Attitude& rhs){
+std::ostream& operator<<(std::ostream& lhs, const Rotation& rhs){
     return lhs << "x: " << rhs.x << ", y: " << rhs.y << ", z: " << rhs.z;
 }
 }

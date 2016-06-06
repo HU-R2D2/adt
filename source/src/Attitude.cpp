@@ -68,17 +68,17 @@ Attitude& Attitude::operator=(const Attitude& rhs){
     return *this;
 }
 
-Delta_Attitude Attitude::operator+(const Attitude& rhs) const{
-    Delta_Attitude delta{x + rhs.x, y + rhs.y, z + rhs.z};
+Rotation Attitude::operator+(const Attitude& rhs) const{
+    Rotation delta{x + rhs.x, y + rhs.y, z + rhs.z};
     return delta;
 }
 
-Delta_Attitude Attitude::operator-(const Attitude& rhs) const{
-    Delta_Attitude delta{x - rhs.x, y - rhs.y, z - rhs.z};
+Rotation Attitude::operator-(const Attitude& rhs) const{
+    Rotation delta{x - rhs.x, y - rhs.y, z - rhs.z};
     return delta;
 }
 
-Attitude Attitude::operator+(const Delta_Attitude& rhs) const{
+Attitude Attitude::operator+(const Rotation& rhs) const{
     Attitude temp{*this};
     temp.x += rhs.get_pitch();
     temp.y += rhs.get_yaw();
@@ -86,7 +86,7 @@ Attitude Attitude::operator+(const Delta_Attitude& rhs) const{
     return temp;
 }
 
-Attitude Attitude::operator-(const Delta_Attitude& rhs) const{
+Attitude Attitude::operator-(const Rotation& rhs) const{
     Attitude temp{*this};
     temp.x -= rhs.get_pitch();
     temp.y -= rhs.get_yaw();
@@ -94,14 +94,14 @@ Attitude Attitude::operator-(const Delta_Attitude& rhs) const{
     return temp;
 }
 
-Attitude& Attitude::operator+=(const Delta_Attitude& rhs){
+Attitude& Attitude::operator+=(const Rotation& rhs){
     x += rhs.get_pitch();
     y += rhs.get_yaw();
     z += rhs.get_roll();
     return *this;
 }
 
-Attitude& Attitude::operator-=(const Delta_Attitude& rhs){
+Attitude& Attitude::operator-=(const Rotation& rhs){
     x -= rhs.get_pitch();
     y -= rhs.get_yaw();
     z -= rhs.get_roll();

@@ -37,7 +37,7 @@
 
 #include "gtest/gtest.h"
 #include "../source/include/Attitude.hpp"
-#include "../source/include/Delta_Attitude.hpp"
+#include "../source/include/Rotation.hpp"
 #include "../source/include/Angle.hpp"
 #include <iostream>
 using namespace r2d2;
@@ -71,19 +71,19 @@ TEST(Attitude, Assign){
 
 TEST(Attitude, Add) {
     Attitude a;
-    Delta_Attitude b;
+    Rotation b;
     a = a + b;
     ASSERT_DOUBLE_EQ(a.get_pitch() / Angle::rad , 0.0) << "empty+empty x";
     ASSERT_DOUBLE_EQ(a.get_yaw() / Angle::rad , 0.0) << "empty+empty y";
     ASSERT_DOUBLE_EQ(a.get_roll() / Angle::rad , 0.0) << "empty+empty z";
         
-    Delta_Attitude c(1 * Angle::rad, 2 * Angle::rad, 3 * Angle::rad);
+    Rotation c(1 * Angle::rad, 2 * Angle::rad, 3 * Angle::rad);
     a = a + c;
     ASSERT_DOUBLE_EQ(a.get_pitch() / Angle::rad , 1.0) << "empty+full x";
     ASSERT_DOUBLE_EQ(a.get_yaw() / Angle::rad , 2.0) << "empty+full y";
     ASSERT_DOUBLE_EQ(a.get_roll() / Angle::rad , 3.0) << "empty+full z";
         
-    Delta_Attitude d(4 * Angle::rad, 5 * Angle::rad, 6 * Angle::rad);
+    Rotation d(4 * Angle::rad, 5 * Angle::rad, 6 * Angle::rad);
     a = a + d;
     ASSERT_DOUBLE_EQ(a.get_pitch() / Angle::rad , 5.0) << "full+full x";
     ASSERT_DOUBLE_EQ(a.get_yaw() / Angle::rad , 7.0) << "full+full y";
@@ -92,26 +92,26 @@ TEST(Attitude, Add) {
 
 TEST(Attitude, Subtract) {
     Attitude a;
-    Delta_Attitude b;
+    Rotation b;
     a = a - b;
     ASSERT_DOUBLE_EQ(a.get_pitch() / Angle::rad , 0.0) << "empty-empty x";
     ASSERT_DOUBLE_EQ(a.get_yaw() / Angle::rad , 0.0) << "empty-empty y";
     ASSERT_DOUBLE_EQ(a.get_roll() / Angle::rad , 0.0) << "empty-empty z";
         
-    Delta_Attitude c(1 * Angle::rad, 2 * Angle::rad, 3 * Angle::rad);
+    Rotation c(1 * Angle::rad, 2 * Angle::rad, 3 * Angle::rad);
     a = a - c;
     ASSERT_DOUBLE_EQ(a.get_pitch() / Angle::rad , -1.0) << "empty-full x";
     ASSERT_DOUBLE_EQ(a.get_yaw() / Angle::rad , -2.0) << "empty-full y";
     ASSERT_DOUBLE_EQ(a.get_roll() / Angle::rad , -3.0) << "empty-full z";
 
     Attitude d(4 * Angle::rad, 5 * Angle::rad, 6 * Angle::rad);
-    Delta_Attitude e;
+    Rotation e;
     d = d - e;
     ASSERT_DOUBLE_EQ(d.get_pitch() / Angle::rad , 4.0) << "full-empty x";
     ASSERT_DOUBLE_EQ(d.get_yaw() / Angle::rad , 5.0) << "full-empty y";
     ASSERT_DOUBLE_EQ(d.get_roll() / Angle::rad , 6.0) << "full-empty z";
         
-    Delta_Attitude f(1 * Angle::rad, 2 * Angle::rad, 3 * Angle::rad);
+    Rotation f(1 * Angle::rad, 2 * Angle::rad, 3 * Angle::rad);
     d = d - f;
     ASSERT_DOUBLE_EQ(d.get_pitch() / Angle::rad , 3.0) << "full-full x";
     ASSERT_DOUBLE_EQ(d.get_yaw() / Angle::rad , 3.0) << "full-full y";
@@ -120,19 +120,19 @@ TEST(Attitude, Subtract) {
 
 TEST(Attitude, AddAssign) {
     Attitude a;
-    Delta_Attitude b;
+    Rotation b;
     a += b;
     ASSERT_DOUBLE_EQ(a.get_pitch() / Angle::rad , 0.0) << "empty+empty x";
     ASSERT_DOUBLE_EQ(a.get_yaw() / Angle::rad , 0.0) << "empty+empty y";
     ASSERT_DOUBLE_EQ(a.get_roll() / Angle::rad , 0.0) << "empty+empty z";
     
-    Delta_Attitude c(1 * Angle::rad, 2 * Angle::rad, 3 * Angle::rad);
+    Rotation c(1 * Angle::rad, 2 * Angle::rad, 3 * Angle::rad);
     a += c;
     ASSERT_DOUBLE_EQ(a.get_pitch() / Angle::rad , 1.0) << "empty+full x";
     ASSERT_DOUBLE_EQ(a.get_yaw() / Angle::rad , 2.0) << "empty+full y";
     ASSERT_DOUBLE_EQ(a.get_roll() / Angle::rad , 3.0) << "empty+full z";
         
-    Delta_Attitude d(4 * Angle::rad, 5 * Angle::rad, 6 * Angle::rad);
+    Rotation d(4 * Angle::rad, 5 * Angle::rad, 6 * Angle::rad);
     a += d;
     ASSERT_DOUBLE_EQ(a.get_pitch() / Angle::rad , 5.0) << "full+full x";
     ASSERT_DOUBLE_EQ(a.get_yaw() / Angle::rad , 7.0) << "full+full y";
@@ -141,13 +141,13 @@ TEST(Attitude, AddAssign) {
 
 TEST(Attitude, SubtractAssign) {
     Attitude a;
-    Delta_Attitude b;
+    Rotation b;
     a -= b;
     ASSERT_DOUBLE_EQ(a.get_pitch() / Angle::rad , 0.0) << "empty-empty x";
     ASSERT_DOUBLE_EQ(a.get_yaw() / Angle::rad , 0.0) << "empty-empty y";
     ASSERT_DOUBLE_EQ(a.get_roll() / Angle::rad , 0.0) << "empty-empty z";
         
-    Delta_Attitude c(1 * Angle::rad, 2 * Angle::rad, 3 * Angle::rad);
+    Rotation c(1 * Angle::rad, 2 * Angle::rad, 3 * Angle::rad);
     a -= c;
     ASSERT_DOUBLE_EQ(a.get_pitch() / Angle::rad , -1.0) << "empty-full x";
     ASSERT_DOUBLE_EQ(a.get_yaw() / Angle::rad , -2.0) << "empty-full y";
@@ -159,7 +159,7 @@ TEST(Attitude, SubtractAssign) {
     ASSERT_DOUBLE_EQ(a.get_roll() / Angle::rad , -3.0) << "full-empty z";
         
     Attitude d(4 * Angle::rad, 5 * Angle::rad, 6 * Angle::rad);
-    Delta_Attitude e(1 * Angle::rad, 2 * Angle::rad, 3 * Angle::rad);
+    Rotation e(1 * Angle::rad, 2 * Angle::rad, 3 * Angle::rad);
     d -= e;
     ASSERT_DOUBLE_EQ(d.get_pitch() / Angle::rad , 3.0) << "full-full x";
     ASSERT_DOUBLE_EQ(d.get_yaw() / Angle::rad , 3.0) << "full-full y";
@@ -175,24 +175,24 @@ TEST(Attitude, OutputStream) {
     EXPECT_EQ("x: 1 rad, y: 2 rad, z: 3 rad", output);
 }
 
-TEST(Delta_Attitude, DefaultConstructor) {
-    Delta_Attitude a;
+TEST(Rotation, DefaultConstructor) {
+    Rotation a;
     ASSERT_DOUBLE_EQ(a.get_pitch() / Angle::rad , 0.0) << "x";
     ASSERT_DOUBLE_EQ(a.get_yaw() / Angle::rad , 0.0) << "y";
     ASSERT_DOUBLE_EQ(a.get_roll() / Angle::rad , 0.0) << "z";
 }
 
-TEST(Delta_Attitude, ConstructorValue) {
-    Delta_Attitude a(1 * Angle::rad, 2 * Angle::rad, 3 * Angle::rad);
+TEST(Rotation, ConstructorValue) {
+    Rotation a(1 * Angle::rad, 2 * Angle::rad, 3 * Angle::rad);
     ASSERT_DOUBLE_EQ(a.get_pitch() / Angle::rad , 1.0) << "x";
     ASSERT_DOUBLE_EQ(a.get_yaw() / Angle::rad , 2.0) << "y";
     ASSERT_DOUBLE_EQ(a.get_roll() / Angle::rad , 3.0) << "z";
 }
 
-TEST(Delta_Attitude, Add) {
+TEST(Rotation, Add) {
     Attitude a;
     Attitude b;
-    Delta_Attitude c;
+    Rotation c;
     c = a + b;
     ASSERT_DOUBLE_EQ(c.get_pitch() / Angle::rad , 0.0) << "empty+empty x";
     ASSERT_DOUBLE_EQ(c.get_yaw() / Angle::rad , 0.0) << "empty+empty y";
@@ -211,10 +211,10 @@ TEST(Delta_Attitude, Add) {
     ASSERT_DOUBLE_EQ(c.get_roll() / Angle::rad , 9.0) << "full+full z";
 }
 
-TEST(Delta_Attitude, Subtract) {
+TEST(Rotation, Subtract) {
     Attitude a;
     Attitude b;
-    Delta_Attitude c;
+    Rotation c;
     c = a - b;
     ASSERT_DOUBLE_EQ(c.get_pitch() / Angle::rad , 0.0) << "empty-empty x";
     ASSERT_DOUBLE_EQ(c.get_yaw() / Angle::rad , 0.0) << "empty-empty y";
@@ -233,8 +233,8 @@ TEST(Delta_Attitude, Subtract) {
     ASSERT_DOUBLE_EQ(c.get_roll() / Angle::rad , 3.0) << "full-full z";
 }
 
-TEST(Delta_Attitude, OutputStream) {    
-    Delta_Attitude a(1 * Angle::rad, 2 * Angle::rad, 3 * Angle::rad);
+TEST(Rotation, OutputStream) {    
+    Rotation a(1 * Angle::rad, 2 * Angle::rad, 3 * Angle::rad);
     std::stringstream stream{};
     stream << a << std::endl;
     std::string output;

@@ -35,26 +35,26 @@
 //! OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF 
 //! THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+//! @brief      Attitude represents some form of rotation around the
+//!             x, y and z axes. These are called the pitch, yaw and roll.
+//!             the pitch yaw and roll are the only attributes of Attitude
+//!             and are Angle values.
+//!             Therefore to create an Attitude, 3 Angles must be given.
+//!
+//!             For example:
+//!             Attitude a(1 * Angle::rad, 2 * Angle::rad, 3 * Angle::rad)
+//!             This gives an Attitude with a 1rad pitch, a 2rad yaw and
+//!             a 3rad roll.
 #ifndef ATTITUDE_HPP
 #define ATTITUDE_HPP
 
-#include "Delta_Attitude.hpp"
+#include "Rotation.hpp"
 #include <iostream>
 
 namespace r2d2{
 class Attitude{
     private:
-        //constexpr double M_PI = 3.14159265358979323846;
-        //! using x = pitch, y = yaw, z = roll
         Angle x,y,z;
-
-        //! positive value describing possible deviation
-        //! from middle in either direction
-        const double angle_amp {M_PI};
-
-        //! set to 0 to have the values range from -pi to pi,
-        //! or to pi to have them range from 0 to 2 * pi
-        const double middle_angle {M_PI};
 
     public:
         //! @fn     Attitude::Attitude()
@@ -65,22 +65,22 @@ class Attitude{
         //! @brief  Constructor of an Attitude
         //! @param  pitch   The X Angle aka pitch of the Attitude
         //! @param  yaw	    The Y Angle aka yaw of the Attitude
-        //! @param  roll	The Z Angle aka roll of the Attitude
+        //! @param  roll    The Z Angle aka roll of the Attitude
         Attitude(Angle pitch, Angle yaw, Angle roll);
         
         //! @fn     Angle Attitude::get_x()
         //! @brief  Gets the x Angle aka pitch of the Attitude and returns it
-        //! @return	Angle	The x Angle aka pitch of the Attitude
+        //! @return	Angle   The x Angle aka pitch of the Attitude
         Angle get_pitch() const;
         
         //! @fn     Angle Attitude::get_y()
         //! @brief  Gets the y Angle aka pitch of the Attitude and returns it
-        //! @return	Angle	The y Angle aka pitch of the Attitude
+        //! @return	Angle   The y Angle aka pitch of the Attitude
         Angle get_yaw() const;
         
         //! @fn     Angle Attitude::get_z()
         //! @brief  Gets the z Angle aka pitch of the Attitude and returns it
-        //! @return	Angle	The z Angle aka pitch of the Attitude
+        //! @return	Angle   The z Angle aka pitch of the Attitude
         Angle get_roll() const;
 
         //! @fn     Attitude& Attitude::operator=(const Attitude& rhs)
@@ -91,47 +91,47 @@ class Attitude{
         //!                      assignment operator was called
         Attitude& operator=(const Attitude& rhs);
         
-        //! @fn Delta_Attitude Attitude::operator+(const Attitude& rhs) const
+        //! @fn Rotation Attitude::operator+(const Attitude& rhs) const
         //! @brief  Add operator of an Attitude and another Attitude
         //! @param  rhs    The Attitude that will be added to an Attitude
-        //! @return	Delta_Attitude    The Delta_Attitude that is created
+        //! @return	Rotation    The Rotation that is created
         //!                           by the addition
-        Delta_Attitude operator+(const Attitude& rhs) const;
+        Rotation operator+(const Attitude& rhs) const;
         
-        //! @fn Delta_Attitude Attitude::operator-(const Attitude& rhs) const
+        //! @fn Rotation Attitude::operator-(const Attitude& rhs) const
         //! @brief  Subtract operator of an Attitude and another Attitude
         //! @param  rhs    The Attitude that will be subtracted from an Attitude
-        //! @return	Delta_Attitude    The Delta_Attitude that is created
+        //! @return	Rotation    The Rotation that is created
         //!                           by the subtraction
-        Delta_Attitude operator-(const Attitude& rhs) const;
+        Rotation operator-(const Attitude& rhs) const;
         
-        //! @fn Attitude Attitude::operator+(const Delta_Attitude& rhs) const
-        //! @brief  Add operator of an Attitude and a Delta_Attitude
-        //! @param  rhs    The Delta_Attitude that will be added to an Attitude
+        //! @fn Attitude Attitude::operator+(const Rotation& rhs) const
+        //! @brief  Add operator of an Attitude and a Rotation
+        //! @param  rhs    The Rotation that will be added to an Attitude
         //! @return	Attitude    The new Attitude that is created by the addition
-        Attitude operator+(const Delta_Attitude& rhs) const;
+        Attitude operator+(const Rotation& rhs) const;
         
-        //! @fn Attitude Attitude::operator-(const Delta_Attitude& rhs) const
-        //! @brief  Subtract operator of an Attitude and a Delta_Attitude
-        //! @param  rhs     The Delta_Attitude that will be subtracted
+        //! @fn Attitude Attitude::operator-(const Rotation& rhs) const
+        //! @brief  Subtract operator of an Attitude and a Rotation
+        //! @param  rhs     The Rotation that will be subtracted
         //!                 from an Attitude
         //! @return	Attitude The new Attitude that is created by the subtraction
-        Attitude operator-(const Delta_Attitude& rhs) const;
+        Attitude operator-(const Rotation& rhs) const;
         
-        //! @fn    Attitude& Attitude::operator+=(const Delta_Attitude& rhs)
-        //! @brief  AddAssign operator of an Attitude and a Delta_Attitude
-        //! @param  rhs     The Delta_Attitude that will be added to the Attitude
+        //! @fn    Attitude& Attitude::operator+=(const Rotation& rhs)
+        //! @brief  AddAssign operator of an Attitude and a Rotation
+        //! @param  rhs     The Rotation that will be added to the Attitude
         //! @return	Attitude& Reference to the Attitude on which the
         //!                   AddAssign operator was called
-        Attitude& operator+=(const Delta_Attitude& rhs);
+        Attitude& operator+=(const Rotation& rhs);
 
-        //! @fn    Attitude& Attitude::operator-=(const Delta_Attitude& rhs)
-        //! @brief  SubtractAssign operator of an Attitude and a Delta_Attitude
-        //! @param  rhs       The Delta_Attitude that will be subtracted
+        //! @fn    Attitude& Attitude::operator-=(const Rotation& rhs)
+        //! @brief  SubtractAssign operator of an Attitude and a Rotation
+        //! @param  rhs       The Rotation that will be subtracted
         //!                   from the Attitude
         //! @return	Attitude& Reference to the Attitude on which the
         //!                   SubtractAssign operator was called
-        Attitude& operator-=(const Delta_Attitude& rhs);
+        Attitude& operator-=(const Rotation& rhs);
 
         //! @fn     std::ostream& Attitude::operator<<(std::ostream& lhs,
         //!                       const Attitude& rhs)
