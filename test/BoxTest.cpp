@@ -457,6 +457,10 @@ TEST (Box, IntersectsBox) {
             100.0 * Length::METER)
     );
 
+    // test box that is equal to original
+    Box copyBox(box);
+    ASSERT_TRUE(box.intersects(copyBox));
+
     // test box that is inside
     Box insideBox(
         Coordinate(
