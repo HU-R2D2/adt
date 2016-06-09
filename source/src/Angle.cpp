@@ -136,5 +136,11 @@ namespace r2d2{
         }
         return result;
     }
+    bool Angle::in_range(r2d2::Angle angle2) {
+        double offset = 0.0001;
+        Angle angle1{*this};
+        return ((angle1 - (offset * Angle::rad)) < angle2) &&
+               (angle2 < (angle1 + (offset * Angle::rad)));
+    }
 
 }
