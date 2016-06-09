@@ -58,6 +58,7 @@
 #include "ADT_Base.hpp"
 #include <iostream> 
 
+namespace r2d2{
 class Speed;
 class Translation;
 
@@ -123,5 +124,5 @@ class Length: public ADT_Base<Length>{
         static const Length METER;
         static const Length CENTIMETER;
 };
-
+}
 #endif

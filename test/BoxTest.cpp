@@ -40,6 +40,8 @@
 #include "gtest/gtest.h"
 #include <iostream>
 
+using namespace r2d2;
+
 TEST(Box, Constructor)
 {
     Coordinate bl = Coordinate::origin;
@@ -454,6 +456,10 @@ TEST (Box, IntersectsBox) {
             100.0 * Length::METER,
             100.0 * Length::METER)
     );
+
+    // test box that is equal to original
+    Box copyBox(box);
+    ASSERT_TRUE(box.intersects(copyBox));
 
     // test box that is inside
     Box insideBox(

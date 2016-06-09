@@ -38,6 +38,7 @@
 
 #include "../include/Box.hpp"
 
+namespace r2d2{
 Box::Box(Coordinate lhs, Coordinate rhs) {
     if(lhs.x < rhs.x){
         bottomLeft.x = lhs.x;
@@ -118,16 +119,18 @@ bool Box::contains(const Box & box) const {
 
 bool Box::intersects(const Box & box) const {
     // Check if there is an intersection between two boxes
-    // Uses AABB collision detection (Angle Aligned Bounding Box)
-    if (topRight.x > box.bottomLeft.x && 
-    bottomLeft.x < box.topRight.x &&
-    topRight.y > box.bottomLeft.y &&
-    bottomLeft.y < box.topRight.y &&
-    topRight.z > box.bottomLeft.z &&
-    bottomLeft.z < box.topRight.z) {
+    // using AABB collision detection (Axis-Aligned Bounding Box)
+    //
+    // Since >= and <= are not implemented < and > are used and
+    // their values are inverted
+    if (!(topRight.x < box.bottomLeft.x) &&
+        !(bottomLeft.x > box.topRight.x) &&
+        !(topRight.y < box.bottomLeft.y) &&
+        !(bottomLeft.y > box.topRight.y) &&
+        !(topRight.z < box.bottomLeft.z) &&
+        !(bottomLeft.z > box.topRight.z)) {
         return true;
     }
-
     return false;
 }
 
@@ -244,4 +247,5 @@ std::istream & operator >>(std::istream & lhs, Box & rhs ) {
     rhs.bottomLeft = bottomLeft;
     rhs.topRight = topRight;
     return lhs;
+}
 }

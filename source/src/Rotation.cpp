@@ -1,8 +1,9 @@
-//! @file <Duration.cpp>
-//! @date Created: <5-3-16>
-//! @version <1.0.0>
+//! Roborescue
+//! @file <Rotation.cpp>
+//! @date Created: <7-4-16>
+//! @version <0.5.0>
 //!
-//! @author <Casper Wolf & Job Verhaar>
+//! @author <Casper Wolf & Remco Nijkamp>
 //!
 //! @section LICENSE
 //! License: newBSD
@@ -34,45 +35,70 @@
 //! OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF 
 //! THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "../include/Duration.hpp"
-#include <stdexcept>
-
+#include "../include/Rotation.hpp"
 namespace r2d2{
-const Duration Duration::SECOND(1.0);
-const Duration Duration::MILLISECOND(1.0/1000.0);
-const Duration Duration::MINUTE(60.0);
-
-Duration::Duration():
-    ADT_Base<Duration>(0.0)
-{}
-
-Duration::Duration(double value): 
-    ADT_Base<Duration>(value) 
-{}
-
-std::ostream& operator<<(std::ostream& lhs, const Duration& rhs) {
-    lhs<< rhs.value << "s";
-    return lhs;
+Rotation::Rotation() {
+    x = Angle();
+    y = Angle();
+    z = Angle();
 }
 
-std::istream & operator>>(std::istream & lhs, Duration & rhs) {
-    std::string prefix;
-    double seconds;
-    lhs >> std::ws >> prefix;
-    if (prefix != "Duration") {
-        throw std::invalid_argument{
-            "Expecting prefix \"duration\", got something else."};
-    }
-    lhs >> seconds;
-    if (!lhs) {
-        throw std::invalid_argument{
-            "Duration wasn't read in its entirety when end of stream was reached."};
-    }
-    rhs.value = seconds;
-    return lhs;
+Rotation::Rotation(Angle x, Angle y, Angle z){
+    this->x = x;
+    this->y = y;
+    this->z = z;
 }
 
-double Duration::get_seconds() const {
-    return value;
+Angle Rotation::get_pitch() const {
+    return x;
+}
+
+Angle Rotation::get_yaw() const {
+    return y;
+}
+
+Angle Rotation::get_roll() const {
+    return z;
+}
+
+Rotation& Rotation::operator=( const Rotation &rhs ){
+    x = rhs.x;
+    y = rhs.y;
+    z = rhs.z;
+    return *this;
+}
+
+Rotation Rotation::operator+(const Rotation &rhs) const{
+    Rotation temp{*this};
+    temp.x += rhs.x;
+    temp.y += rhs.y;
+    temp.z += rhs.z;
+    return temp;
+}
+
+Rotation Rotation::operator-(const Rotation &rhs) const{
+    Rotation temp{*this};
+    temp.x -= rhs.x;
+    temp.y -= rhs.y;
+    temp.z -= rhs.z;
+    return temp;
+}
+
+Rotation& Rotation::operator+=(const Rotation &rhs){
+    x += rhs.x;
+    y += rhs.y;
+    z += rhs.z;
+    return *this;
+}
+
+Rotation& Rotation::operator-=( const Rotation &rhs ){
+    x -= rhs.x;
+    y -= rhs.y;
+    z -= rhs.z;
+    return *this;
+}
+
+std::ostream& operator<<(std::ostream& lhs, const Rotation& rhs){
+    return lhs << "x: " << rhs.x << ", y: " << rhs.y << ", z: " << rhs.z;
 }
 }

@@ -38,7 +38,7 @@
 #include "../source/include/Translation.hpp"
 #include "../source/include/Length.hpp"
 #include <iostream>
-
+using namespace r2d2;
 TEST(Translation, DefaultConstructor) {
     Translation a;
     ASSERT_DOUBLE_EQ(a.get_x() / Length::METER , 0.0) << "x";

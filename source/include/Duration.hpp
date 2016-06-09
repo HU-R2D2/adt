@@ -50,10 +50,12 @@
 #include <iostream>
 #include "Moment.hpp"
 #include "ADT_Base.hpp"
-
+namespace r2d2{
 class Speed;
 class Length;
 class Acceleration;
+
+
 class Duration : public ADT_Base<Duration>{
     protected:
         //! @fn     Duration(double value)
@@ -131,5 +133,6 @@ class Duration : public ADT_Base<Duration>{
         static const Duration MILLISECOND;
         static const Duration MINUTE;
 };
+}
 #endif
 

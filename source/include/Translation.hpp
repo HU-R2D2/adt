@@ -35,13 +35,14 @@
 //! OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF 
 //! THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef  _Translation_HPP
+#ifndef _Translation_HPP
 #define _Translation_HPP
  
 #include "Length.hpp"
 #include <iostream>
 #include <math.h>
 
+namespace r2d2{
 class Coordinate;
 
 //! @brief      Translation is a 3-vector with an x, y and z value.
@@ -248,4 +249,5 @@ class Translation {
     private:
             Length x,y,z;
 };
+}
 #endif

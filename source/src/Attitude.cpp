@@ -1,8 +1,9 @@
-//! @file <Duration.cpp>
-//! @date Created: <5-3-16>
-//! @version <1.0.0>
+//! Roborescue
+//! @file <Attitude.cpp>
+//! @date Created: <6-4-16>
+//! @version <0.5.0>
 //!
-//! @author <Casper Wolf & Job Verhaar>
+//! @author <Casper Wolf & Remco Nijkamp>
 //!
 //! @section LICENSE
 //! License: newBSD
@@ -34,45 +35,80 @@
 //! OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF 
 //! THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "../include/Duration.hpp"
-#include <stdexcept>
-
+#include "../include/Attitude.hpp"
 namespace r2d2{
-const Duration Duration::SECOND(1.0);
-const Duration Duration::MILLISECOND(1.0/1000.0);
-const Duration Duration::MINUTE(60.0);
-
-Duration::Duration():
-    ADT_Base<Duration>(0.0)
-{}
-
-Duration::Duration(double value): 
-    ADT_Base<Duration>(value) 
-{}
-
-std::ostream& operator<<(std::ostream& lhs, const Duration& rhs) {
-    lhs<< rhs.value << "s";
-    return lhs;
+Attitude::Attitude() {
+    x = Angle();
+    y = Angle();
+    z = Angle();
+}
+    
+Attitude::Attitude(Angle pitch, Angle yaw, Angle roll){    
+    x = pitch;
+    y = yaw;
+    z = roll;
 }
 
-std::istream & operator>>(std::istream & lhs, Duration & rhs) {
-    std::string prefix;
-    double seconds;
-    lhs >> std::ws >> prefix;
-    if (prefix != "Duration") {
-        throw std::invalid_argument{
-            "Expecting prefix \"duration\", got something else."};
-    }
-    lhs >> seconds;
-    if (!lhs) {
-        throw std::invalid_argument{
-            "Duration wasn't read in its entirety when end of stream was reached."};
-    }
-    rhs.value = seconds;
-    return lhs;
+Angle Attitude::get_pitch() const {
+    return x;
 }
 
-double Duration::get_seconds() const {
-    return value;
+Angle Attitude::get_yaw() const {
+    return y;
+}
+
+Angle Attitude::get_roll() const {
+    return z;
+}
+
+Attitude& Attitude::operator=(const Attitude& rhs){
+    x = rhs.x;
+    y = rhs.y;
+    z = rhs.z;
+    return *this;
+}
+
+Rotation Attitude::operator+(const Attitude& rhs) const{
+    Rotation delta{x + rhs.x, y + rhs.y, z + rhs.z};
+    return delta;
+}
+
+Rotation Attitude::operator-(const Attitude& rhs) const{
+    Rotation delta{x - rhs.x, y - rhs.y, z - rhs.z};
+    return delta;
+}
+
+Attitude Attitude::operator+(const Rotation& rhs) const{
+    Attitude temp{*this};
+    temp.x += rhs.get_pitch();
+    temp.y += rhs.get_yaw();
+    temp.z += rhs.get_roll();
+    return temp;
+}
+
+Attitude Attitude::operator-(const Rotation& rhs) const{
+    Attitude temp{*this};
+    temp.x -= rhs.get_pitch();
+    temp.y -= rhs.get_yaw();
+    temp.z -= rhs.get_roll();
+    return temp;
+}
+
+Attitude& Attitude::operator+=(const Rotation& rhs){
+    x += rhs.get_pitch();
+    y += rhs.get_yaw();
+    z += rhs.get_roll();
+    return *this;
+}
+
+Attitude& Attitude::operator-=(const Rotation& rhs){
+    x -= rhs.get_pitch();
+    y -= rhs.get_yaw();
+    z -= rhs.get_roll();
+    return *this;
+}
+
+std::ostream& operator<<(std::ostream& lhs,const Attitude& rhs){
+    return lhs << "x: " << rhs.x << ", y: " << rhs.y << ", z: " << rhs.z;
 }
 }

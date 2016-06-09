@@ -35,6 +35,7 @@
 #include "Duration.hpp"
 #include "Length.hpp"
 #include "ADT_Base.hpp"
+namespace r2d2{
 class Acceleration;
 
 class Speed : public ADT_Base<Speed>{
@@ -107,4 +108,5 @@ public:
 };
 
 Speed operator/ ( const Length & l, const Duration & d);
+}
 #endif

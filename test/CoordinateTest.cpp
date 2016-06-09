@@ -43,6 +43,8 @@
 #include <string>
 #include <sstream>
 
+using namespace r2d2;
+
 TEST(Coordinate, Constructor) {
     Coordinate c1 = Coordinate::origin;
     EXPECT_DOUBLE_EQ(0, c1.get_x() / Length::METER);

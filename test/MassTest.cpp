@@ -30,7 +30,7 @@
 #include "gtest/gtest.h"
 #include "../source/include/Mass.hpp"
 #include <iostream>
-
+using namespace r2d2;
 //constructors
 TEST(Mass, DefaultConstructor){
 	Mass w;

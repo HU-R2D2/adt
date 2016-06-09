@@ -30,7 +30,7 @@
 #include "../source/include/Speed.hpp"
 #include "gtest/gtest.h"
 //Constructors
-
+using namespace r2d2;
 
 //Assign
 TEST(Speed, Assign){
