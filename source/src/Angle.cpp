@@ -121,5 +121,26 @@ namespace r2d2{
     Angle operator*(const double &lhs, const Angle &rhs) {
         return Angle{rhs} *= lhs;
     }
+    Angle Angle::normalize(){
+        Angle result{*this};
+        if (result > 0 * Angle::rad){
+            while (result > (M_PI * 2.0) * Angle::rad){
+                result -= (M_PI * 2.0)* Angle::rad;
+            }
+        }
+        else{
+            while(result < (M_PI * -2.0) * Angle::rad){
+                result += (M_PI * 2.0) * Angle::rad;
+            }
+            result += (M_PI * 2.0) * Angle::rad;
+        }
+        return result;
+    }
+    bool Angle::in_range(r2d2::Angle angle2) {
+        double offset = 0.0001;
+        Angle angle1{*this};
+        return ((angle1 - (offset * Angle::rad)) < angle2) &&
+               (angle2 < (angle1 + (offset * Angle::rad)));
+    }
 
 }

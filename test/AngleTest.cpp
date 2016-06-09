@@ -46,24 +46,24 @@ using namespace r2d2;
 
 double pi = 3.14159265358979323846;
 
-TEST(AngleConstructor, Default){
+TEST(Angle, DefaultConstructor){
 	Angle a;
 	ASSERT_DOUBLE_EQ(a.get_angle(),0.0);
 }
 
-TEST(AngleConstructor, ConstructorValue){
+TEST(Angle, ConstructorValue){
 	Angle a;
 	a = M_PI * Angle::rad;
 	ASSERT_DOUBLE_EQ(a.get_angle(),M_PI);
 }
 
-TEST(AngleConversion, Radians_Degrees){
+TEST(Angle, ConversionRadians_Degrees){
 	Angle a =  M_PI * Angle::rad;
 	Angle b = 180.0 * Angle::deg;
 	ASSERT_DOUBLE_EQ(a.get_angle(),b.get_angle());
 }
 
-TEST(AngleAssign, Assign){
+TEST(Angle, Assign){
 	Angle a{};
 	a = ((M_PI/2) * Angle::rad);
 	Angle b{};
@@ -73,28 +73,28 @@ TEST(AngleAssign, Assign){
 	ASSERT_DOUBLE_EQ((M_PI/2),b.get_angle());
 }
 
-TEST(AngleComparison, Smaller){
+TEST(Angle, SmallerThan){
 	Angle a = (M_PI/4) * Angle::rad;
 	Angle b = (M_PI/8) * Angle::rad;
 	ASSERT_EQ(a < b, false);
 	ASSERT_EQ(b < a, true);
 }
 
-TEST(AngleComparison, Bigger){
+TEST(Angle, GreaterThan){
 	Angle a = (M_PI/16) * Angle::rad;
 	Angle b = (M_PI/4) * Angle::rad;
 	ASSERT_EQ(a > b, false);
 	ASSERT_EQ(b > a, true);
 }
 
-TEST(AngleAdding, singleOperator){
+TEST(Angle, SingleAddOperator){
 	Angle a = (M_PI/2) * Angle::rad;
 	Angle b = (M_PI/2) * Angle::rad;
 	Angle c = a + b;
 	ASSERT_DOUBLE_EQ(c.get_angle(),(M_PI));
 }
 
-TEST(AngleAdding, dualOperator){
+TEST(Angle, DualAddOperator){
 	Angle a = (M_PI/4) * Angle::rad;
 	Angle b = (M_PI/4) * Angle::rad;
 	const Angle * const temp = &a;
@@ -102,14 +102,14 @@ TEST(AngleAdding, dualOperator){
 	ASSERT_DOUBLE_EQ(a.get_angle(),(M_PI/2));
 }
 
-TEST(AngleSubstraction, singleOperator){
+TEST(Angle, SingleSubstractionOperator){
 	Angle a = M_PI * Angle::rad;
 	Angle b = (M_PI/2) * Angle::rad;
 	Angle c = a - b;
 	ASSERT_DOUBLE_EQ(c.get_angle(),(M_PI/2));
 }
 
-TEST(AngleSubstraction, dualOperator){
+TEST(Angle, DualSubstractionOperator){
 	Angle a = (2 * M_PI) * Angle::rad;
 	Angle b = M_PI * Angle::rad;
 	const Angle * const temp = &a;
@@ -117,13 +117,13 @@ TEST(AngleSubstraction, dualOperator){
 	ASSERT_DOUBLE_EQ(a.get_angle(),M_PI);
 }
 
-TEST(AngleMultiplication, singleOperator){
+TEST(Angle, SingleMultiplicationOperator){
 	Angle a = M_PI * Angle::rad;
 	a = a * 2.0;
 	ASSERT_DOUBLE_EQ(a.get_angle(),(M_PI * 2));
 }
 
-TEST(AngleMultiplication, dualOperator){
+TEST(Angle, DualMultiplicationOperator){
 	Angle a = (M_PI/4) * Angle::rad;
 	const Angle * const temp = &a;
 	a *= 4.0;
@@ -131,14 +131,14 @@ TEST(AngleMultiplication, dualOperator){
 	ASSERT_DOUBLE_EQ(a.get_angle(),M_PI);
 }
 
-TEST(AngleDivision, singleOperator){
+TEST(Angle, SingleDivisionOperator){
 	Angle a = (M_PI*2) * Angle::rad;
 	a = a / 2.0;
 	ASSERT_DOUBLE_EQ(a.get_angle(),M_PI);
 
 }
 
-TEST(AngleDivision, dualOperator){
+TEST(Angle, DualDivisionOperator){
 	Angle a = M_PI * Angle::rad;
 	const Angle * const temp = &a;
 	a /= 2.0;
@@ -147,11 +147,26 @@ TEST(AngleDivision, dualOperator){
 }
 #include <sstream>
 
-TEST(RotatationOutstream, angle){
+TEST(Angle, RotatationOutstream){
 	Angle a = Angle::rad;
 	std::stringstream stream{};
 	stream << a;
 	std::string temp;
 	getline(stream, temp);
 	EXPECT_EQ("1 rad", temp);
+}
+
+TEST(Angle, PositiveNormalize){
+    Angle a = M_PI * 5.5 * Angle::rad;
+    Angle b = a.normalize();
+    ASSERT_EQ(b.in_range(M_PI*1.5*Angle::rad), true);
+}
+TEST(Angle, NegativeNormalize){
+    Angle a = M_PI * -5.2 * Angle::rad;
+    Angle b = a.normalize();
+    ASSERT_EQ(b.in_range(M_PI*0.8*Angle::rad), true);
+}
+TEST(Angle, in_range){
+    Angle a = M_PI*1.0 * Angle::rad;
+    ASSERT_EQ(true, a.in_range(M_PI*1.0*Angle::rad));
 }

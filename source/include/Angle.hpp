@@ -98,11 +98,12 @@ namespace r2d2{
 
         //!@brief add the Angle in Radians value on the right hand to this
         //!@brief and returns an Angle
-        //!@param rhs Angle of which the angle_radians value has to be added to this
+        //!@param rhs Angle of which the angle_radians value has to be added to
+        //!this
         Angle operator+(const Angle &rhs) const;
 
-        //!@brief subtracts the angle_radians value on the right hand from this and
-        //!@brief returns the Angle
+        //!@brief subtracts the angle_radians value on the right hand from this
+        //!@brief and returns the Angle
         //!@param rhs Angle of which the angle_radians value has to be
         //!@brief substracted from this
         Angle operator-(const Angle &rhs) const;
@@ -128,9 +129,19 @@ namespace r2d2{
         //!@param rhs The Angle that will be added to the ostream
         friend std::ostream &operator<<(std::ostream &lhs, const Angle &rhs);
 
-        //!@brief Getter for Angle, returns a double containing the angle value in
-        //!@brief radians
+        //!@brief Getter for Angle, returns a double containing the angle value
+        //!@brief in radians
         double get_angle();
+
+        //!@brief Normalizes the angle to be positive and not bigger than one
+        //!@brief circle, works with both negative and positive angles.
+        Angle normalize();
+
+        //!@brief Acts like an == operator for doubles, checks if values aren't
+        //!@brief more than 0.0001 apart, this is done because you can't use
+        //!@brief == on a double.
+        //!@param angle2 The angle to compare to the primary angle you use it on
+        bool in_range(Angle angle2);
 
         //!@brief A radian and a degree constant to convert a double in radians
         //!@brief respectively degrees to an Angle object in radians
