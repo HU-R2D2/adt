@@ -861,24 +861,28 @@ TEST (Box, get_union_box) {
 TEST (Box, get_intersection_box) {
     // test if 2 boxes that are intersecting returns the right box
     Box box (
-        Coordinate::origin + Translation(),
         Coordinate(
-            100.0 * Length::METER,
-            100.0 * Length::METER,
-            100.0 * Length::METER
+            0.0 * Length::METER,
+            0.0 * Length::METER,
+            0.0 * Length::METER
+        ),
+        Coordinate(
+            2.0 * Length::METER,
+            2.0 * Length::METER,
+            1.0 * Length::METER
         )
     );
 
     Box collidingBox (
         Coordinate(
-            75.0 * Length::METER,
-            75.0 * Length::METER,
-            75.0 * Length::METER
+            1.0 * Length::METER,
+            1.0 * Length::METER,
+            0.0 * Length::METER
         ), 
         Coordinate(
-            125.0 * Length::METER,
-            125.0 * Length::METER,
-            125.0 * Length::METER
+            3.0 * Length::METER,
+            3.0 * Length::METER,
+            1.0 * Length::METER
         )
     );
 
@@ -891,30 +895,30 @@ TEST (Box, get_intersection_box) {
 
     ASSERT_DOUBLE_EQ(
         collidedBox.get_bottom_left().get_x() / Length::METER, 
-        75
+        1.0
     );
 
     ASSERT_DOUBLE_EQ(
         collidedBox.get_bottom_left().get_y() / Length::METER, 
-        75.0
+        1.0
     );
 
     ASSERT_DOUBLE_EQ(
         collidedBox.get_bottom_left().get_z() / Length::METER, 
-        75.0
+        0.0
     );
 
     ASSERT_DOUBLE_EQ(
         collidedBox.get_top_right().get_x() / Length::METER, 
-        100.0
+        2.0
     );
     ASSERT_DOUBLE_EQ(
         collidedBox.get_top_right().get_y() / Length::METER, 
-        100.0
+        2.0
     );
     ASSERT_DOUBLE_EQ(
         collidedBox.get_top_right().get_z() / Length::METER, 
-        100.0
+        1.0
     );
 
     // test 2 boxes that aren't intersecting

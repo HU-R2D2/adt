@@ -169,14 +169,28 @@ Box Box::get_union_box(const Box & box) const {
 }
 
 Box Box::get_intersection_box(const Box & box) const {
-    if(this->intersects(box)) {
-        // return intersection box
-        if(this->contains(box.bottomLeft)) {
-            // intersectionBox bottomLeft
-            return Box(box.get_bottom_left(), topRight);
-        } else {
-            return Box(bottomLeft, box.get_top_right());
-        }
+    if(this->intersects(box)) { // any point of the box is within our own box
+        Coordinate return_bottom( 
+            // determine biggest x,y,z of bottom and
+            // smallest x,y,z of top
+            bottomLeft.get_x() > box.get_bottom_left().get_x() ? 
+            bottomLeft.get_x() : box.get_bottom_left().get_x(),
+            bottomLeft.get_y() > box.get_bottom_left().get_y() ? 
+            bottomLeft.get_y() : box.get_bottom_left().get_y(),
+            bottomLeft.get_z() > box.get_bottom_left().get_z() ? 
+            bottomLeft.get_z() : box.get_bottom_left().get_z()
+        );
+        Coordinate return_top(
+            topRight.get_x() < box.get_top_right().get_x() ? 
+            topRight.get_x() : box.get_top_right().get_x(),
+            topRight.get_y() < box.get_top_right().get_y() ? 
+            topRight.get_y() : box.get_top_right().get_y(),
+            topRight.get_z() < box.get_top_right().get_z() ? 
+            topRight.get_z() : box.get_top_right().get_z()
+        );
+        //std::cout << "Returning " << return_bottom << " " << return_top << 
+        //std::endl;
+        return Box(return_bottom,return_top);
     } else {
         // no intersection box
         return Box(Coordinate(), Coordinate());
