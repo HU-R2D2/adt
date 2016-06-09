@@ -132,6 +132,10 @@ namespace r2d2{
         //!@brief radians
         double get_angle();
 
+        //!@brief Normalizes the angle to be positive and not bigger than one
+        //!@brief circle, works with both negative and positive angles.
+        Angle normalize();
+
         //!@brief A radian and a degree constant to convert a double in radians
         //!@brief respectively degrees to an Angle object in radians
         //!@brief Example usages:
