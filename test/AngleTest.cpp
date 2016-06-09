@@ -159,10 +159,14 @@ TEST(Angle, RotatationOutstream){
 TEST(Angle, PositiveNormalize){
     Angle a = M_PI * 5.5 * Angle::rad;
     Angle b = a.normalize();
-    ASSERT_EQ(b < M_PI * 2.0 * Angle::rad && b > 0*Angle::rad, true);
+    ASSERT_EQ(b.in_range(M_PI*1.5*Angle::rad), true);
 }
 TEST(Angle, NegativeNormalize){
     Angle a = M_PI * -5.2 * Angle::rad;
     Angle b = a.normalize();
-    ASSERT_EQ(b < M_PI *2.0 * Angle::rad && b > 0*Angle::rad, true);
+    ASSERT_EQ(b.in_range(M_PI*0.8*Angle::rad), true);
+}
+TEST(Angle, in_range){
+    Angle a = M_PI*1.0 * Angle::rad;
+    ASSERT_EQ(true, a.in_range(M_PI*1.0*Angle::rad));
 }
