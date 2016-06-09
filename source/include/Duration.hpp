@@ -131,6 +131,7 @@ class Duration : public ADT_Base<Duration>{
         
         static const Duration SECOND;
         static const Duration MILLISECOND;
+        static const Duration MICROSECOND;
         static const Duration MINUTE;
 };
 }
