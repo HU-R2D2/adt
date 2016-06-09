@@ -167,14 +167,29 @@ Box Box::get_union_box(const Box & box) const {
 
 Box Box::get_intersection_box(const Box & box) const {
     if(this->intersects(box)) {
+        std::cout << "Intersects" << std::endl;
         // return intersection box
-        if(this->contains(box.bottomLeft)) {
+        /*if(this->contains(box.bottomLeft) && this->contains(box.bottomRight)) {
+            std::cout << "Contains" << std::endl;
             // intersectionBox bottomLeft
-            return Box(box.get_bottom_left(), topRight);
-        } else {
-            return Box(bottomLeft, box.get_top_right());
-        }
+            std::cout << "1 Returning " << box.get_bottom_left() << " " << box.get_top_right() << std::endl;
+            return Box(box.get_bottom_left(), box.get_top_right());
+        } else { // the box isn't fully inside this box
+            std::cout << "2 Returning " << bottomLeft << " " << box.get_top_right() << std::endl;*/
+        Coordinate return_bottom(
+            bottomLeft.get_x() > box.get_bottom_left().get_x() ? bottomLeft.get_x() : box.get_bottom_left().get_x(),
+            bottomLeft.get_y() > box.get_bottom_left().get_y() ? bottomLeft.get_y() : box.get_bottom_left().get_y(),
+            bottomLeft.get_z() > box.get_bottom_left().get_z() ? bottomLeft.get_z() : box.get_bottom_left().get_z()
+        );
+        Coordinate return_top(
+            topRight.get_x() < box.get_top_right().get_x() ? topRight.get_x() : box.get_top_right().get_x(),
+            topRight.get_y() < box.get_top_right().get_y() ? topRight.get_y() : box.get_top_right().get_y(),
+            topRight.get_z() < box.get_top_right().get_z() ? topRight.get_z() : box.get_top_right().get_z()
+        );
+        std::cout << "Returning " << return_bottom << " " << return_top << std::endl;
+        return Box(return_bottom,return_top);
     } else {
+        std::cout << "No intersection" << std::endl;
         // no intersection box
         return Box(Coordinate(), Coordinate());
     }   
