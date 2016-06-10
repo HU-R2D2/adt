@@ -1,8 +1,9 @@
-// @file <filename>
+// @file TimeStamp.hpp
 // @date Created: <5-3-16>
+// @date Merged: <10-6-16>
 // @version <0.0.0>
 //
-// @author <full name>
+// @author Zehna van den Berg, Aydin Biber
 //
 // @section LICENSE
 // License: newBSD
