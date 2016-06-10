@@ -41,8 +41,6 @@
 #include "../include/TimeStamp.hpp"
 
 namespace r2d2{
-TimeStamp::TimeStamp( ) {
-}
 TimeStamp::TimeStamp(double value) throw (TimeStampException) :  ADT_Base{value} {
     if(this->value < 0)  {
         throw TimeStampException("TimeStamp exception");

@@ -55,11 +55,6 @@ bool double_range(double d1, double d2, double offset = 0.01){
 }
 
 namespace r2d2{
-//assumes it is created if it doesn't crash
-TEST(TimeStamp,  DefaultConstructor) {
-    TimeStamp ts1;
-}
-
 TEST(TimeStamp,  CopyConstructor) {
     TimeStamp ts1 = Clock::get_current_time();
     TimeStamp ts2(ts1);
@@ -144,8 +139,8 @@ TEST(TimeStamp, SubstractTimeStamp) {
 //friend ostream& operator<< (ostream& lhs, const TimeStamp& refDuration);
 //friend istream& operator>> (istream& lhs, TimeStamp& refDuration);
 TEST(TimeStamp, StreamOperators){
-    TimeStamp ts1;
-    TimeStamp ts2;
+    TimeStamp ts1 = Clock::get_current_time();
+    TimeStamp ts2 = Clock::get_current_time();
     stringstream ss1;
     ss1.str("500 1000");
     ss1 >> ts1 >> ts2;
@@ -186,7 +181,7 @@ TEST(TimeStamp, get_time){
 
 //Checks if unintended modifiers throw exceptions
 TEST(TimeStamp, ExceptionSafety){
-    TimeStamp ts1;
+    TimeStamp ts1 = Clock::get_current_time();
     double d1 = -1000, d2 = 1000;
     stringstream ss;
     

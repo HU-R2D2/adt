@@ -72,11 +72,6 @@ class TimeStamp : public ADT_Base<TimeStamp>{
 friend ADT_Base<TimeStamp>;
 friend class Clock;
 public:
-    
-    //!    @brief Public default constructor with time 0
-    //!    A filled TimeStamp can be obtained by the Clock
-    TimeStamp(); // Public default ctor
-
     /// assignment operator for a TimeStamp
     //!    @brief Assigns a given TimeStamp and its values, to the current TimeStamp
     //!    @param [in] refTimeStamp Uses this TimeStamp and its values
