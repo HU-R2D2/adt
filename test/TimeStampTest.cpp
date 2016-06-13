@@ -38,7 +38,7 @@
 // ++--++
 #include "gtest/gtest.h"
 #include "../source/include/TimeStamp.hpp"
-#include "../../../adt/source/include/Duration.hpp"
+#include "../source/include/Duration.hpp"
 #include "../source/include/Clock.hpp"
 #include <chrono>
 #include <stdint.h>
