@@ -39,8 +39,8 @@
 #define HPP_Clock
 
 #include <chrono>
-#include "duration.hpp"
-#include "timestamp.hpp"
+#include "Duration.hpp"
+#include "Timestamp.hpp"
 
 /// The main Clock object, which holds Clock::Duration and Clock::TimeStamp
 /// The Clock class is the main class which will be used
