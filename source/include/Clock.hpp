@@ -40,7 +40,7 @@
 
 #include <chrono>
 #include "Duration.hpp"
-#include "Timestamp.hpp"
+#include "TimeStamp.hpp"
 
 /// The main Clock object, which holds Clock::Duration and Clock::TimeStamp
 /// The Clock class is the main class which will be used
