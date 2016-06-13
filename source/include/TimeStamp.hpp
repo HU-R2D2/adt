@@ -140,7 +140,7 @@ public:
     TimeStamp operator/ (double number) const = delete;
     TimeStamp operator/= (double number) = delete;
     double operator/ (const TimeStamp & rhs) const = delete;
-    friend TimeStamp operator * (double n, const TimeStamp & rhs) = delete;
+    //friend TimeStamp operator * (double n, const TimeStamp & rhs) = delete;
     
 private:
     //!    @brief Creates a TimeStamp by its given parameter
