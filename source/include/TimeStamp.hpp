@@ -1,7 +1,7 @@
 // @file TimeStamp.hpp
 // @date Created: <5-3-16>
 // @date Merged: <10-6-16>
-// @version <0.0.0>
+// @version <1.0.0>
 //
 // @author Zehna van den Berg, Aydin Biber
 //
@@ -43,9 +43,6 @@
 #include "ADT_Base.hpp"
 #include "Duration.hpp"
 #include <assert.h>
-#include <stdlib.h>
-#include <stdint.h>
-#include <stdexcept>
 using namespace std;
 
 //! @author Ferdi Stoeltie 1665045

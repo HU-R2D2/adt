@@ -40,9 +40,6 @@
 #include "../source/include/TimeStamp.hpp"
 #include "../source/include/Duration.hpp"
 #include "../source/include/Clock.hpp"
-#include <chrono>
-#include <stdint.h>
-#include <iostream>
 
 // Below code exists to ensure a windows system can properly run the tests
 // First we include windows.h, to permit use of Sleep()
@@ -62,7 +59,7 @@ using namespace r2d2;
    TimeStamp Tests
 */
 
-bool double_range(double d1, double d2, double offset = 0.01){
+bool double_range(double d1, double d2, double offset = 0.02){
     return ((d1 - (offset)) < d2) &&
      (d2 < (d1 + (offset)));
 }
