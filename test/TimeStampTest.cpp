@@ -44,9 +44,16 @@
 #include <stdint.h>
 #include <iostream>
 
+// Below code exists to ensure a windows system can properly run the tests
+// First we include windows.h, to permit use of Sleep()
+// Secondly we redefine Sleep to sleep, so we don't have to make checks in the code
+// Finally define a second. For windows this is 1000 milliseconds. For other systems it's 1 second
 #if defined(WIN32) || defined(_WIN32)
     #include <windows.h>
     #define sleep Sleep
+    #define second 1000
+#else
+    #define second 1
 #endif
 
 using namespace std;
@@ -77,7 +84,7 @@ TEST(TimeStamp,  Assignment) {
 //TimeStamp operator+ ( const Duration& refDuration ) const;
 TEST(TimeStamp, AddConstDuration) {
     TimeStamp ts1 = Clock::get_current_time();
-    sleep(1);
+    sleep(second);
     TimeStamp ts2 = Clock::get_current_time();
     Duration d = Duration(Duration::SECOND * 1);
     
@@ -91,7 +98,7 @@ TEST(TimeStamp, AddConstDuration) {
 //TimeStamp& operator+= (const Duration& refDuration);
 TEST(TimeStamp, AddAssignConstDuration) {
     TimeStamp ts1 = Clock::get_current_time();
-    sleep(1);
+    sleep(second);
     TimeStamp ts2 = Clock::get_current_time();
     Duration d = Duration(Duration::SECOND * 1);
     
@@ -102,7 +109,7 @@ TEST(TimeStamp, AddAssignConstDuration) {
 //TimeStamp operator- ( const Duration& refDuration ) const;
 TEST(TimeStamp, SubstractConstDuration) {
     TimeStamp ts1 = Clock::get_current_time();
-    sleep(1);
+    sleep(second);
     TimeStamp ts2 = Clock::get_current_time();
     Duration d = Duration(Duration::SECOND * 1);
     
@@ -116,7 +123,7 @@ TEST(TimeStamp, SubstractConstDuration) {
 //TimeStamp& operator-= (const Duration& refDuration);
 TEST(TimeStamp, SubstractAssignConstDuration) {
     TimeStamp ts1 = Clock::get_current_time();
-    sleep(1);
+    sleep(second);
     TimeStamp ts2 = Clock::get_current_time();
     Duration d = Duration(Duration::SECOND * 1);
     
@@ -127,7 +134,7 @@ TEST(TimeStamp, SubstractAssignConstDuration) {
 //Duration operator- (const TimeStamp& refTimeStamp) const;
 TEST(TimeStamp, SubstractTimeStamp) {
     TimeStamp ts1 = Clock::get_current_time();
-    sleep(1);
+    sleep(second);
     TimeStamp ts2 = Clock::get_current_time();
     Duration d1 = Duration(Duration::SECOND * 1);
     
@@ -167,7 +174,7 @@ TEST(TimeStamp, StreamOperators){
 
 TEST (TimeStamp, RelationalOperators){
     TimeStamp ts1 = Clock::get_current_time();
-    sleep(1);
+    sleep(second);
     TimeStamp ts2 = Clock::get_current_time();
     EXPECT_TRUE(ts2 > ts1);
     EXPECT_FALSE(ts1 > ts2);
