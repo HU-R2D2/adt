@@ -140,6 +140,10 @@ public:
     TimeStamp operator/ (double number) const = delete;
     TimeStamp operator/= (double number) = delete;
     double operator/ (const TimeStamp & rhs) const = delete;
+    
+    // Don't use this operator
+    //
+    // Please refrain from using this operator. It has no usefull application.
     //friend TimeStamp operator * (double n, const TimeStamp & rhs) = delete;
     
 private:

@@ -193,7 +193,7 @@ TEST(TimeStamp, ExceptionSafety){
     try{
       ss >> ts1;
       EXPECT_NE(ts1.get_time(), d1);
-   }catch(TimeStampException e){
+    }catch(TimeStampException e){
    }
 }
 }
