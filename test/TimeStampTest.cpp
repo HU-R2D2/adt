@@ -43,6 +43,8 @@
 #include <chrono>
 #include <stdint.h>
 #include <iostream>
+#include <thread>
+
 using namespace std;
 using namespace r2d2;
 /**
@@ -71,7 +73,7 @@ TEST(TimeStamp,  Assignment) {
 //TimeStamp operator+ ( const Duration& refDuration ) const;
 TEST(TimeStamp, AddConstDuration) {
     TimeStamp ts1 = Clock::get_current_time();
-    sleep(1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     TimeStamp ts2 = Clock::get_current_time();
     Duration d = Duration(Duration::SECOND * 1);
     
@@ -85,7 +87,7 @@ TEST(TimeStamp, AddConstDuration) {
 //TimeStamp& operator+= (const Duration& refDuration);
 TEST(TimeStamp, AddAssignConstDuration) {
     TimeStamp ts1 = Clock::get_current_time();
-    sleep(1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     TimeStamp ts2 = Clock::get_current_time();
     Duration d = Duration(Duration::SECOND * 1);
     
@@ -96,7 +98,7 @@ TEST(TimeStamp, AddAssignConstDuration) {
 //TimeStamp operator- ( const Duration& refDuration ) const;
 TEST(TimeStamp, SubstractConstDuration) {
     TimeStamp ts1 = Clock::get_current_time();
-    sleep(1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     TimeStamp ts2 = Clock::get_current_time();
     Duration d = Duration(Duration::SECOND * 1);
     
@@ -110,7 +112,7 @@ TEST(TimeStamp, SubstractConstDuration) {
 //TimeStamp& operator-= (const Duration& refDuration);
 TEST(TimeStamp, SubstractAssignConstDuration) {
     TimeStamp ts1 = Clock::get_current_time();
-    sleep(1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     TimeStamp ts2 = Clock::get_current_time();
     Duration d = Duration(Duration::SECOND * 1);
     
@@ -121,7 +123,7 @@ TEST(TimeStamp, SubstractAssignConstDuration) {
 //Duration operator- (const TimeStamp& refTimeStamp) const;
 TEST(TimeStamp, SubstractTimeStamp) {
     TimeStamp ts1 = Clock::get_current_time();
-    sleep(1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     TimeStamp ts2 = Clock::get_current_time();
     Duration d1 = Duration(Duration::SECOND * 1);
     
@@ -161,7 +163,7 @@ TEST(TimeStamp, StreamOperators){
 
 TEST (TimeStamp, RelationalOperators){
     TimeStamp ts1 = Clock::get_current_time();
-    sleep(1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     TimeStamp ts2 = Clock::get_current_time();
     EXPECT_TRUE(ts2 > ts1);
     EXPECT_FALSE(ts1 > ts2);
