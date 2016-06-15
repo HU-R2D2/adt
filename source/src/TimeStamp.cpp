@@ -40,13 +40,14 @@
 // ++--++
 #include "../include/TimeStamp.hpp"
 
-namespace r2d2{
+namespace r2d2{    
+//Private
 TimeStamp::TimeStamp(double value) throw (TimeStampException) :  ADT_Base{value} {
     if(this->value < 0)  {
         throw TimeStampException("TimeStamp exception");
     }
-                
 }
+//Public
 TimeStamp& TimeStamp::operator= (const TimeStamp& m)  {
     if(&m == this) {
         return *this;
@@ -59,24 +60,24 @@ TimeStamp TimeStamp::operator+ ( const Duration & rhs ) const  {
     // Old TimeStamp is not modified
     // If addition results in < 0, return 0
     double saved_result;
-    TimeStamp rTimeStamp(0);
+    TimeStamp r_time_stamp(0);
     if( (saved_result = (this->value + rhs.get_seconds()) ) < 0)  {
-        rTimeStamp.value = 0;
-        return rTimeStamp;
+        r_time_stamp.value = 0;
+        return r_time_stamp;
     }
-    rTimeStamp.value = this->value + rhs.get_seconds();
-    return rTimeStamp;
+    r_time_stamp.value = this->value + rhs.get_seconds();
+    return r_time_stamp;
 }
 TimeStamp TimeStamp::operator- ( const Duration & rhs ) const  {
     // If Subtraction results in a time smaller than 0, return 0
     double saved_result;
-    TimeStamp rTimeStamp(0);
+    TimeStamp r_time_stamp(0);
     if( (saved_result = (this->value - rhs.get_seconds()) ) < 0)  {
-        rTimeStamp.value = 0;
-        return rTimeStamp;
+        r_time_stamp.value = 0;
+        return r_time_stamp;
     }
-    rTimeStamp.value = saved_result;
-    return rTimeStamp;
+    r_time_stamp.value = saved_result;
+    return r_time_stamp;
 }
 Duration TimeStamp::operator- (const TimeStamp & rhs) const {
     // Return new Duration that is the result of subtracting a given TimeStamp
@@ -106,12 +107,12 @@ double TimeStamp::get_time() const  {
     return this->value;
 }
 
-ostream& operator<< (ostream & lhs, const TimeStamp &rhs)        {
+std::ostream& operator<< (std::ostream & lhs, const TimeStamp &rhs)        {
     lhs << rhs.value;
     return lhs;
 }
 
-istream& operator>> (istream & lhs, TimeStamp & rhs)  {
+std::istream& operator>> (std::istream & lhs, TimeStamp & rhs)  {
     double read_error = -1;
     lhs >> read_error;
     if(read_error <= -1) {

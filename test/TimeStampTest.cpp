@@ -64,18 +64,18 @@ bool double_range(double d1, double d2, double offset = 0.02){
      (d2 < (d1 + (offset)));
 }
 
-namespace r2d2{
-TEST(TimeStamp,  CopyConstructor) {
-    TimeStamp ts1 = Clock::get_current_time();
-    TimeStamp ts2(ts1);
-    EXPECT_EQ(ts2.get_time(), ts1.get_time());
-}
-
+namespace r2d2{ 
 TEST(TimeStamp,  Assignment) {
     TimeStamp ts1 = Clock::get_current_time();
     TimeStamp ts2 = ts1;
     
     EXPECT_EQ(ts1.get_time(), ts2.get_time());
+}
+
+TEST(TimeStamp,  CopyConstructor) {
+    TimeStamp ts1 = Clock::get_current_time();
+    TimeStamp ts2(ts1);
+    EXPECT_EQ(ts2.get_time(), ts1.get_time());
 }
     
 //TimeStamp operator+ ( const Duration& refDuration ) const;
@@ -185,7 +185,7 @@ TEST(TimeStamp, get_time){
     TimeStamp ts1 = Clock::get_current_time();
     double d1 = (double)std::chrono::high_resolution_clock::now()
         .time_since_epoch().count()
-        / timeFactor;
+        / TIME_FACTOR;
     EXPECT_TRUE(double_range(ts1.get_time(), d1));
 }
 

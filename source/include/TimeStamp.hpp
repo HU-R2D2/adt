@@ -43,24 +43,26 @@
 #include "ADT_Base.hpp"
 #include "Duration.hpp"
 #include <assert.h>
-using namespace std;
+#include <stdlib.h>
+#include <stdint.h>
+#include <stdexcept>
 
-//! @author Ferdi Stoeltie 1665045
+//! @author Ferdi Stoeltie 1665045, Zehna van den Berg 1662506, Aydin Biber
 //! @brief Created specifically for the TimeStamp class, 
 //!        it is meant as it's exception.
 //! @date 05-04-2016
 
 namespace r2d2{
-class TimeStampException : public invalid_argument {
+class TimeStampException : public std::invalid_argument {
 public:
-    TimeStampException(string error) : invalid_argument{error} {}
+    TimeStampException(std::string error) : std::invalid_argument{error} {}
     virtual const char* what() const throw() {
-        return invalid_argument::what();
+        return std::invalid_argument::what();
     }
 };
     
 class Duration;
-//!    @author      Ferdi Stoeltie 1665045
+//!    @author      Ferdi Stoeltie 1665045 (Moment), Zehna van den Berg 1662506, Aydin Biber
 //!    @date         05-04-2016
 //!    @version     1.0.0
 //!    @brief            This class provides a timestamp of a TimeStamp in time. 
@@ -69,7 +71,7 @@ class Duration;
 class TimeStamp : public ADT_Base<TimeStamp>{
 friend ADT_Base<TimeStamp>;
 friend class Clock;
-public:
+public:    
     /// assignment operator for a TimeStamp
     //!    @brief Assigns a given TimeStamp and its values, to the current TimeStamp
     //!    @param [in] refTimeStamp Uses this TimeStamp and its values
@@ -116,7 +118,7 @@ public:
     //!    @param [in] lhs The ostream to which should be written
     //!    @param [in] The TimeStamp that contains the data
     //!    @return Same ostream for chaining
-    friend ostream& operator<< (ostream& lhs, const TimeStamp& refDuration);
+    friend std::ostream& operator<< (std::ostream& lhs, const TimeStamp& refDuration);
     
     //!    @brief Reads from stream data into TimeStamp, format: double
     //!    @param [in] lhs The istream from which should be read
@@ -124,7 +126,7 @@ public:
     //!    @return Same istream for chaining
     //! @exception <TimeStampException> Thrown when the stream,
     //!    format is wrong or a double is given < 0
-    friend istream& operator>> (istream& lhs, TimeStamp& refDuration);
+    friend std::istream& operator>> (std::istream& lhs, TimeStamp& refDuration);
     
     //! @brief Returns current TimeStamp in time as a double
     //! @return Current time held by this TimeStamp as a double
@@ -144,6 +146,11 @@ public:
     //friend TimeStamp operator * (double n, const TimeStamp & rhs) = delete;
     
 private:
+    ///Overrides default constructor
+    //!    @brief Overrides the default contstructor and deletes it's function
+    //!    @warning Calling with "TimeStamp ts1()" will give no compile errors but will not initialize the object
+    TimeStamp() = delete;
+
     //!    @brief Creates a TimeStamp by its given parameter
     //!    @param time Time that will be stored within TimeStamp
     //! @exception <TimeStampException> Thrown when a time is given < 0

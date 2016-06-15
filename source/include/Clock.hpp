@@ -50,7 +50,7 @@
 /// \date 31-3-2016
 
 namespace r2d2{
-#define timeFactor (1000 * 1000 * 1000) // makes time_point scale to seconds
+#define TIME_FACTOR (1000 * 1000 * 1000) // makes time_point scale to seconds
     class Clock {      
     public:
         //!   @brief Gets the current time using std::chrono and returns it as TimeStamp
