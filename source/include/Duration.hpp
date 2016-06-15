@@ -48,7 +48,7 @@
 #define _DURATION_HPP
 
 #include <iostream>
-#include <stdexcept>
+#include "Moment.hpp"
 #include "ADT_Base.hpp"
 namespace r2d2{
 class Speed;
