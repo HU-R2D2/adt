@@ -1,6 +1,6 @@
 // @file TimeStamp.hpp
 // @date Created: 10-6-16
-// @version <0.0.0>
+// @version <1.0.0>
 //
 // @author Zehna van den Berg, Aydin Biber
 //
