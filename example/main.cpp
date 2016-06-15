@@ -8,7 +8,7 @@
 #include  "../source/include/Force.hpp"
 #include  "../source/include/Length.hpp"
 #include  "../source/include/Mass.hpp"
-#include  "../source/include/Moment.hpp"
+#include  "../source/include/TimeStamp.hpp"
 #include  "../source/include/Rotation.hpp"
 #include  "../source/include/Speed.hpp"
 #include  "../source/include/Translation.hpp"
@@ -193,13 +193,13 @@ int main(int ac, char* av[]) {
     cout << " acceleration   expected 2.5m/s/s           returns : "
         << acceleration << endl;
 
-    /**************** Moment   ****************/
+    /**************** TimeStamp   ****************/
 
-    cout << "****************Moment**************** " << endl;
+    cout << "****************TimeStamp**************** " << endl;
     /*r2d2::Clock::Duration clock_a = Clock::Duration(std::chrono::duration<long,
          std::micro>(10));
-    r2d2::Moment m1;
-    m1 = clock_a::get_moment(); */
+    r2d2::TimeStamp m1;
+    m1 = clock_a::get_TimeStamp(); */
 
 
 
