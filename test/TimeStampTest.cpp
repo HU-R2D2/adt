@@ -70,12 +70,18 @@ TEST(TimeStamp,  Assignment) {
     TimeStamp ts2 = ts1;
     
     EXPECT_EQ(ts1.get_time(), ts2.get_time());
+    sleep(second);
+    ts2 = Clock::get_current_time();
+    EXPECT_NE(ts1.get_time(), ts2.get_time()) << "ts1 and ts2 share object";
 }
 
 TEST(TimeStamp,  CopyConstructor) {
     TimeStamp ts1 = Clock::get_current_time();
     TimeStamp ts2(ts1);
     EXPECT_EQ(ts2.get_time(), ts1.get_time());
+    sleep(second);
+    ts2 = Clock::get_current_time();
+    EXPECT_NE(ts1.get_time(), ts2.get_time()) << "ts1 and ts2 share object";
 }
     
 //TimeStamp operator+ ( const Duration& refDuration ) const;
