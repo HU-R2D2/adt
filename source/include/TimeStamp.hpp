@@ -43,11 +43,9 @@
 #include "ADT_Base.hpp"
 #include "Duration.hpp"
 #include <assert.h>
+#include <stdexcept>
 #include <stdlib.h>
 #include <stdint.h>
-#include <stdexcept>
-
-
 
 //! @author Ferdi Stoeltie 1665045, Zehna van den Berg 1662506, Aydin Biber
 //! @brief Created specifically for the TimeStamp class, 
