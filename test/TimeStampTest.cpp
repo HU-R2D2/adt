@@ -53,8 +53,6 @@
     #define second 1
 #endif
 
-using namespace std;
-using namespace r2d2;
 /**
    TimeStamp Tests
 */
@@ -157,14 +155,14 @@ TEST(TimeStamp, SubstractTimeStamp) {
 TEST(TimeStamp, StreamOperators){
     TimeStamp ts1 = Clock::get_current_time();
     TimeStamp ts2 = Clock::get_current_time();
-    stringstream ss1;
+    std::stringstream ss1;
     ss1.str("500 1000");
     ss1 >> ts1 >> ts2;
     
     EXPECT_EQ(ts1.get_time(), 500) << "First inpustream incorrect";
     EXPECT_EQ(ts2.get_time(), 1000) << "Second inputstream incorrect";
     
-    stringstream ss2;
+    std::stringstream ss2;
     
     ss2 << ts1 << ' ' << ts2;
     double d1, d2;
@@ -199,7 +197,7 @@ TEST(TimeStamp, get_time){
 TEST(TimeStamp, ExceptionSafety){
     TimeStamp ts1 = Clock::get_current_time();
     double d1 = -1000, d2 = 1000;
-    stringstream ss;
+    std::stringstream ss;
     
     ss << d2;
     ss >> ts1;
